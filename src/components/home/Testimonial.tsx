@@ -10,14 +10,14 @@ export function Testimonial() {
       
       <div className="container-content mx-auto px-4 text-center max-w-4xl relative">
         <ScrollReveal animation="scale">
-          <blockquote className="text-2xl md:text-3xl lg:text-4xl text-foreground italic leading-relaxed">
+          <blockquote className="text-2xl md:text-3xl lg:text-5xl text-foreground italic leading-relaxed">
             "I'm very proud to have built a company{" "}
             <Link to="/about" className="text-primary hover:underline font-semibold">
               whose values
             </Link>{" "}
             reflect what I want to see more of in the world."
           </blockquote>
-          <cite className="block mt-8 text-lg text-muted-foreground not-italic">
+          <cite className="block mt-8 text-xl text-muted-foreground not-italic">
             — <span className="font-semibold text-foreground">Kitty Newman</span>, Director
           </cite>
         </ScrollReveal>

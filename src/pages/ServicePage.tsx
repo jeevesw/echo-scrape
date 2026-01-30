@@ -98,7 +98,7 @@ const ServicePage = () => {
       <section className="py-16 bg-muted">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl">
-            <p className="text-lg text-foreground leading-relaxed">
+            <p className="text-xl md:text-2xl text-foreground leading-relaxed">
               {service.summary}
             </p>
           </div>
@@ -111,15 +111,15 @@ const ServicePage = () => {
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             <Card className="border-0 bg-muted">
               <CardContent className="p-8">
-                <h2 className="heading-display text-2xl text-foreground mb-6 flex items-center gap-3">
-                  <Check className="h-6 w-6 text-primary" />
+                <h2 className="heading-display text-2xl md:text-3xl text-foreground mb-6 flex items-center gap-3">
+                  <Check className="h-7 w-7 text-primary" />
                   Best For
                 </h2>
                 <ul className="space-y-4">
                   {service.bestFor.map((item, index) => (
                     <li key={index} className="flex items-start gap-3">
-                      <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                      <span className="text-foreground">{item}</span>
+                      <Check className="h-5 w-5 text-primary shrink-0 mt-1" />
+                      <span className="text-foreground text-lg">{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -128,15 +128,15 @@ const ServicePage = () => {
 
             <Card className="border-0 bg-muted">
               <CardContent className="p-8">
-                <h2 className="heading-display text-2xl text-foreground mb-6 flex items-center gap-3">
-                  <X className="h-6 w-6 text-muted-foreground" />
+                <h2 className="heading-display text-2xl md:text-3xl text-foreground mb-6 flex items-center gap-3">
+                  <X className="h-7 w-7 text-muted-foreground" />
                   Not For
                 </h2>
                 <ul className="space-y-4">
                   {service.notFor.map((item, index) => (
                     <li key={index} className="flex items-start gap-3">
-                      <X className="h-5 w-5 text-muted-foreground shrink-0 mt-0.5" />
-                      <span className="text-muted-foreground">{item}</span>
+                      <X className="h-5 w-5 text-muted-foreground shrink-0 mt-1" />
+                      <span className="text-muted-foreground text-lg">{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -157,14 +157,14 @@ const ServicePage = () => {
             <div className="space-y-8">
               {service.process.map((step) => (
                 <div key={step.step} className="flex gap-6">
-                  <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center heading-display text-lg shrink-0">
+                  <div className="w-14 h-14 rounded-full bg-primary text-primary-foreground flex items-center justify-center heading-display text-xl shrink-0">
                     {step.step}
                   </div>
                   <div className="pt-2">
-                    <h3 className="heading-display text-xl text-foreground mb-2">
+                    <h3 className="heading-display text-xl md:text-2xl text-foreground mb-2">
                       {step.title}
                     </h3>
-                    <p className="text-muted-foreground">
+                    <p className="text-muted-foreground text-lg">
                       {step.description}
                     </p>
                   </div>
@@ -186,10 +186,10 @@ const ServicePage = () => {
             {service.features.map((feature, index) => (
               <Card key={index} className="border-0 bg-muted">
                 <CardContent className="p-6">
-                  <h3 className="heading-display text-lg text-foreground mb-3">
+                  <h3 className="heading-display text-xl text-foreground mb-3">
                     {feature.title}
                   </h3>
-                  <p className="text-muted-foreground text-sm">
+                  <p className="text-muted-foreground text-base">
                     {feature.description}
                   </p>
                 </CardContent>
@@ -209,7 +209,7 @@ const ServicePage = () => {
             {service.industries.map((industry, index) => (
               <span
                 key={index}
-                className="px-4 py-2 bg-background rounded-full text-foreground text-sm"
+                className="px-5 py-3 bg-background rounded-full text-foreground text-base"
               >
                 {industry}
               </span>
@@ -231,14 +231,14 @@ const ServicePage = () => {
                 <AccordionItem
                   key={index}
                   value={`faq-${index}`}
-                  className="bg-muted rounded-lg px-6 border-0"
+                  className="bg-muted rounded-xl px-6 border-0"
                 >
-                  <AccordionTrigger className="hover:no-underline text-left">
-                    <span className="heading-display text-foreground">
+                  <AccordionTrigger className="hover:no-underline text-left py-5">
+                    <span className="heading-display text-foreground text-lg">
                       {faq.question}
                     </span>
                   </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground">
+                  <AccordionContent className="text-muted-foreground text-base leading-relaxed">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
@@ -267,10 +267,10 @@ const ServicePage = () => {
       {/* CTA Section */}
       <section className="py-20 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="heading-display text-4xl mb-6">
+          <h2 className="heading-display text-4xl md:text-5xl mb-6">
             {service.ctaHeadline}
           </h2>
-          <p className="text-primary-foreground/80 max-w-xl mx-auto mb-8">
+          <p className="text-primary-foreground/80 text-lg md:text-xl max-w-xl mx-auto mb-8">
             {service.ctaText}
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
