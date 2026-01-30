@@ -92,6 +92,14 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
+    fontFamily: {
+      display: ['Obviously Narrow', 'Impact', 'sans-serif'],
+      ui: ['Obviously', 'system-ui', 'sans-serif'],
+      body: ['DM Sans', 'system-ui', 'sans-serif'],
+    },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require("@tailwindcss/typography"),
+  ],
 } satisfies Config;
