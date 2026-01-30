@@ -161,9 +161,10 @@ export function VenueVisitsCPAChart({
               axisLine={false}
               tickLine={false}
               tick={{ 
-                fill: "hsl(0, 0%, 40%)", 
+                fill: "hsl(var(--muted-foreground))", 
                 fontSize: 11,
                 fontWeight: 500,
+                fontFamily: "var(--font-ui)",
               }}
               angle={-45}
               textAnchor="end"
