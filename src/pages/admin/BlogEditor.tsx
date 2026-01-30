@@ -406,7 +406,7 @@ export default function BlogEditor() {
                   <img
                     src={featuredImage}
                     alt="Featured"
-                    className="w-full rounded-lg object-cover aspect-video"
+                    className="w-full rounded-lg object-cover aspect-[4/3]"
                   />
                   <Button
                     variant="destructive"
