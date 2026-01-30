@@ -122,12 +122,12 @@ const VariousEateriesCaseStudy = () => {
             </h2>
           </ScrollReveal>
 
-          <div className="grid xl:grid-cols-2 gap-16 items-start">
-          <ScrollReveal animation="left" className="lg:col-span-2 xl:col-span-1">
+          <div className="grid xl:grid-cols-4 gap-8 items-start">
+            <ScrollReveal animation="left" className="xl:col-span-3">
               <VenueVisitsCPAChart className="w-full min-h-[450px]" />
             </ScrollReveal>
 
-            <ScrollReveal animation="right">
+            <ScrollReveal animation="right" className="xl:col-span-1">
               <div className="grid grid-cols-1 gap-8">
                 <div className="text-center group p-6 bg-muted rounded-2xl">
                   <span className="heading-display text-5xl md:text-6xl text-primary block transition-transform duration-500 group-hover:scale-105">
