@@ -10,6 +10,8 @@ import socialMediaImg from "@/assets/services/social-media-management.webp";
 import paidAdsImg from "@/assets/services/paid-advertising.webp";
 import emailMarketingImg from "@/assets/services/email-marketing.webp";
 import creativeImg from "@/assets/services/creative-services.webp";
+import tiktokImg from "@/assets/services/tiktok-production.png";
+import websiteImg from "@/assets/services/website-design.jpg";
 
 const services = [
   {
@@ -35,6 +37,18 @@ const services = [
     title: "Creative Services",
     description: "Design, video & branding",
     image: creativeImg,
+  },
+  {
+    slug: "tiktok-production",
+    title: "TikTok Production",
+    description: "Content, ads & influencers",
+    image: tiktokImg,
+  },
+  {
+    slug: "website-design",
+    title: "Website Design",
+    description: "Build, launch & manage",
+    image: websiteImg,
   },
 ];
 
@@ -97,8 +111,8 @@ export function Header() {
                   servicesOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"
                 }`}
               >
-                <div className="bg-background border border-border rounded-xl shadow-xl p-6 w-[600px]">
-                  <div className="grid grid-cols-2 gap-4">
+                <div className="bg-background border border-border rounded-xl shadow-xl p-6 w-[720px]">
+                  <div className="grid grid-cols-3 gap-3">
                     {services.map((service) => (
                       <Link
                         key={service.slug}
