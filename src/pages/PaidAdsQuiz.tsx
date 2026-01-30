@@ -343,28 +343,28 @@ const PaidAdsQuiz = () => {
           />
 
           <div className="max-w-2xl mx-auto">
-            <div className="text-center mb-8">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
-                <Target className="h-8 w-8 text-primary" />
+            <div className="text-center mb-10">
+              <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center">
+                <Target className="h-10 w-10 text-primary" />
               </div>
-              <h1 className="heading-display text-3xl md:text-4xl text-primary mb-3">
+              <h1 className="heading-display text-4xl md:text-5xl text-primary mb-4">
                 Paid Ads Readiness Quiz
               </h1>
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground text-lg">
                 Answer 8 quick questions to see if we're a good fit.
               </p>
             </div>
 
-            <Progress value={progress} className="mb-8" />
+            <Progress value={progress} className="mb-10 h-3" />
 
             <Card className="border-0 bg-muted">
-              <CardContent className="p-8">
+              <CardContent className="p-8 md:p-10">
                 {currentStep < questions.length ? (
                   <>
-                    <p className="text-sm text-muted-foreground mb-2">
+                    <p className="text-base text-muted-foreground mb-2">
                       Question {currentStep + 1} of {questions.length}
                     </p>
-                    <h2 className="heading-display text-xl text-foreground mb-6">
+                    <h2 className="heading-display text-2xl md:text-3xl text-foreground mb-8">
                       {currentQuestion.question}
                     </h2>
 
@@ -372,17 +372,17 @@ const PaidAdsQuiz = () => {
                       <RadioGroup
                         value={answers[currentQuestion.id] as string || ""}
                         onValueChange={handleSingleAnswer}
-                        className="space-y-3"
+                        className="space-y-4"
                       >
                         {currentQuestion.options.map((option) => (
                           <div
                             key={option.value}
-                            className="flex items-center space-x-3 p-4 bg-background rounded-lg hover:bg-background/80 transition-colors"
+                            className="flex items-center space-x-4 p-5 md:p-6 bg-background rounded-xl hover:bg-background/80 hover:shadow-md transition-all cursor-pointer border-2 border-transparent has-[:checked]:border-primary has-[:checked]:bg-primary/5"
                           >
-                            <RadioGroupItem value={option.value} id={option.value} />
+                            <RadioGroupItem value={option.value} id={option.value} className="h-5 w-5" />
                             <Label
                               htmlFor={option.value}
-                              className="flex-1 cursor-pointer text-foreground"
+                              className="flex-1 cursor-pointer text-foreground text-lg"
                             >
                               {option.label}
                             </Label>
@@ -390,13 +390,15 @@ const PaidAdsQuiz = () => {
                         ))}
                       </RadioGroup>
                     ) : (
-                      <div className="space-y-3">
+                      <div className="space-y-4">
                         {currentQuestion.options.map((option) => {
                           const selected = ((answers[currentQuestion.id] as string[]) || []).includes(option.value);
                           return (
                             <div
                               key={option.value}
-                              className="flex items-center space-x-3 p-4 bg-background rounded-lg hover:bg-background/80 transition-colors"
+                              className={`flex items-center space-x-4 p-5 md:p-6 bg-background rounded-xl hover:bg-background/80 hover:shadow-md transition-all cursor-pointer border-2 ${
+                                selected ? "border-primary bg-primary/5" : "border-transparent"
+                              }`}
                             >
                               <Checkbox
                                 id={option.value}
@@ -404,10 +406,11 @@ const PaidAdsQuiz = () => {
                                 onCheckedChange={(checked) =>
                                   handleMultiAnswer(option.value, checked as boolean)
                                 }
+                                className="h-5 w-5"
                               />
                               <Label
                                 htmlFor={option.value}
-                                className="flex-1 cursor-pointer text-foreground"
+                                className="flex-1 cursor-pointer text-foreground text-lg"
                               >
                                 {option.label}
                               </Label>
@@ -436,11 +439,11 @@ const PaidAdsQuiz = () => {
                   </>
                 ) : (
                   <>
-                    <h2 className="heading-display text-xl text-foreground mb-6">
+                    <h2 className="heading-display text-2xl md:text-3xl text-foreground mb-8">
                       Almost done! Where should we send your results?
                     </h2>
 
-                    <div className="space-y-4">
+                    <div className="space-y-6">
                       <div>
                         <Label htmlFor="email" className="text-foreground">
                           Email address *

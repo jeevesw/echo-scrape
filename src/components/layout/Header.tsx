@@ -111,13 +111,13 @@ export function Header() {
                   servicesOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"
                 }`}
               >
-                <div className="bg-background border border-border rounded-xl shadow-xl p-6 w-[720px]">
-                  <div className="grid grid-cols-3 gap-3">
+                <div className="bg-background border border-border rounded-xl shadow-xl p-6 w-[780px]">
+                  <div className="grid grid-cols-3 gap-4">
                     {services.map((service) => (
                       <Link
                         key={service.slug}
                         to={`/services/${service.slug}`}
-                        className="group flex gap-4 p-3 rounded-lg hover:bg-muted transition-colors"
+                        className="group flex gap-4 p-4 rounded-xl hover:bg-muted transition-colors"
                         onClick={() => setServicesOpen(false)}
                       >
                         <div className="w-20 h-14 rounded-lg overflow-hidden flex-shrink-0">
@@ -128,20 +128,20 @@ export function Header() {
                           />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors text-sm">
+                          <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors text-base">
                             {service.title}
                           </h3>
-                          <p className="text-xs text-muted-foreground mt-0.5">
+                          <p className="text-sm text-muted-foreground mt-1">
                             {service.description}
                           </p>
                         </div>
                       </Link>
                     ))}
                   </div>
-                  <div className="mt-4 pt-4 border-t border-border">
+                  <div className="mt-5 pt-5 border-t border-border">
                     <Link
                       to="/services"
-                      className="text-sm font-medium text-primary hover:underline"
+                      className="text-base font-medium text-primary hover:underline"
                       onClick={() => setServicesOpen(false)}
                     >
                       View all services →

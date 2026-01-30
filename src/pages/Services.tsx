@@ -78,7 +78,7 @@ const Services = () => {
               <h1 className="heading-display text-4xl md:text-5xl lg:text-6xl text-foreground mb-6">
                 Our Services
               </h1>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-xl text-muted-foreground">
                 From strategy to execution, we help UK restaurants, hotels, events, and tourism brands 
                 reach local audiences through social media, paid advertising, email, and creative content.
               </p>
@@ -99,13 +99,13 @@ const Services = () => {
                       />
                     </div>
                     <div className="p-6">
-                      <h2 className="heading-display text-xl md:text-2xl text-foreground mb-2 group-hover:text-primary transition-colors">
+                      <h2 className="heading-display text-xl md:text-2xl text-foreground mb-3 group-hover:text-primary transition-colors">
                         {service.title}
                       </h2>
-                      <p className="text-muted-foreground mb-4 text-sm md:text-base">
+                      <p className="text-muted-foreground mb-4 text-base">
                         {service.description}
                       </p>
-                      <span className="inline-flex items-center text-primary font-medium text-sm group-hover:underline">
+                      <span className="inline-flex items-center text-primary font-medium text-base group-hover:underline">
                         Find out more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                       </span>
                     </div>
@@ -124,7 +124,7 @@ const Services = () => {
             <h2 className="heading-display text-3xl md:text-4xl mb-6">
               Not Sure Where to Start?
             </h2>
-            <p className="text-primary-foreground/80 max-w-xl mx-auto mb-8">
+            <p className="text-primary-foreground/80 text-lg md:text-xl max-w-xl mx-auto mb-8">
               Let's discuss your goals and find the right approach for your brand. 
               Book a discovery call or take our Paid Ads Readiness Quiz.
             </p>
