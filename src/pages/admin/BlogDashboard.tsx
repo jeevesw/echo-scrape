@@ -37,6 +37,12 @@ import { Plus, Search, Pencil, Trash2, Eye, ArrowUpDown } from 'lucide-react';
 import { format } from 'date-fns';
 import { toast } from 'sonner';
 
+interface Category {
+  id: string;
+  slug: string;
+  name: string;
+}
+
 interface BlogPost {
   id: string;
   slug: string;
@@ -45,6 +51,7 @@ interface BlogPost {
   published_at: string;
   is_published: boolean;
   created_at: string;
+  categories: Category[];
 }
 
 type SortField = 'title' | 'published_at' | 'author';
@@ -55,17 +62,51 @@ export default function BlogDashboard() {
   const [search, setSearch] = useState('');
   const [sortField, setSortField] = useState<SortField>('published_at');
   const [sortOrder, setSortOrder] = useState<SortOrder>('desc');
+  const [categoryFilter, setCategoryFilter] = useState<string>('all');
 
+  // Fetch all categories
+  const { data: categories } = useQuery({
+    queryKey: ['blog-categories'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('blog_categories')
+        .select('*')
+        .order('sort_order');
+      if (error) throw error;
+      return data as Category[];
+    },
+  });
+
+  // Fetch posts with their categories
   const { data: posts, isLoading } = useQuery({
     queryKey: ['admin-blog-posts'],
     queryFn: async () => {
-      const { data, error } = await supabase
+      const { data: postsData, error } = await supabase
         .from('blog_posts')
         .select('id, slug, title, author, published_at, is_published, created_at')
         .order('created_at', { ascending: false });
       
       if (error) throw error;
-      return data as BlogPost[];
+
+      // Fetch categories for all posts
+      const postIds = postsData.map(p => p.id);
+      const { data: postCats, error: catError } = await supabase
+        .from('blog_post_categories')
+        .select('post_id, category_id, blog_categories(id, slug, name)')
+        .in('post_id', postIds);
+      
+      if (catError) throw catError;
+
+      // Map categories to posts
+      const postsWithCats = postsData.map(post => ({
+        ...post,
+        categories: postCats
+          ?.filter(pc => pc.post_id === post.id)
+          .map(pc => pc.blog_categories as unknown as Category)
+          .filter(Boolean) || [],
+      }));
+
+      return postsWithCats as BlogPost[];
     },
   });
 
@@ -87,6 +128,13 @@ export default function BlogDashboard() {
     if (!posts) return [];
     
     let result = [...posts];
+    
+    // Filter by category
+    if (categoryFilter && categoryFilter !== 'all') {
+      result = result.filter(post =>
+        post.categories.some(cat => cat.id === categoryFilter)
+      );
+    }
     
     // Filter by search
     if (search.trim()) {
@@ -112,7 +160,7 @@ export default function BlogDashboard() {
     });
     
     return result;
-  }, [posts, search, sortField, sortOrder]);
+  }, [posts, search, sortField, sortOrder, categoryFilter]);
 
   const toggleSort = (field: SortField) => {
     if (sortField === field) {
@@ -153,6 +201,17 @@ export default function BlogDashboard() {
               className="pl-10"
             />
           </div>
+          <Select value={categoryFilter} onValueChange={setCategoryFilter}>
+            <SelectTrigger className="w-48">
+              <SelectValue placeholder="All categories" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All categories</SelectItem>
+              {categories?.map(cat => (
+                <SelectItem key={cat.id} value={cat.id}>{cat.name}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
           <Select
             value={`${sortField}-${sortOrder}`}
             onValueChange={(value) => {
@@ -205,6 +264,7 @@ export default function BlogDashboard() {
                     <ArrowUpDown className="h-3 w-3" />
                   </button>
                 </TableHead>
+                <TableHead>Categories</TableHead>
                 <TableHead>Status</TableHead>
                 <TableHead className="text-right">Actions</TableHead>
               </TableRow>
@@ -216,14 +276,15 @@ export default function BlogDashboard() {
                     <TableCell><Skeleton className="h-5 w-3/4" /></TableCell>
                     <TableCell><Skeleton className="h-5 w-24" /></TableCell>
                     <TableCell><Skeleton className="h-5 w-20" /></TableCell>
+                    <TableCell><Skeleton className="h-5 w-32" /></TableCell>
                     <TableCell><Skeleton className="h-5 w-16" /></TableCell>
                     <TableCell><Skeleton className="h-8 w-24 ml-auto" /></TableCell>
                   </TableRow>
                 ))
               ) : filteredAndSortedPosts.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={5} className="text-center py-12 text-muted-foreground">
-                    {search ? 'No posts match your search' : 'No posts yet. Create your first post!'}
+                  <TableCell colSpan={6} className="text-center py-12 text-muted-foreground">
+                    {search || categoryFilter !== 'all' ? 'No posts match your filters' : 'No posts yet. Create your first post!'}
                   </TableCell>
                 </TableRow>
               ) : (
@@ -238,6 +299,19 @@ export default function BlogDashboard() {
                     <TableCell className="text-muted-foreground">{post.author}</TableCell>
                     <TableCell className="text-muted-foreground">
                       {format(new Date(post.published_at), 'MMM d, yyyy')}
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex flex-wrap gap-1 max-w-48">
+                        {post.categories.length > 0 ? (
+                          post.categories.map(cat => (
+                            <Badge key={cat.id} variant="outline" className="text-xs">
+                              {cat.name}
+                            </Badge>
+                          ))
+                        ) : (
+                          <span className="text-xs text-muted-foreground">—</span>
+                        )}
+                      </div>
                     </TableCell>
                     <TableCell>
                       <Badge variant={post.is_published ? 'default' : 'secondary'}>

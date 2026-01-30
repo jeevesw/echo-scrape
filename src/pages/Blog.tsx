@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -9,9 +9,15 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
 import { format } from "date-fns";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 
-interface BlogPost {
+interface Category {
+  id: string;
+  slug: string;
+  name: string;
+}
+
+interface BlogPostBase {
   id: string;
   slug: string;
   title: string;
@@ -20,6 +26,10 @@ interface BlogPost {
   featured_image: string | null;
   author: string;
   published_at: string;
+}
+
+interface BlogPostWithCategories extends BlogPostBase {
+  category_ids: string[];
 }
 
 const POSTS_PER_PAGE = 9;
@@ -40,7 +50,7 @@ const stripHtmlAndMarkdown = (text: string): string => {
 };
 
 // Get excerpt with fallback to stripped content
-const getExcerpt = (post: BlogPost): string => {
+const getExcerpt = (post: BlogPostBase): string => {
   if (post.excerpt && post.excerpt.trim()) {
     return stripHtmlAndMarkdown(post.excerpt);
   }
@@ -57,29 +67,91 @@ const getExcerpt = (post: BlogPost): string => {
 };
 
 const BlogList = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState('');
   const [sortOrder, setSortOrder] = useState<'newest' | 'oldest'>('newest');
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
-  const { data: posts, isLoading, error } = useQuery({
-    queryKey: ['blog-posts'],
+  // Sync category from URL on mount
+  useEffect(() => {
+    const catParam = searchParams.get('category');
+    if (catParam) {
+      setSelectedCategory(catParam);
+    }
+  }, [searchParams]);
+
+  // Fetch categories (exclude "Needs review")
+  const { data: categories } = useQuery({
+    queryKey: ['public-blog-categories'],
     queryFn: async () => {
       const { data, error } = await supabase
+        .from('blog_categories')
+        .select('*')
+        .neq('slug', 'needs-review')
+        .order('sort_order');
+      if (error) throw error;
+      return data as Category[];
+    },
+  });
+
+  const { data: posts, isLoading, error } = useQuery({
+    queryKey: ['blog-posts-with-categories'],
+    queryFn: async () => {
+      // Fetch posts
+      const { data: postsData, error } = await supabase
         .from('blog_posts')
         .select('id, slug, title, excerpt, content, author, published_at, featured_image')
         .eq('is_published', true)
         .order('published_at', { ascending: false });
       
       if (error) throw error;
-      return data as BlogPost[];
+
+      // Fetch post categories
+      const postIds = postsData.map(p => p.id);
+      const { data: postCats, error: catError } = await supabase
+        .from('blog_post_categories')
+        .select('post_id, category_id')
+        .in('post_id', postIds);
+      
+      if (catError) throw catError;
+
+      // Map categories to posts
+      return postsData.map(post => ({
+        ...post,
+        category_ids: postCats?.filter(pc => pc.post_id === post.id).map(pc => pc.category_id) || [],
+      })) as BlogPostWithCategories[];
     },
   });
+
+  // Handle category change and update URL
+  const handleCategoryChange = (categorySlug: string) => {
+    setSelectedCategory(categorySlug);
+    setCurrentPage(1);
+    
+    if (categorySlug === 'all') {
+      searchParams.delete('category');
+    } else {
+      searchParams.set('category', categorySlug);
+    }
+    setSearchParams(searchParams);
+  };
 
   // Filter and sort posts
   const filteredPosts = useMemo(() => {
     if (!posts) return [];
     
     let result = [...posts];
+    
+    // Filter by category
+    if (selectedCategory && selectedCategory !== 'all' && categories) {
+      const selectedCat = categories.find(c => c.slug === selectedCategory);
+      if (selectedCat) {
+        result = result.filter(post =>
+          post.category_ids.includes(selectedCat.id)
+        );
+      }
+    }
     
     // Filter by search query
     if (searchQuery.trim()) {
@@ -99,7 +171,7 @@ const BlogList = () => {
     });
     
     return result;
-  }, [posts, searchQuery, sortOrder]);
+  }, [posts, searchQuery, sortOrder, selectedCategory, categories]);
 
   // Pagination
   const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
@@ -153,7 +225,30 @@ const BlogList = () => {
 
   return (
     <>
-      {/* Filters */}
+      {/* Category Filter Buttons */}
+      {categories && categories.length > 0 && (
+        <div className="flex flex-wrap gap-2 mb-8">
+          <Button
+            variant={selectedCategory === 'all' ? 'default' : 'outline'}
+            size="sm"
+            onClick={() => handleCategoryChange('all')}
+          >
+            All
+          </Button>
+          {categories.map(cat => (
+            <Button
+              key={cat.id}
+              variant={selectedCategory === cat.slug ? 'default' : 'outline'}
+              size="sm"
+              onClick={() => handleCategoryChange(cat.slug)}
+            >
+              {cat.name}
+            </Button>
+          ))}
+        </div>
+      )}
+
+      {/* Search and Sort */}
       <div className="flex flex-col sm:flex-row gap-4 mb-10">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -177,16 +272,19 @@ const BlogList = () => {
       </div>
 
       {/* Results count */}
-      {searchQuery && (
+      {(searchQuery || selectedCategory !== 'all') && (
         <p className="text-sm text-muted-foreground mb-6">
           {filteredPosts.length} {filteredPosts.length === 1 ? 'post' : 'posts'} found
+          {selectedCategory !== 'all' && categories && (
+            <span> in {categories.find(c => c.slug === selectedCategory)?.name}</span>
+          )}
         </p>
       )}
 
       {/* Posts grid */}
       {paginatedPosts.length === 0 ? (
         <div className="text-center py-16">
-          <p className="text-muted-foreground">No posts found matching your search.</p>
+          <p className="text-muted-foreground">No posts found matching your filters.</p>
         </div>
       ) : (
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -298,7 +396,7 @@ const BlogPost = ({ slug }: { slug: string }) => {
         .single();
       
       if (error) throw error;
-      return data as BlogPost;
+      return data as BlogPostBase;
     },
   });
 
