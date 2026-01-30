@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Instagram, Linkedin } from "lucide-react";
+import logoWhite from "@/assets/logo-white.svg";
 
 export function Footer() {
   return (
@@ -8,9 +9,11 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div>
-            <span className="heading-display text-2xl">
-              TRAPEZE <span className="border border-primary-foreground px-2">MEDIA</span>
-            </span>
+            <img 
+              src={logoWhite} 
+              alt="Trapeze Media" 
+              className="h-8 w-auto"
+            />
             <p className="mt-4 text-primary-foreground/80">
               Hyperlocal marketing: Local campaigns for global brands.
             </p>

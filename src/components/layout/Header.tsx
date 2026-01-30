@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import logoTwoTone from "@/assets/logo-two-tone.svg";
 
 const navItems = [
   { label: "Services", href: "/services" },
@@ -31,9 +32,11 @@ export function Header() {
         <div className="container mx-auto flex h-20 items-center justify-between px-4">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <span className="heading-display text-2xl text-foreground">
-              TRAPEZE <span className="border border-foreground px-2">MEDIA</span>
-            </span>
+            <img 
+              src={logoTwoTone} 
+              alt="Trapeze Media" 
+              className="h-8 w-auto"
+            />
           </Link>
 
           {/* Desktop Navigation */}
