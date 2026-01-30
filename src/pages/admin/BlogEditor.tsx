@@ -11,8 +11,10 @@ import { Switch } from '@/components/ui/switch';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Badge } from '@/components/ui/badge';
+import { Checkbox } from '@/components/ui/checkbox';
 import { cn } from '@/lib/utils';
-import { ArrowLeft, Save, Eye, Loader2, CalendarIcon, Upload, X, Image as ImageIcon } from 'lucide-react';
+import { ArrowLeft, Save, Eye, Loader2, CalendarIcon, Upload, X, Image as ImageIcon, Tag } from 'lucide-react';
 import { format } from 'date-fns';
 import { toast } from 'sonner';
 
@@ -26,6 +28,13 @@ interface BlogPost {
   author: string;
   published_at: string;
   is_published: boolean;
+}
+
+interface Category {
+  id: string;
+  slug: string;
+  name: string;
+  sort_order: number;
 }
 
 const generateSlug = (title: string): string => {
@@ -54,6 +63,36 @@ export default function BlogEditor() {
   const [isPublished, setIsPublished] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [hasChanges, setHasChanges] = useState(false);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [initialCategories, setInitialCategories] = useState<string[]>([]);
+
+  // Fetch all categories
+  const { data: categories } = useQuery({
+    queryKey: ['blog-categories'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('blog_categories')
+        .select('*')
+        .order('sort_order');
+      if (error) throw error;
+      return data as Category[];
+    },
+  });
+
+  // Fetch post's current categories
+  const { data: postCategories } = useQuery({
+    queryKey: ['post-categories', id],
+    queryFn: async () => {
+      if (!id) return [];
+      const { data, error } = await supabase
+        .from('blog_post_categories')
+        .select('category_id')
+        .eq('post_id', id);
+      if (error) throw error;
+      return data.map(pc => pc.category_id);
+    },
+    enabled: !!id,
+  });
 
   // Fetch existing post if editing
   const { data: post, isLoading } = useQuery({
@@ -85,6 +124,14 @@ export default function BlogEditor() {
     }
   }, [post]);
 
+  // Populate categories when loaded
+  useEffect(() => {
+    if (postCategories) {
+      setSelectedCategories(postCategories);
+      setInitialCategories(postCategories);
+    }
+  }, [postCategories]);
+
   // Auto-generate slug from title for new posts
   useEffect(() => {
     if (isNew && title) {
@@ -96,6 +143,7 @@ export default function BlogEditor() {
   // Track changes
   useEffect(() => {
     if (post) {
+      const categoriesChanged = JSON.stringify([...selectedCategories].sort()) !== JSON.stringify([...initialCategories].sort());
       const changed = 
         title !== post.title ||
         slug !== post.slug ||
@@ -103,12 +151,13 @@ export default function BlogEditor() {
         content !== post.content ||
         featuredImage !== post.featured_image ||
         author !== post.author ||
-        isPublished !== post.is_published;
+        isPublished !== post.is_published ||
+        categoriesChanged;
       setHasChanges(changed);
     } else if (isNew) {
-      setHasChanges(!!title || !!content);
+      setHasChanges(!!title || !!content || selectedCategories.length > 0);
     }
-  }, [title, slug, excerpt, content, featuredImage, author, isPublished, post, isNew]);
+  }, [title, slug, excerpt, content, featuredImage, author, isPublished, post, isNew, selectedCategories, initialCategories]);
 
   // Save mutation
   const saveMutation = useMutation({
@@ -124,6 +173,7 @@ export default function BlogEditor() {
         is_published: isPublished,
       };
 
+      let savedPost;
       if (isNew) {
         const { data, error } = await supabase
           .from('blog_posts')
@@ -131,7 +181,7 @@ export default function BlogEditor() {
           .select()
           .single();
         if (error) throw error;
-        return data;
+        savedPost = data;
       } else {
         const { data, error } = await supabase
           .from('blog_posts')
@@ -140,16 +190,38 @@ export default function BlogEditor() {
           .select()
           .single();
         if (error) throw error;
-        return data;
+        savedPost = data;
       }
+
+      // Update categories - delete all then insert selected
+      const { error: deleteError } = await supabase
+        .from('blog_post_categories')
+        .delete()
+        .eq('post_id', savedPost.id);
+      if (deleteError) throw deleteError;
+
+      if (selectedCategories.length > 0) {
+        const categoryInserts = selectedCategories.map(catId => ({
+          post_id: savedPost.id,
+          category_id: catId,
+        }));
+        const { error: insertError } = await supabase
+          .from('blog_post_categories')
+          .insert(categoryInserts);
+        if (insertError) throw insertError;
+      }
+
+      return savedPost;
     },
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['admin-blog-posts'] });
       queryClient.invalidateQueries({ queryKey: ['admin-blog-post', data.id] });
+      queryClient.invalidateQueries({ queryKey: ['post-categories', data.id] });
       toast.success(isNew ? 'Post created!' : 'Post saved!');
       if (isNew) {
         navigate(`/admin/blog/edit/${data.id}`);
       }
+      setInitialCategories(selectedCategories);
       setHasChanges(false);
     },
     onError: (error) => {
@@ -160,6 +232,14 @@ export default function BlogEditor() {
       }
     },
   });
+
+  const toggleCategory = (categoryId: string) => {
+    setSelectedCategories(prev =>
+      prev.includes(categoryId)
+        ? prev.filter(id => id !== categoryId)
+        : [...prev, categoryId]
+    );
+  };
 
   // Handle image upload
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -395,6 +475,48 @@ export default function BlogEditor() {
                   />
                 </div>
               </div>
+            </div>
+
+            {/* Categories */}
+            <div className="border border-border rounded-lg p-4 bg-card">
+              <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+                <Tag className="h-4 w-4" />
+                Categories
+              </h3>
+              
+              <div className="space-y-3">
+                {categories?.filter(cat => cat.slug !== 'needs-review').map((category) => (
+                  <div key={category.id} className="flex items-center space-x-2">
+                    <Checkbox
+                      id={`cat-${category.id}`}
+                      checked={selectedCategories.includes(category.id)}
+                      onCheckedChange={() => toggleCategory(category.id)}
+                    />
+                    <Label
+                      htmlFor={`cat-${category.id}`}
+                      className="text-sm font-normal cursor-pointer"
+                    >
+                      {category.name}
+                    </Label>
+                  </div>
+                ))}
+              </div>
+
+              {selectedCategories.length > 0 && (
+                <div className="mt-4 pt-3 border-t border-border">
+                  <p className="text-xs text-muted-foreground mb-2">Selected:</p>
+                  <div className="flex flex-wrap gap-1">
+                    {selectedCategories.map(catId => {
+                      const cat = categories?.find(c => c.id === catId);
+                      return cat ? (
+                        <Badge key={catId} variant="secondary" className="text-xs">
+                          {cat.name}
+                        </Badge>
+                      ) : null;
+                    })}
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Featured image */}
