@@ -201,11 +201,11 @@ const BlogList = () => {
                   <img
                     src={post.featured_image}
                     alt={post.title}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full aspect-[3/2] object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </Link>
               ) : (
-                <div className="w-full h-48 bg-muted/50 flex items-center justify-center">
+                <div className="w-full aspect-[3/2] bg-muted/50 flex items-center justify-center">
                   <span className="text-4xl text-muted-foreground/30">📝</span>
                 </div>
               )}
