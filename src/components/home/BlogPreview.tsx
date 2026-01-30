@@ -2,26 +2,33 @@ import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
+import { Skeleton } from "@/components/ui/skeleton";
 
-const blogPosts = [
-  {
-    title: "SEO to GEO: how local businesses can win in the age of AI search",
-    excerpt: "Search is shifting from link clicks to overviews and answers. Here's how local businesses are winning big with solid GEO and AEO strategies.",
-    href: "/blog/seo-geo",
-  },
-  {
-    title: "The new 'Less Healthy Food' ad rules: what you need to know for 2026",
-    excerpt: "On 5th January 2026, a major shift hits the UK advertising ecosystem: the 'Less Healthy Food & Drink (LHF)' restrictions finally come into full force.",
-    href: "/blog/lhf-rules-2026",
-  },
-  {
-    title: "How brands can prepare for the UK 'Less Healthy Food' ad ban",
-    excerpt: "Everything hospitality and retail businesses should know to prepare for new rules on marketing HFSS products.",
-    href: "/blog/lhf-preparation",
-  },
-];
+interface BlogPost {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+}
 
 export function BlogPreview() {
+  const { data: posts, isLoading } = useQuery({
+    queryKey: ['blog-posts-preview'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('blog_posts')
+        .select('id, slug, title, excerpt')
+        .eq('is_published', true)
+        .order('published_at', { ascending: false })
+        .limit(3);
+      
+      if (error) throw error;
+      return data as BlogPost[];
+    },
+  });
+
   return (
     <section className="py-20 bg-muted">
       <div className="container mx-auto px-4">
@@ -30,24 +37,36 @@ export function BlogPreview() {
         </h2>
 
         <div className="grid gap-8 md:grid-cols-3 stagger-children">
-          {blogPosts.map((post) => (
-            <Card key={post.title} className="border-0 bg-background hover:shadow-lg transition-shadow">
-              <CardContent className="p-6">
-                <h3 className="text-lg font-semibold text-foreground mb-3 line-clamp-2 hover:text-primary transition-colors">
-                  <Link to={post.href}>{post.title}</Link>
-                </h3>
-                <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
-                  {post.excerpt}
-                </p>
-                <Link 
-                  to={post.href} 
-                  className="text-primary text-sm font-medium hover:underline inline-flex items-center gap-1"
-                >
-                  Read More <ArrowRight className="h-3 w-3" />
-                </Link>
-              </CardContent>
-            </Card>
-          ))}
+          {isLoading ? (
+            [...Array(3)].map((_, i) => (
+              <Card key={i} className="border-0 bg-background">
+                <CardContent className="p-6">
+                  <Skeleton className="h-6 w-3/4 mb-3" />
+                  <Skeleton className="h-4 w-full mb-2" />
+                  <Skeleton className="h-4 w-2/3" />
+                </CardContent>
+              </Card>
+            ))
+          ) : (
+            posts?.map((post) => (
+              <Card key={post.id} className="border-0 bg-background hover:shadow-lg transition-shadow">
+                <CardContent className="p-6">
+                  <h3 className="text-lg font-semibold text-foreground mb-3 line-clamp-2 hover:text-primary transition-colors">
+                    <Link to={`/blog/${post.slug}`}>{post.title}</Link>
+                  </h3>
+                  <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
+                    {post.excerpt}
+                  </p>
+                  <Link 
+                    to={`/blog/${post.slug}`} 
+                    className="text-primary text-sm font-medium hover:underline inline-flex items-center gap-1"
+                  >
+                    Read More <ArrowRight className="h-3 w-3" />
+                  </Link>
+                </CardContent>
+              </Card>
+            ))
+          )}
         </div>
 
         <div className="text-center mt-12">
