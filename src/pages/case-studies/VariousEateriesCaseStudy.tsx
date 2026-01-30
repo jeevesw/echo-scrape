@@ -5,6 +5,7 @@ import { BreadcrumbNav } from "@/components/ui/breadcrumb-nav";
 import { Button } from "@/components/ui/button";
 import { AnimatedStat } from "@/components/case-study/AnimatedStat";
 import { ScrollReveal } from "@/hooks/use-scroll-reveal";
+import { VenueVisitsCPAChart } from "@/components/charts/VenueVisitsCPAChart";
 import { ArrowLeft, Quote } from "lucide-react";
 
 const VariousEateriesCaseStudy = () => {
@@ -123,11 +124,7 @@ const VariousEateriesCaseStudy = () => {
 
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <ScrollReveal animation="left">
-              <img
-                src="/images/various-eateries-graph.png"
-                alt="Venue visits and cost-per-acquisition graph showing growth"
-                className="w-full rounded-2xl shadow-xl"
-              />
+              <VenueVisitsCPAChart className="w-full" />
             </ScrollReveal>
 
             <ScrollReveal animation="right">
