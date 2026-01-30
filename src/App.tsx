@@ -4,6 +4,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HelmetProvider } from "react-helmet-async";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "@/hooks/useAuth";
+import { ProtectedRoute } from "@/components/admin/ProtectedRoute";
 import Index from "./pages/Index";
 import Contact from "./pages/Contact";
 import CaseStudies from "./pages/CaseStudies";
@@ -16,6 +18,9 @@ import ServicePage from "./pages/ServicePage";
 import PaidAdsQuiz from "./pages/PaidAdsQuiz";
 import HFSSAssessment from "./pages/HFSSAssessment";
 import NotFound from "./pages/NotFound";
+import Auth from "./pages/Auth";
+import BlogDashboard from "./pages/admin/BlogDashboard";
+import BlogEditor from "./pages/admin/BlogEditor";
 
 const queryClient = new QueryClient();
 
@@ -26,24 +31,47 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/case-studies" element={<CaseStudies />} />
-            <Route path="/case-studies/yo-sushi" element={<YoSushiCaseStudy />} />
-            <Route path="/case-studies/molo" element={<MoloCaseStudy />} />
-            <Route path="/case-studies/various-eateries" element={<VariousEateriesCaseStudy />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:slug" element={<Blog />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/services/:slug" element={<ServicePage />} />
-            <Route path="/paid-ads-quiz" element={<PaidAdsQuiz />} />
-            <Route path="/training" element={<Services />} />
-            <Route path="/lhf-ad-ban" element={<Blog />} />
-            <Route path="/hfss-assessment" element={<HFSSAssessment />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <AuthProvider>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/case-studies" element={<CaseStudies />} />
+              <Route path="/case-studies/yo-sushi" element={<YoSushiCaseStudy />} />
+              <Route path="/case-studies/molo" element={<MoloCaseStudy />} />
+              <Route path="/case-studies/various-eateries" element={<VariousEateriesCaseStudy />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<Blog />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/services/:slug" element={<ServicePage />} />
+              <Route path="/paid-ads-quiz" element={<PaidAdsQuiz />} />
+              <Route path="/training" element={<Services />} />
+              <Route path="/lhf-ad-ban" element={<Blog />} />
+              <Route path="/hfss-assessment" element={<HFSSAssessment />} />
+              
+              {/* Auth */}
+              <Route path="/auth" element={<Auth />} />
+              
+              {/* Admin routes - protected */}
+              <Route path="/admin/blog" element={
+                <ProtectedRoute requireAdmin>
+                  <BlogDashboard />
+                </ProtectedRoute>
+              } />
+              <Route path="/admin/blog/new" element={
+                <ProtectedRoute requireAdmin>
+                  <BlogEditor />
+                </ProtectedRoute>
+              } />
+              <Route path="/admin/blog/edit/:id" element={
+                <ProtectedRoute requireAdmin>
+                  <BlogEditor />
+                </ProtectedRoute>
+              } />
+              
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </AuthProvider>
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
