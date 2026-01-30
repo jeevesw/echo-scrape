@@ -31,7 +31,7 @@ export function BlogPreview() {
 
   return (
     <section className="py-20 bg-muted">
-      <div className="container mx-auto px-4">
+      <div className="container-content mx-auto px-4">
         <h2 className="heading-display text-4xl md:text-5xl text-center text-foreground mb-12">
           New on the Trapeze Media Blog
         </h2>

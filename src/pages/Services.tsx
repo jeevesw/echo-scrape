@@ -2,10 +2,42 @@ import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Layout } from "@/components/layout/Layout";
 import { BreadcrumbNav } from "@/components/ui/breadcrumb-nav";
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { servicesList } from "@/data/servicesData";
 import { ArrowRight } from "lucide-react";
+import { ScrollReveal } from "@/hooks/use-scroll-reveal";
+
+// Service images
+import socialMediaImg from "@/assets/services/social-media-management.webp";
+import paidAdsImg from "@/assets/services/paid-advertising.webp";
+import emailMarketingImg from "@/assets/services/email-marketing.webp";
+import creativeImg from "@/assets/services/creative-services.webp";
+
+const services = [
+  {
+    slug: "social-media-management",
+    title: "Social Media Management",
+    description: "Creating and managing engaging content, building customer loyalty, converting sales, and sharing detailed reports on campaign performance.",
+    image: socialMediaImg,
+  },
+  {
+    slug: "paid-advertising",
+    title: "Paid Search, PPC & Social Ads",
+    description: "PPC that drives high-intent traffic, converts sales, and generates leads, on Google, YouTube, Meta, TikTok, and beyond.",
+    image: paidAdsImg,
+  },
+  {
+    slug: "email-marketing",
+    title: "Email Marketing",
+    description: "Strategic email campaigns and automation that drive repeat visits, bookings, and customer loyalty for hospitality brands.",
+    image: emailMarketingImg,
+  },
+  {
+    slug: "creative-services",
+    title: "Graphic Design & Branding",
+    description: "Full-service creative branding solutions: photography, graphic design, video production, and web design.",
+    image: creativeImg,
+  },
+];
 
 const Services = () => {
   return (
@@ -20,63 +52,52 @@ const Services = () => {
       </Helmet>
 
       <section className="py-16 lg:py-20 bg-background">
-        <div className="container mx-auto px-4">
+        <div className="container-content mx-auto px-4">
           <BreadcrumbNav
             items={[
               { label: "Services", href: "/services" },
             ]}
           />
 
-          <div className="max-w-4xl mb-12">
-            <h1 className="heading-display text-5xl md:text-6xl text-primary mb-6">
-              Digital Marketing Services for Hospitality & Lifestyle Brands
-            </h1>
-            <p className="text-xl text-muted-foreground">
-              From strategy to execution, we help UK restaurants, hotels, events, and tourism brands 
-              reach local audiences through social media, paid advertising, email, and creative content.
-            </p>
-          </div>
+          <ScrollReveal>
+            <div className="max-w-3xl mb-12">
+              <h1 className="heading-display text-4xl md:text-5xl lg:text-6xl text-foreground mb-6">
+                Our Services
+              </h1>
+              <p className="text-lg text-muted-foreground">
+                From strategy to execution, we help UK restaurants, hotels, events, and tourism brands 
+                reach local audiences through social media, paid advertising, email, and creative content.
+              </p>
+            </div>
+          </ScrollReveal>
 
-          {/* Positioning statement */}
-          <div className="bg-muted rounded-lg p-8 mb-16 max-w-4xl">
-            <p className="text-lg text-foreground leading-relaxed">
-              <strong className="text-primary">We specialise in hyperlocal marketing</strong>—connecting 
-              hospitality and lifestyle brands with the audiences most likely to visit, book, and engage. 
-              With over a decade of experience in the UK market, we understand what drives footfall, 
-              reservations, and brand loyalty.
-            </p>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-2 stagger-children">
-            {servicesList.map((service) => (
-              <Link key={service.slug} to={`/services/${service.slug}`}>
-                <Card className="border-0 bg-muted hover:shadow-xl transition-all duration-300 group h-full">
-                  <CardContent className="p-8">
-                    <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                      <service.icon className="h-7 w-7 text-primary group-hover:text-primary-foreground transition-colors" />
+          {/* Services Grid - 2 columns with thumbnails */}
+          <div className="grid gap-8 md:grid-cols-2 mb-16">
+            {services.map((service, index) => (
+              <ScrollReveal key={service.slug} delay={index * 100}>
+                <Link to={`/services/${service.slug}`} className="group block">
+                  <div className="relative overflow-hidden rounded-2xl bg-muted">
+                    <div className="aspect-[16/9] overflow-hidden">
+                      <img
+                        src={service.image}
+                        alt={service.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
                     </div>
-                    <h2 className="heading-display text-2xl text-foreground mb-3 group-hover:text-primary transition-colors">
-                      {service.title}
-                    </h2>
-                    <p className="text-muted-foreground mb-6">
-                      {service.summary.slice(0, 150)}...
-                    </p>
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {service.industries.slice(0, 3).map((industry) => (
-                        <span
-                          key={industry}
-                          className="text-xs px-3 py-1 bg-background rounded-full text-muted-foreground"
-                        >
-                          {industry}
-                        </span>
-                      ))}
+                    <div className="p-6">
+                      <h2 className="heading-display text-xl md:text-2xl text-foreground mb-2 group-hover:text-primary transition-colors">
+                        {service.title}
+                      </h2>
+                      <p className="text-muted-foreground mb-4 text-sm md:text-base">
+                        {service.description}
+                      </p>
+                      <span className="inline-flex items-center text-primary font-medium text-sm group-hover:underline">
+                        Find out more <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </span>
                     </div>
-                    <span className="inline-flex items-center text-primary font-medium group-hover:underline">
-                      Learn more <ArrowRight className="ml-2 h-4 w-4" />
-                    </span>
-                  </CardContent>
-                </Card>
-              </Link>
+                  </div>
+                </Link>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -84,38 +105,40 @@ const Services = () => {
 
       {/* CTA Section */}
       <section className="py-20 bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="heading-display text-4xl mb-6">
-            Not Sure Where to Start?
-          </h2>
-          <p className="text-primary-foreground/80 max-w-xl mx-auto mb-8">
-            Let's discuss your goals and find the right approach for your brand. 
-            Book a discovery call or take our Paid Ads Readiness Quiz.
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Button 
-              variant="hero" 
-              className="bg-primary-foreground text-primary hover:bg-primary-foreground/90" 
-              asChild
-            >
-              <a 
-                href="https://calendly.com/trapezemedia/discovery-call" 
-                target="_blank" 
-                rel="noopener noreferrer"
+        <div className="container-content mx-auto px-4 text-center">
+          <ScrollReveal>
+            <h2 className="heading-display text-3xl md:text-4xl mb-6">
+              Not Sure Where to Start?
+            </h2>
+            <p className="text-primary-foreground/80 max-w-xl mx-auto mb-8">
+              Let's discuss your goals and find the right approach for your brand. 
+              Book a discovery call or take our Paid Ads Readiness Quiz.
+            </p>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Button 
+                variant="hero" 
+                className="bg-primary-foreground text-primary hover:bg-primary-foreground/90" 
+                asChild
               >
-                Schedule a Call
-              </a>
-            </Button>
-            <Button 
-              variant="hero-outline" 
-              className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary" 
-              asChild
-            >
-              <Link to="/paid-ads-quiz">
-                Take the Paid Ads Quiz
-              </Link>
-            </Button>
-          </div>
+                <a 
+                  href="https://calendly.com/trapezemedia/discovery-call" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  Schedule a Call
+                </a>
+              </Button>
+              <Button 
+                variant="hero-outline" 
+                className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary" 
+                asChild
+              >
+                <Link to="/paid-ads-quiz">
+                  Take the Paid Ads Quiz
+                </Link>
+              </Button>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
     </Layout>

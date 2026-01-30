@@ -18,7 +18,7 @@ export function Hero() {
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-radial opacity-50 pointer-events-none" />
       <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
       
-      <div className="container mx-auto px-4 py-16 lg:py-24 relative">
+      <div className="container-content mx-auto px-4 py-16 lg:py-24 relative">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-8 items-center">
           {/* Left Content */}
           <div className="animate-fade-in">

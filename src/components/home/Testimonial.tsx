@@ -8,7 +8,7 @@ export function Testimonial() {
       {/* Background decorations */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
       
-      <div className="container mx-auto px-4 text-center max-w-4xl relative">
+      <div className="container-content mx-auto px-4 text-center max-w-4xl relative">
         <ScrollReveal animation="scale">
           <blockquote className="text-2xl md:text-3xl lg:text-4xl text-foreground italic leading-relaxed">
             "I'm very proud to have built a company{" "}
