@@ -4,32 +4,51 @@
 
 /* Trapeze Media Design System */
 
+/* Obviously Narrow Font */
+@font-face {
+  font-family: 'Obviously Narrow';
+  src: url('/fonts/ObviouslyNarrow-SemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Obviously Narrow';
+  src: url('/fonts/ObviouslyNarrow-SemiBoldItalic.otf') format('opentype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
 @layer base {
   :root {
-    /* Primary brand pink */
-    --primary: 338 86% 46%;
+    /* Brand colors from guidelines */
+    /* Primary: Trapeze Pink #C72B75 → HSL(338, 64%, 47%) */
+    --primary: 338 64% 47%;
     --primary-foreground: 0 0% 100%;
     
     /* Background and foreground */
+    /* Dark gray #363635 for text → HSL(60, 1%, 21%) */
     --background: 0 0% 100%;
-    --foreground: 0 0% 10%;
+    --foreground: 60 1% 21%;
 
     /* Cards and surfaces */
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 10%;
+    --card-foreground: 60 1% 21%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 10%;
+    --popover-foreground: 60 1% 21%;
 
     /* Secondary colors */
     --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 10%;
+    --secondary-foreground: 60 1% 21%;
 
     --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
+    --muted-foreground: 60 1% 45%;
 
-    --accent: 338 86% 95%;
-    --accent-foreground: 338 86% 46%;
+    --accent: 338 64% 95%;
+    --accent-foreground: 338 64% 47%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
@@ -41,64 +60,64 @@
     /* Borders and inputs */
     --border: 0 0% 90%;
     --input: 0 0% 90%;
-    --ring: 338 86% 46%;
+    --ring: 338 64% 47%;
 
     --radius: 0.5rem;
 
     /* Sidebar */
     --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 338 86% 46%;
+    --sidebar-foreground: 60 1% 21%;
+    --sidebar-primary: 338 64% 47%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 338 86% 95%;
-    --sidebar-accent-foreground: 338 86% 46%;
+    --sidebar-accent: 338 64% 95%;
+    --sidebar-accent-foreground: 338 64% 47%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 338 86% 46%;
+    --sidebar-ring: 338 64% 47%;
 
     /* Custom tokens */
-    --announcement-bg: 338 86% 46%;
+    --announcement-bg: 338 64% 47%;
     --announcement-foreground: 0 0% 100%;
   }
 
   .dark {
-    --background: 0 0% 5%;
+    --background: 60 1% 10%;
     --foreground: 0 0% 98%;
 
-    --card: 0 0% 8%;
+    --card: 60 1% 12%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 8%;
+    --popover: 60 1% 12%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 338 86% 55%;
+    --primary: 338 64% 55%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 15%;
+    --secondary: 60 1% 18%;
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 0 0% 15%;
+    --muted: 60 1% 18%;
     --muted-foreground: 0 0% 65%;
 
-    --accent: 338 86% 55%;
+    --accent: 338 64% 55%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 338 86% 55%;
+    --border: 60 1% 25%;
+    --input: 60 1% 25%;
+    --ring: 338 64% 55%;
 
-    --sidebar-background: 0 0% 8%;
+    --sidebar-background: 60 1% 12%;
     --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 338 86% 55%;
+    --sidebar-primary: 338 64% 55%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 338 86% 15%;
-    --sidebar-accent-foreground: 338 86% 55%;
-    --sidebar-border: 0 0% 20%;
-    --sidebar-ring: 338 86% 55%;
+    --sidebar-accent: 338 64% 20%;
+    --sidebar-accent-foreground: 338 64% 55%;
+    --sidebar-border: 60 1% 25%;
+    --sidebar-ring: 338 64% 55%;
 
-    --announcement-bg: 338 86% 46%;
+    --announcement-bg: 338 64% 47%;
     --announcement-foreground: 0 0% 100%;
   }
 }
@@ -116,8 +135,8 @@
 
 @layer components {
   .heading-display {
-    @apply font-bold uppercase tracking-tight;
-    font-family: 'League Gothic', 'Impact', sans-serif;
+    @apply font-semibold uppercase tracking-tight;
+    font-family: 'Obviously Narrow', 'League Gothic', 'Impact', sans-serif;
   }
 }
 
