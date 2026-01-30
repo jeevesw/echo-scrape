@@ -4,7 +4,23 @@
 
 /* Trapeze Media Design System */
 
-/* Obviously Narrow Font */
+/* Obviously Narrow Font - for headlines and display text */
+@font-face {
+  font-family: 'Obviously Narrow';
+  src: url('/fonts/ObviouslyNarrow-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Obviously Narrow';
+  src: url('/fonts/ObviouslyNarrow-Italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
 @font-face {
   font-family: 'Obviously Narrow';
   src: url('/fonts/ObviouslyNarrow-SemiBold.otf') format('opentype');
@@ -16,6 +32,55 @@
 @font-face {
   font-family: 'Obviously Narrow';
   src: url('/fonts/ObviouslyNarrow-SemiBoldItalic.otf') format('opentype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Obviously Font - for UI elements, buttons, labels */
+@font-face {
+  font-family: 'Obviously';
+  src: url('/fonts/Obviously-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Obviously';
+  src: url('/fonts/Obviously-LightItalic.otf') format('opentype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Obviously';
+  src: url('/fonts/Obviously-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Obviously';
+  src: url('/fonts/Obviously-RegularItalic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Obviously';
+  src: url('/fonts/Obviously-Semibold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Obviously';
+  src: url('/fonts/Obviously-SemiboldItalic.otf') format('opentype');
   font-weight: 600;
   font-style: italic;
   font-display: swap;
@@ -63,6 +128,11 @@
     --ring: 338 64% 47%;
 
     --radius: 0.5rem;
+
+    /* Font families */
+    --font-display: 'Obviously Narrow', 'Impact', sans-serif;
+    --font-ui: 'Obviously', system-ui, sans-serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
 
     /* Sidebar */
     --sidebar-background: 0 0% 98%;
@@ -129,14 +199,25 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: var(--font-body);
   }
 }
 
 @layer components {
+  /* Display headings - Obviously Narrow for large titles */
   .heading-display {
     @apply font-semibold uppercase tracking-tight;
-    font-family: 'Obviously Narrow', 'League Gothic', 'Impact', sans-serif;
+    font-family: var(--font-display);
+  }
+
+  /* UI text - Obviously for buttons, labels, nav items */
+  .font-ui {
+    font-family: var(--font-ui);
+  }
+
+  /* Body text - DM Sans for paragraphs and longer content */
+  .font-body {
+    font-family: var(--font-body);
   }
 }
 
