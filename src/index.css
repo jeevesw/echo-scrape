@@ -219,6 +219,11 @@
   .font-body {
     font-family: var(--font-body);
   }
+
+  /* Narrower content container - brings content in from the edges */
+  .container-content {
+    @apply max-w-5xl;
+  }
 }
 
 /* ================================

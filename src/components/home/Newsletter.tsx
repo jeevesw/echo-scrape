@@ -26,7 +26,7 @@ export function Newsletter() {
       {/* Background decorations */}
       <div className="absolute -bottom-32 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
       
-      <div className="container mx-auto px-4 max-w-2xl text-center relative">
+      <div className="container-content mx-auto px-4 max-w-2xl text-center relative">
         <ScrollReveal>
           <h2 className="heading-display text-4xl md:text-5xl text-foreground mb-4">
             Stay in the Loop

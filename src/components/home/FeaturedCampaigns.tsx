@@ -37,7 +37,7 @@ export function FeaturedCampaigns() {
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
       
-      <div className="container mx-auto px-4 relative">
+      <div className="container-content mx-auto px-4 relative">
         <ScrollReveal>
           <h2 className="heading-display text-4xl md:text-5xl text-center text-foreground mb-12">
             Featured Campaigns
