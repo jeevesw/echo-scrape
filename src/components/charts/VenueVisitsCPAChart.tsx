@@ -143,7 +143,7 @@ export function VenueVisitsCPAChart({
       </div>
 
       {/* Chart */}
-      <div className="w-full h-[400px] md:h-[450px] bg-background rounded-xl p-4">
+      <div className="w-full h-[450px] md:h-[500px] bg-background rounded-xl p-4">
         <ResponsiveContainer width="100%" height="100%">
           <ComposedChart
             data={data}
