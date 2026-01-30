@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
+import { ScrollReveal } from "@/hooks/use-scroll-reveal";
 
 export function Newsletter() {
   const [email, setEmail] = useState("");
@@ -21,54 +22,63 @@ export function Newsletter() {
   };
 
   return (
-    <section className="py-20 bg-background">
-      <div className="container mx-auto px-4 max-w-2xl text-center">
-        <h2 className="heading-display text-4xl text-foreground mb-4">
-          Stay in the Loop
-        </h2>
-        <p className="text-muted-foreground mb-8">
-          Our emails are sent no more than four times each month. We respect your privacy.
-        </p>
+    <section className="py-24 bg-background relative overflow-hidden">
+      {/* Background decorations */}
+      <div className="absolute -bottom-32 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+      
+      <div className="container mx-auto px-4 max-w-2xl text-center relative">
+        <ScrollReveal>
+          <h2 className="heading-display text-4xl md:text-5xl text-foreground mb-4">
+            Stay in the Loop
+          </h2>
+          <p className="text-muted-foreground mb-8 text-lg">
+            Our emails are sent no more than four times each month. We respect your privacy.
+          </p>
+        </ScrollReveal>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="grid gap-4 sm:grid-cols-2">
+        <ScrollReveal delay={100}>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Input
+                type="text"
+                placeholder="First Name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                required
+                className="bg-muted border-0 h-12 rounded-xl focus:ring-2 focus:ring-primary transition-all"
+              />
+              <Input
+                type="text"
+                placeholder="Last Name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                required
+                className="bg-muted border-0 h-12 rounded-xl focus:ring-2 focus:ring-primary transition-all"
+              />
+            </div>
             <Input
-              type="text"
-              placeholder="First Name"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
+              type="email"
+              placeholder="Email Address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
-              className="bg-muted border-0"
+              className="bg-muted border-0 h-12 rounded-xl focus:ring-2 focus:ring-primary transition-all"
             />
-            <Input
-              type="text"
-              placeholder="Last Name"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-              required
-              className="bg-muted border-0"
-            />
-          </div>
-          <Input
-            type="email"
-            placeholder="Email Address"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="bg-muted border-0"
-          />
-          <Button type="submit" variant="hero" className="w-full sm:w-auto">
-            Subscribe
-          </Button>
-        </form>
+            <Button type="submit" variant="hero" className="w-full sm:w-auto">
+              Subscribe
+            </Button>
+          </form>
+        </ScrollReveal>
 
-        <p className="mt-6 text-sm text-muted-foreground">
-          Until our next email arrives in your inbox, you can find our previous guides and insights{" "}
-          <a href="/blog" className="text-primary hover:underline">on our blog</a> and{" "}
-          <a href="https://www.instagram.com/trapezemedia" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
-            on our Instagram feed
-          </a>.
-        </p>
+        <ScrollReveal delay={200}>
+          <p className="mt-8 text-sm text-muted-foreground">
+            Until our next email arrives in your inbox, you can find our previous guides and insights{" "}
+            <a href="/blog" className="text-primary hover:underline font-medium">on our blog</a> and{" "}
+            <a href="https://www.instagram.com/trapezemedia" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+              on our Instagram feed
+            </a>.
+          </p>
+        </ScrollReveal>
       </div>
     </section>
   );

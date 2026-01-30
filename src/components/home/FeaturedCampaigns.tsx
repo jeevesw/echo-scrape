@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { ScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const campaigns = [
   {
@@ -32,43 +33,54 @@ const campaigns = [
 
 export function FeaturedCampaigns() {
   return (
-    <section className="py-20 bg-muted">
-      <div className="container mx-auto px-4">
-        <h2 className="heading-display text-4xl md:text-5xl text-center text-foreground mb-12">
-          Featured Campaigns
-        </h2>
+    <section className="py-20 bg-muted relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+      
+      <div className="container mx-auto px-4 relative">
+        <ScrollReveal>
+          <h2 className="heading-display text-4xl md:text-5xl text-center text-foreground mb-12">
+            Featured Campaigns
+          </h2>
+        </ScrollReveal>
 
-        <div className="grid gap-8 md:grid-cols-2 stagger-children">
-          {campaigns.map((campaign) => (
-            <Link key={campaign.title} to={campaign.href}>
-              <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 border-0 bg-background">
-                <div className="aspect-video overflow-hidden">
-                  <img
-                    src={campaign.image}
-                    alt={campaign.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-                <CardContent className="p-6">
-                  <span className="heading-display text-sm text-primary">
-                    {campaign.category}
-                  </span>
-                  <h3 className="heading-display text-xl text-foreground mt-2 group-hover:text-primary transition-colors">
-                    {campaign.title}
-                  </h3>
-                </CardContent>
-              </Card>
-            </Link>
+        <div className="grid gap-8 md:grid-cols-2">
+          {campaigns.map((campaign, index) => (
+            <ScrollReveal 
+              key={campaign.title} 
+              animation={index % 2 === 0 ? "left" : "right"}
+              delay={index * 100}
+            >
+              <Link to={campaign.href}>
+                <Card variant="interactive" className="overflow-hidden bg-background">
+                  <div className="aspect-video overflow-hidden">
+                    <img
+                      src={campaign.image}
+                      alt={campaign.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+                  <CardContent className="p-6">
+                    <span className="heading-display text-sm text-primary">
+                      {campaign.category}
+                    </span>
+                    <h3 className="heading-display text-xl text-foreground mt-2">
+                      {campaign.title}
+                    </h3>
+                  </CardContent>
+                </Card>
+              </Link>
+            </ScrollReveal>
           ))}
         </div>
 
-        <div className="text-center mt-12">
+        <ScrollReveal className="text-center mt-12">
           <Button variant="hero-outline" asChild>
             <Link to="/case-studies">
               View All Case Studies <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );
