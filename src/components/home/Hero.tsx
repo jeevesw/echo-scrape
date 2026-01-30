@@ -1,19 +1,27 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/hooks/use-scroll-reveal";
-
-const platformIcons = [
-  { name: "Facebook", icon: "📘" },
-  { name: "Instagram", icon: "📸" },
-  { name: "TikTok", icon: "🎵" },
-  { name: "Google", icon: "🔍" },
-  { name: "YouTube", icon: "▶️" },
-  { name: "LinkedIn", icon: "💼" },
-];
-
+const platformIcons = [{
+  name: "Facebook",
+  icon: "📘"
+}, {
+  name: "Instagram",
+  icon: "📸"
+}, {
+  name: "TikTok",
+  icon: "🎵"
+}, {
+  name: "Google",
+  icon: "🔍"
+}, {
+  name: "YouTube",
+  icon: "▶️"
+}, {
+  name: "LinkedIn",
+  icon: "💼"
+}];
 export function Hero() {
-  return (
-    <section className="relative overflow-hidden bg-background">
+  return <section className="relative overflow-hidden bg-background">
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-radial opacity-50 pointer-events-none" />
       <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
@@ -27,27 +35,12 @@ export function Hero() {
             </h1>
 
             {/* Platform Icons */}
-            <div className="flex flex-wrap gap-4 mb-8 p-6 border-2 border-foreground/20 rounded-2xl inline-flex bg-background/50 backdrop-blur-sm shadow-depth">
-              {platformIcons.map((platform, index) => (
-                <div
-                  key={platform.name}
-                  className="w-12 h-12 flex items-center justify-center text-2xl hover:scale-125 hover:-translate-y-1 transition-all duration-300 cursor-pointer"
-                  title={platform.name}
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  {platform.icon}
-                </div>
-              ))}
-            </div>
+            
 
             {/* CTA */}
             <div className="flex flex-wrap gap-4">
               <Button variant="hero" asChild>
-                <a 
-                  href="https://calendly.com/trapezemedia/discovery-call" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
+                <a href="https://calendly.com/trapezemedia/discovery-call" target="_blank" rel="noopener noreferrer">
                   Schedule a Call
                 </a>
               </Button>
@@ -70,9 +63,15 @@ export function Hero() {
                 <div className="bg-background rounded-2xl p-6 shadow-lg">
                   {/* Browser dots */}
                   <div className="flex items-center gap-2 mb-4">
-                    <div className="w-3 h-3 rounded-full bg-destructive animate-pulse" style={{ animationDelay: "0ms" }} />
-                    <div className="w-3 h-3 rounded-full bg-warning animate-pulse" style={{ animationDelay: "200ms" }} />
-                    <div className="w-3 h-3 rounded-full bg-success animate-pulse" style={{ animationDelay: "400ms" }} />
+                    <div className="w-3 h-3 rounded-full bg-destructive animate-pulse" style={{
+                    animationDelay: "0ms"
+                  }} />
+                    <div className="w-3 h-3 rounded-full bg-warning animate-pulse" style={{
+                    animationDelay: "200ms"
+                  }} />
+                    <div className="w-3 h-3 rounded-full bg-success animate-pulse" style={{
+                    animationDelay: "400ms"
+                  }} />
                   </div>
                   
                   {/* Content skeleton */}
@@ -88,12 +87,15 @@ export function Hero() {
               </div>
               
               {/* Floating elements */}
-              <div className="absolute -top-4 -right-4 w-20 h-20 bg-primary/20 rounded-2xl rotate-12 animate-float" style={{ animationDelay: "0s" }} />
-              <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-primary/15 rounded-full animate-float" style={{ animationDelay: "1s" }} />
+              <div className="absolute -top-4 -right-4 w-20 h-20 bg-primary/20 rounded-2xl rotate-12 animate-float" style={{
+              animationDelay: "0s"
+            }} />
+              <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-primary/15 rounded-full animate-float" style={{
+              animationDelay: "1s"
+            }} />
             </div>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 }
