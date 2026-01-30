@@ -1,11 +1,15 @@
 import { Link, useParams } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, ArrowLeft, Calendar, User } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, ArrowLeft, Calendar, User, Search } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
 import { format } from "date-fns";
+import { useState, useMemo } from "react";
 
 interface BlogPost {
   id: string;
@@ -18,13 +22,51 @@ interface BlogPost {
   published_at: string;
 }
 
+const POSTS_PER_PAGE = 9;
+
+// Strip HTML tags and markdown syntax from content
+const stripHtmlAndMarkdown = (text: string): string => {
+  return text
+    .replace(/<[^>]*>/g, '') // Remove HTML tags
+    .replace(/#{1,6}\s/g, '') // Remove markdown headers
+    .replace(/\*\*([^*]+)\*\*/g, '$1') // Remove bold
+    .replace(/\*([^*]+)\*/g, '$1') // Remove italic
+    .replace(/_([^_]+)_/g, '$1') // Remove underline
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // Remove links
+    .replace(/`[^`]+`/g, '') // Remove code
+    .replace(/\n+/g, ' ') // Replace newlines with spaces
+    .replace(/\s+/g, ' ') // Normalize whitespace
+    .trim();
+};
+
+// Get excerpt with fallback to stripped content
+const getExcerpt = (post: BlogPost): string => {
+  if (post.excerpt && post.excerpt.trim()) {
+    return stripHtmlAndMarkdown(post.excerpt);
+  }
+  
+  const strippedContent = stripHtmlAndMarkdown(post.content);
+  if (strippedContent.length <= 200) {
+    return strippedContent;
+  }
+  
+  // Find a good break point around 180-200 chars
+  const truncated = strippedContent.substring(0, 200);
+  const lastSpace = truncated.lastIndexOf(' ');
+  return (lastSpace > 160 ? truncated.substring(0, lastSpace) : truncated) + '…';
+};
+
 const BlogList = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [sortOrder, setSortOrder] = useState<'newest' | 'oldest'>('newest');
+  const [currentPage, setCurrentPage] = useState(1);
+
   const { data: posts, isLoading, error } = useQuery({
     queryKey: ['blog-posts'],
     queryFn: async () => {
       const { data, error } = await supabase
         .from('blog_posts')
-        .select('id, slug, title, excerpt, author, published_at, featured_image')
+        .select('id, slug, title, excerpt, content, author, published_at, featured_image')
         .eq('is_published', true)
         .order('published_at', { ascending: false });
       
@@ -33,19 +75,71 @@ const BlogList = () => {
     },
   });
 
+  // Filter and sort posts
+  const filteredPosts = useMemo(() => {
+    if (!posts) return [];
+    
+    let result = [...posts];
+    
+    // Filter by search query
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase();
+      result = result.filter(post => 
+        post.title.toLowerCase().includes(query) ||
+        stripHtmlAndMarkdown(post.excerpt || '').toLowerCase().includes(query) ||
+        post.author.toLowerCase().includes(query)
+      );
+    }
+    
+    // Sort
+    result.sort((a, b) => {
+      const dateA = new Date(a.published_at).getTime();
+      const dateB = new Date(b.published_at).getTime();
+      return sortOrder === 'newest' ? dateB - dateA : dateA - dateB;
+    });
+    
+    return result;
+  }, [posts, searchQuery, sortOrder]);
+
+  // Pagination
+  const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
+  const paginatedPosts = filteredPosts.slice(
+    (currentPage - 1) * POSTS_PER_PAGE,
+    currentPage * POSTS_PER_PAGE
+  );
+
+  // Reset to page 1 when filters change
+  const handleSearchChange = (value: string) => {
+    setSearchQuery(value);
+    setCurrentPage(1);
+  };
+
+  const handleSortChange = (value: 'newest' | 'oldest') => {
+    setSortOrder(value);
+    setCurrentPage(1);
+  };
+
   if (isLoading) {
     return (
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {[...Array(6)].map((_, i) => (
-          <Card key={i} className="border-0 bg-muted">
-            <CardContent className="p-6">
-              <Skeleton className="h-6 w-3/4 mb-3" />
-              <Skeleton className="h-4 w-full mb-2" />
-              <Skeleton className="h-4 w-2/3" />
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+      <>
+        <div className="flex flex-col sm:flex-row gap-4 mb-10">
+          <Skeleton className="h-11 flex-1" />
+          <Skeleton className="h-11 w-40" />
+        </div>
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {[...Array(6)].map((_, i) => (
+            <Card key={i} className="border border-border/50 bg-card overflow-hidden">
+              <Skeleton className="h-48 w-full" />
+              <CardContent className="p-6">
+                <Skeleton className="h-4 w-24 mb-3" />
+                <Skeleton className="h-6 w-3/4 mb-3" />
+                <Skeleton className="h-4 w-full mb-2" />
+                <Skeleton className="h-4 w-2/3" />
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </>
     );
   }
 
@@ -58,36 +152,137 @@ const BlogList = () => {
   }
 
   return (
-    <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 stagger-children">
-      {posts?.map((post) => (
-        <Card key={post.id} className="border-0 bg-muted hover:shadow-lg transition-shadow h-full">
-          <CardContent className="p-6 flex flex-col h-full">
-            <div className="flex items-center gap-4 text-xs text-muted-foreground mb-3">
-              <span className="flex items-center gap-1">
-                <Calendar className="h-3 w-3" />
-                {format(new Date(post.published_at), 'MMM d, yyyy')}
-              </span>
-              <span className="flex items-center gap-1">
-                <User className="h-3 w-3" />
-                {post.author}
-              </span>
-            </div>
-            <h3 className="text-lg font-semibold text-foreground mb-3 hover:text-primary transition-colors">
-              <Link to={`/blog/${post.slug}`}>{post.title}</Link>
-            </h3>
-            <p className="text-muted-foreground text-sm mb-4 flex-1">
-              {post.excerpt}
-            </p>
-            <Link 
-              to={`/blog/${post.slug}`} 
-              className="text-primary text-sm font-medium hover:underline inline-flex items-center gap-1"
+    <>
+      {/* Filters */}
+      <div className="flex flex-col sm:flex-row gap-4 mb-10">
+        <div className="relative flex-1">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input
+            type="text"
+            placeholder="Search posts…"
+            value={searchQuery}
+            onChange={(e) => handleSearchChange(e.target.value)}
+            className="pl-10 h-11 bg-card border-border/50"
+          />
+        </div>
+        <Select value={sortOrder} onValueChange={handleSortChange}>
+          <SelectTrigger className="w-full sm:w-40 h-11 bg-card border-border/50">
+            <SelectValue placeholder="Sort by" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="newest">Newest first</SelectItem>
+            <SelectItem value="oldest">Oldest first</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+
+      {/* Results count */}
+      {searchQuery && (
+        <p className="text-sm text-muted-foreground mb-6">
+          {filteredPosts.length} {filteredPosts.length === 1 ? 'post' : 'posts'} found
+        </p>
+      )}
+
+      {/* Posts grid */}
+      {paginatedPosts.length === 0 ? (
+        <div className="text-center py-16">
+          <p className="text-muted-foreground">No posts found matching your search.</p>
+        </div>
+      ) : (
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {paginatedPosts.map((post) => (
+            <Card 
+              key={post.id} 
+              className="group border border-border/50 bg-card overflow-hidden hover:border-primary/30 hover:shadow-lg transition-all duration-300 flex flex-col h-full"
             >
-              Read More <ArrowRight className="h-3 w-3" />
-            </Link>
-          </CardContent>
-        </Card>
-      ))}
-    </div>
+              {/* Image */}
+              {post.featured_image ? (
+                <Link to={`/blog/${post.slug}`} className="block overflow-hidden">
+                  <img
+                    src={post.featured_image}
+                    alt={post.title}
+                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </Link>
+              ) : (
+                <div className="w-full h-48 bg-muted/50 flex items-center justify-center">
+                  <span className="text-4xl text-muted-foreground/30">📝</span>
+                </div>
+              )}
+              
+              <CardContent className="p-6 flex flex-col flex-1">
+                {/* Meta */}
+                <div className="flex items-center gap-3 text-xs text-muted-foreground mb-3">
+                  <span className="flex items-center gap-1">
+                    <Calendar className="h-3 w-3" />
+                    {format(new Date(post.published_at), 'MMM d, yyyy')}
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <User className="h-3 w-3" />
+                    {post.author}
+                  </span>
+                </div>
+                
+                {/* Title */}
+                <h3 className="text-lg font-semibold text-foreground mb-3 leading-snug group-hover:text-primary transition-colors">
+                  <Link to={`/blog/${post.slug}`}>{post.title}</Link>
+                </h3>
+                
+                {/* Excerpt - clamped to 3 lines */}
+                <p className="text-muted-foreground text-sm leading-relaxed mb-4 flex-1 line-clamp-3">
+                  {getExcerpt(post)}
+                </p>
+                
+                {/* CTA */}
+                <Link 
+                  to={`/blog/${post.slug}`} 
+                  className="inline-flex items-center gap-1.5 text-primary text-sm font-medium hover:underline underline-offset-4 mt-auto"
+                >
+                  Read more <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      )}
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className="flex items-center justify-center gap-2 mt-12">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+            disabled={currentPage === 1}
+          >
+            Previous
+          </Button>
+          
+          <div className="flex items-center gap-1">
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+              <Button
+                key={page}
+                variant={currentPage === page ? "default" : "ghost"}
+                size="sm"
+                onClick={() => setCurrentPage(page)}
+                className="w-9"
+              >
+                {page}
+              </Button>
+            ))}
+          </div>
+          
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+            disabled={currentPage === totalPages}
+          >
+            Next
+          </Button>
+        </div>
+      )}
+    </>
   );
 };
 
@@ -181,9 +376,16 @@ const Blog = () => {
             <BlogPost slug={slug} />
           ) : (
             <>
-              <h1 className="heading-display text-5xl md:text-6xl text-center text-primary mb-16">
-                Blog
-              </h1>
+              {/* Header */}
+              <div className="text-center mb-12">
+                <h1 className="heading-display text-5xl md:text-6xl text-primary mb-4">
+                  Blog
+                </h1>
+                <p className="text-lg text-muted-foreground max-w-xl mx-auto">
+                  Practical marketing insights, SEO, and paid media—without the fluff.
+                </p>
+              </div>
+              
               <BlogList />
             </>
           )}
