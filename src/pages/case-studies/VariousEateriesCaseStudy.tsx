@@ -36,11 +36,11 @@ const VariousEateriesCaseStudy = () => {
               </h1>
             </ScrollReveal>
             
-            <ScrollReveal animation="right">
+            <ScrollReveal animation="right" className="absolute right-0 top-1/2 -translate-y-1/2 hidden lg:block">
               <img
                 src="/images/various-eateries-hero.png"
                 alt="Coppa Club Google Ads campaign on mobile"
-                className="w-full max-w-md mx-auto drop-shadow-2xl"
+                className="w-auto max-w-none h-[60vh] object-contain object-right"
               />
             </ScrollReveal>
           </div>
@@ -191,6 +191,17 @@ const VariousEateriesCaseStudy = () => {
             </ScrollReveal>
           </div>
         </div>
+      </section>
+
+      {/* Full-bleed Coppa Club Image */}
+      <section className="relative w-full overflow-hidden">
+        <ScrollReveal>
+          <img
+            src="/images/various-eateries-coppa-club.webp"
+            alt="Coppa Club venue with paid advertising overlay"
+            className="w-full h-auto object-cover"
+          />
+        </ScrollReveal>
       </section>
 
       {/* Tracking Section */}
