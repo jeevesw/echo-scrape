@@ -95,8 +95,7 @@ const MoloCaseStudy = () => {
             <ScrollReveal delay={150}>
               <div className="text-center group">
                 <div className="relative">
-                  <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full scale-0 group-hover:scale-100 transition-transform duration-700" />
-                  <span className="heading-display text-6xl md:text-7xl lg:text-8xl text-primary block relative">
+                  <span className="heading-display text-6xl md:text-7xl lg:text-8xl text-primary block relative transition-transform duration-500 group-hover:scale-105">
                     #1
                   </span>
                 </div>
