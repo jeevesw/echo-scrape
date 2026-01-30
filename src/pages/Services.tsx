@@ -11,6 +11,8 @@ import socialMediaImg from "@/assets/services/social-media-management.webp";
 import paidAdsImg from "@/assets/services/paid-advertising.webp";
 import emailMarketingImg from "@/assets/services/email-marketing.webp";
 import creativeImg from "@/assets/services/creative-services.webp";
+import tiktokImg from "@/assets/services/tiktok-production.png";
+import websiteImg from "@/assets/services/website-design.jpg";
 
 const services = [
   {
@@ -36,6 +38,18 @@ const services = [
     title: "Graphic Design & Branding",
     description: "Full-service creative branding solutions: photography, graphic design, video production, and web design.",
     image: creativeImg,
+  },
+  {
+    slug: "tiktok-production",
+    title: "TikTok Production & Marketing",
+    description: "Your brand on the fastest-growing platform. Content creation, ads management, and influencer outreach driving discovery and engagement.",
+    image: tiktokImg,
+  },
+  {
+    slug: "website-design",
+    title: "Website Design & Management",
+    description: "Engaging responsive websites built on WordPress, Shopify, or Squarespace, designed by social-conscious developers and SEO experts.",
+    image: websiteImg,
   },
 ];
 
@@ -71,8 +85,8 @@ const Services = () => {
             </div>
           </ScrollReveal>
 
-          {/* Services Grid - 2 columns with thumbnails */}
-          <div className="grid gap-8 md:grid-cols-2 mb-16">
+          {/* Services Grid - 3 columns with thumbnails */}
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-16">
             {services.map((service, index) => (
               <ScrollReveal key={service.slug} delay={index * 100}>
                 <Link to={`/services/${service.slug}`} className="group block">

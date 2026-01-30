@@ -1,4 +1,4 @@
-import { Megaphone, Target, Mail, Palette } from "lucide-react";
+import { Megaphone, Target, Mail, Palette, Video, Globe } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 export interface ServiceFAQ {
@@ -577,6 +577,270 @@ export const servicesData: Record<string, ServiceData> = {
     
     ctaHeadline: "Ready to Elevate Your Visual Content?",
     ctaText: "Let's discuss your next creative project.",
+  },
+
+  "tiktok-production": {
+    slug: "tiktok-production",
+    title: "TikTok Production",
+    metaTitle: "TikTok Marketing: Production, Ads & Influencers | Trapeze Media",
+    metaDescription: "Your brand, on the fastest-growing social platform in history. TikTok content creation, ads management, and influencer outreach for UK hospitality and events.",
+    heroHeadline: "TikTok Marketing That Drives Discovery & Engagement",
+    heroSubheadline: "Content creation, ads management, and influencer partnerships on the platform where trends are born.",
+    icon: Video,
+    
+    summary: "TikTok has become essential for reaching younger audiences and driving discovery. We produce native-feeling content, manage ad campaigns, and connect brands with creators—all designed to build communities and convert views into visits.",
+    
+    bestFor: [
+      "Hospitality brands targeting Gen Z and Millennials",
+      "Events and festivals seeking viral awareness",
+      "Food and drink brands with photogenic products",
+      "Businesses ready to embrace authentic, creative content",
+      "Brands wanting to build long-term TikTok presence",
+    ],
+    
+    notFor: [
+      "Brands expecting polished, corporate-style content",
+      "Companies uncomfortable with creator-driven messaging",
+      "Businesses targeting audiences over 45 primarily",
+      "One-off viral attempts without ongoing strategy",
+    ],
+    
+    process: [
+      {
+        step: 1,
+        title: "Platform Strategy",
+        description: "We analyse your audience, competitors, and trending content to develop a TikTok-native strategy that aligns with your brand.",
+      },
+      {
+        step: 2,
+        title: "Content Creation",
+        description: "Our team scripts, films, and edits content designed for the platform—from trends to original formats.",
+      },
+      {
+        step: 3,
+        title: "Publishing & Engagement",
+        description: "We handle posting at optimal times and engage with comments to build community and boost algorithm performance.",
+      },
+      {
+        step: 4,
+        title: "Ads & Spark Ads",
+        description: "We amplify top-performing content with paid campaigns, using Spark Ads to maintain authenticity.",
+      },
+      {
+        step: 5,
+        title: "Influencer Partnerships",
+        description: "We identify and manage creator collaborations that extend your reach to engaged audiences.",
+      },
+    ],
+    
+    features: [
+      {
+        title: "Content Production",
+        description: "Native TikTok content including trends, behind-the-scenes, tutorials, and brand storytelling.",
+      },
+      {
+        title: "TikTok Ads Management",
+        description: "Full-funnel campaigns from awareness to conversion, including In-Feed, TopView, and Spark Ads.",
+      },
+      {
+        title: "Influencer Outreach",
+        description: "Creator identification, outreach, negotiation, and campaign management with micro and macro influencers.",
+      },
+      {
+        title: "Engagement Management",
+        description: "Daily comment responses and community building to boost algorithm performance and loyalty.",
+      },
+      {
+        title: "Trend Monitoring",
+        description: "Real-time tracking of trending sounds, formats, and hashtags relevant to your brand.",
+      },
+      {
+        title: "Performance Analytics",
+        description: "Detailed reporting on views, engagement, follower growth, and conversion attribution.",
+      },
+    ],
+    
+    industries: [
+      "Restaurants & Hospitality",
+      "Events & Festivals",
+      "Food & Drink Brands",
+      "Tourism & Attractions",
+      "Entertainment & Nightlife",
+      "Lifestyle & Wellness",
+    ],
+    
+    faqs: [
+      {
+        question: "How often should we post on TikTok?",
+        answer: "For building momentum, we recommend 3-5 posts per week minimum. TikTok rewards consistent creators, and the algorithm favours accounts with regular activity. We'll establish a sustainable cadence based on your resources.",
+      },
+      {
+        question: "Do we need to show our face on camera?",
+        answer: "Not necessarily. While personality-driven content often performs well, we create successful content featuring food, venues, events, and products without requiring you on camera. We tailor the approach to what works for your brand.",
+      },
+      {
+        question: "How quickly can we expect results on TikTok?",
+        answer: "TikTok's algorithm can surface content quickly—sometimes a video goes viral within days. However, building a sustainable presence typically takes 3-6 months of consistent posting. We focus on long-term growth alongside short-term wins.",
+      },
+      {
+        question: "Should we use our own music or trending sounds?",
+        answer: "Trending sounds typically boost reach significantly. We balance trending audio with original content and licensed music, always ensuring commercial usage rights are cleared for business accounts.",
+      },
+      {
+        question: "How do you find the right influencers for our brand?",
+        answer: "We use a combination of platform research, creator databases, and industry relationships. We focus on creators whose audience demographics and engagement rates align with your target market, not just follower counts.",
+      },
+      {
+        question: "What's the minimum budget for TikTok ads?",
+        answer: "We recommend starting with at least £1,500/month in ad spend to gather meaningful data. TikTok's cost-per-view is often lower than other platforms, making it efficient for awareness campaigns.",
+      },
+      {
+        question: "Can you repurpose our TikTok content for other platforms?",
+        answer: "Yes, we optimise content for cross-platform use. However, we recommend creating platform-native content where possible, as TikTok-style videos don't always perform as well on Instagram or YouTube without adaptation.",
+      },
+      {
+        question: "What about the potential TikTok ban?",
+        answer: "We monitor regulatory developments closely. Our content strategies are designed to be platform-agnostic where possible, and we help brands build audiences across multiple short-form platforms.",
+      },
+    ],
+    
+    relatedCaseStudies: ["brighton-fringe"],
+    relatedBlogTopics: ["tiktok-marketing", "short-form-video", "influencer-marketing"],
+    
+    ctaHeadline: "Ready to Go Viral?",
+    ctaText: "Let's create TikTok content that builds your brand and drives results.",
+  },
+
+  "website-design": {
+    slug: "website-design",
+    title: "Website Design",
+    metaTitle: "Website Design & Management | Trapeze Media",
+    metaDescription: "Engaging responsive websites built on WordPress, Shopify, or Squarespace. Social media-conscious design with SEO expertise for UK hospitality and lifestyle brands.",
+    heroHeadline: "Websites That Convert Visitors into Customers",
+    heroSubheadline: "Beautiful, responsive websites built by social-savvy designers who understand how to drive traffic and bookings.",
+    icon: Globe,
+    
+    summary: "Your website is your digital home—where all your marketing efforts lead. We design and build responsive websites on platforms like WordPress, Shopify, and Squarespace, with social media integration and SEO best practices built in from day one.",
+    
+    bestFor: [
+      "Hospitality businesses needing booking integration",
+      "E-commerce brands selling food, drink, or lifestyle products",
+      "Businesses wanting sites optimised for social traffic",
+      "Companies needing ongoing website management",
+      "Brands ready to invest in professional web presence",
+    ],
+    
+    notFor: [
+      "Complex custom web applications",
+      "Brands expecting free or budget template sites",
+      "Projects without clear content and brand guidelines",
+      "One-page microsites or landing pages only",
+    ],
+    
+    process: [
+      {
+        step: 1,
+        title: "Discovery & Planning",
+        description: "We understand your business, audience, and goals to define site structure, features, and content requirements.",
+      },
+      {
+        step: 2,
+        title: "Design & Wireframing",
+        description: "We create visual mockups and page layouts that reflect your brand and optimise for user experience.",
+      },
+      {
+        step: 3,
+        title: "Development & Build",
+        description: "We build your site on the chosen platform, ensuring responsive design, fast loading, and SEO foundations.",
+      },
+      {
+        step: 4,
+        title: "Content & Integration",
+        description: "We populate your site with content and integrate booking systems, e-commerce, and third-party tools.",
+      },
+      {
+        step: 5,
+        title: "Launch & Training",
+        description: "We handle launch, provide training on managing your site, and offer ongoing support packages.",
+      },
+    ],
+    
+    features: [
+      {
+        title: "Fully Responsive",
+        description: "Every site offers an optimised experience on phones, tablets, and desktops—responsive to all screen sizes.",
+      },
+      {
+        title: "Online Shops",
+        description: "Sell products, services, subscriptions, and appointments via integrated e-commerce and booking systems.",
+      },
+      {
+        title: "On-Brand Design",
+        description: "Our designers ensure your site reflects your visual identity—fonts, colours, textures, and tone of voice.",
+      },
+      {
+        title: "SEO Optimised",
+        description: "Technical SEO, meta tags, structured data, and content optimisation built in from the start.",
+      },
+      {
+        title: "Social Integration",
+        description: "Feed embeds, share buttons, and landing pages optimised for traffic from social campaigns.",
+      },
+      {
+        title: "Ongoing Management",
+        description: "Content updates, security patches, performance monitoring, and technical support as needed.",
+      },
+    ],
+    
+    industries: [
+      "Restaurants & Hospitality",
+      "Hotels & Accommodation",
+      "Events & Festivals",
+      "Food & Drink E-commerce",
+      "Tourism & Attractions",
+      "Lifestyle & Wellness",
+    ],
+    
+    faqs: [
+      {
+        question: "Which platform do you recommend—WordPress, Shopify, or Squarespace?",
+        answer: "It depends on your needs. WordPress offers maximum flexibility, Shopify excels for e-commerce, and Squarespace provides elegant simplicity. We'll recommend the best fit based on your requirements and technical comfort.",
+      },
+      {
+        question: "How long does a website project take?",
+        answer: "Typical projects take 6-10 weeks from kickoff to launch. Timeline depends on site complexity, content readiness, and feedback turnaround. We provide detailed timelines during the planning phase.",
+      },
+      {
+        question: "Can you integrate with our booking system?",
+        answer: "Yes, we integrate with major reservation systems like OpenTable, ResDiary, Resy, and hotel booking engines. We also build custom booking solutions where needed.",
+      },
+      {
+        question: "Do you provide website hosting?",
+        answer: "We can manage hosting or set up on your preferred provider. For Squarespace and Shopify, hosting is included in the platform. For WordPress, we recommend managed hosting solutions.",
+      },
+      {
+        question: "How much does a website cost?",
+        answer: "Brochure sites start from £3,000-5,000. E-commerce and more complex sites typically range from £5,000-15,000. We provide detailed quotes based on your specific requirements.",
+      },
+      {
+        question: "Can you help with domain and email setup?",
+        answer: "Yes, we handle domain registration, DNS configuration, SSL certificates, and professional email setup. We ensure everything works seamlessly before launch.",
+      },
+      {
+        question: "Do you offer website maintenance packages?",
+        answer: "Yes, we offer monthly retainers covering content updates, security patches, backups, and technical support. This ensures your site stays secure and current.",
+      },
+      {
+        question: "Will I be able to update the site myself?",
+        answer: "Absolutely. We build sites with user-friendly content management and provide training. You'll be able to update text, images, and basic content. We're always available for more complex changes.",
+      },
+    ],
+    
+    relatedCaseStudies: ["various-eateries"],
+    relatedBlogTopics: ["web-design", "seo", "e-commerce"],
+    
+    ctaHeadline: "Ready for a Website That Works?",
+    ctaText: "Let's build a site that converts your visitors into customers.",
   },
 };
 
