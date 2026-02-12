@@ -36,7 +36,7 @@ export function Hero() {
             <img
               src={heroImage}
               alt="Coppa Club campaign by Trapeze Media"
-              className="w-full h-auto max-h-[50vh] object-cover object-left"
+              className="w-full h-auto object-contain"
             />
           </div>
         </div>
