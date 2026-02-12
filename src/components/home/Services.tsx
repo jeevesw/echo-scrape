@@ -46,24 +46,24 @@ export function Services() {
           </p>
         </ScrollReveal>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((service, index) => (
             <ScrollReveal key={service.title} delay={index * 100}>
-              <Link to={service.href}>
-                <Card variant="interactive" className="overflow-hidden h-full bg-muted">
+              <Link to={service.href} className="group block h-full">
+                <Card className="overflow-hidden h-full rounded-xl border border-border/40 bg-background shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
                   <div className="aspect-[4/3] overflow-hidden">
                     <img
                       src={service.image}
                       alt={service.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
-                  <CardContent className="p-6">
+                  <CardContent className="p-5">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                         <service.icon className="h-5 w-5 text-primary" />
                       </div>
-                      <h3 className="heading-display text-lg text-foreground">
+                      <h3 className="heading-display text-xl text-foreground group-hover:text-primary transition-colors duration-300">
                         {service.title}
                       </h3>
                     </div>
