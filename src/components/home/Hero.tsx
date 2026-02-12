@@ -11,8 +11,8 @@ export function Hero() {
       <div className="relative">
         <div className="grid lg:grid-cols-2 items-center">
           {/* Left Content */}
-          <div className="animate-fade-in container-content mx-auto px-4 py-16 lg:py-24 lg:mx-0 lg:ml-auto lg:pr-8 lg:pl-4 xl:pl-8">
-            <h1 className="heading-display text-5xl md:text-6xl lg:text-7xl text-primary leading-none mb-8">
+          <div className="animate-fade-in container-content mx-auto px-4 py-12 lg:py-16 lg:mx-0 lg:ml-auto lg:pr-8 lg:pl-4 xl:pl-8">
+            <h1 className="heading-display text-4xl md:text-5xl lg:text-6xl text-primary leading-none mb-6">
               HYPERLOCAL MARKETING: LOCAL CAMPAIGNS FOR GLOBAL BRANDS.
             </h1>
 
@@ -32,11 +32,11 @@ export function Hero() {
           </div>
 
           {/* Right Content - Hero Image flush to right edge */}
-          <div className="animate-slide-in-right flex justify-end">
+          <div className="animate-slide-in-right flex justify-end py-6 lg:py-8">
             <img
               src={heroImage}
               alt="Coppa Club campaign by Trapeze Media"
-              className="w-full h-auto object-cover object-left"
+              className="w-full h-auto max-h-[50vh] object-cover object-left"
             />
           </div>
         </div>
