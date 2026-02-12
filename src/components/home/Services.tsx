@@ -39,7 +39,7 @@ export function Services() {
       <div className="container-content mx-auto px-4 relative">
         <ScrollReveal>
           <h2 className="heading-display text-4xl md:text-5xl text-center text-foreground mb-4">
-            Our Digital Marketing Services
+            Our <span className="text-primary">Digital Marketing</span> Services
           </h2>
           <p className="text-center text-muted-foreground max-w-3xl mx-auto mb-4">
             For more than a decade, we've been helping clients reach new audiences by managing and optimising{" "}
