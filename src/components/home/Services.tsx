@@ -41,8 +41,15 @@ export function Services() {
           <h2 className="heading-display text-4xl md:text-5xl text-center text-foreground mb-4">
             Our Digital Marketing Services
           </h2>
+          <p className="text-center text-muted-foreground max-w-3xl mx-auto mb-4">
+            For more than a decade, we've been helping clients reach new audiences by managing and optimising{" "}
+            <Link to="/services/paid-advertising" className="text-primary hover:underline font-medium">paid social ads</Link>,{" "}
+            <Link to="/services/paid-advertising" className="text-primary hover:underline font-medium">paid search ads</Link>, and{" "}
+            <Link to="/services/social-media-management" className="text-primary hover:underline font-medium">organic social</Link>, plus{" "}
+            <Link to="/services/creative-services" className="text-primary hover:underline font-medium">web design and optimisation</Link>.
+          </p>
           <p className="text-center text-muted-foreground max-w-3xl mx-auto mb-12">
-            For more than a decade, we've been helping clients reach new audiences by managing and optimising paid social ads, paid search ads, and organic social, plus web design and optimisation.
+            Our successes include campaigns in the <span className="text-foreground font-medium">hospitality</span>, <span className="text-foreground font-medium">tourism</span>, and <span className="text-foreground font-medium">events</span> sectors, with renowned food, drink, and experience brands including Various Eateries, Hakkasan, and Brighton Fringe.
           </p>
         </ScrollReveal>
 
