@@ -29,7 +29,7 @@ export function ClientLogoCarousel() {
             {allLogos.map((logo, i) => (
               <div
                 key={`${logo.alt}-${i}`}
-                className="flex-shrink-0 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-300"
+                className="flex-shrink-0 flex items-center justify-center"
               >
                 <img
                   src={logo.src}
