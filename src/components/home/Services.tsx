@@ -41,8 +41,8 @@ export function Services() {
           <h2 className="heading-display text-4xl md:text-5xl text-center text-foreground mb-4">
             Our Digital Marketing Services
           </h2>
-          <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-12">
-            Hyperlocal expertise for hospitality, tourism, and events brands across the UK.
+          <p className="text-center text-muted-foreground max-w-3xl mx-auto mb-12">
+            For more than a decade, we've been helping clients reach new audiences by managing and optimising paid social ads, paid search ads, and organic social, plus web design and optimisation.
           </p>
         </ScrollReveal>
 
