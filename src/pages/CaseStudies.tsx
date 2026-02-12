@@ -58,33 +58,33 @@ const CaseStudies = () => {
             Case Studies
           </h1>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 stagger-children">
+          <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3 stagger-children">
             {caseStudies.map((study) => (
-              <Card key={study.title} className="group overflow-hidden border-0 bg-background hover:shadow-xl transition-all duration-300">
-                <div className="aspect-[4/3] overflow-hidden">
-                  <img
-                    src={study.image}
-                    alt={study.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-                <CardContent className="p-6">
-                  <span className="heading-display text-sm text-primary uppercase">
-                    {study.category}
-                  </span>
-                  <h3 className="heading-display text-xl text-foreground mt-2 mb-3 group-hover:text-primary transition-colors uppercase">
-                    {study.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
-                    {study.description}
-                  </p>
-                  <Button variant="hero" size="sm" asChild className="w-full">
-                    <Link to={study.href}>
-                      Read the Case Study <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
+              <Link key={study.title} to={study.href} className="group">
+                <Card className="overflow-hidden rounded-xl border border-border/40 bg-background shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full flex flex-col">
+                  <div className="aspect-[4/3] overflow-hidden">
+                    <img
+                      src={study.image}
+                      alt={study.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <CardContent className="p-7 flex flex-col flex-1">
+                    <span className="heading-display text-sm text-primary uppercase tracking-wide">
+                      {study.category}
+                    </span>
+                    <h3 className="heading-display text-2xl text-foreground mt-2 mb-3 leading-tight group-hover:text-primary transition-colors duration-300 uppercase">
+                      {study.title}
+                    </h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed mb-6 line-clamp-3 flex-1">
+                      {study.description}
+                    </p>
+                    <span className="inline-flex items-center justify-center gap-2 w-full rounded-full bg-primary text-primary-foreground font-bold uppercase tracking-wide text-sm py-3 group-hover:bg-primary/90 transition-colors duration-300">
+                      Read the Case Study <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+                    </span>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
         </div>
