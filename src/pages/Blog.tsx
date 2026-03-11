@@ -37,8 +37,10 @@ interface BlogPostBase {
   content: string;
   featured_image: string | null;
   author: string;
+  author_id: string | null;
   published_at: string;
   blocks: unknown;
+  authors: Author | null;
 }
 
 interface BlogPostWithCategories extends BlogPostBase {
