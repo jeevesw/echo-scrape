@@ -201,9 +201,9 @@ export function BlockRenderer({ blocks: rawBlocks, fallbackHtml }: BlockRenderer
     });
     document.head.appendChild(script);
     return () => { document.getElementById('faq-schema')?.remove(); };
-  }, [blocks]);
+  }, [safeBlocks]);
 
-  if (!blocks || !Array.isArray(blocks) || blocks.length === 0) {
+  if (!safeBlocks || safeBlocks.length === 0) {
     return (
       <div
         className="prose prose-lg max-w-none
