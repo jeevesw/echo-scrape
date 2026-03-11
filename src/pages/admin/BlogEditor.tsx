@@ -14,7 +14,9 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Badge } from '@/components/ui/badge';
 import { Checkbox } from '@/components/ui/checkbox';
 import { cn } from '@/lib/utils';
-import { ArrowLeft, Save, Eye, Loader2, CalendarIcon, Upload, X, Image as ImageIcon, Tag } from 'lucide-react';
+import { ArrowLeft, Save, Eye, Loader2, CalendarIcon, Upload, X, Image as ImageIcon, Tag, Settings2 } from 'lucide-react';
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
+import { Separator } from '@/components/ui/separator';
 import { format } from 'date-fns';
 import { toast } from 'sonner';
 import BlockEditor from '@/components/blog/editor/BlockEditor';
@@ -69,6 +71,7 @@ export default function BlogEditor() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [initialCategories, setInitialCategories] = useState<string[]>([]);
   const [blocks, setBlocks] = useState<Block[]>([]);
+  const [settingsOpen, setSettingsOpen] = useState(false);
 
   // Fetch all categories
   const { data: categories } = useQuery({
@@ -334,125 +337,95 @@ export default function BlogEditor() {
 
   return (
     <AdminLayout>
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center gap-4">
-            <Button variant="ghost" size="icon" asChild>
-              <Link to="/admin/blog">
-                <ArrowLeft className="h-5 w-5" />
+      {/* Sticky top bar */}
+      <div className="sticky top-0 z-10 bg-background border-b border-border px-6 py-3 flex items-center justify-between -mx-6 -mt-6 mb-6">
+        <div className="flex items-center gap-3">
+          <Button variant="ghost" size="icon" asChild>
+            <Link to="/admin/blog">
+              <ArrowLeft className="h-5 w-5" />
+            </Link>
+          </Button>
+          <span className="text-sm text-muted-foreground truncate max-w-sm">
+            {title || 'Untitled post'}
+          </span>
+        </div>
+        <div className="flex items-center gap-2">
+          <Button variant="outline" size="sm" onClick={() => setSettingsOpen(true)}>
+            <Settings2 className="h-4 w-4 mr-2" />
+            Settings
+          </Button>
+          {!isNew && (
+            <Button variant="outline" size="sm" asChild>
+              <Link to={`/blog/${slug}`} target="_blank">
+                <Eye className="h-4 w-4 mr-2" />
+                Preview
               </Link>
             </Button>
-            <h1 className="text-2xl font-bold text-foreground">
-              {isNew ? 'New Post' : 'Edit Post'}
-            </h1>
-          </div>
-          <div className="flex items-center gap-3">
-            {!isNew && (
-              <Button variant="outline" asChild>
-                <Link to={`/blog/${slug}`} target="_blank">
-                  <Eye className="h-4 w-4 mr-2" />
-                  Preview
-                </Link>
-              </Button>
+          )}
+          <Button
+            size="sm"
+            onClick={handleSave}
+            disabled={saveMutation.isPending || !hasChanges}
+          >
+            {saveMutation.isPending ? (
+              <Loader2 className="h-4 w-4 animate-spin mr-2" />
+            ) : (
+              <Save className="h-4 w-4 mr-2" />
             )}
-            <Button 
-              onClick={handleSave} 
-              disabled={saveMutation.isPending || !hasChanges}
-            >
-              {saveMutation.isPending ? (
-                <Loader2 className="h-4 w-4 animate-spin mr-2" />
-              ) : (
-                <Save className="h-4 w-4 mr-2" />
-              )}
-              {isNew ? 'Create Post' : 'Save Changes'}
-            </Button>
-          </div>
+            {isNew ? 'Create Post' : 'Save Changes'}
+          </Button>
         </div>
+      </div>
 
-        <div className="grid gap-8 lg:grid-cols-3">
-          {/* Main content */}
-          <div className="lg:col-span-2 space-y-6">
-            {/* Title */}
-            <div className="space-y-2">
-              <Label htmlFor="title">Title</Label>
-              <Input
-                id="title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                placeholder="Post title"
-                className="text-lg"
-              />
-            </div>
+      {/* Main editor area */}
+      <div className="max-w-4xl mx-auto">
+        {/* Title */}
+        <input
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Post title"
+          className="heading-display text-4xl border-0 border-b border-border focus:outline-none pb-4 mb-6 w-full bg-transparent text-foreground placeholder:text-muted-foreground"
+        />
 
-            {/* Slug */}
-            <div className="space-y-2">
-              <Label htmlFor="slug">Slug</Label>
-              <div className="flex items-center gap-2">
-                <span className="text-muted-foreground text-sm">/blog/</span>
-                <Input
-                  id="slug"
-                  value={slug}
-                  onChange={(e) => setSlug(e.target.value)}
-                  placeholder="post-slug"
-                  className="flex-1"
-                />
-              </div>
-            </div>
+        {/* Block Editor */}
+        <BlockEditor blocks={blocks} onChange={handleBlocksChange} />
 
-            {/* Excerpt */}
-            <div className="space-y-2">
-              <Label htmlFor="excerpt">Excerpt</Label>
-              <Textarea
-                id="excerpt"
-                value={excerpt}
-                onChange={(e) => setExcerpt(e.target.value)}
-                placeholder="Brief summary for previews and SEO..."
-                rows={3}
-              />
-              <p className="text-xs text-muted-foreground">
-                Short description shown in blog listings. If empty, content will be used.
-              </p>
-            </div>
-
-            {/* Block Editor */}
-            <div className="space-y-2">
-              <Label>Content</Label>
-              <BlockEditor blocks={blocks} onChange={handleBlocksChange} />
-            </div>
-
-            {/* Legacy HTML content */}
-            {blocks.length === 0 && content && (
-              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-sm text-yellow-800">
-                This post uses legacy HTML content. Use the block editor above to rebuild it in the new format.
-              </div>
-            )}
-            {blocks.length === 0 && (
-              <div className="space-y-2">
-                <Label htmlFor="content">Legacy HTML Content</Label>
-                <Textarea
-                  id="content"
-                  value={content}
-                  onChange={(e) => setContent(e.target.value)}
-                  placeholder="Write your post content here... HTML is supported."
-                  rows={20}
-                  className="font-mono text-sm"
-                />
-                <p className="text-xs text-muted-foreground">
-                  Supports HTML for formatting (headings, links, lists, etc.)
-                </p>
-              </div>
-            )}
+        {/* Legacy HTML content */}
+        {blocks.length === 0 && content && (
+          <div className="bg-accent/50 border border-accent rounded-lg p-3 text-sm text-accent-foreground mt-6">
+            This post uses legacy HTML content. Use the block editor above to rebuild it in the new format.
           </div>
+        )}
+        {blocks.length === 0 && (
+          <div className="space-y-2 mt-6">
+            <Label htmlFor="content">Legacy HTML Content</Label>
+            <Textarea
+              id="content"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+              placeholder="Write your post content here... HTML is supported."
+              rows={20}
+              className="font-mono text-sm"
+            />
+            <p className="text-xs text-muted-foreground">
+              Supports HTML for formatting (headings, links, lists, etc.)
+            </p>
+          </div>
+        )}
+      </div>
 
-          {/* Sidebar */}
-          <div className="space-y-6">
-            {/* Publish settings */}
-            <div className="border border-border rounded-lg p-4 bg-card">
-              <h3 className="font-semibold text-foreground mb-4">Publish Settings</h3>
-              
+      {/* Settings Sheet */}
+      <Sheet open={settingsOpen} onOpenChange={setSettingsOpen}>
+        <SheetContent side="right" className="w-[420px] sm:w-[480px] overflow-y-auto">
+          <SheetHeader>
+            <SheetTitle>Post Settings</SheetTitle>
+          </SheetHeader>
+
+          <div className="space-y-6 mt-6">
+            {/* ── Publishing ── */}
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">Publishing</p>
               <div className="space-y-4">
-                {/* Published toggle */}
                 <div className="flex items-center justify-between">
                   <Label htmlFor="published">Published</Label>
                   <Switch
@@ -461,8 +434,6 @@ export default function BlogEditor() {
                     onCheckedChange={setIsPublished}
                   />
                 </div>
-
-                {/* Publish date */}
                 <div className="space-y-2">
                   <Label>Publish Date</Label>
                   <Popover>
@@ -489,8 +460,6 @@ export default function BlogEditor() {
                     </PopoverContent>
                   </Popover>
                 </div>
-
-                {/* Author */}
                 <div className="space-y-2">
                   <Label htmlFor="author">Author</Label>
                   <Input
@@ -503,110 +472,148 @@ export default function BlogEditor() {
               </div>
             </div>
 
-            {/* Categories */}
-            <div className="border border-border rounded-lg p-4 bg-card">
-              <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
-                <Tag className="h-4 w-4" />
-                Categories
-              </h3>
-              
-              <div className="space-y-3">
-                {categories?.filter(cat => cat.slug !== 'needs-review').map((category) => (
-                  <div key={category.id} className="flex items-center space-x-2">
-                    <Checkbox
-                      id={`cat-${category.id}`}
-                      checked={selectedCategories.includes(category.id)}
-                      onCheckedChange={() => toggleCategory(category.id)}
+            <Separator />
+
+            {/* ── Organisation ── */}
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">Organisation</p>
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="slug">Slug</Label>
+                  <div className="flex items-center gap-2">
+                    <span className="text-muted-foreground text-sm">/blog/</span>
+                    <Input
+                      id="slug"
+                      value={slug}
+                      onChange={(e) => setSlug(e.target.value)}
+                      placeholder="post-slug"
+                      className="flex-1"
                     />
-                    <Label
-                      htmlFor={`cat-${category.id}`}
-                      className="text-sm font-normal cursor-pointer"
-                    >
-                      {category.name}
-                    </Label>
-                  </div>
-                ))}
-              </div>
-
-              {selectedCategories.length > 0 && (
-                <div className="mt-4 pt-3 border-t border-border">
-                  <p className="text-xs text-muted-foreground mb-2">Selected:</p>
-                  <div className="flex flex-wrap gap-1">
-                    {selectedCategories.map(catId => {
-                      const cat = categories?.find(c => c.id === catId);
-                      return cat ? (
-                        <Badge key={catId} variant="secondary" className="text-xs">
-                          {cat.name}
-                        </Badge>
-                      ) : null;
-                    })}
                   </div>
                 </div>
-              )}
-            </div>
-
-            {/* Featured image */}
-            <div className="border border-border rounded-lg p-4 bg-card">
-              <h3 className="font-semibold text-foreground mb-4">Featured Image</h3>
-              
-              {featuredImage ? (
-                <div className="relative">
-                  <img
-                    src={featuredImage}
-                    alt="Featured"
-                    className="w-full rounded-lg object-cover aspect-[4/3]"
-                  />
-                  <Button
-                    variant="destructive"
-                    size="icon"
-                    className="absolute top-2 right-2"
-                    onClick={() => setFeaturedImage(null)}
-                  >
-                    <X className="h-4 w-4" />
-                  </Button>
-                </div>
-              ) : (
-                <div
-                  onClick={() => fileInputRef.current?.click()}
-                  className="border-2 border-dashed border-border rounded-lg p-8 text-center cursor-pointer hover:border-primary/50 transition-colors"
-                >
-                  {isUploading ? (
-                    <Loader2 className="h-8 w-8 mx-auto animate-spin text-muted-foreground" />
-                  ) : (
-                    <>
-                      <ImageIcon className="h-8 w-8 mx-auto text-muted-foreground mb-2" />
-                      <p className="text-sm text-muted-foreground">
-                        Click to upload
-                      </p>
-                    </>
+                <div className="space-y-2">
+                  <Label className="flex items-center gap-2">
+                    <Tag className="h-4 w-4" />
+                    Categories
+                  </Label>
+                  <div className="space-y-3">
+                    {categories?.filter(cat => cat.slug !== 'needs-review').map((category) => (
+                      <div key={category.id} className="flex items-center space-x-2">
+                        <Checkbox
+                          id={`cat-${category.id}`}
+                          checked={selectedCategories.includes(category.id)}
+                          onCheckedChange={() => toggleCategory(category.id)}
+                        />
+                        <Label
+                          htmlFor={`cat-${category.id}`}
+                          className="text-sm font-normal cursor-pointer"
+                        >
+                          {category.name}
+                        </Label>
+                      </div>
+                    ))}
+                  </div>
+                  {selectedCategories.length > 0 && (
+                    <div className="mt-3 pt-3 border-t border-border">
+                      <p className="text-xs text-muted-foreground mb-2">Selected:</p>
+                      <div className="flex flex-wrap gap-1">
+                        {selectedCategories.map(catId => {
+                          const cat = categories?.find(c => c.id === catId);
+                          return cat ? (
+                            <Badge key={catId} variant="secondary" className="text-xs">
+                              {cat.name}
+                            </Badge>
+                          ) : null;
+                        })}
+                      </div>
+                    </div>
                   )}
                 </div>
-              )}
+              </div>
+            </div>
 
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="image/*"
-                onChange={handleImageUpload}
-                className="hidden"
-              />
+            <Separator />
 
-              {featuredImage && (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="w-full mt-3"
-                  onClick={() => fileInputRef.current?.click()}
-                  disabled={isUploading}
-                >
-                  <Upload className="h-4 w-4 mr-2" />
-                  Replace Image
-                </Button>
-              )}
+            {/* ── Appearance ── */}
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">Appearance</p>
+              <div className="space-y-2">
+                <Label>Featured Image</Label>
+                {featuredImage ? (
+                  <div className="relative">
+                    <img
+                      src={featuredImage}
+                      alt="Featured"
+                      className="w-full rounded-lg object-cover aspect-[4/3]"
+                    />
+                    <Button
+                      variant="destructive"
+                      size="icon"
+                      className="absolute top-2 right-2"
+                      onClick={() => setFeaturedImage(null)}
+                    >
+                      <X className="h-4 w-4" />
+                    </Button>
+                  </div>
+                ) : (
+                  <div
+                    onClick={() => fileInputRef.current?.click()}
+                    className="border-2 border-dashed border-border rounded-lg p-8 text-center cursor-pointer hover:border-primary/50 transition-colors"
+                  >
+                    {isUploading ? (
+                      <Loader2 className="h-8 w-8 mx-auto animate-spin text-muted-foreground" />
+                    ) : (
+                      <>
+                        <ImageIcon className="h-8 w-8 mx-auto text-muted-foreground mb-2" />
+                        <p className="text-sm text-muted-foreground">Click to upload</p>
+                      </>
+                    )}
+                  </div>
+                )}
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  className="hidden"
+                />
+                {featuredImage && (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="w-full mt-2"
+                    onClick={() => fileInputRef.current?.click()}
+                    disabled={isUploading}
+                  >
+                    <Upload className="h-4 w-4 mr-2" />
+                    Replace Image
+                  </Button>
+                )}
+              </div>
+            </div>
+
+            <Separator />
+
+            {/* ── SEO ── */}
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">SEO</p>
+              <div className="space-y-2">
+                <Label htmlFor="excerpt">Excerpt / Meta Description</Label>
+                <Textarea
+                  id="excerpt"
+                  value={excerpt}
+                  onChange={(e) => setExcerpt(e.target.value)}
+                  placeholder="Brief summary for previews and SEO..."
+                  rows={3}
+                />
+                <p className="text-xs text-muted-foreground">
+                  Short description shown in blog listings and search results.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        </SheetContent>
+      </Sheet>
     </AdminLayout>
   );
 }
