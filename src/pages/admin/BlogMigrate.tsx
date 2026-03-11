@@ -60,6 +60,9 @@ const getTopLevelNodes = (root: Element): Node[] => {
   return nodes;
 };
 
+const isTextLike = (tag: string) =>
+  ['p', 'ul', 'ol', 'h4', 'h5', 'h6', 'pre', 'code'].includes(tag);
+
 const htmlToBlocks = (html: string): Block[] => {
   if (!html?.trim()) return [];
   const doc = new DOMParser().parseFromString(html, 'text/html');
@@ -84,25 +87,31 @@ const htmlToBlocks = (html: string): Block[] => {
       if (src) blocks.push({ id, type: 'image', src, alt, caption: '' });
     } else if (tag === 'blockquote') {
       blocks.push({ id, type: 'quote', content: decode(text), attribution: '' });
-    } else if (tag === 'ul') {
-      const items = Array.from(node.querySelectorAll('li'))
-        .map(li => decode(li.textContent?.trim() || ''))
-        .filter(Boolean);
-      if (items.length) blocks.push({ id, type: 'list', style: 'bullet', items });
-    } else if (tag === 'ol') {
-      const items = Array.from(node.querySelectorAll('li'))
-        .map(li => decode(li.textContent?.trim() || ''))
-        .filter(Boolean);
-      if (items.length) blocks.push({ id, type: 'list', style: 'numbered', items });
     } else if (tag === 'hr') {
       blocks.push({ id, type: 'divider' });
-    } else if (tag === 'p') {
-      const pNodes: Element[] = [];
-      while (i < nodes.length && (nodes[i] as Element).tagName?.toLowerCase() === 'p') {
-        pNodes.push(nodes[i] as Element);
+    } else if (isTextLike(tag)) {
+      // Group consecutive text-like nodes (p, ul, ol, etc.) into one text block
+      const textNodes: Element[] = [];
+      while (i < nodes.length && isTextLike((nodes[i] as Element).tagName?.toLowerCase())) {
+        textNodes.push(nodes[i] as Element);
         i++;
       }
-      const combined = pNodes.map(p => `<p>${cleanInnerHTML(p)}</p>`).join('\n');
+      const combined = textNodes.map(n => {
+        const t = n.tagName.toLowerCase();
+        if (t === 'ul') {
+          const items = Array.from(n.querySelectorAll('li'))
+            .map(li => `<li>${cleanInnerHTML(li)}</li>`)
+            .join('');
+          return `<ul>${items}</ul>`;
+        }
+        if (t === 'ol') {
+          const items = Array.from(n.querySelectorAll('li'))
+            .map(li => `<li>${cleanInnerHTML(li)}</li>`)
+            .join('');
+          return `<ol>${items}</ol>`;
+        }
+        return `<p>${cleanInnerHTML(n)}</p>`;
+      }).join('\n');
       if (combined.trim()) blocks.push({ id, type: 'text', content: combined });
       continue;
     } else if (tag === 'h1') {
