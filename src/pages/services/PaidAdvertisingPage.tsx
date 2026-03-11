@@ -231,13 +231,12 @@ const PaidAdvertisingPage = () => {
           </div>
 
           {/* Right column — full-bleed image placeholder */}
-          <div className="hidden lg:flex bg-muted items-center justify-center p-10">
-            <p className="text-sm text-muted-foreground text-center leading-relaxed max-w-xs">
-              Image: A paid ads campaign in action — e.g. a phone showing a
-              Meta ad for a restaurant, or a campaign dashboard. Recommended:
-              real campaign screenshot or lifestyle shot of someone engaging
-              with an ad on mobile.
-            </p>
+          <div className="hidden lg:block bg-muted overflow-hidden">
+            <img
+              src={paidAdsHero}
+              alt="Maximiles paid ads campaign managed by Trapeze Media — laptop showing rewards platform"
+              className="w-full h-full object-cover"
+            />
           </div>
         </div>
       </section>
