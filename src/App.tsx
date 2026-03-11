@@ -76,6 +76,11 @@ const App = () => (
                   <BlogMigrate />
                 </ProtectedRoute>
               } />
+              <Route path="/admin/authors" element={
+                <ProtectedRoute requireAdmin>
+                  <Authors />
+                </ProtectedRoute>
+              } />
               
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
