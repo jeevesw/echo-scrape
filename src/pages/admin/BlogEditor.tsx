@@ -172,6 +172,7 @@ export default function BlogEditor() {
         slug: slug.trim(),
         excerpt: excerpt.trim(),
         content: content.trim(),
+        blocks: blocks.length > 0 ? blocks : null,
         featured_image: featuredImage,
         author: author.trim() || 'Trapeze Media',
         published_at: publishedAt.toISOString(),
