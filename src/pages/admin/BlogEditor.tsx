@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
@@ -17,6 +17,8 @@ import { cn } from '@/lib/utils';
 import { ArrowLeft, Save, Eye, Loader2, CalendarIcon, Upload, X, Image as ImageIcon, Tag } from 'lucide-react';
 import { format } from 'date-fns';
 import { toast } from 'sonner';
+import BlockEditor from '@/components/blog/editor/BlockEditor';
+import type { Block } from '@/components/blog/BlockRenderer';
 
 interface BlogPost {
   id: string;
@@ -24,6 +26,7 @@ interface BlogPost {
   title: string;
   excerpt: string;
   content: string;
+  blocks: unknown;
   featured_image: string | null;
   author: string;
   published_at: string;
@@ -65,6 +68,7 @@ export default function BlogEditor() {
   const [hasChanges, setHasChanges] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [initialCategories, setInitialCategories] = useState<string[]>([]);
+  const [blocks, setBlocks] = useState<Block[]>([]);
 
   // Fetch all categories
   const { data: categories } = useQuery({
@@ -117,6 +121,7 @@ export default function BlogEditor() {
       setSlug(post.slug);
       setExcerpt(post.excerpt);
       setContent(post.content);
+      setBlocks(Array.isArray(post.blocks) ? (post.blocks as Block[]) : []);
       setFeaturedImage(post.featured_image);
       setAuthor(post.author);
       setPublishedAt(new Date(post.published_at));
@@ -167,6 +172,7 @@ export default function BlogEditor() {
         slug: slug.trim(),
         excerpt: excerpt.trim(),
         content: content.trim(),
+        blocks: (blocks.length > 0 ? JSON.parse(JSON.stringify(blocks)) : null),
         featured_image: featuredImage,
         author: author.trim() || 'Trapeze Media',
         published_at: publishedAt.toISOString(),
@@ -233,6 +239,8 @@ export default function BlogEditor() {
     },
   });
 
+  const handleBlocksChange = useCallback((b: Block[]) => setBlocks(b), []);
+
   const toggleCategory = (categoryId: string) => {
     setSelectedCategories(prev =>
       prev.includes(categoryId)
@@ -298,7 +306,7 @@ export default function BlogEditor() {
       toast.error('Slug is required');
       return;
     }
-    if (!content.trim()) {
+    if (!content.trim() && blocks.length === 0) {
       toast.error('Content is required');
       return;
     }
@@ -321,7 +329,7 @@ export default function BlogEditor() {
 
   return (
     <AdminLayout>
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-4">
@@ -402,21 +410,34 @@ export default function BlogEditor() {
               </p>
             </div>
 
-            {/* Content */}
+            {/* Block Editor */}
             <div className="space-y-2">
-              <Label htmlFor="content">Content</Label>
-              <Textarea
-                id="content"
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-                placeholder="Write your post content here... HTML is supported."
-                rows={20}
-                className="font-mono text-sm"
-              />
-              <p className="text-xs text-muted-foreground">
-                Supports HTML for formatting (headings, links, lists, etc.)
-              </p>
+              <Label>Content</Label>
+              <BlockEditor blocks={blocks} onChange={handleBlocksChange} />
             </div>
+
+            {/* Legacy HTML content */}
+            {blocks.length === 0 && content && (
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-sm text-yellow-800">
+                This post uses legacy HTML content. Use the block editor above to rebuild it in the new format.
+              </div>
+            )}
+            {blocks.length === 0 && (
+              <div className="space-y-2">
+                <Label htmlFor="content">Legacy HTML Content</Label>
+                <Textarea
+                  id="content"
+                  value={content}
+                  onChange={(e) => setContent(e.target.value)}
+                  placeholder="Write your post content here... HTML is supported."
+                  rows={20}
+                  className="font-mono text-sm"
+                />
+                <p className="text-xs text-muted-foreground">
+                  Supports HTML for formatting (headings, links, lists, etc.)
+                </p>
+              </div>
+            )}
           </div>
 
           {/* Sidebar */}
