@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'sonner';
 import { AdminLayout } from '@/components/admin/AdminLayout';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -18,7 +19,7 @@ import { supabase } from '@/integrations/supabase/client';
 import type { Block } from '@/components/blog/BlockRenderer';
 import {
   ArrowLeft, ArrowRight, CheckCircle, AlertTriangle,
-  XCircle, ExternalLink,
+  XCircle, ExternalLink, RotateCcw,
 } from 'lucide-react';
 
 /* ------------------------------------------------------------------ */
@@ -60,6 +61,9 @@ const getTopLevelNodes = (root: Element): Node[] => {
   return nodes;
 };
 
+const isTextLike = (tag: string) =>
+  ['p', 'ul', 'ol', 'h4', 'h5', 'h6', 'pre', 'code'].includes(tag);
+
 const htmlToBlocks = (html: string): Block[] => {
   if (!html?.trim()) return [];
   const doc = new DOMParser().parseFromString(html, 'text/html');
@@ -84,25 +88,31 @@ const htmlToBlocks = (html: string): Block[] => {
       if (src) blocks.push({ id, type: 'image', src, alt, caption: '' });
     } else if (tag === 'blockquote') {
       blocks.push({ id, type: 'quote', content: decode(text), attribution: '' });
-    } else if (tag === 'ul') {
-      const items = Array.from(node.querySelectorAll('li'))
-        .map(li => decode(li.textContent?.trim() || ''))
-        .filter(Boolean);
-      if (items.length) blocks.push({ id, type: 'list', style: 'bullet', items });
-    } else if (tag === 'ol') {
-      const items = Array.from(node.querySelectorAll('li'))
-        .map(li => decode(li.textContent?.trim() || ''))
-        .filter(Boolean);
-      if (items.length) blocks.push({ id, type: 'list', style: 'numbered', items });
     } else if (tag === 'hr') {
       blocks.push({ id, type: 'divider' });
-    } else if (tag === 'p') {
-      const pNodes: Element[] = [];
-      while (i < nodes.length && (nodes[i] as Element).tagName?.toLowerCase() === 'p') {
-        pNodes.push(nodes[i] as Element);
+    } else if (isTextLike(tag)) {
+      // Group consecutive text-like nodes (p, ul, ol, etc.) into one text block
+      const textNodes: Element[] = [];
+      while (i < nodes.length && isTextLike((nodes[i] as Element).tagName?.toLowerCase())) {
+        textNodes.push(nodes[i] as Element);
         i++;
       }
-      const combined = pNodes.map(p => `<p>${cleanInnerHTML(p)}</p>`).join('\n');
+      const combined = textNodes.map(n => {
+        const t = n.tagName.toLowerCase();
+        if (t === 'ul') {
+          const items = Array.from(n.querySelectorAll('li'))
+            .map(li => `<li>${cleanInnerHTML(li)}</li>`)
+            .join('');
+          return `<ul>${items}</ul>`;
+        }
+        if (t === 'ol') {
+          const items = Array.from(n.querySelectorAll('li'))
+            .map(li => `<li>${cleanInnerHTML(li)}</li>`)
+            .join('');
+          return `<ol>${items}</ol>`;
+        }
+        return `<p>${cleanInnerHTML(n)}</p>`;
+      }).join('\n');
       if (combined.trim()) blocks.push({ id, type: 'text', content: combined });
       continue;
     } else if (tag === 'h1') {
@@ -239,6 +249,36 @@ export default function BlogMigrate() {
     setStage('done');
   }, [previewRows]);
 
+  const handleResetAndRemigrate = useCallback(async () => {
+    setLoading(true);
+    const { error } = await supabase
+      .from('blog_posts')
+      .update({ blocks: null } as any)
+      .not('blocks', 'is', null);
+    if (error) {
+      toast.error('Failed to reset blocks: ' + error.message);
+      setLoading(false);
+      return;
+    }
+    // Refresh counts
+    const { count: needsCount } = await supabase
+      .from('blog_posts')
+      .select('id', { count: 'exact', head: true })
+      .or('blocks.is.null,blocks.eq.[]');
+    const { count: doneCount } = await supabase
+      .from('blog_posts')
+      .select('id', { count: 'exact', head: true })
+      .not('blocks', 'is', null);
+    setNeedsMigration(needsCount ?? 0);
+    setAlreadyMigrated(doneCount ?? 0);
+    setStage('idle');
+    setLogs([]);
+    setPreviewRows([]);
+    setProgress(0);
+    setLoading(false);
+    toast.success('All blocks reset. Ready to re-migrate.');
+  }, []);
+
   const totalBlocksPreview = previewRows.reduce((s, r) => s + r.generatedBlocks.length, 0);
   const successCount = logs.filter(l => l.success).length;
   const errorCount = logs.filter(l => !l.success).length;
@@ -278,9 +318,32 @@ export default function BlogMigrate() {
                 </div>
               </div>
 
-              <Button onClick={handlePreview} disabled={loading || needsMigration === 0} className="w-full">
+              <Button onClick={handlePreview} disabled={loading || needsMigration === 0} className="w-full mb-3">
                 {loading ? 'Loading…' : 'Preview Migration'} <ArrowRight className="h-4 w-4 ml-2" />
               </Button>
+
+              {alreadyMigrated > 0 && (
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <Button variant="outline" className="w-full" disabled={loading}>
+                      <RotateCcw className="h-4 w-4 mr-2" /> Reset &amp; Re-migrate All
+                    </Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>Reset &amp; Re-migrate All</AlertDialogTitle>
+                      <AlertDialogDescription>
+                        This will clear all existing blocks and re-run the migration from HTML.
+                        Use this if you've updated the migration logic. Continue?
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogAction onClick={handleResetAndRemigrate}>Continue</AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
+              )}
             </CardContent>
           </Card>
         )}
@@ -376,7 +439,7 @@ export default function BlogMigrate() {
                 {successCount} posts migrated · {totalBlocksDone} blocks created
                 {errorCount > 0 && ` · ${errorCount} errors`}
               </p>
-              <div className="flex justify-center gap-3">
+              <div className="flex justify-center gap-3 mb-4">
                 <Button asChild>
                   <Link to="/admin/blog">View Blog Posts <ArrowRight className="h-4 w-4 ml-2" /></Link>
                 </Button>
@@ -386,6 +449,26 @@ export default function BlogMigrate() {
                   </a>
                 </Button>
               </div>
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button variant="outline" disabled={loading}>
+                    <RotateCcw className="h-4 w-4 mr-2" /> Reset &amp; Re-migrate All
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Reset &amp; Re-migrate All</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      This will clear all existing blocks and re-run the migration from HTML.
+                      Use this if you've updated the migration logic. Continue?
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction onClick={handleResetAndRemigrate}>Continue</AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
             </CardContent>
           </Card>
         )}
