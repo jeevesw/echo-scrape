@@ -14,7 +14,9 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Badge } from '@/components/ui/badge';
 import { Checkbox } from '@/components/ui/checkbox';
 import { cn } from '@/lib/utils';
-import { ArrowLeft, Save, Eye, Loader2, CalendarIcon, Upload, X, Image as ImageIcon, Tag } from 'lucide-react';
+import { ArrowLeft, Save, Eye, Loader2, CalendarIcon, Upload, X, Image as ImageIcon, Tag, Settings2 } from 'lucide-react';
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
+import { Separator } from '@/components/ui/separator';
 import { format } from 'date-fns';
 import { toast } from 'sonner';
 import BlockEditor from '@/components/blog/editor/BlockEditor';
