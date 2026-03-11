@@ -412,13 +412,13 @@ const BlogPost = ({ slug }: { slug: string }) => {
     queryFn: async () => {
       const { data, error } = await supabase
         .from('blog_posts')
-        .select('*')
+        .select('*, authors(*)')
         .eq('slug', slug)
         .eq('is_published', true)
         .single();
       
       if (error) throw error;
-      return data as BlogPostBase;
+      return data as unknown as BlogPostBase;
     },
   });
 
