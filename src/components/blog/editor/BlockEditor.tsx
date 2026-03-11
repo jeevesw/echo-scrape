@@ -476,6 +476,13 @@ export default function BlockEditor({ blocks: initialBlocks, onChange }: BlockEd
   const [blocks, setBlocks] = useState<Block[]>(initialBlocks);
   const [focusedBlockId, setFocusedBlockId] = useState<string | null>(null);
 
+  // Sync from parent when initialBlocks changes (e.g. async post load)
+  useEffect(() => {
+    if (initialBlocks.length > 0 && blocks.length === 0) {
+      setBlocks(initialBlocks);
+    }
+  }, [initialBlocks]);
+
   useEffect(() => {
     onChange(blocks);
   }, [blocks, onChange]);
