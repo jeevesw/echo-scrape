@@ -173,7 +173,7 @@ export default function BlogMigrate() {
       const { count: needsCount } = await supabase
         .from('blog_posts')
         .select('id', { count: 'exact', head: true })
-        .is('blocks', null);
+        .or('blocks.is.null,blocks.eq.[]');
       const { count: doneCount } = await supabase
         .from('blog_posts')
         .select('id', { count: 'exact', head: true })
