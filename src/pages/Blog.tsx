@@ -422,6 +422,28 @@ const BlogPost = ({ slug }: { slug: string }) => {
     },
   });
 
+  const authorData = post?.authors ?? null;
+
+  // Inject author JSON-LD
+  useEffect(() => {
+    if (!authorData) return;
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = 'author-schema';
+    script.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "author": {
+        "@type": "Person",
+        "name": authorData.name,
+        "jobTitle": authorData.role,
+        "url": `https://trapezemedia.co.uk/blog?author=${authorData.slug}`
+      }
+    });
+    document.head.appendChild(script);
+    return () => { document.getElementById('author-schema')?.remove(); };
+  }, [authorData]);
+
   if (isLoading) {
     return (
       <div className="max-w-3xl mx-auto">
@@ -448,7 +470,6 @@ const BlogPost = ({ slug }: { slug: string }) => {
     );
   }
 
-  const authorData = post.authors;
 
   // Inject author JSON-LD
   useEffect(() => {
