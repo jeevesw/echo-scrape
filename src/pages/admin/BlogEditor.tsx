@@ -71,6 +71,7 @@ export default function BlogEditor() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [initialCategories, setInitialCategories] = useState<string[]>([]);
   const [blocks, setBlocks] = useState<Block[]>([]);
+  const [settingsOpen, setSettingsOpen] = useState(false);
 
   // Fetch all categories
   const { data: categories } = useQuery({
