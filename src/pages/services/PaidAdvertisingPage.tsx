@@ -193,14 +193,6 @@ const PaidAdvertisingPage = () => {
         <div className="grid lg:grid-cols-[55%_45%] min-h-[70vh]">
           {/* Left column */}
           <div className="relative flex items-center py-16 lg:py-24 px-6 md:px-12 lg:pl-[max(2rem,calc((100vw-80rem)/2+2rem))] lg:pr-12">
-            {/* Giant typographic background element */}
-            <span
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[200px] md:text-[280px] font-black text-primary/5 leading-none select-none pointer-events-none heading-display"
-              aria-hidden="true"
-            >
-              ADS
-            </span>
-
             <div className="relative z-10 max-w-xl">
               <BreadcrumbNav
                 items={[
@@ -211,10 +203,6 @@ const PaidAdvertisingPage = () => {
                   },
                 ]}
               />
-
-              <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-6">
-                <Target className="h-7 w-7 text-primary" />
-              </div>
 
               <h1 className="heading-display text-4xl md:text-4xl lg:text-5xl text-primary mb-6">
                 Paid Advertising for Hospitality & Lifestyle Brands
