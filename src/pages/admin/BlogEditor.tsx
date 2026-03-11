@@ -95,7 +95,17 @@ export default function BlogEditor() {
     },
   });
 
-  // Fetch post's current categories
+  // Fetch authors
+  const { data: authors } = useQuery({
+    queryKey: ['authors'],
+    queryFn: async () => {
+      const { data, error } = await supabase.from('authors').select('id, name, avatar_url').order('name');
+      if (error) throw error;
+      return data as AuthorOption[];
+    },
+  });
+
+
   const { data: postCategories } = useQuery({
     queryKey: ['post-categories', id],
     queryFn: async () => {
