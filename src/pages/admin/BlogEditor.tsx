@@ -6,6 +6,7 @@ import { AdminLayout } from '@/components/admin/AdminLayout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -31,8 +32,15 @@ interface BlogPost {
   blocks: unknown;
   featured_image: string | null;
   author: string;
+  author_id: string | null;
   published_at: string;
   is_published: boolean;
+}
+
+interface AuthorOption {
+  id: string;
+  name: string;
+  avatar_url: string | null;
 }
 
 interface Category {
@@ -64,6 +72,7 @@ export default function BlogEditor() {
   const [content, setContent] = useState('');
   const [featuredImage, setFeaturedImage] = useState<string | null>(null);
   const [author, setAuthor] = useState('Trapeze Media');
+  const [authorId, setAuthorId] = useState<string | null>(null);
   const [publishedAt, setPublishedAt] = useState<Date>(new Date());
   const [isPublished, setIsPublished] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
@@ -86,7 +95,17 @@ export default function BlogEditor() {
     },
   });
 
-  // Fetch post's current categories
+  // Fetch authors
+  const { data: authors } = useQuery({
+    queryKey: ['authors'],
+    queryFn: async () => {
+      const { data, error } = await supabase.from('authors').select('id, name, avatar_url').order('name');
+      if (error) throw error;
+      return data as AuthorOption[];
+    },
+  });
+
+
   const { data: postCategories } = useQuery({
     queryKey: ['post-categories', id],
     queryFn: async () => {
@@ -132,6 +151,7 @@ export default function BlogEditor() {
       setBlocks(initialBlocks);
       setFeaturedImage(post.featured_image);
       setAuthor(post.author);
+      setAuthorId(post.author_id || null);
       setPublishedAt(new Date(post.published_at));
       setIsPublished(post.is_published);
     }
@@ -183,9 +203,10 @@ export default function BlogEditor() {
         blocks: (blocks.length > 0 ? JSON.parse(JSON.stringify(blocks)) : null),
         featured_image: featuredImage,
         author: author.trim() || 'Trapeze Media',
+        author_id: authorId,
         published_at: publishedAt.toISOString(),
         is_published: isPublished,
-      };
+      } as any;
 
       let savedPost;
       if (isNew) {
@@ -461,13 +482,35 @@ export default function BlogEditor() {
                   </Popover>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="author">Author</Label>
-                  <Input
-                    id="author"
-                    value={author}
-                    onChange={(e) => setAuthor(e.target.value)}
-                    placeholder="Trapeze Media"
-                  />
+                  <Label>Author</Label>
+                  <Select
+                    value={authorId || ''}
+                    onValueChange={(val) => {
+                      setAuthorId(val || null);
+                      const selected = authors?.find(a => a.id === val);
+                      if (selected) setAuthor(selected.name);
+                    }}
+                  >
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Select an author…" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {authors?.map(a => (
+                        <SelectItem key={a.id} value={a.id}>
+                          <span className="flex items-center gap-2">
+                            {a.avatar_url ? (
+                              <img src={a.avatar_url} alt="" className="w-6 h-6 rounded-full object-cover" />
+                            ) : (
+                              <span className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-xs text-primary font-semibold">
+                                {a.name.split(' ').map(w => w[0]).join('').slice(0, 2)}
+                              </span>
+                            )}
+                            {a.name}
+                          </span>
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
             </div>

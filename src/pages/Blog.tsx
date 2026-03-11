@@ -4,13 +4,24 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ArrowLeft, Calendar, User, Search } from "lucide-react";
+import { ArrowRight, ArrowLeft, Calendar, User, Search, Linkedin, Twitter } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
 import { format } from "date-fns";
 import { useState, useMemo, useEffect } from "react";
 import { BlockRenderer, type Block } from "@/components/blog/BlockRenderer";
+
+interface Author {
+  id: string;
+  name: string;
+  slug: string;
+  role: string | null;
+  bio: string | null;
+  avatar_url: string | null;
+  linkedin_url: string | null;
+  twitter_url: string | null;
+}
 
 interface Category {
   id: string;
@@ -26,8 +37,10 @@ interface BlogPostBase {
   content: string;
   featured_image: string | null;
   author: string;
+  author_id: string | null;
   published_at: string;
   blocks: unknown;
+  authors: Author | null;
 }
 
 interface BlogPostWithCategories extends BlogPostBase {
@@ -399,15 +412,37 @@ const BlogPost = ({ slug }: { slug: string }) => {
     queryFn: async () => {
       const { data, error } = await supabase
         .from('blog_posts')
-        .select('*')
+        .select('*, authors(*)')
         .eq('slug', slug)
         .eq('is_published', true)
         .single();
       
       if (error) throw error;
-      return data as BlogPostBase;
+      return data as unknown as BlogPostBase;
     },
   });
+
+  const authorData = post?.authors ?? null;
+
+  // Inject author JSON-LD
+  useEffect(() => {
+    if (!authorData) return;
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = 'author-schema';
+    script.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "author": {
+        "@type": "Person",
+        "name": authorData.name,
+        "jobTitle": authorData.role,
+        "url": `https://trapezemedia.co.uk/blog?author=${authorData.slug}`
+      }
+    });
+    document.head.appendChild(script);
+    return () => { document.getElementById('author-schema')?.remove(); };
+  }, [authorData]);
 
   if (isLoading) {
     return (
@@ -435,6 +470,7 @@ const BlogPost = ({ slug }: { slug: string }) => {
     );
   }
 
+
   return (
     <article className="max-w-3xl mx-auto">
       <Link to="/blog" className="text-primary hover:underline inline-flex items-center gap-2 mb-8">
@@ -452,7 +488,7 @@ const BlogPost = ({ slug }: { slug: string }) => {
           </span>
           <span className="flex items-center gap-1">
             <User className="h-4 w-4" />
-            {post.author}
+            {authorData?.name || post.author}
           </span>
         </div>
       </header>
@@ -461,6 +497,54 @@ const BlogPost = ({ slug }: { slug: string }) => {
         blocks={post.blocks as Block[] | null}
         fallbackHtml={post.content}
       />
+
+      {/* Author credit */}
+      {authorData && (
+        <div className="mt-16 pt-8 border-t border-border">
+          <div className="flex gap-6 items-start">
+            {authorData.avatar_url ? (
+              <img
+                src={authorData.avatar_url}
+                alt={authorData.name}
+                className="w-20 h-20 rounded-full object-cover ring-4 ring-primary/10 flex-shrink-0"
+              />
+            ) : (
+              <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center heading-display text-2xl text-primary flex-shrink-0">
+                {authorData.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase()}
+              </div>
+            )}
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1">Written by</p>
+              <Link
+                to={`/blog?author=${authorData.slug}`}
+                className="text-xl font-bold text-foreground hover:text-primary transition-colors"
+              >
+                {authorData.name}
+              </Link>
+              {authorData.role && (
+                <p className="text-sm text-primary font-medium mb-3">{authorData.role}</p>
+              )}
+              {authorData.bio && (
+                <p className="text-sm text-muted-foreground leading-relaxed">{authorData.bio}</p>
+              )}
+              {(authorData.linkedin_url || authorData.twitter_url) && (
+                <div className="flex gap-3 mt-3">
+                  {authorData.linkedin_url && (
+                    <a href={authorData.linkedin_url} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                      <Linkedin className="h-4 w-4" />
+                    </a>
+                  )}
+                  {authorData.twitter_url && (
+                    <a href={authorData.twitter_url} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                      <Twitter className="h-4 w-4" />
+                    </a>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </article>
   );
 };

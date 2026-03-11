@@ -23,6 +23,7 @@ import Auth from "./pages/Auth";
 import BlogDashboard from "./pages/admin/BlogDashboard";
 import BlogEditor from "./pages/admin/BlogEditor";
 import BlogMigrate from "./pages/admin/BlogMigrate";
+import Authors from "./pages/admin/Authors";
 
 const queryClient = new QueryClient();
 
@@ -73,6 +74,11 @@ const App = () => (
               <Route path="/admin/blog/migrate" element={
                 <ProtectedRoute requireAdmin>
                   <BlogMigrate />
+                </ProtectedRoute>
+              } />
+              <Route path="/admin/authors" element={
+                <ProtectedRoute requireAdmin>
+                  <Authors />
                 </ProtectedRoute>
               } />
               
