@@ -411,7 +411,7 @@ export default function BlogEditor() {
             {/* Block Editor */}
             <div className="space-y-2">
               <Label>Content</Label>
-              <BlockEditor blocks={blocks} onChange={useCallback((b: Block[]) => setBlocks(b), [])} />
+              <BlockEditor blocks={blocks} onChange={handleBlocksChange} />
             </div>
 
             {/* Legacy HTML content */}
