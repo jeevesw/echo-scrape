@@ -336,12 +336,6 @@ const PaidAdvertisingPage = () => {
 
             {/* Right — typographic accent + heading + checklist */}
             <div>
-              <span
-                className="heading-display text-[120px] font-black text-primary/10 leading-none block -mb-6 select-none"
-                aria-hidden="true"
-              >
-                7
-              </span>
               <h2 className="heading-display text-3xl md:text-4xl text-foreground mb-8">
                 What's Included
               </h2>
