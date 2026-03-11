@@ -482,13 +482,35 @@ export default function BlogEditor() {
                   </Popover>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="author">Author</Label>
-                  <Input
-                    id="author"
-                    value={author}
-                    onChange={(e) => setAuthor(e.target.value)}
-                    placeholder="Trapeze Media"
-                  />
+                  <Label>Author</Label>
+                  <Select
+                    value={authorId || ''}
+                    onValueChange={(val) => {
+                      setAuthorId(val || null);
+                      const selected = authors?.find(a => a.id === val);
+                      if (selected) setAuthor(selected.name);
+                    }}
+                  >
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Select an author…" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {authors?.map(a => (
+                        <SelectItem key={a.id} value={a.id}>
+                          <span className="flex items-center gap-2">
+                            {a.avatar_url ? (
+                              <img src={a.avatar_url} alt="" className="w-6 h-6 rounded-full object-cover" />
+                            ) : (
+                              <span className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-xs text-primary font-semibold">
+                                {a.name.split(' ').map(w => w[0]).join('').slice(0, 2)}
+                              </span>
+                            )}
+                            {a.name}
+                          </span>
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
             </div>
