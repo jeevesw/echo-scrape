@@ -27,6 +27,7 @@ interface BlogPostBase {
   featured_image: string | null;
   author: string;
   published_at: string;
+  blocks: unknown;
 }
 
 interface BlogPostWithCategories extends BlogPostBase {
