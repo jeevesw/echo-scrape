@@ -36,7 +36,7 @@ function RenderBlock({ block, allBlocks }: { block: Block; allBlocks: Block[] })
     case 'text':
       return (
         <div
-          className="text-foreground leading-relaxed mb-6"
+          className="prose prose-lg max-w-none prose-headings:heading-display prose-headings:text-foreground prose-p:text-foreground prose-p:leading-relaxed prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-ul:text-foreground prose-ol:text-foreground prose-li:marker:text-primary prose-strong:text-foreground mb-6"
           dangerouslySetInnerHTML={{ __html: block.content }}
         />
       );
@@ -44,13 +44,13 @@ function RenderBlock({ block, allBlocks }: { block: Block; allBlocks: Block[] })
     case 'heading':
       if (block.level === 2) {
         return (
-          <h2 id={block.anchor} className="heading-display text-2xl md:text-3xl text-foreground mt-10 mb-4">
+          <h2 id={block.anchor} className="heading-display text-2xl md:text-3xl text-foreground mt-10 mb-2">
             {block.content}
           </h2>
         );
       }
       return (
-        <h3 id={block.anchor} className="heading-display text-xl md:text-2xl text-foreground mt-8 mb-3">
+        <h3 id={block.anchor} className="heading-display text-xl md:text-2xl text-foreground mt-10 mb-2">
           {block.content}
         </h3>
       );

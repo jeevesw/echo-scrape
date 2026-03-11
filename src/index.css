@@ -533,3 +533,8 @@
 .animate-scroll-logos:hover {
   animation-play-state: paused;
 }
+
+/* Ensure prose lists render correctly despite Tailwind base resets */
+.prose ul { list-style-type: disc; }
+.prose ol { list-style-type: decimal; }
+.prose li { display: list-item; }
