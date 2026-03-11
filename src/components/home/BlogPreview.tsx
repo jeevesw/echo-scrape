@@ -92,7 +92,7 @@ export function BlogPreview() {
                     <Link to={`/blog/${post.slug}`}>{post.title}</Link>
                   </h3>
                   <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
-                    {post.excerpt}
+                    {getExcerpt(post)}
                   </p>
                   <Link 
                     to={`/blog/${post.slug}`} 
