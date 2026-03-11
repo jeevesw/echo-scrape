@@ -448,6 +448,28 @@ const BlogPost = ({ slug }: { slug: string }) => {
     );
   }
 
+  const authorData = post.authors;
+
+  // Inject author JSON-LD
+  useEffect(() => {
+    if (!authorData) return;
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = 'author-schema';
+    script.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "author": {
+        "@type": "Person",
+        "name": authorData.name,
+        "jobTitle": authorData.role,
+        "url": `https://trapezemedia.co.uk/blog?author=${authorData.slug}`
+      }
+    });
+    document.head.appendChild(script);
+    return () => { document.getElementById('author-schema')?.remove(); };
+  }, [authorData]);
+
   return (
     <article className="max-w-3xl mx-auto">
       <Link to="/blog" className="text-primary hover:underline inline-flex items-center gap-2 mb-8">
@@ -465,7 +487,7 @@ const BlogPost = ({ slug }: { slug: string }) => {
           </span>
           <span className="flex items-center gap-1">
             <User className="h-4 w-4" />
-            {post.author}
+            {authorData?.name || post.author}
           </span>
         </div>
       </header>
@@ -474,6 +496,54 @@ const BlogPost = ({ slug }: { slug: string }) => {
         blocks={post.blocks as Block[] | null}
         fallbackHtml={post.content}
       />
+
+      {/* Author credit */}
+      {authorData && (
+        <div className="mt-16 pt-8 border-t border-border">
+          <div className="flex gap-6 items-start">
+            {authorData.avatar_url ? (
+              <img
+                src={authorData.avatar_url}
+                alt={authorData.name}
+                className="w-20 h-20 rounded-full object-cover ring-4 ring-primary/10 flex-shrink-0"
+              />
+            ) : (
+              <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center heading-display text-2xl text-primary flex-shrink-0">
+                {authorData.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase()}
+              </div>
+            )}
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1">Written by</p>
+              <Link
+                to={`/blog?author=${authorData.slug}`}
+                className="text-xl font-bold text-foreground hover:text-primary transition-colors"
+              >
+                {authorData.name}
+              </Link>
+              {authorData.role && (
+                <p className="text-sm text-primary font-medium mb-3">{authorData.role}</p>
+              )}
+              {authorData.bio && (
+                <p className="text-sm text-muted-foreground leading-relaxed">{authorData.bio}</p>
+              )}
+              {(authorData.linkedin_url || authorData.twitter_url) && (
+                <div className="flex gap-3 mt-3">
+                  {authorData.linkedin_url && (
+                    <a href={authorData.linkedin_url} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                      <Linkedin className="h-4 w-4" />
+                    </a>
+                  )}
+                  {authorData.twitter_url && (
+                    <a href={authorData.twitter_url} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                      <Twitter className="h-4 w-4" />
+                    </a>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </article>
   );
 };
