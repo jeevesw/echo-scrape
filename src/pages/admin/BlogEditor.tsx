@@ -408,21 +408,34 @@ export default function BlogEditor() {
               </p>
             </div>
 
-            {/* Content */}
+            {/* Block Editor */}
             <div className="space-y-2">
-              <Label htmlFor="content">Content</Label>
-              <Textarea
-                id="content"
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-                placeholder="Write your post content here... HTML is supported."
-                rows={20}
-                className="font-mono text-sm"
-              />
-              <p className="text-xs text-muted-foreground">
-                Supports HTML for formatting (headings, links, lists, etc.)
-              </p>
+              <Label>Content</Label>
+              <BlockEditor blocks={blocks} onChange={useCallback((b: Block[]) => setBlocks(b), [])} />
             </div>
+
+            {/* Legacy HTML content */}
+            {blocks.length === 0 && content && (
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-sm text-yellow-800">
+                This post uses legacy HTML content. Use the block editor above to rebuild it in the new format.
+              </div>
+            )}
+            {blocks.length === 0 && (
+              <div className="space-y-2">
+                <Label htmlFor="content">Legacy HTML Content</Label>
+                <Textarea
+                  id="content"
+                  value={content}
+                  onChange={(e) => setContent(e.target.value)}
+                  placeholder="Write your post content here... HTML is supported."
+                  rows={20}
+                  className="font-mono text-sm"
+                />
+                <p className="text-xs text-muted-foreground">
+                  Supports HTML for formatting (headings, links, lists, etc.)
+                </p>
+              </div>
+            )}
           </div>
 
           {/* Sidebar */}
