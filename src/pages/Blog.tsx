@@ -34,18 +34,25 @@ interface BlogPostWithCategories extends BlogPostBase {
 
 const POSTS_PER_PAGE = 9;
 
-// Strip HTML tags and markdown syntax from content
+// Strip HTML tags, decode entities, and remove markdown syntax from content
 const stripHtmlAndMarkdown = (text: string): string => {
-  return text
-    .replace(/<[^>]*>/g, '') // Remove HTML tags
-    .replace(/#{1,6}\s/g, '') // Remove markdown headers
-    .replace(/\*\*([^*]+)\*\*/g, '$1') // Remove bold
-    .replace(/\*([^*]+)\*/g, '$1') // Remove italic
-    .replace(/_([^_]+)_/g, '$1') // Remove underline
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // Remove links
-    .replace(/`[^`]+`/g, '') // Remove code
-    .replace(/\n+/g, ' ') // Replace newlines with spaces
-    .replace(/\s+/g, ' ') // Normalize whitespace
+  if (!text) return '';
+  
+  const decodeEntities = (str: string): string => {
+    const doc = new DOMParser().parseFromString(str, 'text/html');
+    return doc.documentElement.textContent || str;
+  };
+  
+  return decodeEntities(text)
+    .replace(/<[^>]*>/g, '')
+    .replace(/#{1,6}\s/g, '')
+    .replace(/\*\*([^*]+)\*\*/g, '$1')
+    .replace(/\*([^*]+)\*/g, '$1')
+    .replace(/_([^_]+)_/g, '$1')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/`[^`]+`/g, '')
+    .replace(/\n+/g, ' ')
+    .replace(/\s+/g, ' ')
     .trim();
 };
 
