@@ -18,7 +18,7 @@ import { supabase } from '@/integrations/supabase/client';
 import type { Block } from '@/components/blog/BlockRenderer';
 import {
   ArrowLeft, ArrowRight, CheckCircle, AlertTriangle,
-  XCircle, ExternalLink,
+  XCircle, ExternalLink, RotateCcw,
 } from 'lucide-react';
 
 /* ------------------------------------------------------------------ */
