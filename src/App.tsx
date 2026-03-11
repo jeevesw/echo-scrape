@@ -23,6 +23,7 @@ import Auth from "./pages/Auth";
 import BlogDashboard from "./pages/admin/BlogDashboard";
 import BlogEditor from "./pages/admin/BlogEditor";
 import BlogMigrate from "./pages/admin/BlogMigrate";
+import Authors from "./pages/admin/Authors";
 
 const queryClient = new QueryClient();
 
