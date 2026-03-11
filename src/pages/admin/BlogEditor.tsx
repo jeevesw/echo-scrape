@@ -72,6 +72,7 @@ export default function BlogEditor() {
   const [content, setContent] = useState('');
   const [featuredImage, setFeaturedImage] = useState<string | null>(null);
   const [author, setAuthor] = useState('Trapeze Media');
+  const [authorId, setAuthorId] = useState<string | null>(null);
   const [publishedAt, setPublishedAt] = useState<Date>(new Date());
   const [isPublished, setIsPublished] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
