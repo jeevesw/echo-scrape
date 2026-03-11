@@ -5,7 +5,7 @@ import heroImage from "@/assets/hero-image.webp";
 
 const PHRASES = [
   "Hospitality Brands",
-  "Restaurants, Bars & Pubs",
+  "Restaurants, Bars, & Pubs",
   "Tourism & Travel Authorities",
   "Hospitality Organisations",
   "Lifestyle & Consumer Brands",
