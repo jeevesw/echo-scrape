@@ -304,7 +304,7 @@ export default function BlogEditor() {
       toast.error('Slug is required');
       return;
     }
-    if (!content.trim()) {
+    if (!content.trim() && blocks.length === 0) {
       toast.error('Content is required');
       return;
     }
