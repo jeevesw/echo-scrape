@@ -10,7 +10,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import {
-  Target,
   Share2,
   Search,
   Video,
