@@ -503,7 +503,7 @@ const PaidAdvertisingPage = () => {
         </div>
       </section>
 
-      {/* SECTION 9 — CLOSING CTA (dramatic with gradient + typographic ghost) */}
+      {/* SECTION 9 — CLOSING CTA */}
       <section className="bg-muted relative overflow-hidden py-20 lg:py-28">
         {/* Radial gradient overlay */}
         <div
@@ -514,14 +514,6 @@ const PaidAdvertisingPage = () => {
           }}
           aria-hidden="true"
         />
-
-        {/* Ghost typographic element */}
-        <span
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 heading-display text-[100px] md:text-[140px] font-black text-primary/5 rotate-[-3deg] whitespace-nowrap select-none pointer-events-none"
-          aria-hidden="true"
-        >
-          LET'S TALK
-        </span>
 
         <div className="relative z-10 max-w-2xl mx-auto px-4 text-center">
           <h2 className="heading-display text-3xl md:text-4xl text-foreground mb-6">
