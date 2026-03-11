@@ -456,16 +456,9 @@ const BlogPost = ({ slug }: { slug: string }) => {
         </div>
       </header>
 
-      <div 
-        className="prose prose-lg max-w-none
-          prose-headings:heading-display prose-headings:text-foreground
-          prose-h2:text-2xl prose-h2:mt-8 prose-h2:mb-4
-          prose-p:text-foreground prose-p:leading-relaxed
-          prose-a:text-primary prose-a:no-underline hover:prose-a:underline
-          prose-ul:text-foreground prose-ol:text-foreground
-          prose-li:marker:text-primary
-          prose-strong:text-foreground"
-        dangerouslySetInnerHTML={{ __html: post.content }}
+      <BlockRenderer
+        blocks={post.blocks as Block[] | null}
+        fallbackHtml={post.content}
       />
     </article>
   );
