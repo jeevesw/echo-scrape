@@ -151,6 +151,7 @@ export default function BlogEditor() {
       setBlocks(initialBlocks);
       setFeaturedImage(post.featured_image);
       setAuthor(post.author);
+      setAuthorId(post.author_id || null);
       setPublishedAt(new Date(post.published_at));
       setIsPublished(post.is_published);
     }
