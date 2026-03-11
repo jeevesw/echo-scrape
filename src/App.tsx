@@ -15,6 +15,7 @@ import VariousEateriesCaseStudy from "./pages/case-studies/VariousEateriesCaseSt
 import Blog from "./pages/Blog";
 import Services from "./pages/Services";
 import ServicePage from "./pages/ServicePage";
+import PaidAdvertisingPage from "./pages/services/PaidAdvertisingPage";
 import PaidAdsQuiz from "./pages/PaidAdsQuiz";
 import HFSSAssessment from "./pages/HFSSAssessment";
 import NotFound from "./pages/NotFound";
