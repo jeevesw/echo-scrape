@@ -12,6 +12,17 @@ import { format } from "date-fns";
 import { useState, useMemo, useEffect } from "react";
 import { BlockRenderer, type Block } from "@/components/blog/BlockRenderer";
 
+interface Author {
+  id: string;
+  name: string;
+  slug: string;
+  role: string | null;
+  bio: string | null;
+  avatar_url: string | null;
+  linkedin_url: string | null;
+  twitter_url: string | null;
+}
+
 interface Category {
   id: string;
   slug: string;
