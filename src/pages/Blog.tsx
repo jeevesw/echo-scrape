@@ -471,27 +471,6 @@ const BlogPost = ({ slug }: { slug: string }) => {
   }
 
 
-  // Inject author JSON-LD
-  useEffect(() => {
-    if (!authorData) return;
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.id = 'author-schema';
-    script.text = JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "author": {
-        "@type": "Person",
-        "name": authorData.name,
-        "jobTitle": authorData.role,
-        "url": `https://trapezemedia.co.uk/blog?author=${authorData.slug}`
-      }
-    });
-    document.head.appendChild(script);
-    return () => { document.getElementById('author-schema')?.remove(); };
-  }, [authorData]);
-
-  return (
     <article className="max-w-3xl mx-auto">
       <Link to="/blog" className="text-primary hover:underline inline-flex items-center gap-2 mb-8">
         <ArrowLeft className="h-4 w-4" /> Back to Blog
