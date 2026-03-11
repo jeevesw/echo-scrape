@@ -248,6 +248,36 @@ export default function BlogMigrate() {
     setStage('done');
   }, [previewRows]);
 
+  const handleResetAndRemigrate = useCallback(async () => {
+    setLoading(true);
+    const { error } = await supabase
+      .from('blog_posts')
+      .update({ blocks: null } as any)
+      .not('blocks', 'is', null);
+    if (error) {
+      toast.error('Failed to reset blocks: ' + error.message);
+      setLoading(false);
+      return;
+    }
+    // Refresh counts
+    const { count: needsCount } = await supabase
+      .from('blog_posts')
+      .select('id', { count: 'exact', head: true })
+      .or('blocks.is.null,blocks.eq.[]');
+    const { count: doneCount } = await supabase
+      .from('blog_posts')
+      .select('id', { count: 'exact', head: true })
+      .not('blocks', 'is', null);
+    setNeedsMigration(needsCount ?? 0);
+    setAlreadyMigrated(doneCount ?? 0);
+    setStage('idle');
+    setLogs([]);
+    setPreviewRows([]);
+    setProgress(0);
+    setLoading(false);
+    toast.success('All blocks reset. Ready to re-migrate.');
+  }, []);
+
   const totalBlocksPreview = previewRows.reduce((s, r) => s + r.generatedBlocks.length, 0);
   const successCount = logs.filter(l => l.success).length;
   const errorCount = logs.filter(l => !l.success).length;
