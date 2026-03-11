@@ -239,6 +239,8 @@ export default function BlogEditor() {
     },
   });
 
+  const handleBlocksChange = useCallback((b: Block[]) => setBlocks(b), []);
+
   const toggleCategory = (categoryId: string) => {
     setSelectedCategories(prev =>
       prev.includes(categoryId)
