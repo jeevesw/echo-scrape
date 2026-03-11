@@ -32,8 +32,15 @@ interface BlogPost {
   blocks: unknown;
   featured_image: string | null;
   author: string;
+  author_id: string | null;
   published_at: string;
   is_published: boolean;
+}
+
+interface AuthorOption {
+  id: string;
+  name: string;
+  avatar_url: string | null;
 }
 
 interface Category {
