@@ -121,6 +121,7 @@ export default function BlogEditor() {
       setSlug(post.slug);
       setExcerpt(post.excerpt);
       setContent(post.content);
+      setBlocks(Array.isArray(post.blocks) ? (post.blocks as Block[]) : []);
       setFeaturedImage(post.featured_image);
       setAuthor(post.author);
       setPublishedAt(new Date(post.published_at));
