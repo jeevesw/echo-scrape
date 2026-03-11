@@ -36,7 +36,7 @@ function RenderBlock({ block, allBlocks }: { block: Block; allBlocks: Block[] })
     case 'text':
       return (
         <div
-          className="text-foreground leading-relaxed mb-6"
+          className="prose prose-lg max-w-none prose-headings:heading-display prose-headings:text-foreground prose-p:text-foreground prose-p:leading-relaxed prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-ul:text-foreground prose-ol:text-foreground prose-li:marker:text-primary prose-strong:text-foreground mb-6"
           dangerouslySetInnerHTML={{ __html: block.content }}
         />
       );
