@@ -221,7 +221,7 @@ export default function BlogMigrate() {
         const { error } = await supabase
           .from('blog_posts')
           .update({
-            blocks: row.generatedBlocks as unknown as Record<string, unknown>[],
+            blocks: JSON.parse(JSON.stringify(row.generatedBlocks)),
             excerpt: row.cleanExcerpt,
           })
           .eq('id', row.post.id);
