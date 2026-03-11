@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
-import { LogOut, FileText, Home, Wand2 } from 'lucide-react';
+import { LogOut, FileText, Home, Wand2, UserCircle } from 'lucide-react';
 import logoTwoTone from '@/assets/logo-two-tone.svg';
 
 interface AdminLayoutProps {
