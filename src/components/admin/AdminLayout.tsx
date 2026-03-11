@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
-import { LogOut, FileText, Home } from 'lucide-react';
+import { LogOut, FileText, Home, Wand2 } from 'lucide-react';
 import logoTwoTone from '@/assets/logo-two-tone.svg';
 
 interface AdminLayoutProps {
@@ -32,6 +32,12 @@ export function AdminLayout({ children }: AdminLayoutProps) {
                 <Link to="/admin/blog">
                   <FileText className="h-4 w-4 mr-2" />
                   Blog Posts
+                </Link>
+              </Button>
+              <Button variant="ghost" size="sm" asChild>
+                <Link to="/admin/blog/migrate">
+                  <Wand2 className="h-4 w-4 mr-2" />
+                  Migration Tool
                 </Link>
               </Button>
               <Button variant="ghost" size="sm" asChild>

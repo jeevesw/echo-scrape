@@ -22,6 +22,7 @@ import NotFound from "./pages/NotFound";
 import Auth from "./pages/Auth";
 import BlogDashboard from "./pages/admin/BlogDashboard";
 import BlogEditor from "./pages/admin/BlogEditor";
+import BlogMigrate from "./pages/admin/BlogMigrate";
 
 const queryClient = new QueryClient();
 
@@ -67,6 +68,11 @@ const App = () => (
               <Route path="/admin/blog/edit/:id" element={
                 <ProtectedRoute requireAdmin>
                   <BlogEditor />
+                </ProtectedRoute>
+              } />
+              <Route path="/admin/blog/migrate" element={
+                <ProtectedRoute requireAdmin>
+                  <BlogMigrate />
                 </ProtectedRoute>
               } />
               
