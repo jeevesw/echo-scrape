@@ -17,6 +17,8 @@ import { cn } from '@/lib/utils';
 import { ArrowLeft, Save, Eye, Loader2, CalendarIcon, Upload, X, Image as ImageIcon, Tag } from 'lucide-react';
 import { format } from 'date-fns';
 import { toast } from 'sonner';
+import BlockEditor from '@/components/blog/editor/BlockEditor';
+import type { Block } from '@/components/blog/BlockRenderer';
 
 interface BlogPost {
   id: string;
