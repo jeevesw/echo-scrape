@@ -15,6 +15,7 @@ import VariousEateriesCaseStudy from "./pages/case-studies/VariousEateriesCaseSt
 import Blog from "./pages/Blog";
 import Services from "./pages/Services";
 import ServicePage from "./pages/ServicePage";
+import PaidAdvertisingPage from "./pages/services/PaidAdvertisingPage";
 import PaidAdsQuiz from "./pages/PaidAdsQuiz";
 import HFSSAssessment from "./pages/HFSSAssessment";
 import NotFound from "./pages/NotFound";
@@ -42,6 +43,7 @@ const App = () => (
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:slug" element={<Blog />} />
               <Route path="/services" element={<Services />} />
+              <Route path="/services/paid-advertising" element={<PaidAdvertisingPage />} />
               <Route path="/services/:slug" element={<ServicePage />} />
               <Route path="/paid-ads-quiz" element={<PaidAdsQuiz />} />
               <Route path="/training" element={<Services />} />
