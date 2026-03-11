@@ -175,10 +175,16 @@ function RenderBlock({ block, allBlocks }: { block: Block; allBlocks: Block[] })
   }
 }
 
-export function BlockRenderer({ blocks, fallbackHtml }: BlockRendererProps) {
+export function BlockRenderer({ blocks: rawBlocks, fallbackHtml }: BlockRendererProps) {
+  const safeBlocks: Block[] = Array.isArray(rawBlocks)
+    ? rawBlocks
+    : typeof rawBlocks === 'string'
+      ? JSON.parse(rawBlocks)
+      : [];
+
   useEffect(() => {
-    if (!blocks || !Array.isArray(blocks)) return;
-    const faqBlocks = blocks.filter((b): b is FAQBlock => b.type === 'faq');
+    if (!safeBlocks || safeBlocks.length === 0) return;
+    const faqBlocks = safeBlocks.filter((b): b is FAQBlock => b.type === 'faq');
     if (!faqBlocks.length) return;
     const allItems = faqBlocks.flatMap(b => b.items);
     const script = document.createElement('script');
