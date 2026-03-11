@@ -70,6 +70,11 @@ const App = () => (
                   <BlogEditor />
                 </ProtectedRoute>
               } />
+              <Route path="/admin/blog/migrate" element={
+                <ProtectedRoute requireAdmin>
+                  <BlogMigrate />
+                </ProtectedRoute>
+              } />
               
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />

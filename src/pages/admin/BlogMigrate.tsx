@@ -258,7 +258,7 @@ export default function BlogMigrate() {
                 Safe to preview before committing.
               </p>
 
-              <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6 text-sm text-amber-900 flex gap-3">
+              <div className="bg-accent/50 border border-accent rounded-xl p-4 mb-6 text-sm text-accent-foreground flex gap-3">
                 <AlertTriangle className="h-5 w-5 flex-shrink-0 mt-0.5" />
                 <span>
                   This will convert the <strong>content</strong> HTML field into a <strong>blocks</strong> JSON

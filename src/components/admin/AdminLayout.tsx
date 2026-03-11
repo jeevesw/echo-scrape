@@ -35,6 +35,12 @@ export function AdminLayout({ children }: AdminLayoutProps) {
                 </Link>
               </Button>
               <Button variant="ghost" size="sm" asChild>
+                <Link to="/admin/blog/migrate">
+                  <Wand2 className="h-4 w-4 mr-2" />
+                  Migration Tool
+                </Link>
+              </Button>
+              <Button variant="ghost" size="sm" asChild>
                 <Link to="/" target="_blank">
                   <Home className="h-4 w-4 mr-2" />
                   View Site
