@@ -17,6 +17,10 @@ import {
   CheckCircle2,
   ArrowRight,
 } from "lucide-react";
+import IntroLogos from "@/components/paid-ads/IntroLogos";
+import MyceliaCallout from "@/components/paid-ads/MyceliaCallout";
+import MaximilesSnippet from "@/components/paid-ads/MaximilesSnippet";
+import HyperlocalMethodology from "@/components/paid-ads/HyperlocalMethodology";
 
 const faqs = [
   {
@@ -188,10 +192,9 @@ const PaidAdvertisingPage = () => {
         </script>
       </Helmet>
 
-      {/* SECTION 1 — HERO (bold asymmetric) */}
+      {/* 1 — HERO */}
       <section className="bg-background overflow-hidden">
         <div className="grid lg:grid-cols-[55%_45%] min-h-[70vh]">
-          {/* Left column */}
           <div className="relative flex items-center py-16 lg:py-24 px-6 md:px-12 lg:pl-[max(2rem,calc((100vw-80rem)/2+2rem))] lg:pr-12">
             <div className="relative z-10 max-w-xl">
               <BreadcrumbNav
@@ -203,16 +206,13 @@ const PaidAdvertisingPage = () => {
                   },
                 ]}
               />
-
               <h1 className="heading-display text-4xl md:text-4xl lg:text-5xl text-primary mb-6">
                 Paid Advertising for Hospitality & Lifestyle Brands
               </h1>
-
               <p className="text-xl text-muted-foreground mb-8 max-w-md">
                 Meta, Google, and TikTok ads that drive real-world results:
                 bookings, footfall, sales, and sign-ups.
               </p>
-
               <div className="flex flex-wrap gap-4">
                 <Button variant="hero" asChild>
                   <a
@@ -229,8 +229,6 @@ const PaidAdvertisingPage = () => {
               </div>
             </div>
           </div>
-
-          {/* Right column — full-bleed image placeholder */}
           <div className="hidden lg:block bg-muted overflow-hidden">
             <img
               src={paidAdsHero}
@@ -241,53 +239,30 @@ const PaidAdvertisingPage = () => {
         </div>
       </section>
 
-      {/* SECTION 2 — INTRO with pull quote */}
+      {/* 2 — INTRO PULL QUOTE + CLIENT LOGOS */}
+      <IntroLogos />
+
+      {/* 3 — MYCELIA FULL-WIDTH CALLOUT */}
+      <MyceliaCallout />
+
+      {/* 4 — MAXIMILES INLINE CASE SNIPPET */}
+      <MaximilesSnippet />
+
+      {/* 5 — PLATFORMS */}
       <section className="bg-background py-16 lg:py-24">
-        <div className="max-w-3xl mx-auto px-4">
-          <p className="text-lg text-foreground leading-relaxed mb-8">
-            Paid advertising is how hospitality and lifestyle brands reach people
-            who don't already know they exist. Whether you need to fill tables on
-            a quiet Tuesday, drive footfall to a new venue, sell out an event, or
-            grow an email list — paid ads, when done well, are your most
-            controllable and scalable lever.
-          </p>
-
-          {/* Pull quote */}
-          <div className="border-l-4 border-primary pl-6 my-10">
-            <p className="text-2xl text-primary font-semibold leading-snug">
-              Your most controllable and scalable lever.
-            </p>
-          </div>
-
-          <p className="text-lg text-foreground leading-relaxed">
-            At Trapeze Media, we specialise in paid advertising for food, drink,
-            events, entertainment, and lifestyle brands. We've run campaigns
-            across Meta, Google, and TikTok for brands including YO! Sushi,
-            Various Eateries, Radisson Hotels, and Maximiles. We understand how
-            your customers discover new experiences — and what makes them convert.
-          </p>
-        </div>
-      </section>
-
-      {/* SECTION 3 — PLATFORMS (large alternating panels) */}
-      <section className="bg-muted py-16 lg:py-24">
         <div className="container mx-auto px-4">
           <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-16">
             The Platforms We Work With
           </h2>
-
           <div className="space-y-8 max-w-6xl mx-auto">
             {platforms.map((platform, index) => {
               const imageLeft = index % 2 === 0;
               return (
                 <div
                   key={platform.name}
-                  className="bg-background rounded-2xl border border-border/40 overflow-hidden grid md:grid-cols-[40%_60%] min-h-[320px]"
-                  style={{
-                    direction: imageLeft ? "ltr" : "rtl",
-                  }}
+                  className="bg-muted rounded-2xl border border-border/40 overflow-hidden grid md:grid-cols-[40%_60%] min-h-[320px]"
+                  style={{ direction: imageLeft ? "ltr" : "rtl" }}
                 >
-                  {/* Image side */}
                   <div className="bg-muted/60 flex items-center justify-center p-8 min-h-[200px] md:min-h-0">
                     <p
                       className="text-xs text-muted-foreground text-center leading-relaxed max-w-[200px]"
@@ -296,8 +271,6 @@ const PaidAdvertisingPage = () => {
                       {platform.imageLabel}
                     </p>
                   </div>
-
-                  {/* Text side */}
                   <div
                     className="p-8 md:p-10 flex flex-col justify-center"
                     style={{ direction: "ltr" }}
@@ -321,25 +294,21 @@ const PaidAdvertisingPage = () => {
         </div>
       </section>
 
-      {/* SECTION 4 — WHAT'S INCLUDED (split layout with typographic accent) */}
-      <section className="bg-background py-16 lg:py-24">
+      {/* 6 — WHAT'S INCLUDED */}
+      <section className="bg-muted py-16 lg:py-24">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-[45%_55%] gap-10 max-w-6xl mx-auto items-start">
-            {/* Left — image placeholder */}
-            <div className="bg-muted rounded-2xl flex items-center justify-center p-8 min-h-[400px] lg:min-h-[520px]">
+            <div className="bg-background rounded-2xl flex items-center justify-center p-8 min-h-[400px] lg:min-h-[520px]">
               <p className="text-xs text-muted-foreground text-center leading-relaxed max-w-sm">
                 Image: Trapeze Media team at work, or a campaign reporting
                 dashboard. A behind-the-scenes or 'craft' image works well here —
                 something that communicates process and expertise.
               </p>
             </div>
-
-            {/* Right — typographic accent + heading + checklist */}
             <div>
               <h2 className="heading-display text-3xl md:text-4xl text-foreground mb-8">
                 What's Included
               </h2>
-
               <div className="space-y-0">
                 {includedItems.map((item, i) => (
                   <div
@@ -360,7 +329,7 @@ const PaidAdvertisingPage = () => {
         </div>
       </section>
 
-      {/* SECTION 5 — SECTORS (dark background) */}
+      {/* 7 — SECTORS (dark background) */}
       <section className="bg-foreground py-16 lg:py-24">
         <div className="container mx-auto px-4 text-center">
           <h2 className="heading-display text-3xl md:text-4xl text-background mb-4">
@@ -370,8 +339,6 @@ const PaidAdvertisingPage = () => {
             If your brand relies on people showing up — in person or online — we
             can help you reach them.
           </p>
-
-          {/* Sector pills */}
           <div className="flex flex-wrap justify-center gap-3 mb-14">
             {sectors.map((sector) => (
               <span
@@ -382,8 +349,6 @@ const PaidAdvertisingPage = () => {
               </span>
             ))}
           </div>
-
-          {/* Client logos */}
           <p className="text-xs text-background/40 uppercase tracking-wider mb-4">
             Brands we've worked with
           </p>
@@ -400,13 +365,12 @@ const PaidAdvertisingPage = () => {
         </div>
       </section>
 
-      {/* SECTION 6 — RESULTS (dramatic stats) */}
+      {/* 8 — RESULTS AT A GLANCE */}
       <section className="bg-background py-16 lg:py-24">
         <div className="container mx-auto px-4">
           <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-14">
-            Campaigns That Delivered
+            Results at a Glance
           </h2>
-
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {results.map((r) => (
               <div
@@ -426,7 +390,6 @@ const PaidAdvertisingPage = () => {
               </div>
             ))}
           </div>
-
           <div className="text-center mt-12">
             <Button variant="hero-outline" asChild>
               <Link to="/case-studies">
@@ -437,7 +400,7 @@ const PaidAdvertisingPage = () => {
         </div>
       </section>
 
-      {/* SECTION 7 — TESTIMONIAL (bigger, more space) */}
+      {/* 9 — TESTIMONIAL */}
       <section className="bg-primary py-24 lg:py-32">
         <div className="max-w-2xl mx-auto px-4 text-center text-primary-foreground">
           <span
@@ -454,7 +417,6 @@ const PaidAdvertisingPage = () => {
             has helped us achieve an incremental ROI through managing our paid ads
             campaigns.
           </blockquote>
-
           <div className="border-t border-primary-foreground/20 pt-6 inline-flex items-center gap-3 justify-center">
             <div className="w-10 h-10 rounded-full bg-primary-foreground/20 flex items-center justify-center shrink-0">
               <span className="text-xs font-semibold text-primary-foreground">
@@ -469,7 +431,10 @@ const PaidAdvertisingPage = () => {
         </div>
       </section>
 
-      {/* SECTION 8 — FAQ (cleaner, bg-background) */}
+      {/* 10 — HYPERLOCAL METHODOLOGY */}
+      <HyperlocalMethodology />
+
+      {/* 11 — FAQ */}
       <section className="bg-background py-16 lg:py-24">
         <div className="container mx-auto px-4">
           <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-4">
@@ -479,7 +444,6 @@ const PaidAdvertisingPage = () => {
             Everything you need to know about working with Trapeze Media on paid
             advertising.
           </p>
-
           <div className="max-w-3xl mx-auto">
             <Accordion type="single" collapsible className="space-y-3">
               {faqs.map((faq, index) => (
@@ -503,9 +467,8 @@ const PaidAdvertisingPage = () => {
         </div>
       </section>
 
-      {/* SECTION 9 — CLOSING CTA */}
+      {/* 12 — CLOSING CTA */}
       <section className="bg-muted relative overflow-hidden py-20 lg:py-28">
-        {/* Radial gradient overlay */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -514,7 +477,6 @@ const PaidAdvertisingPage = () => {
           }}
           aria-hidden="true"
         />
-
         <div className="relative z-10 max-w-2xl mx-auto px-4 text-center">
           <h2 className="heading-display text-3xl md:text-4xl text-foreground mb-6">
             Ready to Make Your Ad Budget Work Harder?
