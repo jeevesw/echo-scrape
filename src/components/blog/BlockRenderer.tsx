@@ -175,10 +175,16 @@ function RenderBlock({ block, allBlocks }: { block: Block; allBlocks: Block[] })
   }
 }
 
-export function BlockRenderer({ blocks, fallbackHtml }: BlockRendererProps) {
+export function BlockRenderer({ blocks: rawBlocks, fallbackHtml }: BlockRendererProps) {
+  const safeBlocks: Block[] = Array.isArray(rawBlocks)
+    ? rawBlocks
+    : typeof rawBlocks === 'string'
+      ? JSON.parse(rawBlocks)
+      : [];
+
   useEffect(() => {
-    if (!blocks || !Array.isArray(blocks)) return;
-    const faqBlocks = blocks.filter((b): b is FAQBlock => b.type === 'faq');
+    if (!safeBlocks || safeBlocks.length === 0) return;
+    const faqBlocks = safeBlocks.filter((b): b is FAQBlock => b.type === 'faq');
     if (!faqBlocks.length) return;
     const allItems = faqBlocks.flatMap(b => b.items);
     const script = document.createElement('script');
@@ -195,9 +201,9 @@ export function BlockRenderer({ blocks, fallbackHtml }: BlockRendererProps) {
     });
     document.head.appendChild(script);
     return () => { document.getElementById('faq-schema')?.remove(); };
-  }, [blocks]);
+  }, [safeBlocks]);
 
-  if (!blocks || !Array.isArray(blocks) || blocks.length === 0) {
+  if (!safeBlocks || safeBlocks.length === 0) {
     return (
       <div
         className="prose prose-lg max-w-none
@@ -215,8 +221,8 @@ export function BlockRenderer({ blocks, fallbackHtml }: BlockRendererProps) {
 
   return (
     <div className="max-w-none">
-      {blocks.map(block => (
-        <RenderBlock key={block.id} block={block} allBlocks={blocks} />
+      {safeBlocks.map(block => (
+        <RenderBlock key={block.id} block={block} allBlocks={safeBlocks} />
       ))}
     </div>
   );

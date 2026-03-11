@@ -173,7 +173,7 @@ export default function BlogMigrate() {
       const { count: needsCount } = await supabase
         .from('blog_posts')
         .select('id', { count: 'exact', head: true })
-        .is('blocks', null);
+        .or('blocks.is.null,blocks.eq.[]');
       const { count: doneCount } = await supabase
         .from('blog_posts')
         .select('id', { count: 'exact', head: true })
@@ -188,7 +188,7 @@ export default function BlogMigrate() {
     const { data } = await supabase
       .from('blog_posts')
       .select('id, title, content, excerpt, blocks')
-      .is('blocks', null)
+      .or('blocks.is.null,blocks.eq.[]')
       .order('published_at', { ascending: false });
 
     if (!data) { setLoading(false); return; }
@@ -221,8 +221,8 @@ export default function BlogMigrate() {
         const { error } = await supabase
           .from('blog_posts')
           .update({
-            blocks: JSON.parse(JSON.stringify(row.generatedBlocks)),
-            excerpt: row.cleanExcerpt,
+            blocks: row.generatedBlocks as any,
+            excerpt: row.cleanExcerpt || row.post.excerpt,
           })
           .eq('id', row.post.id);
 
