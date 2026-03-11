@@ -318,9 +318,32 @@ export default function BlogMigrate() {
                 </div>
               </div>
 
-              <Button onClick={handlePreview} disabled={loading || needsMigration === 0} className="w-full">
+              <Button onClick={handlePreview} disabled={loading || needsMigration === 0} className="w-full mb-3">
                 {loading ? 'Loading…' : 'Preview Migration'} <ArrowRight className="h-4 w-4 ml-2" />
               </Button>
+
+              {alreadyMigrated > 0 && (
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <Button variant="outline" className="w-full" disabled={loading}>
+                      <RotateCcw className="h-4 w-4 mr-2" /> Reset &amp; Re-migrate All
+                    </Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>Reset &amp; Re-migrate All</AlertDialogTitle>
+                      <AlertDialogDescription>
+                        This will clear all existing blocks and re-run the migration from HTML.
+                        Use this if you've updated the migration logic. Continue?
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogAction onClick={handleResetAndRemigrate}>Continue</AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
+              )}
             </CardContent>
           </Card>
         )}
