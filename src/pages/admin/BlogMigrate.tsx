@@ -188,7 +188,7 @@ export default function BlogMigrate() {
     const { data } = await supabase
       .from('blog_posts')
       .select('id, title, content, excerpt, blocks')
-      .is('blocks', null)
+      .or('blocks.is.null,blocks.eq.[]')
       .order('published_at', { ascending: false });
 
     if (!data) { setLoading(false); return; }
