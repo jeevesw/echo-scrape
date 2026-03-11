@@ -203,9 +203,10 @@ export default function BlogEditor() {
         blocks: (blocks.length > 0 ? JSON.parse(JSON.stringify(blocks)) : null),
         featured_image: featuredImage,
         author: author.trim() || 'Trapeze Media',
+        author_id: authorId,
         published_at: publishedAt.toISOString(),
         is_published: isPublished,
-      };
+      } as any;
 
       let savedPost;
       if (isNew) {
