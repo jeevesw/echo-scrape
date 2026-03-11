@@ -52,7 +52,7 @@ export function Hero() {
             </h1>
 
             <div className="mt-4 mb-6">
-              <p className="heading-display text-2xl md:text-3xl lg:text-4xl font-bold text-primary">
+              <p className="heading-display text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">
                 We are a digital marketing agency for
               </p>
               <div className="min-h-[1.2em]">
