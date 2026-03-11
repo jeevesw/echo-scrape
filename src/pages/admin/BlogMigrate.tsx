@@ -439,7 +439,7 @@ export default function BlogMigrate() {
                 {successCount} posts migrated · {totalBlocksDone} blocks created
                 {errorCount > 0 && ` · ${errorCount} errors`}
               </p>
-              <div className="flex justify-center gap-3">
+              <div className="flex justify-center gap-3 mb-4">
                 <Button asChild>
                   <Link to="/admin/blog">View Blog Posts <ArrowRight className="h-4 w-4 ml-2" /></Link>
                 </Button>
@@ -449,6 +449,26 @@ export default function BlogMigrate() {
                   </a>
                 </Button>
               </div>
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button variant="outline" disabled={loading}>
+                    <RotateCcw className="h-4 w-4 mr-2" /> Reset &amp; Re-migrate All
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Reset &amp; Re-migrate All</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      This will clear all existing blocks and re-run the migration from HTML.
+                      Use this if you've updated the migration logic. Continue?
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction onClick={handleResetAndRemigrate}>Continue</AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
             </CardContent>
           </Card>
         )}
