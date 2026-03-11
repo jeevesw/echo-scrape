@@ -10,6 +10,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
 import { format } from "date-fns";
 import { useState, useMemo, useEffect } from "react";
+import { BlockRenderer, type Block } from "@/components/blog/BlockRenderer";
 
 interface Category {
   id: string;
@@ -26,6 +27,7 @@ interface BlogPostBase {
   featured_image: string | null;
   author: string;
   published_at: string;
+  blocks: unknown;
 }
 
 interface BlogPostWithCategories extends BlogPostBase {
@@ -455,16 +457,9 @@ const BlogPost = ({ slug }: { slug: string }) => {
         </div>
       </header>
 
-      <div 
-        className="prose prose-lg max-w-none
-          prose-headings:heading-display prose-headings:text-foreground
-          prose-h2:text-2xl prose-h2:mt-8 prose-h2:mb-4
-          prose-p:text-foreground prose-p:leading-relaxed
-          prose-a:text-primary prose-a:no-underline hover:prose-a:underline
-          prose-ul:text-foreground prose-ol:text-foreground
-          prose-li:marker:text-primary
-          prose-strong:text-foreground"
-        dangerouslySetInnerHTML={{ __html: post.content }}
+      <BlockRenderer
+        blocks={post.blocks as Block[] | null}
+        fallbackHtml={post.content}
       />
     </article>
   );
