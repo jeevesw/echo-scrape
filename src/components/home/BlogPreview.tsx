@@ -11,7 +11,44 @@ interface BlogPost {
   slug: string;
   title: string;
   excerpt: string;
+  content: string;
 }
+
+const stripHtmlAndMarkdown = (text: string): string => {
+  if (!text) return '';
+  
+  const decodeEntities = (str: string): string => {
+    const doc = new DOMParser().parseFromString(str, 'text/html');
+    return doc.documentElement.textContent || str;
+  };
+  
+  return decodeEntities(text)
+    .replace(/<[^>]*>/g, '')
+    .replace(/#{1,6}\s/g, '')
+    .replace(/\*\*([^*]+)\*\*/g, '$1')
+    .replace(/\*([^*]+)\*/g, '$1')
+    .replace(/_([^_]+)_/g, '$1')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/`[^`]+`/g, '')
+    .replace(/\n+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+};
+
+const getExcerpt = (post: BlogPost): string => {
+  if (post.excerpt && post.excerpt.trim()) {
+    return stripHtmlAndMarkdown(post.excerpt);
+  }
+  
+  const strippedContent = stripHtmlAndMarkdown(post.content);
+  if (strippedContent.length <= 200) {
+    return strippedContent;
+  }
+  
+  const truncated = strippedContent.substring(0, 200);
+  const lastSpace = truncated.lastIndexOf(' ');
+  return (lastSpace > 160 ? truncated.substring(0, lastSpace) : truncated) + '…';
+};
 
 export function BlogPreview() {
   const { data: posts, isLoading } = useQuery({
@@ -19,7 +56,7 @@ export function BlogPreview() {
     queryFn: async () => {
       const { data, error } = await supabase
         .from('blog_posts')
-        .select('id, slug, title, excerpt')
+        .select('id, slug, title, excerpt, content')
         .eq('is_published', true)
         .order('published_at', { ascending: false })
         .limit(3);
@@ -55,7 +92,7 @@ export function BlogPreview() {
                     <Link to={`/blog/${post.slug}`}>{post.title}</Link>
                   </h3>
                   <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
-                    {post.excerpt}
+                    {getExcerpt(post)}
                   </p>
                   <Link 
                     to={`/blog/${post.slug}`} 
