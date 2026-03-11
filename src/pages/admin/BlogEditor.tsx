@@ -121,7 +121,12 @@ export default function BlogEditor() {
       setSlug(post.slug);
       setExcerpt(post.excerpt);
       setContent(post.content);
-      setBlocks(Array.isArray(post.blocks) ? (post.blocks as Block[]) : []);
+      const initialBlocks = Array.isArray(post.blocks)
+        ? (post.blocks as Block[])
+        : typeof post.blocks === 'string'
+          ? JSON.parse(post.blocks as string)
+          : [];
+      setBlocks(initialBlocks);
       setFeaturedImage(post.featured_image);
       setAuthor(post.author);
       setPublishedAt(new Date(post.published_at));

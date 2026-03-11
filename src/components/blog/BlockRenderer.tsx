@@ -221,8 +221,8 @@ export function BlockRenderer({ blocks: rawBlocks, fallbackHtml }: BlockRenderer
 
   return (
     <div className="max-w-none">
-      {blocks.map(block => (
-        <RenderBlock key={block.id} block={block} allBlocks={blocks} />
+      {safeBlocks.map(block => (
+        <RenderBlock key={block.id} block={block} allBlocks={safeBlocks} />
       ))}
     </div>
   );
