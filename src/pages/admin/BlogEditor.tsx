@@ -26,6 +26,7 @@ interface BlogPost {
   title: string;
   excerpt: string;
   content: string;
+  blocks: unknown;
   featured_image: string | null;
   author: string;
   published_at: string;
