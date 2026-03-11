@@ -57,7 +57,7 @@ export function Hero() {
               </p>
               <div className="min-h-[1.2em]">
                 <span
-                  className={`heading-display text-2xl md:text-3xl lg:text-4xl font-bold text-primary inline-block transition-all duration-300 ease-in-out ${
+                  className={`heading-display text-2xl md:text-3xl lg:text-4xl font-bold text-foreground inline-block transition-all duration-300 ease-in-out ${
                     isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
                   }`}
                 >
