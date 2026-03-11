@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      authors: {
+        Row: {
+          avatar_url: string | null
+          bio: string | null
+          created_at: string
+          id: string
+          linkedin_url: string | null
+          name: string
+          role: string | null
+          slug: string
+          twitter_url: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          id?: string
+          linkedin_url?: string | null
+          name: string
+          role?: string | null
+          slug: string
+          twitter_url?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          id?: string
+          linkedin_url?: string | null
+          name?: string
+          role?: string | null
+          slug?: string
+          twitter_url?: string | null
+        }
+        Relationships: []
+      }
       blog_categories: {
         Row: {
           created_at: string
@@ -77,6 +113,7 @@ export type Database = {
       blog_posts: {
         Row: {
           author: string
+          author_id: string | null
           blocks: Json | null
           content: string
           created_at: string
@@ -91,6 +128,7 @@ export type Database = {
         }
         Insert: {
           author?: string
+          author_id?: string | null
           blocks?: Json | null
           content: string
           created_at?: string
@@ -105,6 +143,7 @@ export type Database = {
         }
         Update: {
           author?: string
+          author_id?: string | null
           blocks?: Json | null
           content?: string
           created_at?: string
@@ -117,7 +156,15 @@ export type Database = {
           title?: string
           updated_at?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "blog_posts_author_id_fkey"
+            columns: ["author_id"]
+            isOneToOne: false
+            referencedRelation: "authors"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       user_roles: {
         Row: {
