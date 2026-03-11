@@ -56,7 +56,7 @@ export function BlogPreview() {
     queryFn: async () => {
       const { data, error } = await supabase
         .from('blog_posts')
-        .select('id, slug, title, excerpt')
+        .select('id, slug, title, excerpt, content')
         .eq('is_published', true)
         .order('published_at', { ascending: false })
         .limit(3);
