@@ -329,7 +329,7 @@ export default function BlogEditor() {
 
   return (
     <AdminLayout>
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-4">
