@@ -10,6 +10,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
 import { format } from "date-fns";
 import { useState, useMemo, useEffect } from "react";
+import { BlockRenderer, type Block } from "@/components/blog/BlockRenderer";
 
 interface Category {
   id: string;
