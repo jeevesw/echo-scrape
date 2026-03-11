@@ -471,6 +471,7 @@ const BlogPost = ({ slug }: { slug: string }) => {
   }
 
 
+  return (
     <article className="max-w-3xl mx-auto">
       <Link to="/blog" className="text-primary hover:underline inline-flex items-center gap-2 mb-8">
         <ArrowLeft className="h-4 w-4" /> Back to Blog
