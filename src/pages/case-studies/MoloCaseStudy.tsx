@@ -57,7 +57,7 @@ const MoloCaseStudy = () => {
           
           <ScrollReveal>
             <h2 className="heading-display text-3xl md:text-4xl lg:text-5xl text-primary max-w-4xl mt-8 leading-relaxed">
-              We helped seafood spot Molo become one of the top vendors at Mercato Mayfair and BOXPARK Wembley — with basically zero budget.
+              WE HELPED SEAFOOD SPOT MOLO BECOME ONE OF THE TOP VENDORS AT MERCATO MAYFAIR AND BOXPARK WEMBLEY, WITH BASICALLY ZERO BUDGET.
             </h2>
           </ScrollReveal>
         </div>
