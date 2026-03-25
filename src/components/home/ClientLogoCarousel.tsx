@@ -68,7 +68,7 @@ export function ClientLogoCarousel() {
   const [paused, setPaused] = useState(false);
 
   return (
-    <section className="py-12 bg-muted overflow-hidden">
+    <section className="py-12 bg-muted overflow-visible relative z-20">
       <ScrollReveal>
         <TooltipProvider delayDuration={300}>
           <div className="relative">
