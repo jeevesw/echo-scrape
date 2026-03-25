@@ -35,6 +35,8 @@ interface CaseStudyNav {
   client_name: string;
   category: string;
   client_logo_url: string | null;
+  card_image_url: string | null;
+  hero_image_url: string | null;
   page_route: string;
 }
 
