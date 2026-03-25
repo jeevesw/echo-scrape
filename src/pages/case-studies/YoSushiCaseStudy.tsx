@@ -98,7 +98,7 @@ const YoSushiCaseStudy = () => {
               <AnimatedStat 
                 value={60} 
                 suffix="%" 
-                label="Increase in restaurant bookings" 
+                label="increase in restaurant bookings" 
                 delay={150}
               />
             </ScrollReveal>
