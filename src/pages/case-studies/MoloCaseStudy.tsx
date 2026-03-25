@@ -153,7 +153,7 @@ const MoloCaseStudy = () => {
                   anchored by highly-engaging themed events.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  A stand-out event was our FRIENDS-themed quiz at BOXPARK in celebration of Palentine's Day.
+                  A stand-out event was our FRIENDS-themed quiz at BOXPARK in celebration of Palentine's Day!
                 </p>
               </div>
             </ScrollReveal>
