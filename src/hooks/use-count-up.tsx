@@ -17,6 +17,7 @@ export function useCountUp({
   delay = 0,
   suffix = "",
   prefix = "",
+  formatValue,
 }: UseCountUpOptions) {
   const [count, setCount] = useState(start);
   const [hasStarted, setHasStarted] = useState(false);
