@@ -57,7 +57,7 @@ const MoloCaseStudy = () => {
           
           <ScrollReveal>
             <h2 className="heading-display text-3xl md:text-4xl lg:text-5xl text-primary max-w-4xl mt-8 leading-relaxed">
-              We helped seafood spot Molo become one of the top vendors at Mercato Mayfair and BOXPARK Wembley — with basically zero budget.
+              WE HELPED SEAFOOD SPOT MOLO BECOME ONE OF THE TOP VENDORS AT MERCATO MAYFAIR AND BOXPARK WEMBLEY, WITH BASICALLY ZERO BUDGET.
             </h2>
           </ScrollReveal>
         </div>
@@ -153,7 +153,7 @@ const MoloCaseStudy = () => {
                   anchored by highly-engaging themed events.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  A stand-out event was our FRIENDS-themed quiz at BOXPARK in celebration of Palentine's Day.
+                  A stand-out event was our FRIENDS-themed quiz at BOXPARK in celebration of Palentine's Day!
                 </p>
               </div>
             </ScrollReveal>
@@ -202,7 +202,7 @@ const MoloCaseStudy = () => {
             </h2>
             
             <blockquote className="text-xl md:text-2xl lg:text-3xl text-center max-w-4xl mx-auto leading-relaxed">
-              From organic social content alone, Molo went from a new vendor to the #1 seller at Mercato Mayfair — proving that strategic, story-driven content can outperform paid campaigns when executed with creativity and consistency.
+              From organic social content alone, Molo went from a new vendor to the #1 seller at Mercato Mayfair, proving that strategic, story-driven content can outperform paid campaigns when executed with creativity and consistency.
             </blockquote>
           </ScrollReveal>
         </div>
