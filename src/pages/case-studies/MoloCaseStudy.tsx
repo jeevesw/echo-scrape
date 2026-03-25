@@ -202,7 +202,7 @@ const MoloCaseStudy = () => {
             </h2>
             
             <blockquote className="text-xl md:text-2xl lg:text-3xl text-center max-w-4xl mx-auto leading-relaxed">
-              From organic social content alone, Molo went from a new vendor to the #1 seller at Mercato Mayfair — proving that strategic, story-driven content can outperform paid campaigns when executed with creativity and consistency.
+              From organic social content alone, Molo went from a new vendor to the #1 seller at Mercato Mayfair, proving that strategic, story-driven content can outperform paid campaigns when executed with creativity and consistency.
             </blockquote>
           </ScrollReveal>
         </div>
