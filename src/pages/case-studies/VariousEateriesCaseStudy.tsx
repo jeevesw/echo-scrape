@@ -21,7 +21,7 @@ const VariousEateriesCaseStudy = () => {
       </Helmet>
 
       {/* Hero Section - Full bleed with dramatic headline */}
-      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-primary">
+      <section className="relative min-h-[50vh] max-h-[75vh] flex items-center justify-center overflow-hidden bg-primary">
         {/* Background gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-primary/80" />
 

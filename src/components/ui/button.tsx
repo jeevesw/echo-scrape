@@ -17,13 +17,15 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         hero: `
           bg-primary text-primary-foreground font-bold uppercase tracking-wide rounded-full px-8 py-6 text-base
-          hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-1
-          active:translate-y-0 active:shadow-lg
+          relative overflow-hidden
+          before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent
+          before:translate-x-[-200%] hover:before:translate-x-[200%] before:transition-transform before:duration-1000 before:ease-in-out
+          active:scale-[0.98]
         `,
         "hero-outline": `
           border-2 border-primary text-primary font-bold uppercase tracking-wide rounded-full px-8 py-6 text-base
-          hover:bg-primary hover:text-primary-foreground hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-1
-          active:translate-y-0 active:shadow-lg
+          hover:bg-primary hover:text-primary-foreground transition-colors duration-300
+          active:scale-[0.98]
         `,
         cta: `
           bg-primary text-primary-foreground font-bold uppercase tracking-wide rounded-full

@@ -28,7 +28,7 @@ export function useCountUp({
           setHasStarted(true);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.5 }
     );
 
     if (ref.current) {

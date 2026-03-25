@@ -21,7 +21,7 @@ const MoloCaseStudy = () => {
       </Helmet>
 
       {/* Hero Section - Full bleed with dramatic headline */}
-      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-primary">
+      <section className="relative min-h-[50vh] max-h-[75vh] flex items-center justify-center overflow-hidden bg-primary">
         {/* Background image with overlay */}
         <div className="absolute inset-0">
           <img
@@ -43,12 +43,6 @@ const MoloCaseStudy = () => {
           </ScrollReveal>
         </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-primary-foreground/50 rounded-full flex items-start justify-center p-2">
-            <div className="w-1.5 h-3 bg-primary-foreground/50 rounded-full" />
-          </div>
-        </div>
       </section>
 
       {/* Intro Statement */}
