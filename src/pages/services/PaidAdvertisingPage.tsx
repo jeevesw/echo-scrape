@@ -194,7 +194,7 @@ const PaidAdvertisingPage = () => {
 
       {/* 1 — HERO */}
       <section className="bg-background overflow-hidden">
-        <div className="grid lg:grid-cols-[55%_45%] min-h-[70vh]">
+        <div className="grid lg:grid-cols-[55%_45%] min-h-[50vh] max-h-[75vh]">
           <div className="relative flex items-center py-16 lg:py-24 px-6 md:px-12 lg:pl-[max(2rem,calc((100vw-80rem)/2+2rem))] lg:pr-12">
             <div className="relative z-10 max-w-xl">
               <BreadcrumbNav
