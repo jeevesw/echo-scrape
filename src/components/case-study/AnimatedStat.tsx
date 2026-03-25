@@ -6,6 +6,7 @@ interface AnimatedStatProps {
   prefix?: string;
   label: string;
   delay?: number;
+  formatValue?: (value: number) => string;
 }
 
 export function AnimatedStat({ 
@@ -13,7 +14,8 @@ export function AnimatedStat({
   suffix = "", 
   prefix = "", 
   label,
-  delay = 0 
+  delay = 0,
+  formatValue,
 }: AnimatedStatProps) {
   const { ref, displayValue } = useCountUp({
     end: value,
@@ -21,6 +23,7 @@ export function AnimatedStat({
     delay,
     suffix,
     prefix,
+    formatValue,
   });
 
   return (

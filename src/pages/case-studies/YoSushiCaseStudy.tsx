@@ -107,7 +107,7 @@ const YoSushiCaseStudy = () => {
               <AnimatedStat 
                 value={28} 
                 suffix="%" 
-                label="Uplift in click & collect orders" 
+                label="uplift in click & collect orders" 
                 delay={300}
               />
             </ScrollReveal>
