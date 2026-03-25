@@ -94,7 +94,7 @@ const MoloCaseStudy = () => {
                   </span>
                 </div>
                 <span className="text-foreground text-lg md:text-xl mt-4 block font-medium">
-                  Vendor at Mercato Mayfair
+                  vendor at Mercato Mayfair
                 </span>
               </div>
             </ScrollReveal>
