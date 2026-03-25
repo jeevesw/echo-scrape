@@ -83,7 +83,7 @@ const VariousEateriesCaseStudy = () => {
               <AnimatedStat 
                 value={88} 
                 suffix="%" 
-                label="Increase in table bookings through Google Ads" 
+                label="increase in table bookings through Google Ads" 
                 delay={0}
               />
             </ScrollReveal>
@@ -105,7 +105,7 @@ const VariousEateriesCaseStudy = () => {
               <AnimatedStat 
                 value={88} 
                 suffix="%" 
-                label="Lower CPA (cost per click to book)" 
+                label="lower CPA (cost per click to book)" 
                 delay={300}
               />
             </ScrollReveal>

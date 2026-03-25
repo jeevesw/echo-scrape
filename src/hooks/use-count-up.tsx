@@ -7,6 +7,7 @@ interface UseCountUpOptions {
   delay?: number;
   suffix?: string;
   prefix?: string;
+  formatValue?: (value: number) => string;
 }
 
 export function useCountUp({
@@ -16,6 +17,7 @@ export function useCountUp({
   delay = 0,
   suffix = "",
   prefix = "",
+  formatValue,
 }: UseCountUpOptions) {
   const [count, setCount] = useState(start);
   const [hasStarted, setHasStarted] = useState(false);
@@ -66,7 +68,8 @@ export function useCountUp({
     return () => clearTimeout(timeout);
   }, [hasStarted, start, end, duration, delay]);
 
-  const displayValue = `${prefix}${count.toLocaleString()}${suffix}`;
+  const formatted = formatValue ? formatValue(count) : count.toLocaleString();
+  const displayValue = `${prefix}${formatted}${suffix}`;
 
   return { ref, displayValue, count };
 }

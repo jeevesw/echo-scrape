@@ -83,10 +83,14 @@ const YoSushiCaseStudy = () => {
           <div className="grid md:grid-cols-3 gap-12 md:gap-8">
             <ScrollReveal delay={0}>
               <AnimatedStat 
-                value={1} 
-                suffix="M+" 
-                label="Views in week one" 
+                value={1000} 
+                suffix="+" 
+                label="views in week one" 
                 delay={0}
+                formatValue={(v) => {
+                  if (v >= 1000) return '1M';
+                  return `${v}K`;
+                }}
               />
             </ScrollReveal>
             
@@ -94,7 +98,7 @@ const YoSushiCaseStudy = () => {
               <AnimatedStat 
                 value={60} 
                 suffix="%" 
-                label="Increase in restaurant bookings" 
+                label="increase in restaurant bookings" 
                 delay={150}
               />
             </ScrollReveal>
@@ -103,7 +107,7 @@ const YoSushiCaseStudy = () => {
               <AnimatedStat 
                 value={28} 
                 suffix="%" 
-                label="Uplift in click & collect orders" 
+                label="uplift in click & collect orders" 
                 delay={300}
               />
             </ScrollReveal>

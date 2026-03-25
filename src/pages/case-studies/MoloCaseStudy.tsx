@@ -81,7 +81,7 @@ const MoloCaseStudy = () => {
               <AnimatedStat 
                 value={40} 
                 suffix="%" 
-                label="Sales uplift from 2024 to 2025" 
+                label="sales uplift from 2024 to 2025" 
                 delay={0}
               />
             </ScrollReveal>
@@ -94,7 +94,7 @@ const MoloCaseStudy = () => {
                   </span>
                 </div>
                 <span className="text-foreground text-lg md:text-xl mt-4 block font-medium">
-                  Vendor at Mercato Mayfair
+                  vendor at Mercato Mayfair
                 </span>
               </div>
             </ScrollReveal>
