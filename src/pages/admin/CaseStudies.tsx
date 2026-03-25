@@ -201,19 +201,26 @@ export default function CaseStudiesAdmin() {
 
                 <div className="border-t pt-4 mt-2">
                   <h3 className="font-semibold mb-3">Images</h3>
-                  <div className="grid gap-3">
-                    <div>
-                      <Label>Client Logo URL</Label>
-                      <Input value={formData.client_logo_url || ""} onChange={(e) => setFormData({ client_logo_url: e.target.value })} placeholder="/images/clients/yo-sushi.svg" />
-                    </div>
-                    <div>
-                      <Label>Card Image URL</Label>
-                      <Input value={formData.card_image_url || ""} onChange={(e) => setFormData({ card_image_url: e.target.value })} />
-                    </div>
-                    <div>
-                      <Label>Hero Image URL</Label>
-                      <Input value={formData.hero_image_url || ""} onChange={(e) => setFormData({ hero_image_url: e.target.value })} />
-                    </div>
+                  <div className="grid gap-4">
+                    <ImageUploader
+                      label="Client Logo"
+                      value={formData.client_logo_url || null}
+                      onChange={(url) => setFormData({ client_logo_url: url })}
+                      folder="case-studies/logos"
+                      accept="image/svg+xml,image/png,image/jpeg,image/webp"
+                    />
+                    <ImageUploader
+                      label="Card Image"
+                      value={formData.card_image_url || null}
+                      onChange={(url) => setFormData({ card_image_url: url })}
+                      folder="case-studies/cards"
+                    />
+                    <ImageUploader
+                      label="Hero Image"
+                      value={formData.hero_image_url || null}
+                      onChange={(url) => setFormData({ hero_image_url: url })}
+                      folder="case-studies/heroes"
+                    />
                   </div>
                 </div>
 
