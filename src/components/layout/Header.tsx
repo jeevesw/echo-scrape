@@ -35,6 +35,8 @@ interface CaseStudyNav {
   client_name: string;
   category: string;
   client_logo_url: string | null;
+  card_image_url: string | null;
+  hero_image_url: string | null;
   page_route: string;
 }
 
@@ -44,7 +46,7 @@ function useCaseStudiesNav() {
     queryFn: async () => {
       const { data, error } = await supabase
         .from("case_studies")
-        .select("slug, client_name, category, client_logo_url, page_route")
+        .select("slug, client_name, category, client_logo_url, card_image_url, hero_image_url, page_route")
         .eq("is_published", true)
         .order("sort_order")
         .limit(6);
@@ -149,32 +151,44 @@ export function Header() {
                   caseStudiesOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"
                 }`}
               >
-                <div className="bg-background border border-border rounded-xl shadow-xl p-6 w-[520px]">
-                  <div className="grid grid-cols-2 gap-3">
+                <div className="bg-background border border-border rounded-xl shadow-xl p-6 w-[860px]">
+                  <div className="grid grid-cols-3 gap-4">
                     {caseStudies.map((cs) => (
                       <Link
                         key={cs.slug}
                         to={cs.page_route}
-                        className="group flex gap-3 p-3 rounded-xl hover:bg-muted transition-colors"
+                        className="group rounded-xl hover:bg-muted transition-colors overflow-hidden"
                         onClick={() => setCaseStudiesOpen(false)}
                       >
-                        {cs.client_logo_url ? (
-                          <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center flex-shrink-0 p-1.5">
-                            <img src={cs.client_logo_url} alt={cs.client_name} className="w-full h-full object-contain" />
+                        <div className="relative w-full h-28 rounded-t-xl overflow-hidden bg-muted">
+                          {cs.card_image_url || cs.hero_image_url ? (
+                            <img
+                              src={cs.card_image_url || cs.hero_image_url || ''}
+                              alt={cs.client_name}
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                          ) : (
+                            <div className="w-full h-full bg-muted flex items-center justify-center">
+                              <span className="text-2xl font-bold text-muted-foreground">{cs.client_name.charAt(0)}</span>
+                            </div>
+                          )}
+                          {/* Brand logo circle — bottom-right corner, offset */}
+                          <div className="absolute -bottom-3 -right-2 w-10 h-10 rounded-full bg-background border-2 border-border shadow-md flex items-center justify-center p-1.5">
+                            {cs.client_logo_url ? (
+                              <img src={cs.client_logo_url} alt="" className="w-full h-full object-contain" />
+                            ) : (
+                              <span className="text-xs font-bold text-muted-foreground">{cs.client_name.charAt(0)}</span>
+                            )}
                           </div>
-                        ) : (
-                          <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center flex-shrink-0">
-                            <span className="text-xs font-bold text-muted-foreground">{cs.client_name.charAt(0)}</span>
-                          </div>
-                        )}
-                        <div className="flex-1 min-w-0">
+                        </div>
+                        <div className="p-3 pt-4">
                           <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors text-sm">{cs.client_name}</h3>
-                          <p className="text-xs text-muted-foreground mt-0.5">{cs.category}</p>
+                          <p className="text-xs text-muted-foreground mt-0.5 line-clamp-1">{cs.category}</p>
                         </div>
                       </Link>
                     ))}
                   </div>
-                  <div className="mt-4 pt-4 border-t border-border">
+                  <div className="mt-5 pt-5 border-t border-border">
                     <Link to="/case-studies" className="text-base font-medium text-primary hover:underline" onClick={() => setCaseStudiesOpen(false)}>
                       View all case studies →
                     </Link>
