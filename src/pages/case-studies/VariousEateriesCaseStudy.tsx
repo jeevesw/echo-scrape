@@ -232,10 +232,10 @@ const VariousEateriesCaseStudy = () => {
       {/* Testimonial Section */}
       <section className="py-24 bg-primary text-primary-foreground relative overflow-hidden">
         {/* Decorative quote marks */}
-        <div className="absolute top-12 left-12 opacity-10">
+        <div className="absolute top-12 left-12 opacity-10 rotate-180">
           <Quote className="w-32 h-32" />
         </div>
-        <div className="absolute bottom-12 right-12 opacity-10 rotate-180">
+        <div className="absolute bottom-12 right-12 opacity-10">
           <Quote className="w-32 h-32" />
         </div>
 

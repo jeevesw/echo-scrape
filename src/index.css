@@ -530,6 +530,19 @@
   width: max-content;
 }
 
+@keyframes sheen {
+  0% {
+    transform: translateX(-200%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+.animate-sheen {
+  animation: sheen 2s ease-in-out infinite;
+}
+
 .animate-scroll-logos:hover {
   animation-play-state: paused;
 }

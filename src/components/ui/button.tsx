@@ -19,7 +19,8 @@ const buttonVariants = cva(
           bg-primary text-primary-foreground font-bold uppercase tracking-wide rounded-full px-8 py-6 text-base
           relative overflow-hidden
           before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent
-          before:translate-x-[-200%] hover:before:translate-x-[200%] before:transition-transform before:duration-1000 before:ease-in-out
+          before:translate-x-[-200%] before:transition-none
+          [&:hover]:before:animate-sheen
           active:scale-[0.98]
         `,
         "hero-outline": `
