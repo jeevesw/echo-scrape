@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import { Menu, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { supabase } from "@/integrations/supabase/client";
 import logoTwoTone from "@/assets/logo-two-tone.svg";
 
 // Service images
@@ -14,55 +16,51 @@ import tiktokImg from "@/assets/services/tiktok-production.png";
 import websiteImg from "@/assets/services/website-design.jpg";
 
 const services = [
-  {
-    slug: "social-media-management",
-    title: "Social Media",
-    description: "Content, community & engagement",
-    image: socialMediaImg,
-  },
-  {
-    slug: "paid-advertising",
-    title: "Paid Advertising",
-    description: "Meta, Google & TikTok ads",
-    image: paidAdsImg,
-  },
-  {
-    slug: "email-marketing",
-    title: "Email Marketing",
-    description: "Campaigns & automation",
-    image: emailMarketingImg,
-  },
-  {
-    slug: "creative-services",
-    title: "Creative Services",
-    description: "Design, video & branding",
-    image: creativeImg,
-  },
-  {
-    slug: "tiktok-production",
-    title: "TikTok Production",
-    description: "Content, ads & influencers",
-    image: tiktokImg,
-  },
-  {
-    slug: "website-design",
-    title: "Website Design",
-    description: "Build, launch & manage",
-    image: websiteImg,
-  },
+  { slug: "social-media-management", title: "Social Media", description: "Content, community & engagement", image: socialMediaImg },
+  { slug: "paid-advertising", title: "Paid Advertising", description: "Meta, Google & TikTok ads", image: paidAdsImg },
+  { slug: "email-marketing", title: "Email Marketing", description: "Campaigns & automation", image: emailMarketingImg },
+  { slug: "creative-services", title: "Creative Services", description: "Design, video & branding", image: creativeImg },
+  { slug: "tiktok-production", title: "TikTok Production", description: "Content, ads & influencers", image: tiktokImg },
+  { slug: "website-design", title: "Website Design", description: "Build, launch & manage", image: websiteImg },
 ];
 
 const navItems = [
-  { label: "Case Studies", href: "/case-studies" },
   { label: "Blog", href: "/blog" },
   { label: "LHF Ad Ban", href: "/lhf-ad-ban" },
   { label: "Contact", href: "/contact" },
 ];
 
+interface CaseStudyNav {
+  slug: string;
+  client_name: string;
+  category: string;
+  client_logo_url: string | null;
+  page_route: string;
+}
+
+function useCaseStudiesNav() {
+  return useQuery({
+    queryKey: ["case-studies-nav"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("case_studies")
+        .select("slug, client_name, category, client_logo_url, page_route")
+        .eq("is_published", true)
+        .order("sort_order")
+        .limit(6);
+      if (error) throw error;
+      return data as CaseStudyNav[];
+    },
+    staleTime: 5 * 60 * 1000,
+  });
+}
+
 export function Header() {
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [caseStudiesOpen, setCaseStudiesOpen] = useState(false);
   const location = useLocation();
+  const { data: caseStudies = [] } = useCaseStudiesNav();
 
   return (
     <header className="sticky top-0 z-50 w-full bg-background">
@@ -78,17 +76,13 @@ export function Header() {
         <div className="container-content mx-auto flex h-20 items-center justify-between px-4">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <img 
-              src={logoTwoTone} 
-              alt="Trapeze Media" 
-              className="h-8 w-auto"
-            />
+            <img src={logoTwoTone} alt="Trapeze Media" className="h-8 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
             {/* Services Dropdown */}
-            <div 
+            <div
               className="relative"
               onMouseEnter={() => setServicesOpen(true)}
               onMouseLeave={() => setServicesOpen(false)}
@@ -96,17 +90,13 @@ export function Header() {
               <Link
                 to="/services"
                 className={`text-base font-medium uppercase tracking-wide transition-colors hover:text-primary inline-flex items-center gap-1 ${
-                  location.pathname.startsWith("/services")
-                    ? "text-primary"
-                    : "text-foreground"
+                  location.pathname.startsWith("/services") ? "text-primary" : "text-foreground"
                 }`}
               >
                 Services
                 <ChevronDown className={`h-4 w-4 transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
               </Link>
-              
-              {/* Dropdown Panel */}
-              <div 
+              <div
                 className={`absolute left-1/2 -translate-x-1/2 top-full pt-4 transition-all duration-200 ${
                   servicesOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"
                 }`}
@@ -121,30 +111,72 @@ export function Header() {
                         onClick={() => setServicesOpen(false)}
                       >
                         <div className="w-20 h-14 rounded-lg overflow-hidden flex-shrink-0">
-                          <img
-                            src={service.image}
-                            alt={service.title}
-                            className="w-full h-full object-cover"
-                          />
+                          <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors text-base">
-                            {service.title}
-                          </h3>
-                          <p className="text-sm text-muted-foreground mt-1">
-                            {service.description}
-                          </p>
+                          <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors text-base">{service.title}</h3>
+                          <p className="text-sm text-muted-foreground mt-1">{service.description}</p>
                         </div>
                       </Link>
                     ))}
                   </div>
                   <div className="mt-5 pt-5 border-t border-border">
-                    <Link
-                      to="/services"
-                      className="text-base font-medium text-primary hover:underline"
-                      onClick={() => setServicesOpen(false)}
-                    >
+                    <Link to="/services" className="text-base font-medium text-primary hover:underline" onClick={() => setServicesOpen(false)}>
                       View all services →
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Case Studies Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => setCaseStudiesOpen(true)}
+              onMouseLeave={() => setCaseStudiesOpen(false)}
+            >
+              <Link
+                to="/case-studies"
+                className={`text-base font-medium uppercase tracking-wide transition-colors hover:text-primary inline-flex items-center gap-1 ${
+                  location.pathname.startsWith("/case-studies") ? "text-primary" : "text-foreground"
+                }`}
+              >
+                Case Studies
+                <ChevronDown className={`h-4 w-4 transition-transform ${caseStudiesOpen ? "rotate-180" : ""}`} />
+              </Link>
+              <div
+                className={`absolute left-1/2 -translate-x-1/2 top-full pt-4 transition-all duration-200 ${
+                  caseStudiesOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"
+                }`}
+              >
+                <div className="bg-background border border-border rounded-xl shadow-xl p-6 w-[520px]">
+                  <div className="grid grid-cols-2 gap-3">
+                    {caseStudies.map((cs) => (
+                      <Link
+                        key={cs.slug}
+                        to={cs.page_route}
+                        className="group flex gap-3 p-3 rounded-xl hover:bg-muted transition-colors"
+                        onClick={() => setCaseStudiesOpen(false)}
+                      >
+                        {cs.client_logo_url ? (
+                          <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center flex-shrink-0 p-1.5">
+                            <img src={cs.client_logo_url} alt={cs.client_name} className="w-full h-full object-contain" />
+                          </div>
+                        ) : (
+                          <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center flex-shrink-0">
+                            <span className="text-xs font-bold text-muted-foreground">{cs.client_name.charAt(0)}</span>
+                          </div>
+                        )}
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors text-sm">{cs.client_name}</h3>
+                          <p className="text-xs text-muted-foreground mt-0.5">{cs.category}</p>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                  <div className="mt-4 pt-4 border-t border-border">
+                    <Link to="/case-studies" className="text-base font-medium text-primary hover:underline" onClick={() => setCaseStudiesOpen(false)}>
+                      View all case studies →
                     </Link>
                   </div>
                 </div>
@@ -156,9 +188,7 @@ export function Header() {
                 key={item.href}
                 to={item.href}
                 className={`text-base font-medium uppercase tracking-wide transition-colors hover:text-primary ${
-                  location.pathname === item.href
-                    ? "text-primary underline underline-offset-4"
-                    : "text-foreground"
+                  location.pathname === item.href ? "text-primary underline underline-offset-4" : "text-foreground"
                 }`}
               >
                 {item.label}
@@ -176,41 +206,30 @@ export function Header() {
             </SheetTrigger>
             <SheetContent side="right" className="w-full max-w-sm">
               <div className="flex flex-col gap-6 pt-10">
-                <Link
-                  to="/services"
-                  onClick={() => setOpen(false)}
-                  className={`text-lg font-medium uppercase tracking-wide transition-colors hover:text-primary ${
-                    location.pathname.startsWith("/services")
-                      ? "text-primary"
-                      : "text-foreground"
-                  }`}
-                >
+                <Link to="/services" onClick={() => setOpen(false)} className={`text-lg font-medium uppercase tracking-wide transition-colors hover:text-primary ${location.pathname.startsWith("/services") ? "text-primary" : "text-foreground"}`}>
                   Services
                 </Link>
-                {/* Mobile service sub-links */}
                 <div className="pl-4 flex flex-col gap-3 -mt-3">
                   {services.map((service) => (
-                    <Link
-                      key={service.slug}
-                      to={`/services/${service.slug}`}
-                      onClick={() => setOpen(false)}
-                      className="text-base text-muted-foreground hover:text-primary transition-colors"
-                    >
+                    <Link key={service.slug} to={`/services/${service.slug}`} onClick={() => setOpen(false)} className="text-base text-muted-foreground hover:text-primary transition-colors">
                       {service.title}
                     </Link>
                   ))}
                 </div>
+
+                <Link to="/case-studies" onClick={() => setOpen(false)} className={`text-lg font-medium uppercase tracking-wide transition-colors hover:text-primary ${location.pathname.startsWith("/case-studies") ? "text-primary" : "text-foreground"}`}>
+                  Case Studies
+                </Link>
+                <div className="pl-4 flex flex-col gap-3 -mt-3">
+                  {caseStudies.map((cs) => (
+                    <Link key={cs.slug} to={cs.page_route} onClick={() => setOpen(false)} className="text-base text-muted-foreground hover:text-primary transition-colors">
+                      {cs.client_name}
+                    </Link>
+                  ))}
+                </div>
+
                 {navItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    to={item.href}
-                    onClick={() => setOpen(false)}
-                    className={`text-lg font-medium uppercase tracking-wide transition-colors hover:text-primary ${
-                      location.pathname === item.href
-                        ? "text-primary"
-                        : "text-foreground"
-                    }`}
-                  >
+                  <Link key={item.href} to={item.href} onClick={() => setOpen(false)} className={`text-lg font-medium uppercase tracking-wide transition-colors hover:text-primary ${location.pathname === item.href ? "text-primary" : "text-foreground"}`}>
                     {item.label}
                   </Link>
                 ))}
