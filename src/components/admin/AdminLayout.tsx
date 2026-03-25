@@ -41,6 +41,12 @@ export function AdminLayout({ children }: AdminLayoutProps) {
                 </Link>
               </Button>
               <Button variant="ghost" size="sm" asChild>
+                <Link to="/admin/case-studies">
+                  <Briefcase className="h-4 w-4 mr-2" />
+                  Case Studies
+                </Link>
+              </Button>
+              <Button variant="ghost" size="sm" asChild>
                 <Link to="/admin/blog/migrate">
                   <Wand2 className="h-4 w-4 mr-2" />
                   Migration Tool

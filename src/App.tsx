@@ -79,6 +79,11 @@ const App = () => (
                   <BlogMigrate />
                 </ProtectedRoute>
               } />
+              <Route path="/admin/case-studies" element={
+                <ProtectedRoute requireAdmin>
+                  <CaseStudiesAdmin />
+                </ProtectedRoute>
+              } />
               <Route path="/admin/authors" element={
                 <ProtectedRoute requireAdmin>
                   <Authors />
