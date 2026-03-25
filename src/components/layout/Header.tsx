@@ -157,33 +157,19 @@ export function Header() {
                       <Link
                         key={cs.slug}
                         to={cs.page_route}
-                        className="group rounded-xl hover:bg-muted transition-colors overflow-hidden"
+                        className="group flex gap-4 p-4 rounded-xl hover:bg-muted transition-colors"
                         onClick={() => setCaseStudiesOpen(false)}
                       >
-                        <div className="relative w-full h-28 rounded-t-xl overflow-hidden bg-muted">
-                          {cs.card_image_url || cs.hero_image_url ? (
-                            <img
-                              src={cs.card_image_url || cs.hero_image_url || ''}
-                              alt={cs.client_name}
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                            />
+                        <div className="w-10 h-10 rounded-lg overflow-hidden flex-shrink-0 bg-muted flex items-center justify-center p-1">
+                          {cs.client_logo_url ? (
+                            <img src={cs.client_logo_url} alt="" className="w-full h-full object-contain" />
                           ) : (
-                            <div className="w-full h-full bg-muted flex items-center justify-center">
-                              <span className="text-2xl font-bold text-muted-foreground">{cs.client_name.charAt(0)}</span>
-                            </div>
+                            <span className="text-sm font-bold text-muted-foreground">{cs.client_name.charAt(0)}</span>
                           )}
-                          {/* Brand logo circle — bottom-right corner, offset */}
-                          <div className="absolute -bottom-3 -right-2 w-10 h-10 rounded-full bg-background border-2 border-border shadow-md flex items-center justify-center p-1.5">
-                            {cs.client_logo_url ? (
-                              <img src={cs.client_logo_url} alt="" className="w-full h-full object-contain" />
-                            ) : (
-                              <span className="text-xs font-bold text-muted-foreground">{cs.client_name.charAt(0)}</span>
-                            )}
-                          </div>
                         </div>
-                        <div className="p-3 pt-4">
-                          <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors text-sm">{cs.client_name}</h3>
-                          <p className="text-xs text-muted-foreground mt-0.5 line-clamp-1">{cs.category}</p>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors text-base">{cs.client_name}</h3>
+                          <p className="text-sm text-muted-foreground mt-1 line-clamp-1">{cs.category}</p>
                         </div>
                       </Link>
                     ))}
