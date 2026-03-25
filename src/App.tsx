@@ -25,6 +25,7 @@ import BlogDashboard from "./pages/admin/BlogDashboard";
 import BlogEditor from "./pages/admin/BlogEditor";
 import BlogMigrate from "./pages/admin/BlogMigrate";
 import Authors from "./pages/admin/Authors";
+import CaseStudiesAdmin from "./pages/admin/CaseStudies";
 
 const queryClient = new QueryClient();
 
