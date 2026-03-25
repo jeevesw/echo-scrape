@@ -46,7 +46,7 @@ function useCaseStudiesNav() {
     queryFn: async () => {
       const { data, error } = await supabase
         .from("case_studies")
-        .select("slug, client_name, category, client_logo_url, page_route")
+        .select("slug, client_name, category, client_logo_url, card_image_url, hero_image_url, page_route")
         .eq("is_published", true)
         .order("sort_order")
         .limit(6);
