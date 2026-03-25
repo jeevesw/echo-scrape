@@ -7,6 +7,7 @@ interface UseCountUpOptions {
   delay?: number;
   suffix?: string;
   prefix?: string;
+  formatValue?: (value: number) => string;
 }
 
 export function useCountUp({
