@@ -151,7 +151,7 @@ export function Header() {
                   caseStudiesOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"
                 }`}
               >
-                <div className="bg-background border border-border rounded-xl shadow-xl p-6 w-[860px]">
+                <div className="bg-background border border-border rounded-xl shadow-xl p-6 w-[780px]">
                   <div className="grid grid-cols-3 gap-4">
                     {caseStudies.map((cs) => (
                       <Link
