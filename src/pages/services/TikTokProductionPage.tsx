@@ -41,6 +41,10 @@ const workflowSteps = [
 ];
 
 const TikTokProductionPage = () => {
+  const { ref: viewsRef, displayValue: viewsDisplay } = useCountUp({ end: 1500000, duration: 2000, formatValue: (v) => v >= 1000000 ? `${(v / 1000000).toFixed(1)}M` : v.toLocaleString() });
+  const { ref: followersRef, displayValue: followersDisplay } = useCountUp({ end: 14000, duration: 2000, formatValue: (v) => v.toLocaleString() });
+  const { ref: clicksRef, displayValue: clicksDisplay } = useCountUp({ end: 1700, duration: 2000, formatValue: (v) => v.toLocaleString() });
+
   return (
     <Layout>
       <Helmet>
