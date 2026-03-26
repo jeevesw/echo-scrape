@@ -107,7 +107,7 @@ const SocialMediaManagementPage = () => {
                 <CardContent className="p-6">
                   <f.icon className="h-10 w-10 text-primary mx-auto mb-4" />
                   <h3 className="heading-display text-lg text-foreground mb-3">{f.title}</h3>
-                  <p className="text-muted-foreground text-sm">{f.description}</p>
+                  <p className="text-muted-foreground text-base">{f.description}</p>
                 </CardContent>
               </Card>
             ))}
