@@ -275,7 +275,7 @@ const BlogList = () => {
       )}
 
       {/* Search and Sort */}
-      <div className="flex flex-col sm:flex-row gap-4 mb-10">
+      <div className="flex gap-4 mb-10">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
@@ -286,15 +286,6 @@ const BlogList = () => {
             className="pl-10 h-11 bg-card border-border/50"
           />
         </div>
-        <Select value={sortOrder} onValueChange={handleSortChange}>
-          <SelectTrigger className="w-full sm:w-40 h-11 bg-card border-border/50">
-            <SelectValue placeholder="Sort by" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="newest">Newest first</SelectItem>
-            <SelectItem value="oldest">Oldest first</SelectItem>
-          </SelectContent>
-        </Select>
       </div>
 
       {/* Results count */}
