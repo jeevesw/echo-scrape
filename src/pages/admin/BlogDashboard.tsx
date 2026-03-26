@@ -33,9 +33,10 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
-import { Plus, Search, Pencil, Trash2, Eye, ArrowUpDown, Download } from 'lucide-react';
+import { Plus, Search, Pencil, Trash2, Eye, ArrowUpDown, Download, ImageIcon } from 'lucide-react';
 import { format } from 'date-fns';
 import { toast } from 'sonner';
+import { Progress } from '@/components/ui/progress';
 
 interface Category {
   id: string;
@@ -64,6 +65,63 @@ export default function BlogDashboard() {
   const [sortOrder, setSortOrder] = useState<SortOrder>('desc');
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
   const [isExporting, setIsExporting] = useState(false);
+  const [thumbFix, setThumbFix] = useState<{
+    running: boolean;
+    done: boolean;
+    total: number;
+    processed: number;
+    fixed: number;
+    manual: { title: string; slug: string }[];
+  }>({ running: false, done: false, total: 0, processed: 0, fixed: 0, manual: [] });
+
+  const handleFixThumbnails = async () => {
+    setThumbFix({ running: true, done: false, total: 0, processed: 0, fixed: 0, manual: [] });
+    try {
+      // Fetch posts missing thumbnails
+      const { data: postsData, error } = await supabase
+        .from('blog_posts')
+        .select('id, slug, title, blocks')
+        .is('featured_image', null);
+      if (error) throw error;
+      if (!postsData || postsData.length === 0) {
+        setThumbFix(s => ({ ...s, running: false, done: true, total: 0 }));
+        toast.info('All posts already have thumbnails');
+        return;
+      }
+
+      const total = postsData.length;
+      setThumbFix(s => ({ ...s, total }));
+      let fixed = 0;
+      const manual: { title: string; slug: string }[] = [];
+
+      for (let i = 0; i < postsData.length; i++) {
+        const post = postsData[i];
+        let blocks: any[] = [];
+        try {
+          blocks = typeof post.blocks === 'string' ? JSON.parse(post.blocks) : post.blocks || [];
+        } catch { blocks = []; }
+
+        const firstImage = blocks.find((b: any) => b.type === 'image' && b.src);
+        if (firstImage) {
+          const { error: upErr } = await supabase
+            .from('blog_posts')
+            .update({ featured_image: firstImage.src })
+            .eq('id', post.id);
+          if (!upErr) fixed++;
+        } else {
+          manual.push({ title: post.title, slug: post.slug });
+        }
+        setThumbFix(s => ({ ...s, processed: i + 1, fixed, manual: [...manual] }));
+      }
+
+      setThumbFix(s => ({ ...s, running: false, done: true }));
+      queryClient.invalidateQueries({ queryKey: ['admin-blog-posts'] });
+      toast.success(`Fixed ${fixed} thumbnails`);
+    } catch (err: any) {
+      toast.error('Thumbnail fix failed: ' + err.message);
+      setThumbFix(s => ({ ...s, running: false }));
+    }
+  };
 
   const handleExport = async () => {
     setIsExporting(true);
@@ -228,6 +286,10 @@ export default function BlogDashboard() {
             </p>
           </div>
           <div className="flex gap-2">
+            <Button variant="outline" onClick={handleFixThumbnails} disabled={thumbFix.running}>
+              <ImageIcon className="h-4 w-4 mr-2" />
+              {thumbFix.running ? 'Fixing…' : 'Fix Thumbnails'}
+            </Button>
             <Button variant="outline" onClick={handleExport} disabled={isExporting}>
               <Download className="h-4 w-4 mr-2" />
               {isExporting ? 'Exporting…' : 'Export'}
@@ -240,6 +302,37 @@ export default function BlogDashboard() {
             </Button>
           </div>
         </div>
+
+        {/* Thumbnail fix progress/results */}
+        {(thumbFix.running || thumbFix.done) && (
+          <div className="mb-6 p-4 border border-border rounded-lg bg-card">
+            {thumbFix.running && (
+              <>
+                <p className="text-sm text-muted-foreground mb-2">
+                  Processing {thumbFix.processed} / {thumbFix.total} posts…
+                </p>
+                <Progress value={thumbFix.total ? (thumbFix.processed / thumbFix.total) * 100 : 0} className="h-2" />
+              </>
+            )}
+            {thumbFix.done && (
+              <>
+                <p className="text-sm font-medium text-foreground">
+                  {thumbFix.fixed} thumbnail{thumbFix.fixed !== 1 ? 's' : ''} populated · {thumbFix.manual.length} post{thumbFix.manual.length !== 1 ? 's' : ''} still need a manual thumbnail
+                </p>
+                {thumbFix.manual.length > 0 && (
+                  <ul className="mt-2 text-sm text-muted-foreground list-disc pl-5 space-y-0.5">
+                    {thumbFix.manual.map(p => (
+                      <li key={p.slug}>{p.title} <span className="text-xs opacity-60">({p.slug})</span></li>
+                    ))}
+                  </ul>
+                )}
+                <Button variant="ghost" size="sm" className="mt-2" onClick={() => setThumbFix(s => ({ ...s, done: false }))}>
+                  Dismiss
+                </Button>
+              </>
+            )}
+          </div>
+        )}
 
         {/* Filters */}
         <div className="flex flex-col sm:flex-row gap-4 mb-6">
