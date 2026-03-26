@@ -15,7 +15,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { supabase } from "@/integrations/supabase/client";
+import { TeamSection } from "@/components/services/TeamSection";
 import heroImage from "@/assets/services/social-media-management.jpg";
 import fitzImage from "@/assets/case-studies/fitz-sparkling-wine.webp";
 
