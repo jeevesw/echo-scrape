@@ -1,85 +1,86 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { X } from "lucide-react";
 
 interface SpotlightCarouselProps {
   images: { src: string; alt: string }[];
-  bgClass?: string; // "bg-muted" or "bg-background" to match fade edges
+  bgClass?: string;
   interval?: number;
 }
 
 export function SpotlightCarousel({ images, bgClass = "bg-background", interval = 2000 }: SpotlightCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setInterval>>();
 
-  // Auto-rotate
+  const len = images.length;
+
+  // Infinite index helper
+  const getIdx = (offset: number) => ((activeIndex + offset) % len + len) % len;
+
+  // Auto-rotate continuously
   useEffect(() => {
     if (lightboxOpen) return;
-    const timer = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % images.length);
+    timerRef.current = setInterval(() => {
+      setActiveIndex((prev) => prev + 1);
     }, interval);
-    return () => clearInterval(timer);
-  }, [images.length, interval, lightboxOpen]);
+    return () => clearInterval(timerRef.current);
+  }, [interval, lightboxOpen]);
 
   const handleClick = useCallback(() => {
     setLightboxOpen(true);
   }, []);
 
-  // Determine the gradient colour to match background
   const isMuted = bgClass.includes("muted");
   const fadeColor = isMuted
     ? "from-[hsl(var(--muted))]"
     : "from-[hsl(var(--background))]";
 
+  // Show 3 images: left (faded), centre (highlighted), right (faded)
+  const leftIdx = getIdx(-1);
+  const centreIdx = getIdx(0);
+  const rightIdx = getIdx(1);
+
+  const slots = [
+    { idx: leftIdx, position: "left" as const },
+    { idx: centreIdx, position: "centre" as const },
+    { idx: rightIdx, position: "right" as const },
+  ];
+
   return (
     <>
-      {/* Carousel */}
-      <div className="relative w-full overflow-hidden">
+      <div className="relative w-full overflow-hidden cursor-pointer" onClick={handleClick}>
         {/* Fade edges */}
-        <div className={`absolute left-0 top-0 bottom-0 w-24 md:w-40 bg-gradient-to-r ${fadeColor} to-transparent z-10 pointer-events-none`} />
-        <div className={`absolute right-0 top-0 bottom-0 w-24 md:w-40 bg-gradient-to-l ${fadeColor} to-transparent z-10 pointer-events-none`} />
+        <div className={`absolute left-0 top-0 bottom-0 w-12 md:w-20 bg-gradient-to-r ${fadeColor} to-transparent z-10 pointer-events-none`} />
+        <div className={`absolute right-0 top-0 bottom-0 w-12 md:w-20 bg-gradient-to-l ${fadeColor} to-transparent z-10 pointer-events-none`} />
 
-        {/* Images track */}
-        <div
-          className="flex transition-transform duration-700 ease-in-out cursor-pointer"
-          style={{
-            transform: `translateX(calc(-${activeIndex * (100 / images.length)}% + ${50 - 100 / images.length / 2}%))`,
-            width: `${images.length * 33.333}%`,
-          }}
-          onClick={handleClick}
-        >
-          {images.map((img, i) => {
-            const isActive = i === activeIndex;
-            return (
-              <div
-                key={i}
-                className="flex-shrink-0 px-3 transition-all duration-700"
-                style={{ width: `${100 / images.length}%` }}
-              >
-                <div
-                  className={`rounded-2xl overflow-hidden shadow-lg transition-all duration-700 ${
-                    isActive ? "opacity-100 scale-100" : "opacity-40 scale-95"
-                  }`}
-                >
-                  <img
-                    src={img.src}
-                    alt={img.alt}
-                    className="w-full h-auto object-cover"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-            );
-          })}
+        <div className="flex items-center justify-center gap-3 md:gap-4 px-2">
+          {slots.map(({ idx, position }) => (
+            <div
+              key={`${activeIndex}-${position}`}
+              className={`flex-shrink-0 rounded-xl overflow-hidden shadow-lg transition-all duration-700 ${
+                position === "centre"
+                  ? "opacity-100 scale-100 w-[50%] md:w-[45%]"
+                  : "opacity-35 scale-90 w-[28%] md:w-[30%]"
+              }`}
+            >
+              <img
+                src={images[idx].src}
+                alt={images[idx].alt}
+                className="w-full h-auto object-cover"
+                loading="lazy"
+              />
+            </div>
+          ))}
         </div>
 
         {/* Dots */}
-        <div className="flex justify-center gap-2 mt-6">
+        <div className="flex justify-center gap-2 mt-4">
           {images.map((_, i) => (
             <button
               key={i}
               onClick={(e) => { e.stopPropagation(); setActiveIndex(i); }}
               className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                i === activeIndex ? "bg-primary w-6" : "bg-primary/30"
+                getIdx(0) === i ? "bg-primary w-5" : "bg-primary/30"
               }`}
               aria-label={`Go to slide ${i + 1}`}
             />
