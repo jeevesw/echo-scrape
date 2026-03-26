@@ -52,6 +52,7 @@ function createEmptyBlock(type: BlockType): Block {
     case 'embed': return { id, type: 'embed', url: '', caption: '' };
     case 'faq': return { id, type: 'faq', items: [{ question: '', answer: '' }] };
     case 'toc': return { id, type: 'toc', auto: true, label: 'In this article' };
+    case 'newsletter': return { id, type: 'newsletter', heading: '', subheading: '' };
   }
 }
 
