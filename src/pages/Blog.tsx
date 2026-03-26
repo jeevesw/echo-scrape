@@ -8,7 +8,7 @@ import { ArrowRight, ArrowLeft, User, Search, Linkedin, Twitter } from "lucide-r
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
-import { format } from "date-fns";
+
 import { useState, useMemo, useEffect } from "react";
 import { BlockRenderer, type Block } from "@/components/blog/BlockRenderer";
 
