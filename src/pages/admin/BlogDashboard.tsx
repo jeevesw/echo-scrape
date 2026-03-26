@@ -182,12 +182,18 @@ export default function BlogDashboard() {
               Manage and publish your blog content
             </p>
           </div>
-          <Button asChild>
-            <Link to="/admin/blog/new">
-              <Plus className="h-4 w-4 mr-2" />
-              New Post
-            </Link>
-          </Button>
+          <div className="flex gap-2">
+            <Button variant="outline" onClick={handleExport} disabled={isExporting}>
+              <Download className="h-4 w-4 mr-2" />
+              {isExporting ? 'Exporting…' : 'Export'}
+            </Button>
+            <Button asChild>
+              <Link to="/admin/blog/new">
+                <Plus className="h-4 w-4 mr-2" />
+                New Post
+              </Link>
+            </Button>
+          </div>
         </div>
 
         {/* Filters */}
