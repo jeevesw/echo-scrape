@@ -16,6 +16,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { TeamSection } from "@/components/services/TeamSection";
+import { ClientLogoCarousel } from "@/components/home/ClientLogoCarousel";
 import heroImage from "@/assets/services/social-media-management.jpg";
 import fitzImage from "@/assets/case-studies/fitz-sparkling-wine.webp";
 
@@ -66,6 +67,9 @@ const SocialMediaManagementPage = () => {
           { label: "Social Media Management", href: "/services/social-media-management" },
         ]}
       />
+
+      {/* Logo Carousel */}
+      <ClientLogoCarousel />
 
       {/* Summary */}
       <section className="bg-background py-16 lg:py-20">
