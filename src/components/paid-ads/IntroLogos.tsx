@@ -45,7 +45,7 @@ const IntroLogos = () => (
               key={logo.alt}
               src={logo.src}
               alt={logo.alt}
-              className="h-8 md:h-10 opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+              className="h-8 md:h-10 opacity-70 hover:opacity-100 transition-opacity duration-300"
               loading="lazy"
             />
           ))}

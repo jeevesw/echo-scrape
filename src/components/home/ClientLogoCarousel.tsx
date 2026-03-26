@@ -27,6 +27,7 @@ const staticLogos: ClientLogo[] = [
   { src: "/images/clients/searcys.svg", alt: "Searcys", height: "h-8" },
   { src: "/images/clients/vue-cinemas.svg", alt: "Vue Cinemas", height: "h-10" },
   { src: "/images/clients/warner-bros-discovery.svg", alt: "Warner Bros. Discovery", height: "h-8" },
+  { src: "/images/clients/ukhospitality.svg", alt: "UKHospitality", height: "h-10" },
 ];
 
 // Height mapping for known logos
