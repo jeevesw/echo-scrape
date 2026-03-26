@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import { TeamSection } from "@/components/services/TeamSection";
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { ServiceSchema, FAQSchema } from "@/components/seo/SchemaMarkup";
@@ -162,6 +163,9 @@ const PaidSearchPage = () => {
           </div>
         </div>
       </section>
+
+      {/* Meet the Team */}
+      <TeamSection serviceName="Paid Search" />
 
       {/* 8 — FAQs */}
       <section className="py-16 bg-muted">

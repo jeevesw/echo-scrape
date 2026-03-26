@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import { TeamSection } from "@/components/services/TeamSection";
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { ServiceHero } from "@/components/services/ServiceHero";
@@ -374,26 +375,23 @@ const PaidAdvertisingPage = () => {
         </div>
       </section>
 
+      {/* Meet the Team */}
+      <TeamSection serviceName="Paid Advertising" />
+
       {/* 11 — FAQ */}
-      <section className="bg-background py-16 lg:py-24">
+      <section className="py-16 bg-muted">
         <div className="container mx-auto px-4">
-          <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-4">
-            Frequently Asked Questions
-          </h2>
-          <p className="text-muted-foreground text-center mb-12 max-w-xl mx-auto">
-            Everything you need to know about working with Trapeze Media on paid
-            advertising.
-          </p>
+          <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-12">Frequently Asked Questions</h2>
           <div className="max-w-3xl mx-auto">
-            <Accordion type="single" collapsible className="space-y-3">
+            <Accordion type="single" collapsible className="space-y-4">
               {faqs.map((faq, index) => (
                 <AccordionItem
                   key={index}
                   value={`faq-${index}`}
-                  className="bg-muted rounded-xl px-6 border-0"
+                  className="bg-background rounded-xl px-6 border-0"
                 >
-                  <AccordionTrigger className="hover:no-underline text-left py-5 group">
-                    <span className="font-semibold text-foreground transition-colors duration-200 group-hover:text-primary">
+                  <AccordionTrigger className="hover:no-underline text-left py-5">
+                    <span className="heading-display text-foreground text-lg">
                       {faq.question}
                     </span>
                   </AccordionTrigger>

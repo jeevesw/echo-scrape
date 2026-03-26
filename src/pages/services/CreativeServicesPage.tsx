@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import { TeamSection } from "@/components/services/TeamSection";
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { ServiceSchema } from "@/components/seo/SchemaMarkup";
@@ -224,14 +225,17 @@ const CreativeServicesPage = () => {
         </div>
       </section>
 
+      {/* Meet the Team */}
+      <TeamSection serviceName="Creative Services" />
+
       {/* FAQs */}
-      <section className="py-16 bg-background">
+      <section className="py-16 bg-muted">
         <div className="container mx-auto px-4">
           <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-12">Frequently Asked Questions</h2>
           <div className="max-w-3xl mx-auto">
             <Accordion type="single" collapsible className="space-y-4">
               {service.faqs.map((faq, i) => (
-                <AccordionItem key={i} value={`faq-${i}`} className="bg-muted rounded-xl px-6 border-0">
+                <AccordionItem key={i} value={`faq-${i}`} className="bg-background rounded-xl px-6 border-0">
                   <AccordionTrigger className="hover:no-underline text-left py-5">
                     <span className="heading-display text-foreground text-lg">{faq.question}</span>
                   </AccordionTrigger>

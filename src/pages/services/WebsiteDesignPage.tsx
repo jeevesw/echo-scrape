@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import { TeamSection } from "@/components/services/TeamSection";
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { ServiceSchema, FAQSchema } from "@/components/seo/SchemaMarkup";
@@ -185,6 +186,9 @@ const WebsiteDesignPage = () => {
           </div>
         </div>
       </section>
+
+      {/* Meet the Team */}
+      <TeamSection serviceName="Website Design" />
 
       {/* FAQs */}
       <section className="py-16 bg-muted">
