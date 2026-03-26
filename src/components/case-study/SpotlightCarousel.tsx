@@ -19,13 +19,31 @@ export function SpotlightCarousel({ images, bgClass = "bg-background", interval 
   const len = images.length;
   const getIdx = (i: number) => ((i % len) + len) % len;
 
-  // Lock container height after first paint
+  // Lock container height once images have loaded and it has real height
   useEffect(() => {
-    if (containerRef.current && containerHeight === null) {
-      const h = containerRef.current.getBoundingClientRect().height;
-      if (h > 0) setContainerHeight(h);
-    }
-  });
+    if (containerHeight !== null) return;
+    const el = containerRef.current;
+    if (!el) return;
+
+    const measure = () => {
+      const h = el.getBoundingClientRect().height;
+      if (h > 50) setContainerHeight(h);
+    };
+
+    // Try measuring now and also after images load
+    measure();
+    const imgs = el.querySelectorAll('img');
+    imgs.forEach(img => img.addEventListener('load', measure));
+    // Fallback: keep trying for a few seconds
+    const interval = setInterval(measure, 500);
+    const timeout = setTimeout(() => clearInterval(interval), 5000);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeout);
+      imgs.forEach(img => img.removeEventListener('load', measure));
+    };
+  }, [containerHeight]);
 
   // Auto-rotate: increment forever
   useEffect(() => {
@@ -84,7 +102,7 @@ export function SpotlightCarousel({ images, bgClass = "bg-background", interval 
       <div
         ref={containerRef}
         className="relative w-full overflow-hidden cursor-pointer"
-        style={containerHeight ? { height: containerHeight } : undefined}
+        style={containerHeight ? { height: containerHeight } : { minHeight: 200 }}
         onClick={handleClick}
       >
         {/* Fade edges */}
