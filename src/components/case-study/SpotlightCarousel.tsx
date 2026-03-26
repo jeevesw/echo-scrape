@@ -18,32 +18,6 @@ export function SpotlightCarousel({ images, bgClass = "bg-background", interval 
   const len = images.length;
   const getIdx = (i: number) => ((i % len) + len) % len;
 
-  // Lock container height once images have loaded and it has real height
-  useEffect(() => {
-    if (containerHeight !== null) return;
-    const el = containerRef.current;
-    if (!el) return;
-
-    const measure = () => {
-      const h = el.getBoundingClientRect().height;
-      if (h > 50) setContainerHeight(h);
-    };
-
-    // Try measuring now and also after images load
-    measure();
-    const imgs = el.querySelectorAll('img');
-    imgs.forEach(img => img.addEventListener('load', measure));
-    // Fallback: keep trying for a few seconds
-    const interval = setInterval(measure, 500);
-    const timeout = setTimeout(() => clearInterval(interval), 5000);
-
-    return () => {
-      clearInterval(interval);
-      clearTimeout(timeout);
-      imgs.forEach(img => img.removeEventListener('load', measure));
-    };
-  }, [containerHeight]);
-
   // Auto-rotate: increment forever
   useEffect(() => {
     if (lightboxOpen) return;
