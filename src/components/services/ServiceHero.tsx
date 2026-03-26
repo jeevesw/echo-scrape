@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { BreadcrumbNav } from "@/components/ui/breadcrumb-nav";
 
 interface CTA {
   label: string;
@@ -18,6 +19,7 @@ interface ServiceHeroProps {
   variant: "brand-pink" | "dark" | "split";
   visualSlot?: ReactNode;
   backgroundImage?: string;
+  breadcrumbItems?: { label: string; href: string }[];
 }
 
 export function ServiceHero({
@@ -29,6 +31,7 @@ export function ServiceHero({
   variant,
   visualSlot,
   backgroundImage,
+  breadcrumbItems,
 }: ServiceHeroProps) {
   const CtaButton = ({ cta, isPrimary }: { cta: CTA; isPrimary: boolean }) => {
     const btnVariant = isPrimary
@@ -139,6 +142,11 @@ export function ServiceHero({
           />
           <div className="absolute inset-0 bg-primary/60" />
         </>
+      )}
+      {breadcrumbItems && (
+        <div className="relative z-10 container mx-auto px-4 mb-8">
+          <BreadcrumbNav variant="light" items={breadcrumbItems} />
+        </div>
       )}
       <div className="relative z-10 container mx-auto px-4 text-center max-w-4xl">
         {eyebrow && (
