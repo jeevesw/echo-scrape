@@ -12,6 +12,7 @@ import Contact from "./pages/Contact";
 import CaseStudies from "./pages/CaseStudies";
 import YoSushiCaseStudy from "./pages/case-studies/YoSushiCaseStudy";
 import MoloCaseStudy from "./pages/case-studies/MoloCaseStudy";
+import BrightonSeoCaseStudy from "./pages/case-studies/BrightonSeoCaseStudy";
 import VariousEateriesCaseStudy from "./pages/case-studies/VariousEateriesCaseStudy";
 import Blog from "./pages/Blog";
 import Services from "./pages/Services";
