@@ -5,7 +5,8 @@ import { BreadcrumbNav } from "@/components/ui/breadcrumb-nav";
 import { Button } from "@/components/ui/button";
 import { AnimatedStat } from "@/components/case-study/AnimatedStat";
 import { ScrollReveal } from "@/hooks/use-scroll-reveal";
-import { ArrowLeft, Quote } from "lucide-react";
+import { SpotlightCarousel } from "@/components/case-study/SpotlightCarousel";
+import { ArrowLeft, Quote, Target, TrendingUp, Shield, Star, Video, Smartphone } from "lucide-react";
 import { useRef } from "react";
 
 const videoFiles = [
@@ -35,6 +36,15 @@ const gallerySimplicity = [
   { src: "https://images.squarespace-cdn.com/content/v1/5edc691de451f275e3b4ae86/1644280468288-UI902Y7LG1OMRE006V5X/Focus+on+Simplicity+4.png", alt: "Maximiles simplicity creative 4" },
 ];
 
+const successItems = [
+  { icon: Target, text: "Optimised CPL (cost per lead) and CPR (cost per registration) for challenging target demographics" },
+  { icon: TrendingUp, text: "Boosted DOI (double opt-in) sign-ups across all target audiences" },
+  { icon: Shield, text: "Built loyalty in a space that's often perceived as untrustworthy" },
+  { icon: Star, text: "Leveraged TrustPilot reviews to further emphasise Maximiles' legitimacy" },
+  { icon: Video, text: "Created 'interactive' videos for Stories, TikToks, etc. to boost engagement, regularly adjusted based on ad performance" },
+  { icon: Smartphone, text: "Increased mobile app downloads as an added bonus" },
+];
+
 function VideoCard({ src }: { src: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -49,26 +59,6 @@ function VideoCard({ src }: { src: string }) {
         playsInline
         className="w-full h-full object-cover aspect-[9/16]"
       />
-    </div>
-  );
-}
-
-function ImageGallery({ images, columns = 4 }: { images: { src: string; alt: string }[]; columns?: number }) {
-  const colClass = columns === 4 ? "grid-cols-2 md:grid-cols-4" : "grid-cols-2 md:grid-cols-3";
-  return (
-    <div className={`grid ${colClass} gap-4`}>
-      {images.map((img, i) => (
-        <ScrollReveal key={i} delay={i * 100}>
-          <div className="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-            <img
-              src={img.src}
-              alt={img.alt}
-              className="w-full h-auto object-cover"
-              loading="lazy"
-            />
-          </div>
-        </ScrollReveal>
-      ))}
     </div>
   );
 }
@@ -181,32 +171,19 @@ const MaximilesCaseStudy = () => {
           </div>
 
           <ScrollReveal delay={300}>
-            <ul className="max-w-3xl mx-auto space-y-3">
-              <li className="flex items-start gap-3 text-lg text-muted-foreground">
-                <span className="text-primary font-bold mt-1">✓</span>
-                <span>Optimised CPL (cost per lead) and CPR (cost per registration) for challenging target demographics</span>
-              </li>
-              <li className="flex items-start gap-3 text-lg text-muted-foreground">
-                <span className="text-primary font-bold mt-1">✓</span>
-                <span>Boosted DOI (double opt-in) sign-ups across all target audiences</span>
-              </li>
-              <li className="flex items-start gap-3 text-lg text-muted-foreground">
-                <span className="text-primary font-bold mt-1">✓</span>
-                <span>Built loyalty in a space that's often perceived as untrustworthy</span>
-              </li>
-              <li className="flex items-start gap-3 text-lg text-muted-foreground">
-                <span className="text-primary font-bold mt-1">✓</span>
-                <span>Leveraged TrustPilot reviews to further emphasise Maximiles' legitimacy</span>
-              </li>
-              <li className="flex items-start gap-3 text-lg text-muted-foreground">
-                <span className="text-primary font-bold mt-1">✓</span>
-                <span>Created 'interactive' videos for Stories, TikToks, etc. to boost engagement, regularly adjusted based on ad performance</span>
-              </li>
-              <li className="flex items-start gap-3 text-lg text-muted-foreground">
-                <span className="text-primary font-bold mt-1">✓</span>
-                <span>Increased mobile app downloads as an added bonus</span>
-              </li>
-            </ul>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+              {successItems.map((item, i) => {
+                const Icon = item.icon;
+                return (
+                  <div key={i} className="text-center space-y-3">
+                    <div className="flex justify-center">
+                      <Icon className="w-8 h-8 text-primary" />
+                    </div>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{item.text}</p>
+                  </div>
+                );
+              })}
+            </div>
           </ScrollReveal>
         </div>
       </section>
@@ -241,62 +218,53 @@ const MaximilesCaseStudy = () => {
 
       {/* Focus on: Prizes */}
       <section className="py-24 bg-muted">
-        <div className="container-content mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <ScrollReveal animation="left">
-              <div className="space-y-6">
-                <h3 className="heading-display text-2xl md:text-3xl text-primary">Focus on: prizes</h3>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  We put the spotlight on the gifts Maximiles members can exchange their points for, continuously tweaking placements in Stories, TikToks, feed images, and carousels based on which items drove most clicks from each audience.
-                </p>
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal animation="right">
-              <ImageGallery images={galleryPrizes} columns={4} />
-            </ScrollReveal>
-          </div>
+        <div className="container-content mx-auto px-4 mb-12">
+          <ScrollReveal>
+            <div className="text-center space-y-4 max-w-3xl mx-auto">
+              <h3 className="heading-display text-2xl md:text-3xl text-primary">Focus on: prizes</h3>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                We put the spotlight on the gifts Maximiles members can exchange their points for, continuously tweaking placements in Stories, TikToks, feed images, and carousels based on which items drove most clicks from each audience.
+              </p>
+            </div>
+          </ScrollReveal>
         </div>
+        <ScrollReveal>
+          <SpotlightCarousel images={galleryPrizes} bgClass="bg-muted" />
+        </ScrollReveal>
       </section>
 
       {/* Focus on: Legitimacy */}
       <section className="py-24 bg-background">
-        <div className="container-content mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <ScrollReveal animation="left" className="order-2 lg:order-1">
-              <ImageGallery images={galleryTrust} columns={4} />
-            </ScrollReveal>
-
-            <ScrollReveal animation="right" className="order-1 lg:order-2">
-              <div className="space-y-6">
-                <h3 className="heading-display text-2xl md:text-3xl text-primary">Focus on: legitimacy</h3>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  Maximiles has a long history and hundreds of good reviews. We brought both to the forefront, building trust and highlighting how existing members have enjoyed the site — one of many ways we drove more sign-ups.
-                </p>
-              </div>
-            </ScrollReveal>
-          </div>
+        <div className="container-content mx-auto px-4 mb-12">
+          <ScrollReveal>
+            <div className="text-center space-y-4 max-w-3xl mx-auto">
+              <h3 className="heading-display text-2xl md:text-3xl text-primary">Focus on: legitimacy</h3>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Maximiles has a long history and hundreds of good reviews. We brought both to the forefront, building trust and highlighting how existing members have enjoyed the site — one of many ways we drove more sign-ups.
+              </p>
+            </div>
+          </ScrollReveal>
         </div>
+        <ScrollReveal>
+          <SpotlightCarousel images={galleryTrust} bgClass="bg-background" />
+        </ScrollReveal>
       </section>
 
       {/* Focus on: Ease of Use */}
       <section className="py-24 bg-muted">
-        <div className="container-content mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <ScrollReveal animation="left">
-              <div className="space-y-6">
-                <h3 className="heading-display text-2xl md:text-3xl text-primary">Focus on: ease of use</h3>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  By noting how frictionlessly Maximiles can fit into all the little pockets of time throughout a member's day, we boosted double opt-in sign-ups from a younger demographic who we found engage more with simpler customer acquisition journeys.
-                </p>
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal animation="right">
-              <ImageGallery images={gallerySimplicity} columns={4} />
-            </ScrollReveal>
-          </div>
+        <div className="container-content mx-auto px-4 mb-12">
+          <ScrollReveal>
+            <div className="text-center space-y-4 max-w-3xl mx-auto">
+              <h3 className="heading-display text-2xl md:text-3xl text-primary">Focus on: ease of use</h3>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                By noting how frictionlessly Maximiles can fit into all the little pockets of time throughout a member's day, we boosted double opt-in sign-ups from a younger demographic who we found engage more with simpler customer acquisition journeys.
+              </p>
+            </div>
+          </ScrollReveal>
         </div>
+        <ScrollReveal>
+          <SpotlightCarousel images={gallerySimplicity} bgClass="bg-muted" />
+        </ScrollReveal>
       </section>
 
       {/* Testimonial */}
