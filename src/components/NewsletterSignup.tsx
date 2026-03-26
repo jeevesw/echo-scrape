@@ -10,10 +10,12 @@ interface NewsletterSignupProps {
 }
 
 export default function NewsletterSignup({
-  heading = "Stay in the Loop",
-  subheading = "Industry news and digital marketing insights, straight to your inbox.",
+  heading = "The latest insights on the digital landscape, direct to your inbox",
+  subheading = "Ad industry trends, social media headlines, and digital marketing guides and insights, direct from the Trapeze Media team.",
 }: NewsletterSignupProps) {
   const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -26,7 +28,7 @@ export default function NewsletterSignup({
     try {
       const { data, error: fnError } = await supabase.functions.invoke(
         "mailchimp-subscribe",
-        { body: { email } }
+        { body: { email, firstName } }
       );
 
       if (fnError) throw fnError;
@@ -51,61 +53,62 @@ export default function NewsletterSignup({
 
       <div className="container-content mx-auto px-4 max-w-2xl text-center relative">
         <ScrollReveal>
-          <h2 className="heading-display text-4xl md:text-5xl text-foreground mb-4">
-            {heading}
-          </h2>
-          <p className="text-muted-foreground mb-8 text-lg">{subheading}</p>
-        </ScrollReveal>
+          <div className="border-2 border-primary rounded-2xl p-8 md:p-10">
+            <h2 className="heading-display text-3xl md:text-4xl text-foreground mb-4">
+              {heading}
+            </h2>
+            <p className="text-muted-foreground mb-8 text-lg">{subheading}</p>
 
-        <ScrollReveal delay={100}>
-          {success ? (
-            <p className="text-lg font-semibold text-primary">
-              You're in. Talk soon.
+            {success ? (
+              <p className="text-lg font-semibold text-primary">
+                You're in. Talk soon.
+              </p>
+            ) : (
+              <div className="space-y-4">
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <Input
+                    type="text"
+                    placeholder="First Name"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    className="bg-muted border-0 h-12 rounded-xl focus:ring-2 focus:ring-primary transition-all"
+                  />
+                  <Input
+                    type="text"
+                    placeholder="Last Name"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    className="bg-muted border-0 h-12 rounded-xl focus:ring-2 focus:ring-primary transition-all"
+                  />
+                </div>
+                <Input
+                  type="email"
+                  placeholder="Email Address"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    setError(null);
+                  }}
+                  className="bg-muted border-0 h-12 rounded-xl focus:ring-2 focus:ring-primary transition-all"
+                />
+                {error && (
+                  <p className="text-sm text-destructive">{error}</p>
+                )}
+                <Button
+                  variant="hero"
+                  className="w-full sm:w-auto"
+                  onClick={handleSubmit}
+                  disabled={loading || !email}
+                >
+                  {loading ? "Subscribing…" : "Subscribe"}
+                </Button>
+              </div>
+            )}
+
+            <p className="mt-6 text-sm text-foreground/60">
+              Our emails are sent no more than four times each month. We respect your privacy.
             </p>
-          ) : (
-            <div className="space-y-4">
-              <Input
-                type="email"
-                placeholder="Email Address"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                  setError(null);
-                }}
-                className="bg-muted border-0 h-12 rounded-xl focus:ring-2 focus:ring-primary transition-all"
-              />
-              {error && (
-                <p className="text-sm text-destructive">{error}</p>
-              )}
-              <Button
-                variant="hero"
-                className="w-full sm:w-auto"
-                onClick={handleSubmit}
-                disabled={loading || !email}
-              >
-                {loading ? "Subscribing…" : "Subscribe"}
-              </Button>
-            </div>
-          )}
-        </ScrollReveal>
-
-        <ScrollReveal delay={200}>
-          <p className="mt-8 text-sm text-muted-foreground">
-            Until our next email arrives in your inbox, you can find our previous guides and insights{" "}
-            <a href="/blog" className="text-primary hover:underline font-medium">
-              on our blog
-            </a>{" "}
-            and{" "}
-            <a
-              href="https://www.instagram.com/trapezemedia"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:underline font-medium"
-            >
-              on our Instagram feed
-            </a>
-            .
-          </p>
+          </div>
         </ScrollReveal>
       </div>
     </section>
