@@ -21,7 +21,7 @@ export function SpotlightCarousel({ images, bgClass = "bg-background", interval 
 
   // Auto-rotate
   useEffect(() => {
-    if (lightboxOpen) return;
+    if (lightboxOpen || isHovered) return;
     const timer = setInterval(() => {
       setCurrentIndex((prev) => prev + 1);
       setIsTransitioning(true);
