@@ -6,6 +6,7 @@ import { servicesData } from "@/data/servicesData";
 import { ServiceHero } from "@/components/services/ServiceHero";
 import { ClientLogoStrip } from "@/components/services/ClientLogoStrip";
 import { InlineCaseStudy } from "@/components/services/InlineCaseStudy";
+import michaelEmmettBg from "@/assets/services/michael-emmett-tiktok.webp";
 import { TestimonialBlock } from "@/components/services/TestimonialBlock";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
