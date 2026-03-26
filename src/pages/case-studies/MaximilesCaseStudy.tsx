@@ -218,62 +218,53 @@ const MaximilesCaseStudy = () => {
 
       {/* Focus on: Prizes */}
       <section className="py-24 bg-muted">
-        <div className="container-content mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <ScrollReveal animation="left">
-              <div className="space-y-6">
-                <h3 className="heading-display text-2xl md:text-3xl text-primary">Focus on: prizes</h3>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  We put the spotlight on the gifts Maximiles members can exchange their points for, continuously tweaking placements in Stories, TikToks, feed images, and carousels based on which items drove most clicks from each audience.
-                </p>
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal animation="right">
-              <ImageGallery images={galleryPrizes} columns={4} />
-            </ScrollReveal>
-          </div>
+        <div className="container-content mx-auto px-4 mb-12">
+          <ScrollReveal>
+            <div className="text-center space-y-4 max-w-3xl mx-auto">
+              <h3 className="heading-display text-2xl md:text-3xl text-primary">Focus on: prizes</h3>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                We put the spotlight on the gifts Maximiles members can exchange their points for, continuously tweaking placements in Stories, TikToks, feed images, and carousels based on which items drove most clicks from each audience.
+              </p>
+            </div>
+          </ScrollReveal>
         </div>
+        <ScrollReveal>
+          <SpotlightCarousel images={galleryPrizes} bgClass="bg-muted" />
+        </ScrollReveal>
       </section>
 
       {/* Focus on: Legitimacy */}
       <section className="py-24 bg-background">
-        <div className="container-content mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <ScrollReveal animation="left" className="order-2 lg:order-1">
-              <ImageGallery images={galleryTrust} columns={4} />
-            </ScrollReveal>
-
-            <ScrollReveal animation="right" className="order-1 lg:order-2">
-              <div className="space-y-6">
-                <h3 className="heading-display text-2xl md:text-3xl text-primary">Focus on: legitimacy</h3>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  Maximiles has a long history and hundreds of good reviews. We brought both to the forefront, building trust and highlighting how existing members have enjoyed the site — one of many ways we drove more sign-ups.
-                </p>
-              </div>
-            </ScrollReveal>
-          </div>
+        <div className="container-content mx-auto px-4 mb-12">
+          <ScrollReveal>
+            <div className="text-center space-y-4 max-w-3xl mx-auto">
+              <h3 className="heading-display text-2xl md:text-3xl text-primary">Focus on: legitimacy</h3>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Maximiles has a long history and hundreds of good reviews. We brought both to the forefront, building trust and highlighting how existing members have enjoyed the site — one of many ways we drove more sign-ups.
+              </p>
+            </div>
+          </ScrollReveal>
         </div>
+        <ScrollReveal>
+          <SpotlightCarousel images={galleryTrust} bgClass="bg-background" />
+        </ScrollReveal>
       </section>
 
       {/* Focus on: Ease of Use */}
       <section className="py-24 bg-muted">
-        <div className="container-content mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <ScrollReveal animation="left">
-              <div className="space-y-6">
-                <h3 className="heading-display text-2xl md:text-3xl text-primary">Focus on: ease of use</h3>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  By noting how frictionlessly Maximiles can fit into all the little pockets of time throughout a member's day, we boosted double opt-in sign-ups from a younger demographic who we found engage more with simpler customer acquisition journeys.
-                </p>
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal animation="right">
-              <ImageGallery images={gallerySimplicity} columns={4} />
-            </ScrollReveal>
-          </div>
+        <div className="container-content mx-auto px-4 mb-12">
+          <ScrollReveal>
+            <div className="text-center space-y-4 max-w-3xl mx-auto">
+              <h3 className="heading-display text-2xl md:text-3xl text-primary">Focus on: ease of use</h3>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                By noting how frictionlessly Maximiles can fit into all the little pockets of time throughout a member's day, we boosted double opt-in sign-ups from a younger demographic who we found engage more with simpler customer acquisition journeys.
+              </p>
+            </div>
+          </ScrollReveal>
         </div>
+        <ScrollReveal>
+          <SpotlightCarousel images={gallerySimplicity} bgClass="bg-muted" />
+        </ScrollReveal>
       </section>
 
       {/* Testimonial */}
