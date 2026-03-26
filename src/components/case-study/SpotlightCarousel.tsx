@@ -146,6 +146,15 @@ export function SpotlightCarousel({ images, bgClass = "bg-background", interval 
             />
           ))}
         </div>
+
+        {/* Expand icon */}
+        <button
+          onClick={(e) => { e.stopPropagation(); setLightboxOpen(true); }}
+          className="flex items-center justify-center mx-auto mt-2 text-muted-foreground/50 hover:text-primary transition-colors"
+          aria-label="View all images"
+        >
+          <Maximize2 className="w-4 h-4" />
+        </button>
       </div>
 
       {/* Lightbox — portalled to document.body, 4×1 row */}
