@@ -43,9 +43,17 @@ function VideoCard({ src }: { src: string }) {
   );
 }
 
-function ParallaxPill({ children, speed = 1 }: { children: React.ReactNode; speed?: number }) {
+function ParallaxPill({
+  children,
+  speed = 1,
+  baseOffset = 0,
+}: {
+  children: React.ReactNode;
+  speed?: number;
+  baseOffset?: number;
+}) {
   const ref = useRef<HTMLSpanElement>(null);
-  const [offset, setOffset] = useState(0);
+  const [offset, setOffset] = useState(baseOffset);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,13 +62,13 @@ function ParallaxPill({ children, speed = 1 }: { children: React.ReactNode; spee
       const windowCenter = window.innerHeight / 2;
       const elementCenter = rect.top + rect.height / 2;
       const distance = (elementCenter - windowCenter) / window.innerHeight;
-      setOffset(distance * 30 * speed);
+      setOffset(baseOffset + distance * 24 * speed);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [speed]);
+  }, [baseOffset, speed]);
 
   return (
     <span
@@ -75,6 +83,12 @@ function ParallaxPill({ children, speed = 1 }: { children: React.ReactNode; spee
 
 const BrightonSeoCaseStudy = () => {
   const videoBaseUrl = `${SUPABASE_URL}/storage/v1/object/public/videos`;
+  const desktopVideoPairs = [
+    [videoFiles[0], videoFiles[3]],
+    [videoFiles[1], videoFiles[4]],
+    [videoFiles[2], videoFiles[5]],
+  ];
+  const desktopPairOffsets = [0, 16, -16];
 
   return (
     <Layout>
@@ -110,8 +124,8 @@ const BrightonSeoCaseStudy = () => {
           {/* First two pills */}
           <ScrollReveal animation="up" delay={200}>
             <div className="flex flex-wrap justify-center gap-3 mt-6 mb-8">
-              <ParallaxPill speed={0.8}>Trend-driven, social-ready videos</ParallaxPill>
-              <ParallaxPill speed={-0.6}>Informed by client brand pillars</ParallaxPill>
+              <ParallaxPill speed={1} baseOffset={-6}>Trend-driven, social-ready videos</ParallaxPill>
+              <ParallaxPill speed={1} baseOffset={8}>Informed by client brand pillars</ParallaxPill>
             </div>
           </ScrollReveal>
         </div>
@@ -121,7 +135,7 @@ const BrightonSeoCaseStudy = () => {
       <section className="py-8 md:py-12 bg-background">
         <div className="max-w-6xl mx-auto px-4">
           <ScrollReveal>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+            <div className="grid grid-cols-2 gap-6 md:hidden">
               {videoFiles.map((file, i) => {
                 const offsets = [0, 16, -10, 10, -16, 6];
                 return (
@@ -134,14 +148,28 @@ const BrightonSeoCaseStudy = () => {
                 );
               })}
             </div>
+
+            <div className="hidden md:grid md:grid-cols-3 md:gap-8 md:items-start">
+              {desktopVideoPairs.map((pair, pairIndex) => (
+                <div
+                  key={pair.join("-")}
+                  className="flex flex-col gap-8"
+                  style={{ marginTop: `${Math.max(desktopPairOffsets[pairIndex], 0)}px`, marginBottom: `${Math.max(-desktopPairOffsets[pairIndex], 0)}px` }}
+                >
+                  {pair.map((file) => (
+                    <VideoCard key={file} src={`${videoBaseUrl}/${file}`} />
+                  ))}
+                </div>
+              ))}
+            </div>
           </ScrollReveal>
 
           {/* Last three pills */}
           <ScrollReveal animation="up" delay={200}>
             <div className="flex flex-wrap justify-center gap-3 mt-12">
-              <ParallaxPill speed={0.7}>Produced 100 videos</ParallaxPill>
-              <ParallaxPill speed={-0.5}>Planned over 2 months</ParallaxPill>
-              <ParallaxPill speed={0.9}>Shot in 2 days</ParallaxPill>
+              <ParallaxPill speed={1} baseOffset={4}>Produced 100 videos</ParallaxPill>
+              <ParallaxPill speed={1} baseOffset={-10}>Planned over 2 months</ParallaxPill>
+              <ParallaxPill speed={1} baseOffset={10}>Shot in 2 days</ParallaxPill>
             </div>
           </ScrollReveal>
         </div>
