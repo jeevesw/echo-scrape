@@ -33,7 +33,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
-import { Plus, Search, Pencil, Trash2, Eye, ArrowUpDown } from 'lucide-react';
+import { Plus, Search, Pencil, Trash2, Eye, ArrowUpDown, Download } from 'lucide-react';
 import { format } from 'date-fns';
 import { toast } from 'sonner';
 
