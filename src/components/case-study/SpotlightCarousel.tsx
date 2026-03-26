@@ -33,20 +33,24 @@ export function SpotlightCarousel({ images, bgClass = "bg-background", interval 
     const track = trackRef.current;
     if (!track) return;
 
-    const onEnd = () => {
+    const onEnd = (e: TransitionEvent) => {
+      // Only react to the track's own transform transition
+      if (e.target !== track || e.propertyName !== "transform") return;
       setIsTransitioning(false);
-      // If we've gone far enough, silently jump back
       setCurrentIndex((prev) => {
         if (prev >= len) {
-          // Disable transition, jump back by len
+          // Kill ALL transitions (track + children) for instant jump
           track.style.transition = "none";
+          const items = track.querySelectorAll<HTMLElement>("[data-carousel-item]");
+          items.forEach((el) => (el.style.transition = "none"));
+
           const newIdx = prev - len;
-          // Force reflow so the jump is instant
           requestAnimationFrame(() => {
             // eslint-disable-next-line @typescript-eslint/no-unused-expressions
             track.offsetHeight; // force reflow
             requestAnimationFrame(() => {
               track.style.transition = "";
+              items.forEach((el) => (el.style.transition = ""));
             });
           });
           return newIdx;
