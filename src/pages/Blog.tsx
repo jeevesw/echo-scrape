@@ -199,10 +199,6 @@ const BlogList = () => {
     setVisibleCount(INITIAL_POSTS);
   };
 
-  const handleSortChange = (value: 'newest' | 'oldest') => {
-    setSortOrder(value);
-    setVisibleCount(INITIAL_POSTS);
-  };
 
   if (isLoading) {
     return (
