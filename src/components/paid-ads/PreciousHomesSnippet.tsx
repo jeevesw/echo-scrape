@@ -44,7 +44,7 @@ const PreciousHomesSnippet = () => (
           ))}
         </div>
 
-        <p className="text-muted-foreground text-base mb-6">
+        <p className="text-muted-foreground text-lg mb-6">
           Precious (formerly Precious Homes), one of the UK's leading care homes, approached us to help with recruitment after the COVID-19 pandemic, when staffing was a huge struggle for them. Our paid social ads boosted new hires while driving down costs-per-lead.
         </p>
       </div>

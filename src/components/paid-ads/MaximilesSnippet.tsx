@@ -56,7 +56,7 @@ const MaximilesSnippet = () => (
               </p>
             </div>
 
-            <Button variant="hero-outline" size="sm" asChild>
+            <Button variant="hero" asChild>
               <Link to="/case-studies/maximiles">
                 Read the Full Case Study <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
