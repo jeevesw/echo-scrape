@@ -119,7 +119,7 @@ const VariousEateriesCaseStudy = () => {
             <div className="grid md:grid-cols-3 gap-12 md:gap-8">
               <ScrollReveal delay={0}>
                 <AnimatedStat 
-                  value={88} 
+                  value={85} 
                   suffix="%" 
                   label="increase in table bookings through Google Ads" 
                   delay={0}
@@ -128,18 +128,19 @@ const VariousEateriesCaseStudy = () => {
               
               <ScrollReveal delay={150}>
                 <AnimatedStat 
-                  value={12} 
-                  suffix="x" 
-                  label="ROAS (average revenue for every £1 spent)" 
+                  value={13} 
+                  suffix=":1" 
+                  label="ROAS (average £13 made for every £1 spent)" 
                   delay={150}
+                  formatValue={(v) => `${v}`}
                 />
               </ScrollReveal>
               
               <ScrollReveal delay={300}>
                 <AnimatedStat 
-                  value={88} 
+                  value={68} 
                   suffix="%" 
-                  label="lower CPA (cost per click to book)" 
+                  label="average lower CPA (cost per clicks to book)" 
                   delay={300}
                 />
               </ScrollReveal>
