@@ -177,6 +177,12 @@ export default function BlogEditor() {
   useEffect(() => {
     if (post) {
       const categoriesChanged = JSON.stringify([...selectedCategories].sort()) !== JSON.stringify([...initialCategories].sort());
+      const initialBlocks = Array.isArray(post.blocks)
+        ? (post.blocks as Block[])
+        : typeof post.blocks === 'string'
+          ? JSON.parse(post.blocks as string)
+          : [];
+      const blocksChanged = JSON.stringify(blocks) !== JSON.stringify(initialBlocks);
       const changed = 
         title !== post.title ||
         slug !== post.slug ||
@@ -185,12 +191,13 @@ export default function BlogEditor() {
         featuredImage !== post.featured_image ||
         author !== post.author ||
         isPublished !== post.is_published ||
-        categoriesChanged;
+        categoriesChanged ||
+        blocksChanged;
       setHasChanges(changed);
     } else if (isNew) {
-      setHasChanges(!!title || !!content || selectedCategories.length > 0);
+      setHasChanges(!!title || !!content || blocks.length > 0 || selectedCategories.length > 0);
     }
-  }, [title, slug, excerpt, content, featuredImage, author, isPublished, post, isNew, selectedCategories, initialCategories]);
+  }, [title, slug, excerpt, content, featuredImage, author, isPublished, post, isNew, selectedCategories, initialCategories, blocks]);
 
   // Save mutation
   const saveMutation = useMutation({
