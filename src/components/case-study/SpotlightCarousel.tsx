@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from "react";
+import { createPortal } from "react-dom";
 import { X } from "lucide-react";
 
 interface SpotlightCarouselProps {
@@ -8,15 +9,17 @@ interface SpotlightCarouselProps {
 }
 
 export function SpotlightCarousel({ images, bgClass = "bg-background", interval = 2000 }: SpotlightCarouselProps) {
+  // currentIndex increments forever — never resets — to avoid snap-back
   const [currentIndex, setCurrentIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [containerHeight, setContainerHeight] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
 
   const len = images.length;
   const getIdx = (i: number) => ((i % len) + len) % len;
 
-  // Measure max height on mount and lock it
+  // Lock container height after first paint
   useEffect(() => {
     if (containerRef.current && containerHeight === null) {
       const h = containerRef.current.getBoundingClientRect().height;
@@ -24,7 +27,7 @@ export function SpotlightCarousel({ images, bgClass = "bg-background", interval 
     }
   });
 
-  // Auto-rotate
+  // Auto-rotate: increment forever
   useEffect(() => {
     if (lightboxOpen) return;
     const timer = setInterval(() => {
@@ -33,6 +36,27 @@ export function SpotlightCarousel({ images, bgClass = "bg-background", interval 
     return () => clearInterval(timer);
   }, [interval, lightboxOpen]);
 
+  // After each transition completes, silently reset index to avoid
+  // the extended array growing too large. We jump back by `len` without animation.
+  useEffect(() => {
+    if (currentIndex < len * 2) return; // only reset when we've gone past 2nd copy
+    const timeout = setTimeout(() => {
+      if (trackRef.current) {
+        trackRef.current.style.transition = "none";
+        setCurrentIndex((prev) => prev - len);
+        // Re-enable transition on next frame
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            if (trackRef.current) {
+              trackRef.current.style.transition = "";
+            }
+          });
+        });
+      }
+    }, 750); // after slide animation (700ms) completes
+    return () => clearTimeout(timeout);
+  }, [currentIndex, len]);
+
   const handleClick = useCallback(() => setLightboxOpen(true), []);
 
   const isMuted = bgClass.includes("muted");
@@ -40,21 +64,20 @@ export function SpotlightCarousel({ images, bgClass = "bg-background", interval 
     ? "from-[hsl(var(--muted))]"
     : "from-[hsl(var(--background))]";
 
-  // Build an extended array: we render enough copies to allow smooth infinite scroll.
-  // We show 3 at a time. Track has many items, we translate to keep current centre visible.
-  // To create infinite illusion: render 3 copies of the array side by side.
-  const extendedImages = [...images, ...images, ...images];
+  // Render 5 copies of the array to have enough runway for smooth infinite scroll
+  const copies = 5;
+  const extendedImages = Array.from({ length: copies }, () => images).flat();
   const totalExtended = extendedImages.length;
-  
-  // The "real" centre in the extended array — offset by len so we start in the middle copy
-  const extendedIndex = len + (currentIndex % len);
-  
-  // Each item width as percentage of container
-  const itemWidthPercent = 33.333;
-  // Track width
-  const trackWidthPercent = totalExtended * itemWidthPercent;
-  // Translate to centre the active item (put it at position 1 of the visible 3)
-  const translatePercent = -((extendedIndex - 1) * itemWidthPercent);
+
+  // Centre index in the extended array — start in 2nd copy
+  const extendedIndex = len * 2 + getIdx(currentIndex);
+  // But since currentIndex can be large, we use it directly offset into the extended array
+  const trackIndex = currentIndex + len; // offset so we start in the middle of the 5 copies
+
+  // Each item is 1/3 of container width
+  const itemFraction = 1 / 3;
+  // Translate so the active item is centred (at position index 1 of 3 visible)
+  const translateFraction = -(trackIndex - 1) * itemFraction;
 
   return (
     <>
@@ -70,15 +93,15 @@ export function SpotlightCarousel({ images, bgClass = "bg-background", interval 
 
         {/* Sliding track */}
         <div
+          ref={trackRef}
           className="flex items-center transition-transform duration-700 ease-in-out"
           style={{
-            width: `${trackWidthPercent}%`,
-            transform: `translateX(${translatePercent / (totalExtended / 3)}%)`,
+            width: `${(totalExtended / 3) * 100}%`,
+            transform: `translateX(${translateFraction / (totalExtended / 3) * 100}%)`,
           }}
         >
           {extendedImages.map((img, i) => {
-            const distFromCentre = Math.abs(i - extendedIndex);
-            const isCentre = distFromCentre === 0;
+            const isCentre = i === trackIndex;
 
             return (
               <div
@@ -120,16 +143,14 @@ export function SpotlightCarousel({ images, bgClass = "bg-background", interval 
         </div>
       </div>
 
-      {/* Full-page lightbox overlay */}
-      {lightboxOpen && (
+      {/* Lightbox — portalled to document.body so it's truly full-page */}
+      {lightboxOpen && createPortal(
         <div
           className="fixed inset-0 z-[9999] flex items-center justify-center p-6 md:p-12 animate-fade-in"
           onClick={() => setLightboxOpen(false)}
         >
-          {/* Dark translucent backdrop */}
           <div className="absolute inset-0 bg-black/75 backdrop-blur-sm" />
 
-          {/* Close button */}
           <button
             onClick={() => setLightboxOpen(false)}
             className="absolute top-6 right-6 z-10 text-white/80 hover:text-white transition-colors"
@@ -138,22 +159,18 @@ export function SpotlightCarousel({ images, bgClass = "bg-background", interval 
             <X className="w-8 h-8" />
           </button>
 
-          {/* Image grid */}
           <div
             className="relative z-10 grid grid-cols-2 gap-4 md:gap-6 max-w-4xl w-full max-h-[85vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             {images.map((img, i) => (
               <div key={i} className="rounded-xl overflow-hidden shadow-2xl">
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  className="w-full h-auto object-cover"
-                />
+                <img src={img.src} alt={img.alt} className="w-full h-auto object-cover" />
               </div>
             ))}
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );
