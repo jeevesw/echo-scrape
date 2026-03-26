@@ -2,13 +2,14 @@ import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Megaphone, Target, Mail, Palette } from "lucide-react";
 import { ScrollReveal } from "@/hooks/use-scroll-reveal";
+import socialMediaImg from "@/assets/services/social-media-management.jpg";
 
 const services = [
   {
     title: "Social Media Management",
     icon: Megaphone,
     href: "/services/social-media-management",
-    image: "/assets/services/social-media-management.jpg",
+    image: socialMediaImg,
   },
   {
     title: "Paid Advertising",
