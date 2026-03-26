@@ -174,33 +174,36 @@ const VariousEateriesCaseStudy = () => {
 
             <ScrollReveal animation="right" className="xl:col-span-1">
               <div className="grid grid-cols-1 gap-8">
-                <div className="text-center p-6 bg-muted rounded-2xl">
+                <div className="text-center p-4 bg-muted rounded-2xl">
                   <AnimatedStat 
                     value={91} 
                     prefix="+" 
                     suffix="%" 
                     label="venue visits" 
                     delay={0}
+                    size="compact"
                   />
                 </div>
                 
-                <div className="text-center p-6 bg-muted rounded-2xl">
+                <div className="text-center p-4 bg-muted rounded-2xl">
                   <AnimatedStat 
-                    value={92} 
+                    value={62} 
                     prefix="-" 
                     suffix="%" 
                     label="cost-per-visit" 
                     delay={150}
+                    size="compact"
                   />
                 </div>
                 
-                <div className="text-center p-6 bg-muted rounded-2xl">
+                <div className="text-center p-4 bg-muted rounded-2xl">
                   <AnimatedStat 
-                    value={145} 
+                    value={45} 
                     prefix="+" 
                     suffix="%" 
                     label="revenue from venue visits" 
                     delay={300}
+                    size="compact"
                   />
                 </div>
               </div>
