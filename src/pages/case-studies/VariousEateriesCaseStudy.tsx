@@ -20,29 +20,53 @@ const VariousEateriesCaseStudy = () => {
         <link rel="canonical" href="https://trapezemedia.com/case-studies/various-eateries" />
       </Helmet>
 
-      {/* Hero Section - Full bleed with dramatic headline */}
-      <section className="relative min-h-[50vh] max-h-[75vh] flex items-center justify-center overflow-hidden bg-primary">
+      {/* Hero Section - Phone mockup cropped at bottom edge */}
+      <section className="relative h-[65vh] max-h-[75vh] min-h-[420px] overflow-hidden bg-primary">
         {/* Background gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-primary/80" />
 
-        <div className="container-content mx-auto px-4 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <ScrollReveal animation="left">
-              <span className="heading-display text-primary-foreground/80 text-lg md:text-xl uppercase tracking-wider mb-4 block">
-                Case Study: Google Pay-Per-Click Ads
-              </span>
-              <h1 className="heading-display text-4xl md:text-5xl lg:text-6xl text-primary-foreground leading-tight">
-                Driving Restaurant Visits and Bookings
-              </h1>
-            </ScrollReveal>
-            
-            <ScrollReveal animation="right" className="absolute right-0 top-1/2 -translate-y-1/2 hidden lg:block">
+        <div className="container-content mx-auto px-4 relative z-10 h-full">
+          {/* Desktop: two-column layout */}
+          <div className="grid md:grid-cols-[55%_45%] h-full">
+            {/* Left column — text, vertically centred */}
+            <div className="flex items-center">
+              <ScrollReveal animation="left">
+                <span className="heading-display text-primary-foreground/80 text-lg md:text-xl uppercase tracking-wider mb-4 block">
+                  Case Study: Google Pay-Per-Click Ads
+                </span>
+                <h1 className="heading-display text-3xl md:text-5xl lg:text-6xl text-primary-foreground leading-tight">
+                  Driving Restaurant Visits and Bookings
+                </h1>
+              </ScrollReveal>
+            </div>
+
+            {/* Right column — phone frame, anchored to bottom */}
+            <div className="relative hidden md:block">
+              <div 
+                className="absolute bottom-0 right-0 w-[320px] lg:w-[360px]"
+                style={{ transform: 'rotate(6deg)', transformOrigin: 'bottom center' }}
+              >
+                <img
+                  src="/images/various-eateries-hero.png"
+                  alt="Coppa Club Google Ads campaign on mobile"
+                  className="w-full h-auto block"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile: phone centred below text, same crop effect */}
+          <div className="md:hidden flex justify-center mt-6">
+            <div 
+              className="w-[260px]"
+              style={{ transform: 'rotate(6deg)', transformOrigin: 'bottom center' }}
+            >
               <img
                 src="/images/various-eateries-hero.png"
                 alt="Coppa Club Google Ads campaign on mobile"
-                className="w-auto max-w-none h-[60vh] object-contain object-right"
+                className="w-full h-auto block"
               />
-            </ScrollReveal>
+            </div>
           </div>
         </div>
       </section>
