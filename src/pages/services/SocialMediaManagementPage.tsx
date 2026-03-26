@@ -148,7 +148,7 @@ const SocialMediaManagementPage = () => {
       />
 
       {/* Summary */}
-      <section className="bg-muted py-16 lg:py-20">
+      <section className="bg-background py-16 lg:py-20">
         <div className="container mx-auto px-4 flex justify-center">
           <div className="max-w-4xl">
             <p className="text-xl md:text-2xl text-foreground leading-relaxed">{service.summary}</p>
