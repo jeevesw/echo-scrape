@@ -186,15 +186,8 @@ const BlogList = () => {
       );
     }
     
-    // Sort
-    result.sort((a, b) => {
-      const dateA = new Date(a.published_at).getTime();
-      const dateB = new Date(b.published_at).getTime();
-      return sortOrder === 'newest' ? dateB - dateA : dateA - dateB;
-    });
-    
     return result;
-  }, [posts, searchQuery, sortOrder, selectedCategory, categories]);
+  }, [posts, searchQuery, selectedCategory, categories]);
 
   // Visible posts (load more)
   const visiblePosts = filteredPosts.slice(0, visibleCount);
