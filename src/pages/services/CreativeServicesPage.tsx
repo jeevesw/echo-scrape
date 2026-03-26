@@ -4,6 +4,7 @@ import { Layout } from "@/components/layout/Layout";
 import { ServiceSchema } from "@/components/seo/SchemaMarkup";
 import { servicesData } from "@/data/servicesData";
 import { ServiceHero } from "@/components/services/ServiceHero";
+import creativeHero from "@/assets/services/creative-services-hero.webp";
 import { SubServiceHero } from "@/components/services/SubServiceHero";
 import { GalleryRow } from "@/components/services/GalleryRow";
 import { ClientLogoStrip } from "@/components/services/ClientLogoStrip";
