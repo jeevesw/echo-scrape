@@ -1,8 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
-import paidAdsHero from "@/assets/services/paid-ads-hero.webp";
-import { BreadcrumbNav } from "@/components/ui/breadcrumb-nav";
+import { ServiceHero } from "@/components/services/ServiceHero";
 import { Button } from "@/components/ui/button";
 import {
   Accordion,
@@ -21,6 +20,7 @@ import IntroLogos from "@/components/paid-ads/IntroLogos";
 import MyceliaCallout from "@/components/paid-ads/MyceliaCallout";
 import MaximilesSnippet from "@/components/paid-ads/MaximilesSnippet";
 import HyperlocalMethodology from "@/components/paid-ads/HyperlocalMethodology";
+import paidAdsHero from "@/assets/services/paid-ads-hero.webp";
 
 const faqs = [
   {
@@ -101,7 +101,7 @@ const platforms = [
     imageLabel:
       "Image: Google Search or Performance Max — e.g. a laptop or phone showing a Google search results page with an ad, or a Google Ads dashboard screenshot.",
     description:
-      "Capture demand from people already searching for what you offer. From branded search protection to local intent queries like \\\"restaurants near me\\\", we make sure your brand shows up at the exact moment someone is ready to act.",
+      "Capture demand from people already searching for what you offer. From branded search protection to local intent queries like \"restaurants near me\", we make sure your brand shows up at the exact moment someone is ready to act.",
   },
   {
     icon: Video,
@@ -193,62 +193,39 @@ const PaidAdvertisingPage = () => {
       </Helmet>
 
       {/* 1 — HERO */}
-      <section className="bg-background overflow-hidden">
-        <div className="grid lg:grid-cols-[55%_45%] min-h-[50vh] max-h-[75vh]">
-          <div className="relative flex items-center py-16 lg:py-24 px-6 md:px-12 lg:pl-[max(2rem,calc((100vw-80rem)/2+2rem))] lg:pr-12">
-            <div className="relative z-10 max-w-xl">
-              <BreadcrumbNav
-                items={[
-                  { label: "Services", href: "/services" },
-                  {
-                    label: "Paid Advertising",
-                    href: "/services/paid-advertising",
-                  },
-                ]}
-              />
-              <h1 className="heading-display text-4xl md:text-4xl lg:text-5xl text-primary mb-6">
-                Paid Advertising for Hospitality & Lifestyle Brands
-              </h1>
-              <p className="text-xl text-muted-foreground mb-8 max-w-md">
-                Meta, Google, and TikTok ads that drive real-world results:
-                bookings, footfall, sales, and sign-ups.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Button variant="hero" asChild>
-                  <a
-                    href="https://calendly.com/trapezemedia/discovery-call"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Schedule a Call
-                  </a>
-                </Button>
-                <Button variant="hero-outline" asChild>
-                  <Link to="/case-studies">View Case Studies</Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-          <div className="hidden lg:block bg-muted overflow-hidden">
-            <img
-              src={paidAdsHero}
-              alt="Maximiles paid ads campaign managed by Trapeze Media — laptop showing rewards platform"
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </div>
-      </section>
+      <ServiceHero
+        variant="brand-pink"
+        backgroundImage={paidAdsHero}
+        headline="Paid Advertising for Hospitality & Lifestyle Brands"
+        subheadline="Meta, Google, and TikTok ads that drive real-world results: bookings, footfall, sales, and sign-ups."
+        primaryCta={{
+          label: "Schedule a Call",
+          href: "https://calendly.com/trapezemedia/discovery-call",
+          external: true,
+        }}
+        secondaryCta={{
+          label: "View Case Studies",
+          href: "/case-studies",
+        }}
+        breadcrumbItems={[
+          { label: "Services", href: "/services" },
+          { label: "Paid Advertising", href: "/services/paid-advertising" },
+        ]}
+      />
 
-      {/* 2 — INTRO PULL QUOTE + CLIENT LOGOS */}
+      {/* 2 — INTRO PULL QUOTE + CLIENT LOGO CAROUSEL */}
       <IntroLogos />
 
-      {/* 3 — MYCELIA FULL-WIDTH CALLOUT */}
+      {/* 3 — HOW WE DO IT (services grid) */}
+      <HyperlocalMethodology />
+
+      {/* 4 — MYCELIA FULL-WIDTH CALLOUT */}
       <MyceliaCallout />
 
-      {/* 4 — MAXIMILES INLINE CASE SNIPPET */}
+      {/* 5 — MAXIMILES INLINE CASE SNIPPET */}
       <MaximilesSnippet />
 
-      {/* 5 — PLATFORMS */}
+      {/* 6 — PLATFORMS */}
       <section className="bg-background py-16 lg:py-24">
         <div className="container mx-auto px-4">
           <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-16">
@@ -294,7 +271,7 @@ const PaidAdvertisingPage = () => {
         </div>
       </section>
 
-      {/* 6 — WHAT'S INCLUDED */}
+      {/* 7 — WHAT'S INCLUDED */}
       <section className="bg-muted py-16 lg:py-24">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-[45%_55%] gap-10 max-w-6xl mx-auto items-start">
@@ -329,7 +306,7 @@ const PaidAdvertisingPage = () => {
         </div>
       </section>
 
-      {/* 7 — SECTORS (dark background) */}
+      {/* 8 — SECTORS (dark background) */}
       <section className="bg-foreground py-16 lg:py-24">
         <div className="container mx-auto px-4 text-center">
           <h2 className="heading-display text-3xl md:text-4xl text-background mb-4">
@@ -365,7 +342,7 @@ const PaidAdvertisingPage = () => {
         </div>
       </section>
 
-      {/* 8 — RESULTS AT A GLANCE */}
+      {/* 9 — RESULTS AT A GLANCE */}
       <section className="bg-background py-16 lg:py-24">
         <div className="container mx-auto px-4">
           <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-14">
@@ -400,7 +377,7 @@ const PaidAdvertisingPage = () => {
         </div>
       </section>
 
-      {/* 9 — TESTIMONIAL */}
+      {/* 10 — TESTIMONIAL */}
       <section className="bg-primary py-24 lg:py-32">
         <div className="max-w-2xl mx-auto px-4 text-center text-primary-foreground">
           <span
@@ -430,9 +407,6 @@ const PaidAdvertisingPage = () => {
           </div>
         </div>
       </section>
-
-      {/* 10 — HYPERLOCAL METHODOLOGY */}
-      <HyperlocalMethodology />
 
       {/* 11 — FAQ */}
       <section className="bg-background py-16 lg:py-24">
