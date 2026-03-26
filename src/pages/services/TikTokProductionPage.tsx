@@ -149,60 +149,6 @@ const TikTokProductionPage = () => {
       {/* Workflow Grid */}
       <WorkflowGrid heading="Our TikTok Workflow" steps={workflowSteps} columns={4} />
 
-      {/* Best For / Not For */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <Card className="border-0 bg-muted">
-              <CardContent className="p-8">
-                <h2 className="heading-display text-2xl md:text-3xl text-foreground mb-6 flex items-center gap-3">
-                  <Check className="h-7 w-7 text-primary" /> Best For
-                </h2>
-                <ul className="space-y-4">
-                  {service.bestFor.map((item, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <Check className="h-5 w-5 text-primary shrink-0 mt-1" />
-                      <span className="text-foreground text-lg">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-            <Card className="border-0 bg-muted">
-              <CardContent className="p-8">
-                <h2 className="heading-display text-2xl md:text-3xl text-foreground mb-6 flex items-center gap-3">
-                  <X className="h-7 w-7 text-muted-foreground" /> Not For
-                </h2>
-                <ul className="space-y-4">
-                  {service.notFor.map((item, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <X className="h-5 w-5 text-muted-foreground shrink-0 mt-1" />
-                      <span className="text-muted-foreground text-lg">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Features */}
-      <section className="py-16 bg-muted">
-        <div className="container mx-auto px-4">
-          <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-12">What's Included</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {service.features.map((f, i) => (
-              <Card key={i} className="border-0 bg-background">
-                <CardContent className="p-6">
-                  <h3 className="heading-display text-xl text-foreground mb-3">{f.title}</h3>
-                  <p className="text-muted-foreground text-base">{f.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Industries */}
       <section className="py-16 bg-background">
