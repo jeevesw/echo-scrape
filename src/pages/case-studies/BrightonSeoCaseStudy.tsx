@@ -131,23 +131,27 @@ const BrightonSeoCaseStudy = () => {
             </p>
           </ScrollReveal>
 
-          {/* First two pills */}
-          <ScrollReveal animation="up" delay={200}>
-            <div className="flex flex-wrap justify-center gap-3 mt-6">
-              <ParallaxPill speed={0.8}>Trend-driven, social-ready videos</ParallaxPill>
-              <ParallaxPill speed={-0.6}>Informed by client brand pillars</ParallaxPill>
-            </div>
-          </ScrollReveal>
         </div>
       </section>
+
+      {/* Top pills — overlapping into video grid */}
+      <div className="relative z-10 -mb-6 md:-mb-8">
+        <ParallaxPillStrip
+          className="h-12"
+          pills={[
+            { text: "Trend-driven, social-ready videos", x: "8%", rotate: -2 },
+            { text: "Informed by client brand pillars", x: "55%", rotate: 1.5 },
+          ]}
+        />
+      </div>
 
       {/* Video Grid */}
       <section className="py-8 md:py-12 bg-background">
         <div className="max-w-6xl mx-auto px-4">
           <ScrollReveal>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
               {videoFiles.map((file, i) => {
-                const offsets = [0, 12, -8, 6, -12, 4];
+                const offsets = [0, 24, -16, 12, -20, 8];
                 return (
                   <div
                     key={file}
@@ -159,17 +163,20 @@ const BrightonSeoCaseStudy = () => {
               })}
             </div>
           </ScrollReveal>
-
-          {/* Last three pills */}
-          <ScrollReveal animation="up" delay={200}>
-            <div className="flex flex-wrap justify-center gap-3 mt-10">
-              <ParallaxPill speed={0.7}>Produced 100 videos</ParallaxPill>
-              <ParallaxPill speed={-0.5}>Planned over 2 months</ParallaxPill>
-              <ParallaxPill speed={0.9}>Shot in 2 days</ParallaxPill>
-            </div>
-          </ScrollReveal>
         </div>
       </section>
+
+      {/* Bottom pills — overlapping into video grid from below */}
+      <div className="relative z-10 -mt-10 md:-mt-14 mb-8">
+        <ParallaxPillStrip
+          className="h-16"
+          pills={[
+            { text: "Produced 100 videos", x: "5%", rotate: 1 },
+            { text: "Planned over 2 months", x: "38%", rotate: -1.5 },
+            { text: "Shot in 2 days", x: "72%", rotate: 2 },
+          ]}
+        />
+      </div>
 
       {/* Project Context Section */}
       <section className="py-24 bg-muted">
