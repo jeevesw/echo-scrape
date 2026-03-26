@@ -101,7 +101,7 @@ export function SpotlightCarousel({ images, bgClass = "bg-background", interval 
                 translateX = "0";
               }
             } else {
-              if (role === "far-right") continue;
+              if (role === "far-right") return null;
               if (role === "centre") {
                 width = "50%";
                 opacity = 1;
@@ -115,17 +115,16 @@ export function SpotlightCarousel({ images, bgClass = "bg-background", interval 
               }
             }
 
-            if (!animating && role === "far-right") return null;
+            const scaleVal = scale === "scale-75" ? "scale(0.75)" : scale === "scale-90" ? "scale(0.9)" : "scale(1)";
 
             return (
               <div
                 key={`${activeIndex}-${role}`}
-                className={`${classes} transition-all duration-500 ease-in-out ${scale}`}
+                className={`${classes} transition-all duration-500 ease-in-out`}
                 style={{
                   width,
                   opacity,
-                  transform: `${scale === "scale-75" ? "scale(0.75)" : scale === "scale-90" ? "scale(0.9)" : "scale(1)"} translateX(${translateX})`,
-                  maxWidth: role === "centre" || (animating && role === "right") ? "50%" : "28%",
+                  transform: `${scaleVal} translateX(${translateX})`,
                 }}
               >
                 <img
