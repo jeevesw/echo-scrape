@@ -27,6 +27,7 @@ import Auth from "./pages/Auth";
 import BlogDashboard from "./pages/admin/BlogDashboard";
 import BlogEditor from "./pages/admin/BlogEditor";
 import BlogMigrate from "./pages/admin/BlogMigrate";
+import BlogCleanup from "./pages/admin/BlogCleanup";
 import Authors from "./pages/admin/Authors";
 import CaseStudiesAdmin from "./pages/admin/CaseStudies";
 
