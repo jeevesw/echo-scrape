@@ -302,13 +302,13 @@ const BlogList = () => {
       )}
 
       {/* Posts grid */}
-      {paginatedPosts.length === 0 ? (
+      {visiblePosts.length === 0 ? (
         <div className="text-center py-16">
           <p className="text-muted-foreground">No posts found matching your filters.</p>
         </div>
       ) : (
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {paginatedPosts.map((post) => (
+          {visiblePosts.map((post) => (
             <Card 
               key={post.id} 
               className="group border border-border/50 bg-card overflow-hidden hover:border-primary/30 hover:shadow-lg transition-all duration-300 flex flex-col h-full"
