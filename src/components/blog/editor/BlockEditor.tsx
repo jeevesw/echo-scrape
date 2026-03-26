@@ -394,7 +394,32 @@ function TOCEditor({ block, onUpdate, allBlocks }: { block: TOCBlock; onUpdate: 
   );
 }
 
-// ── Block Wrapper ────────────────────────────────────────────────────
+function NewsletterEditor({ block, onUpdate }: { block: NewsletterBlock; onUpdate: (u: Partial<NewsletterBlock>) => void }) {
+  return (
+    <div className="space-y-3">
+      <p className="text-xs font-medium text-muted-foreground">Newsletter signup block — renders the email capture form</p>
+      <div>
+        <Label className="text-xs">Heading (optional)</Label>
+        <Input
+          value={block.heading ?? ''}
+          onChange={(e) => onUpdate({ heading: e.target.value })}
+          placeholder="Stay in the loop"
+          className="text-sm"
+        />
+      </div>
+      <div>
+        <Label className="text-xs">Subheading (optional)</Label>
+        <Input
+          value={block.subheading ?? ''}
+          onChange={(e) => onUpdate({ subheading: e.target.value })}
+          placeholder="Industry news and digital marketing insights, straight to your inbox."
+          className="text-sm"
+        />
+      </div>
+    </div>
+  );
+}
+
 function BlockWrapper({
   block, index, total, focused, onFocus, onUpdate, onDelete, onMove, onDuplicate, onInsert, allBlocks
 }: {
