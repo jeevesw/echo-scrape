@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { Layout } from "@/components/layout/Layout";
-
 import { ServiceSchema, FAQSchema } from "@/components/seo/SchemaMarkup";
 import { servicesData } from "@/data/servicesData";
 import { ServiceHero } from "@/components/services/ServiceHero";
@@ -15,26 +15,12 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { supabase } from "@/integrations/supabase/client";
 import heroImage from "@/assets/services/social-media-management.jpg";
 import fitzImage from "@/assets/case-studies/fitz-sparkling-wine.webp";
 
 const service = servicesData["social-media-management"];
 const baseUrl = "https://trapezemedia.com";
-
-const objections = [
-  {
-    question: "My follower growth and engagement are low — is social media worth it?",
-    answer: "There are hundreds of factors influencing performance: time of day, posting frequency, hashtags, legibility. We find the intersection that brings your online presence to life and turns your brand appeal into a science.",
-  },
-  {
-    question: "My following is growing but not converting to sales — why?",
-    answer: "A 'user journey' is the path between seeing your content and buying. We audit and evolve your current approach to re-engage repeat customers and strengthen the path from scroll to sale.",
-  },
-  {
-    question: "I don't have time for social media and need my staff focused on their jobs.",
-    answer: "With clearly-defined goals and an agency behind you, social can integrate into daily operations with minimal effort. We create a messaging group where creative ideas are exchanged instantly — you stay in the loop without being in the weeds.",
-  },
-];
 
 const servicesGrid = [
   { icon: PenLine, title: "Content Creation", description: "Our copywriters, photographers, filmmakers, and designers will produce the content that will become the figureheading visuals for your social feeds and campaigns" },
@@ -46,6 +32,80 @@ const servicesGrid = [
   { icon: Users, title: "User Journey", description: "Where you lead your followers after they see your content dictates how you'll convert them to customers. We'll ensure your user journey is simple, discoverable, and focused on key goals" },
   { icon: FileText, title: "Monthly Reports", description: "We prepare reports at the end of every month detailing the successes of our work, and highlighting how we'll continue to support your key goals and campaigns in the following month" },
 ];
+
+interface Author {
+  id: string;
+  name: string;
+  role: string | null;
+  avatar_url: string | null;
+}
+
+function TeamSection() {
+  const [authors, setAuthors] = useState<Author[]>([]);
+
+  useEffect(() => {
+    supabase
+      .from("authors")
+      .select("id, name, role, avatar_url")
+      .order("name")
+      .then(({ data }) => {
+        if (data) setAuthors(data);
+      });
+  }, []);
+
+  if (authors.length === 0) return null;
+
+  const firstRow = authors.slice(0, 3);
+  const secondRow = authors.slice(3);
+
+  return (
+    <section className="py-16 bg-muted">
+      <div className="container mx-auto px-4">
+        <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-12">
+          Meet Your Social Media Management Team
+        </h2>
+        <div className="max-w-4xl mx-auto">
+          <div className="flex justify-center gap-8 lg:gap-12 mb-8 flex-wrap">
+            {firstRow.map((author) => (
+              <div key={author.id} className="flex flex-col items-center text-center w-40">
+                <div className="w-24 h-24 rounded-full overflow-hidden bg-background mb-4">
+                  {author.avatar_url ? (
+                    <img src={author.avatar_url} alt={author.name} className="w-full h-full object-cover" />
+                  ) : (
+                    <div className="w-full h-full bg-primary/10 flex items-center justify-center">
+                      <Users className="h-8 w-8 text-primary" />
+                    </div>
+                  )}
+                </div>
+                <h3 className="heading-display text-base text-foreground mb-1">{author.name}</h3>
+                {author.role && <p className="text-muted-foreground text-sm">{author.role}</p>}
+              </div>
+            ))}
+          </div>
+          {secondRow.length > 0 && (
+            <div className="flex justify-center gap-8 lg:gap-12 flex-wrap">
+              {secondRow.map((author) => (
+                <div key={author.id} className="flex flex-col items-center text-center w-40">
+                  <div className="w-24 h-24 rounded-full overflow-hidden bg-background mb-4">
+                    {author.avatar_url ? (
+                      <img src={author.avatar_url} alt={author.name} className="w-full h-full object-cover" />
+                    ) : (
+                      <div className="w-full h-full bg-primary/10 flex items-center justify-center">
+                        <Users className="h-8 w-8 text-primary" />
+                      </div>
+                    )}
+                  </div>
+                  <h3 className="heading-display text-base text-foreground mb-1">{author.name}</h3>
+                  {author.role && <p className="text-muted-foreground text-sm">{author.role}</p>}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 const SocialMediaManagementPage = () => {
   return (
@@ -66,7 +126,7 @@ const SocialMediaManagementPage = () => {
       />
       <FAQSchema faqs={service.faqs} />
 
-      {/* Breadcrumb + Hero */}
+      {/* Hero */}
       <ServiceHero
         variant="brand-pink"
         headline={service.heroHeadline}
@@ -88,7 +148,6 @@ const SocialMediaManagementPage = () => {
           </div>
         </div>
       </section>
-
 
       {/* Our Social Media Management Services */}
       <section className="py-16 bg-muted">
@@ -173,6 +232,9 @@ const SocialMediaManagementPage = () => {
           </div>
         </div>
       </section>
+
+      {/* Meet the Team */}
+      <TeamSection />
 
       {/* FAQs */}
       <section className="py-16 bg-muted">
