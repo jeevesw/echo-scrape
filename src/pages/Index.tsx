@@ -5,7 +5,7 @@ import { Services } from "@/components/home/Services";
 import { FeaturedCampaigns } from "@/components/home/FeaturedCampaigns";
 import { Testimonial } from "@/components/home/Testimonial";
 import { BlogPreview } from "@/components/home/BlogPreview";
-import { Newsletter } from "@/components/home/Newsletter";
+import NewsletterSignup from "@/components/NewsletterSignup";
 
 const Index = () => {
   return (
