@@ -132,7 +132,7 @@ export function ServiceHero({
 
   // brand-pink
   return (
-    <section className="relative bg-primary py-20 lg:py-32 overflow-hidden">
+    <section className="relative bg-primary pt-6 pb-20 lg:pb-32 overflow-hidden">
       {backgroundImage && (
         <>
           <img
@@ -144,7 +144,7 @@ export function ServiceHero({
         </>
       )}
       {breadcrumbItems && (
-        <div className="relative z-10 container mx-auto px-4 mb-8">
+        <div className="relative z-10 container mx-auto px-4 mb-12 lg:mb-16">
           <BreadcrumbNav variant="light" items={breadcrumbItems} />
         </div>
       )}

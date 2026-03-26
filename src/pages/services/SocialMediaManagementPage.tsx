@@ -174,6 +174,9 @@ const SocialMediaManagementPage = () => {
         </div>
       </section>
 
+      {/* Meet the Team */}
+      <TeamSection />
+
       {/* FAQs */}
       <section className="py-16 bg-muted">
         <div className="container mx-auto px-4">
