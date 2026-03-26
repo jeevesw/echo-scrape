@@ -92,7 +92,7 @@ const getExcerpt = (post: BlogPostBase): string => {
 const BlogList = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState('');
-  const [sortOrder, setSortOrder] = useState<'newest' | 'oldest'>('newest');
+  
   const [visibleCount, setVisibleCount] = useState(INITIAL_POSTS);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
