@@ -186,6 +186,9 @@ const WebsiteDesignPage = () => {
         </div>
       </section>
 
+      {/* Meet the Team */}
+      <TeamSection serviceName="Website Design" />
+
       {/* FAQs */}
       <section className="py-16 bg-muted">
         <div className="container mx-auto px-4">

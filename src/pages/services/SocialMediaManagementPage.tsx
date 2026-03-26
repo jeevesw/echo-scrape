@@ -161,7 +161,7 @@ const SocialMediaManagementPage = () => {
       </section>
 
       {/* Meet the Team */}
-      <TeamSection />
+      <TeamSection serviceName="Social Media Management" />
 
       {/* FAQs */}
       <section className="py-16 bg-muted">

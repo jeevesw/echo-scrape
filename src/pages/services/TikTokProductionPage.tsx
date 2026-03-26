@@ -210,6 +210,9 @@ const TikTokProductionPage = () => {
         </div>
       </section>
 
+      {/* Meet the Team */}
+      <TeamSection serviceName="TikTok Production" />
+
       {/* FAQs */}
       <section className="py-16 bg-muted">
         <div className="container mx-auto px-4">

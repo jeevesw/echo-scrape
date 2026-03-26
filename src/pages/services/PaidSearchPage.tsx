@@ -163,6 +163,9 @@ const PaidSearchPage = () => {
         </div>
       </section>
 
+      {/* Meet the Team */}
+      <TeamSection serviceName="Paid Search" />
+
       {/* 8 — FAQs */}
       <section className="py-16 bg-muted">
         <div className="container mx-auto px-4">
