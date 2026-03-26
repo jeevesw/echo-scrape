@@ -66,9 +66,14 @@ Deno.serve(async (req) => {
     const contentType = imgResponse.headers.get("content-type") || "image/jpeg";
     const imageBuffer = await imgResponse.arrayBuffer();
 
-    // Extract filename from URL
+    // Extract filename from URL and sanitize for storage
     const urlPath = new URL(imageUrl).pathname;
-    const filename = urlPath.split("/").pop() || "image.jpg";
+    const rawFilename = decodeURIComponent(urlPath.split("/").pop() || "image.jpg");
+    // Replace non-URL-safe chars with hyphens, collapse runs, trim edges
+    const filename = rawFilename
+      .replace(/[^a-zA-Z0-9._-]/g, "-")
+      .replace(/-{2,}/g, "-")
+      .replace(/^-|-$/g, "");
     const storagePath = `blog-images/${postSlug}/${filename}`;
 
     // Upload to Supabase Storage
