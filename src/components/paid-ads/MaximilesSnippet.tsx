@@ -36,27 +36,27 @@ const MaximilesSnippet = () => (
 
             <div className="flex gap-3 flex-wrap mb-6">
               {statPills.map((s) => (
-                <div key={s.label} className="bg-muted rounded-full px-4 py-2">
-                  <span className="heading-display text-2xl text-primary">{s.value}</span>
-                  <span className="text-xs text-muted-foreground block">{s.label}</span>
+                <div key={s.label} className="bg-background border-2 border-primary rounded-xl px-5 py-3">
+                  <span className="heading-display text-2xl text-primary block">{s.value}</span>
+                  <span className="text-sm text-muted-foreground block mt-1">{s.label}</span>
                 </div>
               ))}
             </div>
 
-            <p className="text-muted-foreground text-base mb-6">
+            <p className="text-muted-foreground text-lg mb-6">
               Our Meta and TikTok ads drove a 66% increase in double opt-ins and cut cost-per-results by half in just 12 months — by building and retargeting a robust, value-aligned audience.
             </p>
 
             <div className="border-l-4 border-primary pl-4 mb-6">
-              <p className="text-sm text-muted-foreground italic">
+              <p className="text-base text-muted-foreground italic">
                 "Great to work with, super responsive, knowledgeable, and creative."
               </p>
-              <p className="text-sm text-muted-foreground mt-1">
+              <p className="text-base text-muted-foreground mt-1">
                 — Head of Marketing & Media Sales, Maximiles
               </p>
             </div>
 
-            <Button variant="hero-outline" size="sm" asChild>
+            <Button variant="hero" asChild>
               <Link to="/case-studies/maximiles">
                 Read the Full Case Study <ArrowRight className="ml-2 h-4 w-4" />
               </Link>

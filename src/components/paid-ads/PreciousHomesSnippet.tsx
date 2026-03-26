@@ -6,7 +6,7 @@ const statPills = [
 ];
 
 const PreciousHomesSnippet = () => (
-  <div className="mt-16 max-w-5xl mx-auto">
+  <div className="mt-20 pt-16 border-t border-border/40 max-w-5xl mx-auto">
     <div className="grid md:grid-cols-2 gap-10 items-center">
       {/* Left column — videos */}
       <div className="grid grid-cols-2 gap-4">
@@ -39,12 +39,12 @@ const PreciousHomesSnippet = () => (
               className="bg-background border-2 border-primary rounded-xl px-5 py-3"
             >
               <span className="heading-display text-2xl text-primary block">{s.value}</span>
-              <span className="text-xs text-muted-foreground block mt-1">{s.label}</span>
+              <span className="text-sm text-muted-foreground block mt-1">{s.label}</span>
             </div>
           ))}
         </div>
 
-        <p className="text-muted-foreground text-base mb-6">
+        <p className="text-muted-foreground text-lg mb-6">
           Precious (formerly Precious Homes), one of the UK's leading care homes, approached us to help with recruitment after the COVID-19 pandemic, when staffing was a huge struggle for them. Our paid social ads boosted new hires while driving down costs-per-lead.
         </p>
       </div>
