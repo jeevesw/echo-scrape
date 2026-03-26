@@ -179,7 +179,7 @@ const MaximilesCaseStudy = () => {
                     <div className="flex justify-center">
                       <Icon className="w-8 h-8 text-primary" />
                     </div>
-                    <p className="text-muted-foreground text-sm leading-relaxed">{item.text}</p>
+                    <p className="text-muted-foreground text-base leading-relaxed">{item.text}</p>
                   </div>
                 );
               })}
