@@ -2,6 +2,7 @@ import { useCountUp } from "@/hooks/use-count-up";
 
 interface AnimatedStatProps {
   value: number;
+  start?: number;
   suffix?: string;
   prefix?: string;
   label: string;
