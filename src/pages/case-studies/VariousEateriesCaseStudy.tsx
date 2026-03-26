@@ -265,11 +265,15 @@ const VariousEateriesCaseStudy = () => {
             </h2>
             
             <blockquote className="text-xl md:text-2xl lg:text-3xl text-center max-w-4xl mx-auto leading-relaxed italic">
-              "After previously dealing with agencies who just 'set it and forget it' on our PPC, the main thing I noticed about Trapeze Media was how responsive and attentive they are. Working with Matt at Coppa for this project was a testament to it. I'd recommend Trapeze Media to anyone that's making their marketing an unforgettable experience."
+              "We provided a challenging brief: reduce overall ad spend, lower our CPA, and increase tracked visits and confirmed bookings.
+              <br /><br />
+              "The team at Trapeze not only managed this but were able to find new and innovative ways for us to track our results end-to-end, and present findings in a way that the wider VEL team could understand and buy into.
+              <br /><br />
+              "Working with Ash and Dani on this project has been great and I'd recommend Trapeze Media to anyone that's looking to improve their paid ads performance."
             </blockquote>
             
             <cite className="block text-center mt-8 text-lg not-italic text-primary-foreground/80">
-              — <span className="font-semibold text-primary-foreground">Emma Sherlock</span>, Digital Marketing Manager at Various Eateries
+              — <span className="font-semibold text-primary-foreground">Steve Roberts</span>, Digital Marketing Director at Various Eateries
             </cite>
           </ScrollReveal>
         </div>
