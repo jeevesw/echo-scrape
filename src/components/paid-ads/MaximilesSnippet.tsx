@@ -36,9 +36,9 @@ const MaximilesSnippet = () => (
 
             <div className="flex gap-3 flex-wrap mb-6">
               {statPills.map((s) => (
-                <div key={s.label} className="bg-muted rounded-full px-4 py-2">
-                  <span className="heading-display text-2xl text-primary">{s.value}</span>
-                  <span className="text-xs text-muted-foreground block">{s.label}</span>
+                <div key={s.label} className="bg-background border-2 border-primary rounded-xl px-5 py-3">
+                  <span className="heading-display text-2xl text-primary block">{s.value}</span>
+                  <span className="text-sm text-muted-foreground block mt-1">{s.label}</span>
                 </div>
               ))}
             </div>
