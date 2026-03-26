@@ -49,8 +49,6 @@ export default function NewsletterSignup({
 
   return (
     <section className="py-24 bg-background relative overflow-hidden">
-      <div className="absolute -bottom-32 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
-
       <div className="container-content mx-auto px-4 max-w-2xl text-center relative">
         <ScrollReveal>
           <div className="border-2 border-primary rounded-2xl p-8 md:p-10">
