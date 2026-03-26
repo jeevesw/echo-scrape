@@ -43,13 +43,7 @@ function VideoCard({ src }: { src: string }) {
   );
 }
 
-interface PillConfig {
-  text: string;
-  x: string; // CSS left/right position
-  rotate: number;
-}
-
-function ParallaxPillStrip({ pills, className = "" }: { pills: PillConfig[]; className?: string }) {
+function ParallaxPillStrip({ pills, className = "" }: { pills: string[]; className?: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState(0);
   const [visible, setVisible] = useState(false);
@@ -76,21 +70,20 @@ function ParallaxPillStrip({ pills, className = "" }: { pills: PillConfig[]; cla
   return (
     <div
       ref={containerRef}
-      className={`relative w-full ${className}`}
+      className={`flex flex-wrap justify-center gap-3 ${className}`}
       style={{ transform: `translateY(${offset}px)`, transition: "transform 0.15s ease-out" }}
     >
-      {pills.map((pill, i) => (
+      {pills.map((text, i) => (
         <span
-          key={pill.text}
-          className="absolute inline-flex items-center px-5 py-2.5 rounded-full bg-primary text-primary-foreground text-sm md:text-base font-semibold font-ui shadow-lg transition-all duration-700 ease-out"
+          key={text}
+          className="inline-flex items-center px-5 py-2.5 rounded-full bg-primary text-primary-foreground text-sm md:text-base font-semibold font-ui shadow-lg transition-all duration-700 ease-out"
           style={{
-            left: pill.x,
-            transform: `rotate(${pill.rotate}deg) ${visible ? "translateY(0) scale(1)" : "translateY(20px) scale(0.9)"}`,
+            transform: visible ? "translateY(0) scale(1)" : "translateY(20px) scale(0.9)",
             opacity: visible ? 1 : 0,
             transitionDelay: `${i * 120}ms`,
           }}
         >
-          {pill.text}
+          {text}
         </span>
       ))}
     </div>
