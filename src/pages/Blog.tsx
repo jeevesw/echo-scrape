@@ -2,13 +2,13 @@ import { Link, useParams, useSearchParams } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ArrowLeft, Calendar, User, Search, Linkedin, Twitter } from "lucide-react";
+import { ArrowRight, ArrowLeft, User, Search, Linkedin, Twitter } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
-import { format } from "date-fns";
+
 import { useState, useMemo, useEffect } from "react";
 import { BlockRenderer, type Block } from "@/components/blog/BlockRenderer";
 
@@ -92,7 +92,7 @@ const getExcerpt = (post: BlogPostBase): string => {
 const BlogList = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState('');
-  const [sortOrder, setSortOrder] = useState<'newest' | 'oldest'>('newest');
+  
   const [visibleCount, setVisibleCount] = useState(INITIAL_POSTS);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
@@ -186,15 +186,8 @@ const BlogList = () => {
       );
     }
     
-    // Sort
-    result.sort((a, b) => {
-      const dateA = new Date(a.published_at).getTime();
-      const dateB = new Date(b.published_at).getTime();
-      return sortOrder === 'newest' ? dateB - dateA : dateA - dateB;
-    });
-    
     return result;
-  }, [posts, searchQuery, sortOrder, selectedCategory, categories]);
+  }, [posts, searchQuery, selectedCategory, categories]);
 
   // Visible posts (load more)
   const visiblePosts = filteredPosts.slice(0, visibleCount);
@@ -206,10 +199,6 @@ const BlogList = () => {
     setVisibleCount(INITIAL_POSTS);
   };
 
-  const handleSortChange = (value: 'newest' | 'oldest') => {
-    setSortOrder(value);
-    setVisibleCount(INITIAL_POSTS);
-  };
 
   if (isLoading) {
     return (
@@ -275,7 +264,7 @@ const BlogList = () => {
       )}
 
       {/* Search and Sort */}
-      <div className="flex flex-col sm:flex-row gap-4 mb-10">
+      <div className="flex gap-4 mb-10">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
@@ -286,15 +275,6 @@ const BlogList = () => {
             className="pl-10 h-11 bg-card border-border/50"
           />
         </div>
-        <Select value={sortOrder} onValueChange={handleSortChange}>
-          <SelectTrigger className="w-full sm:w-40 h-11 bg-card border-border/50">
-            <SelectValue placeholder="Sort by" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="newest">Newest first</SelectItem>
-            <SelectItem value="oldest">Oldest first</SelectItem>
-          </SelectContent>
-        </Select>
       </div>
 
       {/* Results count */}
@@ -337,10 +317,6 @@ const BlogList = () => {
               <CardContent className="p-6 flex flex-col flex-1">
                 {/* Meta */}
                 <div className="flex items-center gap-3 text-xs text-muted-foreground mb-3">
-                  <span className="flex items-center gap-1">
-                    <Calendar className="h-3 w-3" />
-                    {format(new Date(post.published_at), 'MMM d, yyyy')}
-                  </span>
                   <span className="flex items-center gap-1">
                     <User className="h-3 w-3" />
                     {post.author}
@@ -461,10 +437,6 @@ const BlogPost = ({ slug }: { slug: string }) => {
           {post.title}
         </h1>
         <div className="flex items-center gap-4 text-muted-foreground">
-          <span className="flex items-center gap-1">
-            <Calendar className="h-4 w-4" />
-            {format(new Date(post.published_at), 'MMMM d, yyyy')}
-          </span>
           <span className="flex items-center gap-1">
             <User className="h-4 w-4" />
             {authorData?.name || post.author}
