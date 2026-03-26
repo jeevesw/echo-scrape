@@ -171,32 +171,19 @@ const MaximilesCaseStudy = () => {
           </div>
 
           <ScrollReveal delay={300}>
-            <ul className="max-w-3xl mx-auto space-y-3">
-              <li className="flex items-start gap-3 text-lg text-muted-foreground">
-                <span className="text-primary font-bold mt-1">✓</span>
-                <span>Optimised CPL (cost per lead) and CPR (cost per registration) for challenging target demographics</span>
-              </li>
-              <li className="flex items-start gap-3 text-lg text-muted-foreground">
-                <span className="text-primary font-bold mt-1">✓</span>
-                <span>Boosted DOI (double opt-in) sign-ups across all target audiences</span>
-              </li>
-              <li className="flex items-start gap-3 text-lg text-muted-foreground">
-                <span className="text-primary font-bold mt-1">✓</span>
-                <span>Built loyalty in a space that's often perceived as untrustworthy</span>
-              </li>
-              <li className="flex items-start gap-3 text-lg text-muted-foreground">
-                <span className="text-primary font-bold mt-1">✓</span>
-                <span>Leveraged TrustPilot reviews to further emphasise Maximiles' legitimacy</span>
-              </li>
-              <li className="flex items-start gap-3 text-lg text-muted-foreground">
-                <span className="text-primary font-bold mt-1">✓</span>
-                <span>Created 'interactive' videos for Stories, TikToks, etc. to boost engagement, regularly adjusted based on ad performance</span>
-              </li>
-              <li className="flex items-start gap-3 text-lg text-muted-foreground">
-                <span className="text-primary font-bold mt-1">✓</span>
-                <span>Increased mobile app downloads as an added bonus</span>
-              </li>
-            </ul>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+              {successItems.map((item, i) => {
+                const Icon = item.icon;
+                return (
+                  <div key={i} className="text-center space-y-3">
+                    <div className="flex justify-center">
+                      <Icon className="w-8 h-8 text-primary" />
+                    </div>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{item.text}</p>
+                  </div>
+                );
+              })}
+            </div>
           </ScrollReveal>
         </div>
       </section>
