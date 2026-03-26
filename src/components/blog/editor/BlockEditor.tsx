@@ -37,6 +37,7 @@ const BLOCK_TYPES: { type: BlockType; icon: React.ElementType; label: string; de
   { type: 'embed', icon: Youtube, label: 'Embed', desc: 'YouTube or video embed' },
   { type: 'faq', icon: HelpCircle, label: 'FAQ', desc: 'FAQ accordion + schema' },
   { type: 'toc', icon: BookOpen, label: 'TOC', desc: 'Auto table of contents' },
+  { type: 'newsletter', icon: Mail, label: 'Newsletter', desc: 'Email signup block' },
 ];
 
 function createEmptyBlock(type: BlockType): Block {
