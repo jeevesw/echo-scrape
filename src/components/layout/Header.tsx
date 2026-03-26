@@ -10,7 +10,7 @@ import logoTwoTone from "@/assets/logo-two-tone.svg";
 // Service images
 import socialMediaImg from "@/assets/services/social-media-management.webp";
 import paidAdsImg from "@/assets/services/paid-advertising.webp";
-import paidSearchImg from "@/assets/services/paid-advertising.webp";
+import paidSearchImg from "@/assets/services/paid-search.jpg";
 import creativeImg from "@/assets/services/creative-services.webp";
 import tiktokImg from "@/assets/services/tiktok-production.png";
 import websiteImg from "@/assets/services/website-design.jpg";
