@@ -15,6 +15,7 @@ import MoloCaseStudy from "./pages/case-studies/MoloCaseStudy";
 import BrightonSeoCaseStudy from "./pages/case-studies/BrightonSeoCaseStudy";
 import VariousEateriesCaseStudy from "./pages/case-studies/VariousEateriesCaseStudy";
 import MaximilesCaseStudy from "./pages/case-studies/MaximilesCaseStudy";
+import MyceliaCaseStudy from "./pages/case-studies/MyceliaCaseStudy";
 import Blog from "./pages/Blog";
 import Services from "./pages/Services";
 import ServicePage from "./pages/ServicePage";
