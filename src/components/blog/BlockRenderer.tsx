@@ -16,10 +16,11 @@ export interface EmbedBlock     { id: string; type: 'embed'; url: string; captio
 export interface FAQItem        { question: string; answer: string; }
 export interface FAQBlock       { id: string; type: 'faq'; items: FAQItem[]; }
 export interface TOCBlock       { id: string; type: 'toc'; auto: boolean; label?: string; }
+export interface NewsletterBlock { id: string; type: 'newsletter'; heading?: string; subheading?: string; }
 
 export type Block =
   | TextBlock | HeadingBlock | ImageBlock | QuoteBlock
-  | ListBlock | DividerBlock | EmbedBlock | FAQBlock | TOCBlock;
+  | ListBlock | DividerBlock | EmbedBlock | FAQBlock | TOCBlock | NewsletterBlock;
 
 interface BlockRendererProps {
   blocks: Block[];
