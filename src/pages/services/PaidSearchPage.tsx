@@ -47,21 +47,17 @@ const PaidSearchPage = () => {
       <FAQSchema faqs={service.faqs} />
 
       {/* Hero */}
-      <section className="bg-background py-16 lg:py-24">
-        <div className="container mx-auto px-4">
-          <BreadcrumbNav
-            items={[
-              { label: "Services", href: "/services" },
-              { label: "Paid Search", href: "/services/paid-search" },
-            ]}
-          />
-          <ServiceHero
-            variant="split"
-            eyebrow="Google Ads"
-            headline={service.heroHeadline}
-            subheadline={service.heroSubheadline}
-            primaryCta={{ label: "Schedule a Call", href: "https://calendly.com/trapezemedia/discovery-call", external: true }}
-            secondaryCta={{ label: "View Case Studies", href: "/case-studies" }}
+      <ServiceHero
+        variant="split"
+        eyebrow="Google Ads"
+        headline={service.heroHeadline}
+        subheadline={service.heroSubheadline}
+        primaryCta={{ label: "Schedule a Call", href: "https://calendly.com/trapezemedia/discovery-call", external: true }}
+        secondaryCta={{ label: "View Case Studies", href: "/case-studies" }}
+        breadcrumbItems={[
+          { label: "Services", href: "/services" },
+          { label: "Paid Search", href: "/services/paid-search" },
+        ]}
             visualSlot={
               <div className="space-y-4">
                 {/* Google Ad mockups placeholder */}
