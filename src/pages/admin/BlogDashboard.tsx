@@ -68,16 +68,31 @@ export default function BlogDashboard() {
   const handleExport = async () => {
     setIsExporting(true);
     try {
-      const { data, error } = await supabase
-        .from('blog_posts')
-        .select('*')
-        .order('created_at', { ascending: false });
-      if (error) throw error;
+      // Fetch posts, categories, and assignments in parallel
+      const [postsRes, catsRes, assignRes] = await Promise.all([
+        supabase.from('blog_posts').select('*').order('created_at', { ascending: false }),
+        supabase.from('blog_categories').select('id, name, slug').order('sort_order'),
+        supabase.from('blog_post_categories').select('post_id, category_id'),
+      ]);
+      if (postsRes.error) throw postsRes.error;
+      if (catsRes.error) throw catsRes.error;
+      if (assignRes.error) throw assignRes.error;
+
+      // Build category lookup
+      const catMap = new Map(catsRes.data.map(c => [c.id, { name: c.name, slug: c.slug }]));
+      const postCats = new Map<string, { name: string; slug: string }[]>();
+      for (const a of assignRes.data) {
+        const cat = catMap.get(a.category_id);
+        if (!cat) continue;
+        if (!postCats.has(a.post_id)) postCats.set(a.post_id, []);
+        postCats.get(a.post_id)!.push(cat);
+      }
 
       const JSZip = (await import('jszip')).default;
       const zip = new JSZip();
-      data.forEach((post) => {
-        zip.file(`${post.slug}.json`, JSON.stringify(post, null, 2));
+      postsRes.data.forEach((post) => {
+        const enriched = { ...post, categories: postCats.get(post.id) || [] };
+        zip.file(`${post.slug}.json`, JSON.stringify(enriched, null, 2));
       });
       const blob = await zip.generateAsync({ type: 'blob' });
       const url = URL.createObjectURL(blob);
@@ -86,7 +101,7 @@ export default function BlogDashboard() {
       a.download = `blog-export-${format(new Date(), 'yyyy-MM-dd')}.zip`;
       a.click();
       URL.revokeObjectURL(url);
-      toast.success(`Exported ${data.length} posts`);
+      toast.success(`Exported ${postsRes.data.length} posts`);
     } catch (err: any) {
       toast.error('Export failed: ' + err.message);
     } finally {
