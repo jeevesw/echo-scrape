@@ -16,11 +16,14 @@ import {
   TableHeader, TableRow,
 } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
+import {
+  Collapsible, CollapsibleContent, CollapsibleTrigger,
+} from '@/components/ui/collapsible';
 import { supabase } from '@/integrations/supabase/client';
 import type { Block, TextBlock, HeadingBlock, ImageBlock } from '@/components/blog/BlockRenderer';
 import {
   ArrowRight, CheckCircle, AlertTriangle,
-  XCircle, Wrench,
+  XCircle, Wrench, ChevronDown,
 } from 'lucide-react';
 
 /* ------------------------------------------------------------------ */
@@ -31,6 +34,14 @@ const LEAKED_JSON_PATTERNS = [
   /\[\s*\{\s*"type"\s*:\s*"highlight"/,
   /underlineCurve/,
   /TextAttributes/,
+];
+
+const NEWSLETTER_MARKERS = [
+  /newsletter-form/i,
+  /squarespace-form-submit/i,
+  /<button[^>]*type="submit"[^>]*value="Subscribe"/i,
+  /direct to your inbox/i,
+  /Subscribe<\/h2>/i,
 ];
 
 function countLeakedJsonParagraphs(blocks: Block[]): number {
@@ -77,6 +88,112 @@ function countEmptyAltImages(blocks: Block[]): number {
     if (b.type === 'image' && !(b as ImageBlock).alt?.trim()) count++;
   }
   return count;
+}
+
+function hasNewsletterForm(blocks: Block[]): boolean {
+  for (const b of blocks) {
+    if (b.type !== 'text') continue;
+    const html = (b as TextBlock).content;
+    if (NEWSLETTER_MARKERS.some(rx => rx.test(html))) return true;
+  }
+  return false;
+}
+
+interface NewsletterDiff {
+  blockId: string;
+  before: string;
+  after: string | null; // null means block removed entirely
+}
+
+function previewNewsletterStrip(blocks: Block[]): NewsletterDiff[] {
+  const diffs: NewsletterDiff[] = [];
+  for (const b of blocks) {
+    if (b.type !== 'text') continue;
+    const html = (b as TextBlock).content;
+    if (!NEWSLETTER_MARKERS.some(rx => rx.test(html))) continue;
+    const cleaned = stripNewsletterHtml(html);
+    if (cleaned !== html) {
+      diffs.push({ blockId: b.id, before: html, after: cleaned });
+    }
+  }
+  return diffs;
+}
+
+function stripNewsletterHtml(html: string): string | null {
+  // Strategy: use regex to find newsletter form regions and strip them.
+  // Pattern 1: Full Squarespace form blocks (newsletter-form, squarespace-form-submit)
+  let result = html;
+
+  // Remove complete newsletter form divs — greedy match from newsletter-form opening to its closing
+  // We use a multi-pass approach since forms can be nested in various ways
+  
+  // First, handle the concatenated case: strip from "direct to your inbox" or "Subscribe</h2>" 
+  // through the form content. We look for the heading that introduces the newsletter,
+  // then strip everything from there through the form's closing tags.
+  
+  // Pattern: heading containing "direct to your inbox" or ending with "Subscribe</h2>"
+  // followed by form content including newsletter-form / squarespace-form-submit / Subscribe button
+  const newsletterStartPatterns = [
+    // Matches from a heading containing "direct to your inbox" or "Subscribe" through form content
+    /(?:<h[1-6][^>]*>[^<]*(?:direct to your inbox|Subscribe)[^<]*<\/h[1-6]>)[\s\S]*?(?:<button[^>]*value="Subscribe"[^>]*>[\s\S]*?<\/button>[\s\S]*?<\/div>|<\/form>[\s\S]*?<\/div>)/gi,
+    // Matches newsletter-form class containers
+    /<div[^>]*class="[^"]*newsletter-form[^"]*"[^>]*>[\s\S]*?<\/div>\s*<\/div>/gi,
+    // Matches squarespace form blocks
+    /<div[^>]*class="[^"]*squarespace-form[^"]*"[^>]*>[\s\S]*?<\/div>\s*<\/div>/gi,
+  ];
+
+  for (const pattern of newsletterStartPatterns) {
+    result = result.replace(pattern, '');
+  }
+
+  // Fallback: if markers still present, do a more aggressive line-by-line strip
+  if (NEWSLETTER_MARKERS.some(rx => rx.test(result))) {
+    // Parse as DOM and remove offending elements
+    const doc = new DOMParser().parseFromString(result, 'text/html');
+    
+    // Remove any element containing newsletter markers
+    const allElements = doc.body.querySelectorAll('*');
+    const toRemove = new Set<Element>();
+    
+    allElements.forEach(el => {
+      const outerHtml = el.outerHTML;
+      if (NEWSLETTER_MARKERS.some(rx => rx.test(outerHtml))) {
+        // Walk up to find the highest ancestor that is entirely newsletter content
+        let candidate = el;
+        while (candidate.parentElement && candidate.parentElement !== doc.body) {
+          const siblingText = Array.from(candidate.parentElement.childNodes)
+            .filter(n => n !== candidate)
+            .map(n => n.textContent || '')
+            .join('')
+            .trim();
+          // If siblings have substantial content, stop here
+          if (siblingText.length > 20) break;
+          candidate = candidate.parentElement;
+        }
+        toRemove.add(candidate);
+      }
+    });
+
+    toRemove.forEach(el => el.remove());
+    result = doc.body.innerHTML.trim();
+  }
+
+  // Clean up empty tags and whitespace
+  result = result.replace(/(<(p|div|span)>\s*<\/\2>)+/g, '').trim();
+
+  if (!result || !result.replace(/<[^>]*>/g, '').trim()) return null;
+  return result;
+}
+
+function fixNewsletterForms(blocks: Block[]): Block[] {
+  return blocks.map(b => {
+    if (b.type !== 'text') return b;
+    const html = (b as TextBlock).content;
+    if (!NEWSLETTER_MARKERS.some(rx => rx.test(html))) return b;
+    const cleaned = stripNewsletterHtml(html);
+    if (cleaned === null) return null;
+    return { ...b, content: cleaned } as TextBlock;
+  }).filter(Boolean) as Block[];
 }
 
 /* ------------------------------------------------------------------ */
@@ -138,6 +255,8 @@ interface PreviewRow {
   internalLinkCount: number;
   sqImageCount: number;
   emptyAltCount: number;
+  hasNewsletter: boolean;
+  newsletterDiffs: NewsletterDiff[];
 }
 
 interface LogEntry {
@@ -166,6 +285,7 @@ export default function BlogCleanup() {
   const [fixLinks, setFixLinks] = useState(true);
   const [fixImages, setFixImages] = useState(true);
   const [fixAlt, setFixAlt] = useState(true);
+  const [fixNewsletter, setFixNewsletter] = useState(true);
 
   const handlePreview = useCallback(async () => {
     setLoading(true);
@@ -196,10 +316,11 @@ export default function BlogCleanup() {
         internalLinkCount: countInternalLinks(blocks),
         sqImageCount: countSquarespaceImages(blocks),
         emptyAltCount: countEmptyAltImages(blocks),
+        hasNewsletter: hasNewsletterForm(blocks),
+        newsletterDiffs: previewNewsletterStrip(blocks),
       };
 
-      // Only include if at least one issue found
-      if (row.leakedJsonCount || row.hasLongIntro || row.internalLinkCount || row.sqImageCount || row.emptyAltCount) {
+      if (row.leakedJsonCount || row.hasLongIntro || row.internalLinkCount || row.sqImageCount || row.emptyAltCount || row.hasNewsletter) {
         rows.push(row);
       }
     }
@@ -268,11 +389,18 @@ export default function BlogCleanup() {
           if (migratedCount > 0) details.push(`Migrated ${migratedCount} images`);
         }
 
+        // Fix 6 — Newsletter forms
+        if (fixNewsletter && row.hasNewsletter) {
+          blocks = fixNewsletterForms(blocks);
+          details.push('Stripped newsletter form');
+        }
+
         // Determine if we need to update
         const needsUpdate = (fixLeaked && row.leakedJsonCount > 0) ||
           (fixIntro && row.hasLongIntro) ||
           (fixLinks && row.internalLinkCount > 0) ||
-          (fixImages && row.sqImageCount > 0);
+          (fixImages && row.sqImageCount > 0) ||
+          (fixNewsletter && row.hasNewsletter);
 
         if (needsUpdate) {
           const { error: updateError } = await supabase
@@ -282,7 +410,7 @@ export default function BlogCleanup() {
           if (updateError) throw updateError;
         }
 
-        // Fix 5 — Flag empty alt (just reporting, no DB change needed beyond what's in blocks)
+        // Fix 5 — Flag empty alt (just reporting)
         if (fixAlt && row.emptyAltCount > 0) {
           details.push(`${row.emptyAltCount} images need alt text`);
         }
@@ -304,12 +432,11 @@ export default function BlogCleanup() {
     }
 
     setStage('done');
-  }, [previewRows, fixLeaked, fixIntro, fixLinks, fixImages, fixAlt]);
+  }, [previewRows, fixLeaked, fixIntro, fixLinks, fixImages, fixAlt, fixNewsletter]);
 
   const successCount = logs.filter(l => l.success).length;
   const errorCount = logs.filter(l => !l.success).length;
 
-  // Gather all empty-alt images across preview for the review table
   const emptyAltReview = previewRows.flatMap(row =>
     row.post.blocks
       .filter((b): b is ImageBlock => b.type === 'image' && !(b as ImageBlock).alt?.trim())
@@ -317,9 +444,11 @@ export default function BlogCleanup() {
   );
 
   const totalIssues = previewRows.reduce(
-    (s, r) => s + r.leakedJsonCount + (r.hasLongIntro ? 1 : 0) + r.internalLinkCount + r.sqImageCount + r.emptyAltCount,
+    (s, r) => s + r.leakedJsonCount + (r.hasLongIntro ? 1 : 0) + r.internalLinkCount + r.sqImageCount + r.emptyAltCount + (r.hasNewsletter ? 1 : 0),
     0
   );
+
+  const newsletterRows = previewRows.filter(r => r.hasNewsletter && r.newsletterDiffs.length > 0);
 
   return (
     <AdminLayout>
@@ -349,6 +478,7 @@ export default function BlogCleanup() {
                 <ToggleRow checked={fixLinks} onChange={setFixLinks} label="Convert absolute internal links to relative" desc="Replace trapezemedia.co.uk absolute URLs with relative paths." />
                 <ToggleRow checked={fixImages} onChange={setFixImages} label="Migrate Squarespace CDN images" desc="Download images from squarespace-cdn.com and re-host in your storage." />
                 <ToggleRow checked={fixAlt} onChange={setFixAlt} label="Flag images missing alt text" desc="Surface image blocks with empty alt text for human review." />
+                <ToggleRow checked={fixNewsletter} onChange={setFixNewsletter} label="Strip leaked newsletter forms" desc="Remove Squarespace newsletter form HTML that leaked into text blocks." />
               </div>
 
               <Button onClick={handlePreview} disabled={loading} className="w-full">
@@ -396,6 +526,7 @@ export default function BlogCleanup() {
               <MiniToggle checked={fixLinks} onChange={setFixLinks} label="Internal links" />
               <MiniToggle checked={fixImages} onChange={setFixImages} label="CDN images" />
               <MiniToggle checked={fixAlt} onChange={setFixAlt} label="Empty alt" />
+              <MiniToggle checked={fixNewsletter} onChange={setFixNewsletter} label="Newsletter forms" />
             </div>
 
             <div className="border border-border rounded-xl overflow-hidden mb-6">
@@ -408,12 +539,13 @@ export default function BlogCleanup() {
                     <TableHead className="text-center">Internal links</TableHead>
                     <TableHead className="text-center">CDN images</TableHead>
                     <TableHead className="text-center">Empty alt</TableHead>
+                    <TableHead className="text-center">Newsletter</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {previewRows.map(row => (
                     <TableRow key={row.post.id}>
-                      <TableCell className="font-medium max-w-[240px] truncate">{row.post.title}</TableCell>
+                      <TableCell className="font-medium max-w-[220px] truncate">{row.post.title}</TableCell>
                       <TableCell className="text-center">
                         <CountBadge count={row.leakedJsonCount} enabled={fixLeaked} />
                       </TableCell>
@@ -431,11 +563,57 @@ export default function BlogCleanup() {
                       <TableCell className="text-center">
                         <CountBadge count={row.emptyAltCount} enabled={fixAlt} />
                       </TableCell>
+                      <TableCell className="text-center">
+                        {row.hasNewsletter
+                          ? <Badge variant={fixNewsletter ? 'destructive' : 'secondary'}>Yes</Badge>
+                          : <span className="text-muted-foreground">—</span>}
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
               </Table>
             </div>
+
+            {/* Newsletter before/after preview */}
+            {fixNewsletter && newsletterRows.length > 0 && (
+              <div className="mb-6">
+                <h3 className="heading-display text-lg mb-3">Newsletter form removal preview ({newsletterRows.length} posts)</h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Expand each post to see the before/after for affected text blocks.
+                </p>
+                <div className="space-y-2">
+                  {newsletterRows.map(row => (
+                    <Collapsible key={row.post.id}>
+                      <CollapsibleTrigger className="flex items-center gap-2 w-full text-left p-3 rounded-lg border border-border hover:bg-accent/30 transition-colors text-sm font-medium">
+                        <ChevronDown className="h-4 w-4 flex-shrink-0 transition-transform [[data-state=open]_&]:rotate-180" />
+                        <span className="truncate">{row.post.title}</span>
+                        <Badge variant="secondary" className="ml-auto flex-shrink-0">{row.newsletterDiffs.length} block{row.newsletterDiffs.length !== 1 ? 's' : ''}</Badge>
+                      </CollapsibleTrigger>
+                      <CollapsibleContent>
+                        <div className="mt-2 space-y-3 pl-6">
+                          {row.newsletterDiffs.map((diff, i) => (
+                            <div key={i} className="grid grid-cols-2 gap-3">
+                              <div>
+                                <p className="text-xs font-semibold text-destructive mb-1">Before</p>
+                                <pre className="text-[10px] leading-tight bg-destructive/5 border border-destructive/20 rounded-lg p-3 overflow-x-auto max-h-48 whitespace-pre-wrap break-all">
+                                  {truncateHtml(diff.before, 800)}
+                                </pre>
+                              </div>
+                              <div>
+                                <p className="text-xs font-semibold text-primary mb-1">After</p>
+                                <pre className="text-[10px] leading-tight bg-primary/5 border border-primary/20 rounded-lg p-3 overflow-x-auto max-h-48 whitespace-pre-wrap break-all">
+                                  {diff.after ? truncateHtml(diff.after, 800) : <em className="text-muted-foreground">Block removed (empty)</em>}
+                                </pre>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </CollapsibleContent>
+                    </Collapsible>
+                  ))}
+                </div>
+              </div>
+            )}
           </>
         )}
 
@@ -520,8 +698,13 @@ export default function BlogCleanup() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Small sub-components                                                */
+/*  Small sub-components & helpers                                      */
 /* ------------------------------------------------------------------ */
+
+function truncateHtml(html: string, maxLen: number): string {
+  if (html.length <= maxLen) return html;
+  return html.slice(0, maxLen) + '…';
+}
 
 function ToggleRow({ checked, onChange, label, desc }: {
   checked: boolean; onChange: (v: boolean) => void; label: string; desc: string;
