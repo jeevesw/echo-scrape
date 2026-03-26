@@ -10,7 +10,7 @@ import logoTwoTone from "@/assets/logo-two-tone.svg";
 // Service images
 import socialMediaImg from "@/assets/services/social-media-management.webp";
 import paidAdsImg from "@/assets/services/paid-advertising.webp";
-import emailMarketingImg from "@/assets/services/email-marketing.webp";
+import paidSearchImg from "@/assets/services/paid-advertising.webp";
 import creativeImg from "@/assets/services/creative-services.webp";
 import tiktokImg from "@/assets/services/tiktok-production.png";
 import websiteImg from "@/assets/services/website-design.jpg";
@@ -18,7 +18,7 @@ import websiteImg from "@/assets/services/website-design.jpg";
 const services = [
   { slug: "social-media-management", title: "Social Media", description: "Content, community & engagement", image: socialMediaImg },
   { slug: "paid-advertising", title: "Paid Advertising", description: "Meta, Google & TikTok ads", image: paidAdsImg },
-  { slug: "email-marketing", title: "Email Marketing", description: "Campaigns & automation", image: emailMarketingImg },
+  { slug: "paid-search", title: "Paid Search", description: "Google Ads & PPC", image: paidSearchImg },
   { slug: "creative-services", title: "Creative Services", description: "Design, video & branding", image: creativeImg },
   { slug: "tiktok-production", title: "TikTok Production", description: "Content, ads & influencers", image: tiktokImg },
   { slug: "website-design", title: "Website Design", description: "Build, launch & manage", image: websiteImg },

@@ -9,7 +9,7 @@ import { ScrollReveal } from "@/hooks/use-scroll-reveal";
 // Service images
 import socialMediaImg from "@/assets/services/social-media-management.webp";
 import paidAdsImg from "@/assets/services/paid-advertising.webp";
-import emailMarketingImg from "@/assets/services/email-marketing.webp";
+import paidSearchImg from "@/assets/services/paid-advertising.webp";
 import creativeImg from "@/assets/services/creative-services.webp";
 import tiktokImg from "@/assets/services/tiktok-production.png";
 import websiteImg from "@/assets/services/website-design.jpg";
@@ -23,15 +23,15 @@ const services = [
   },
   {
     slug: "paid-advertising",
-    title: "Paid Search, PPC & Social Ads",
-    description: "PPC that drives high-intent traffic, converts sales, and generates leads, on Google, YouTube, Meta, TikTok, and beyond.",
+    title: "Paid Social & Search Ads",
+    description: "Meta, Google & TikTok ads that drive bookings, footfall, and sales for hospitality brands.",
     image: paidAdsImg,
   },
   {
-    slug: "email-marketing",
-    title: "Email Marketing",
-    description: "Strategic email campaigns and automation that drive repeat visits, bookings, and customer loyalty for hospitality brands.",
-    image: emailMarketingImg,
+    slug: "paid-search",
+    title: "Paid Search (Google Ads)",
+    description: "PPC that drives high-intent traffic, converts sales, and generates leads on Google Search, Display, and Performance Max.",
+    image: paidSearchImg,
   },
   {
     slug: "creative-services",
