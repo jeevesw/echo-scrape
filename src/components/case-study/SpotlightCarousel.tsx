@@ -8,54 +8,29 @@ interface SpotlightCarouselProps {
 }
 
 export function SpotlightCarousel({ images, bgClass = "bg-background", interval = 2000 }: SpotlightCarouselProps) {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [centre, setCentre] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [animating, setAnimating] = useState(false);
 
   const len = images.length;
   const getIdx = (i: number) => ((i % len) + len) % len;
 
-  // Auto-rotate every {interval}ms
   useEffect(() => {
     if (lightboxOpen) return;
     const timer = setInterval(() => {
-      setAnimating(true);
+      setCentre((prev) => (prev + 1) % len);
     }, interval);
     return () => clearInterval(timer);
-  }, [interval, lightboxOpen]);
+  }, [interval, lightboxOpen, len]);
 
-  // When animating flag is set, wait for CSS transition then advance index
-  useEffect(() => {
-    if (!animating) return;
-    const timeout = setTimeout(() => {
-      setActiveIndex((prev) => prev + 1);
-      setAnimating(false);
-    }, 500); // transition duration
-    return () => clearTimeout(timeout);
-  }, [animating]);
-
-  const handleClick = useCallback(() => {
-    setLightboxOpen(true);
-  }, []);
+  const handleClick = useCallback(() => setLightboxOpen(true), []);
 
   const isMuted = bgClass.includes("muted");
   const fadeColor = isMuted
     ? "from-[hsl(var(--muted))]"
     : "from-[hsl(var(--background))]";
 
-  // Show 3 visible images: left, centre, right
-  const leftIdx = getIdx(activeIndex - 1);
-  const centreIdx = getIdx(activeIndex);
-  const rightIdx = getIdx(activeIndex + 1);
-  // Pre-stage the next one off-screen right
-  const farRightIdx = getIdx(activeIndex + 2);
-
-  const items = [
-    { idx: leftIdx, role: "left" },
-    { idx: centreIdx, role: "centre" },
-    { idx: rightIdx, role: "right" },
-    { idx: farRightIdx, role: "far-right" },
-  ];
+  const leftIdx = getIdx(centre - 1);
+  const rightIdx = getIdx(centre + 1);
 
   return (
     <>
@@ -64,78 +39,13 @@ export function SpotlightCarousel({ images, bgClass = "bg-background", interval 
         <div className={`absolute left-0 top-0 bottom-0 w-12 md:w-20 bg-gradient-to-r ${fadeColor} to-transparent z-10 pointer-events-none`} />
         <div className={`absolute right-0 top-0 bottom-0 w-12 md:w-20 bg-gradient-to-l ${fadeColor} to-transparent z-10 pointer-events-none`} />
 
-        <div className="relative flex items-center justify-center gap-3 md:gap-4 px-2">
-          {items.map(({ idx, role }) => {
-            let classes = "flex-shrink-0 rounded-xl overflow-hidden shadow-lg";
-            let width: string;
-            let opacity: number;
-            let scale: string;
-            let translateX: string;
-
-            if (animating) {
-              // During animation: everything shifts one position left
-              if (role === "left") {
-                // Slides off to the left, fading out
-                classes += " absolute left-0";
-                width = "28%";
-                opacity = 0;
-                scale = "scale-75";
-                translateX = "-100%";
-              } else if (role === "centre") {
-                // Was centre, becomes left (fades)
-                width = "28%";
-                opacity = 0.35;
-                scale = "scale-90";
-                translateX = "0";
-              } else if (role === "right") {
-                // Was right, becomes centre (highlights)
-                width = "50%";
-                opacity = 1;
-                scale = "scale-100";
-                translateX = "0";
-              } else {
-                // far-right enters as new right
-                width = "28%";
-                opacity = 0.35;
-                scale = "scale-90";
-                translateX = "0";
-              }
-            } else {
-              if (role === "far-right") return null;
-              if (role === "centre") {
-                width = "50%";
-                opacity = 1;
-                scale = "scale-100";
-                translateX = "0";
-              } else {
-                width = "28%";
-                opacity = 0.35;
-                scale = "scale-90";
-                translateX = "0";
-              }
-            }
-
-            const scaleVal = scale === "scale-75" ? "scale(0.75)" : scale === "scale-90" ? "scale(0.9)" : "scale(1)";
-
-            return (
-              <div
-                key={`${activeIndex}-${role}`}
-                className={`${classes} transition-all duration-500 ease-in-out`}
-                style={{
-                  width,
-                  opacity,
-                  transform: `${scaleVal} translateX(${translateX})`,
-                }}
-              >
-                <img
-                  src={images[idx].src}
-                  alt={images[idx].alt}
-                  className="w-full h-auto object-cover"
-                  loading="lazy"
-                />
-              </div>
-            );
-          })}
+        <div className="flex items-center justify-center gap-3 md:gap-4 px-2">
+          {/* Left */}
+          <CarouselSlot images={images} index={leftIdx} faded />
+          {/* Centre */}
+          <CarouselSlot images={images} index={centre} faded={false} />
+          {/* Right */}
+          <CarouselSlot images={images} index={rightIdx} faded />
         </div>
 
         {/* Dots */}
@@ -143,9 +53,9 @@ export function SpotlightCarousel({ images, bgClass = "bg-background", interval 
           {images.map((_, i) => (
             <button
               key={i}
-              onClick={(e) => { e.stopPropagation(); setActiveIndex(i); setAnimating(false); }}
+              onClick={(e) => { e.stopPropagation(); setCentre(i); }}
               className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                getIdx(activeIndex) === i ? "bg-primary w-5" : "bg-primary/30"
+                centre === i ? "bg-primary w-5" : "bg-primary/30"
               }`}
               aria-label={`Go to slide ${i + 1}`}
             />
@@ -173,16 +83,45 @@ export function SpotlightCarousel({ images, bgClass = "bg-background", interval 
           >
             {images.map((img, i) => (
               <div key={i} className="rounded-xl overflow-hidden">
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  className="w-full h-auto object-cover"
-                />
+                <img src={img.src} alt={img.alt} className="w-full h-auto object-cover" />
               </div>
             ))}
           </div>
         </div>
       )}
     </>
+  );
+}
+
+/** A single slot that crossfades between images using stacked absolute layers */
+function CarouselSlot({
+  images,
+  index,
+  faded,
+}: {
+  images: { src: string; alt: string }[];
+  index: number;
+  faded: boolean;
+}) {
+  return (
+    <div
+      className={`flex-shrink-0 rounded-xl overflow-hidden shadow-lg relative transition-transform duration-500 ease-in-out ${
+        faded ? "w-[28%] md:w-[30%] scale-90" : "w-[44%] md:w-[40%] scale-100"
+      }`}
+      style={{ opacity: faded ? 0.35 : 1 }}
+    >
+      {/* Stack all images, only the active one is visible */}
+      {images.map((img, i) => (
+        <img
+          key={i}
+          src={img.src}
+          alt={img.alt}
+          className={`w-full h-auto object-cover transition-opacity duration-500 ease-in-out ${
+            i === index ? "opacity-100 relative" : "opacity-0 absolute inset-0"
+          }`}
+          loading="lazy"
+        />
+      ))}
+    </div>
   );
 }
