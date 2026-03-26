@@ -16,7 +16,7 @@ const Index = () => {
       <FeaturedCampaigns />
       <Testimonial />
       <BlogPreview />
-      <Newsletter />
+      <NewsletterSignup />
     </Layout>
   );
 };
