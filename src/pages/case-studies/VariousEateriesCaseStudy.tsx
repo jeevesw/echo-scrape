@@ -128,7 +128,8 @@ const VariousEateriesCaseStudy = () => {
               
               <ScrollReveal delay={150}>
                 <AnimatedStat 
-                  value={13} 
+                  value={13}
+                  start={1}
                   suffix=":1" 
                   label="ROAS (average £13 made for every £1 spent)" 
                   delay={150}
