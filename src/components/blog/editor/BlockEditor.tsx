@@ -7,7 +7,7 @@ import Placeholder from '@tiptap/extension-placeholder';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import {
-  AlignLeft, Heading2, Image as ImageIcon, Quote, List, Minus,
+  AlignLeft, Heading2, Image as ImageIcon, Quote, List, Minus, Mail,
   Youtube, HelpCircle, BookOpen, GripVertical, ChevronUp, ChevronDown,
   Copy, Trash2, Plus, Bold, Italic, Underline, Strikethrough,
   Link2, Unlink, ListOrdered, RemoveFormatting, Upload, RefreshCw, Loader2
