@@ -566,7 +566,7 @@ const Blog = () => {
                   Blog
                 </h1>
                 <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-                  Practical marketing insights, SEO, and paid media—without the fluff.
+                  News, insights, and updates from the world of social media marketing, online advertising, and digital culture.
                 </p>
               </div>
               
