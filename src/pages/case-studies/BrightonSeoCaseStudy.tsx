@@ -5,7 +5,7 @@ import { BreadcrumbNav } from "@/components/ui/breadcrumb-nav";
 import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/hooks/use-scroll-reveal";
 import { ArrowLeft, Quote } from "lucide-react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
 
@@ -43,9 +43,31 @@ function VideoCard({ src }: { src: string }) {
   );
 }
 
-function StatPill({ children }: { children: React.ReactNode }) {
+function ParallaxPill({ children, speed = 1 }: { children: React.ReactNode; speed?: number }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const [offset, setOffset] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!ref.current) return;
+      const rect = ref.current.getBoundingClientRect();
+      const windowCenter = window.innerHeight / 2;
+      const elementCenter = rect.top + rect.height / 2;
+      const distance = (elementCenter - windowCenter) / window.innerHeight;
+      setOffset(distance * 30 * speed);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [speed]);
+
   return (
-    <span className="inline-flex items-center px-5 py-2.5 rounded-full bg-primary text-primary-foreground text-sm md:text-base font-semibold font-ui">
+    <span
+      ref={ref}
+      className="inline-flex items-center px-5 py-2.5 rounded-full bg-primary text-primary-foreground text-sm md:text-base font-semibold font-ui transition-transform duration-100 ease-out"
+      style={{ transform: `translateY(${offset}px)` }}
+    >
       {children}
     </span>
   );
@@ -66,46 +88,41 @@ const BrightonSeoCaseStudy = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="relative max-h-[75vh] flex items-center justify-center overflow-hidden bg-background py-20 md:py-28">
+      <section className="relative flex items-center justify-center overflow-hidden bg-background pt-8 pb-6 md:pt-12 md:pb-8">
         <div className="container-content mx-auto px-4 relative z-10 text-center">
-          <ScrollReveal animation="up">
-            <h1 className="heading-display text-4xl md:text-5xl lg:text-7xl text-primary leading-tight max-w-5xl mx-auto">
-              Social Media Video Production for brightonSEO
-            </h1>
-            <p className="text-lg md:text-xl text-foreground mt-6 max-w-3xl mx-auto leading-relaxed">
-              100 Short-Form Videos. Shot in 2 Days. Built for TikTok, Instagram Reels & YouTube Shorts.
-            </p>
-          </ScrollReveal>
-
-          <ScrollReveal animation="up" delay={200}>
-            <div className="flex flex-wrap justify-center gap-3 mt-10">
-              <StatPill>Trend-Driven, Social-Ready Videos</StatPill>
-              <StatPill>Informed by Client Brand Pillars</StatPill>
-              <StatPill>100 Videos Produced</StatPill>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* Breadcrumb */}
-      <section className="bg-background pb-4">
-        <div className="container-content mx-auto px-4">
+          {/* Breadcrumb at top */}
           <BreadcrumbNav
             items={[
               { label: "Case Studies", href: "/case-studies" },
               { label: "brightonSEO", href: "/case-studies/brightonseo" },
             ]}
           />
+
+          <ScrollReveal animation="up">
+            <h1 className="heading-display text-4xl md:text-5xl lg:text-7xl text-primary leading-tight max-w-5xl mx-auto">
+              Social Media Video Production for brightonSEO
+            </h1>
+            <p className="text-lg md:text-xl text-foreground mt-4 max-w-3xl mx-auto leading-relaxed">
+              100 short-form videos. Shot in 2 days. Edited with TikTok, Instagram Reels, and YouTube Shorts at their core.
+            </p>
+          </ScrollReveal>
+
+          {/* First two pills */}
+          <ScrollReveal animation="up" delay={200}>
+            <div className="flex flex-wrap justify-center gap-3 mt-6">
+              <ParallaxPill speed={0.8}>Trend-driven, social-ready videos</ParallaxPill>
+              <ParallaxPill speed={-0.6}>Informed by client brand pillars</ParallaxPill>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* Video Grid */}
-      <section className="py-16 bg-background">
+      <section className="py-8 md:py-12 bg-background">
         <div className="max-w-6xl mx-auto px-4">
           <ScrollReveal>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
               {videoFiles.map((file, i) => {
-                // Subtle vertical offset for waviness
                 const offsets = [0, 12, -8, 6, -12, 4];
                 return (
                   <div
@@ -119,11 +136,12 @@ const BrightonSeoCaseStudy = () => {
             </div>
           </ScrollReveal>
 
+          {/* Last three pills */}
           <ScrollReveal animation="up" delay={200}>
-            <div className="flex flex-wrap justify-center gap-3 mt-12">
-              <StatPill>Planned Over 2 Months</StatPill>
-              <StatPill>Shot Over 2 Days</StatPill>
-              <StatPill>100+ Videos Delivered</StatPill>
+            <div className="flex flex-wrap justify-center gap-3 mt-10">
+              <ParallaxPill speed={0.7}>Produced 100 videos</ParallaxPill>
+              <ParallaxPill speed={-0.5}>Planned over 2 months</ParallaxPill>
+              <ParallaxPill speed={0.9}>Shot in 2 days</ParallaxPill>
             </div>
           </ScrollReveal>
         </div>
@@ -150,10 +168,10 @@ const BrightonSeoCaseStudy = () => {
 
       {/* Testimonial Section */}
       <section className="py-24 bg-primary text-primary-foreground relative overflow-hidden">
-        <div className="absolute top-12 left-12 opacity-10 rotate-180">
+        <div className="absolute top-12 right-12 opacity-10">
           <Quote className="w-32 h-32" />
         </div>
-        <div className="absolute bottom-12 right-12 opacity-10">
+        <div className="absolute bottom-12 left-12 opacity-10 rotate-180">
           <Quote className="w-32 h-32" />
         </div>
 
