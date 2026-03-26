@@ -2,12 +2,20 @@ import { SpotlightCarousel } from "@/components/case-study/SpotlightCarousel";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { useCountUp } from "@/hooks/use-count-up";
 import PreciousHomesSnippet from "./PreciousHomesSnippet";
 
-const statPills = [
-  { value: "+66%", label: "Double opt-ins" },
-  { value: "50%", label: "Cost-per-result reduction" },
-];
+function AnimatedStatPill({ end, prefix, suffix, label, delay }: {
+  end: number; prefix?: string; suffix?: string; label: string; delay?: number;
+}) {
+  const { ref, displayValue } = useCountUp({ end, prefix, suffix, delay, duration: 2500 });
+  return (
+    <div ref={ref} className="bg-background border-2 border-primary rounded-xl px-5 py-3">
+      <span className="heading-display text-2xl text-primary block">{displayValue}</span>
+      <span className="text-sm text-muted-foreground block mt-1">{label}</span>
+    </div>
+  );
+}
 
 const galleryPrizes = [
   { src: "https://images.squarespace-cdn.com/content/v1/5edc691de451f275e3b4ae86/1644280061137-PTIC38BRX8KJO228E3JM/Maximiles+%E2%80%94+Focus+on+Prizes+2.jpg", alt: "Maximiles prizes creative 1" },
@@ -26,7 +34,6 @@ const MaximilesSnippet = () => (
       {/* Maximiles */}
       <div className="max-w-5xl mx-auto">
         <div className="grid md:grid-cols-2 gap-10 items-center">
-          {/* Left column — copy */}
           <div>
             <span className="bg-primary/10 text-primary text-xs font-semibold uppercase tracking-widest rounded-full px-3 py-1 inline-block mb-4">
               Paid Social · Market Research
@@ -35,12 +42,8 @@ const MaximilesSnippet = () => (
             <h3 className="heading-display text-3xl text-foreground mb-4">Maximiles</h3>
 
             <div className="flex gap-3 flex-wrap mb-6">
-              {statPills.map((s) => (
-                <div key={s.label} className="bg-background border-2 border-primary rounded-xl px-5 py-3">
-                  <span className="heading-display text-2xl text-primary block">{s.value}</span>
-                  <span className="text-sm text-muted-foreground block mt-1">{s.label}</span>
-                </div>
-              ))}
+              <AnimatedStatPill end={66} prefix="+" suffix="%" label="Double opt-ins" delay={0} />
+              <AnimatedStatPill end={50} suffix="%" label="Cost-per-result reduction" delay={200} />
             </div>
 
             <p className="text-muted-foreground text-lg mb-6">
@@ -63,7 +66,6 @@ const MaximilesSnippet = () => (
             </Button>
           </div>
 
-          {/* Right column — carousel */}
           <div>
             <SpotlightCarousel images={galleryPrizes} interval={3000} />
           </div>
