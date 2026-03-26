@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { ChevronDown } from "lucide-react";
+import NewsletterSignup from "@/components/NewsletterSignup";
 
 export type BlockType =
   | 'text' | 'heading' | 'image' | 'quote'
-  | 'list' | 'divider' | 'embed' | 'faq' | 'toc';
+  | 'list' | 'divider' | 'embed' | 'faq' | 'toc' | 'newsletter';
 
 export interface TextBlock      { id: string; type: 'text'; content: string; }
 export interface HeadingBlock   { id: string; type: 'heading'; level: 2 | 3; content: string; anchor: string; }
@@ -15,10 +16,11 @@ export interface EmbedBlock     { id: string; type: 'embed'; url: string; captio
 export interface FAQItem        { question: string; answer: string; }
 export interface FAQBlock       { id: string; type: 'faq'; items: FAQItem[]; }
 export interface TOCBlock       { id: string; type: 'toc'; auto: boolean; label?: string; }
+export interface NewsletterBlock { id: string; type: 'newsletter'; heading?: string; subheading?: string; }
 
 export type Block =
   | TextBlock | HeadingBlock | ImageBlock | QuoteBlock
-  | ListBlock | DividerBlock | EmbedBlock | FAQBlock | TOCBlock;
+  | ListBlock | DividerBlock | EmbedBlock | FAQBlock | TOCBlock | NewsletterBlock;
 
 interface BlockRendererProps {
   blocks: Block[];
@@ -169,6 +171,16 @@ function RenderBlock({ block, allBlocks }: { block: Block; allBlocks: Block[] })
         </nav>
       );
     }
+
+    case 'newsletter':
+      return (
+        <div className="my-8">
+          <NewsletterSignup
+            heading={(block as NewsletterBlock).heading}
+            subheading={(block as NewsletterBlock).subheading}
+          />
+        </div>
+      );
 
     default:
       return null;

@@ -7,7 +7,7 @@ import Placeholder from '@tiptap/extension-placeholder';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import {
-  AlignLeft, Heading2, Image as ImageIcon, Quote, List, Minus,
+  AlignLeft, Heading2, Image as ImageIcon, Quote, List, Minus, Mail,
   Youtube, HelpCircle, BookOpen, GripVertical, ChevronUp, ChevronDown,
   Copy, Trash2, Plus, Bold, Italic, Underline, Strikethrough,
   Link2, Unlink, ListOrdered, RemoveFormatting, Upload, RefreshCw, Loader2
@@ -16,7 +16,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import type { Block, BlockType, TextBlock, HeadingBlock, ImageBlock, QuoteBlock, ListBlock, DividerBlock, EmbedBlock, FAQBlock, TOCBlock, FAQItem } from '../BlockRenderer';
+import type { Block, BlockType, TextBlock, HeadingBlock, ImageBlock, QuoteBlock, ListBlock, DividerBlock, EmbedBlock, FAQBlock, TOCBlock, NewsletterBlock, FAQItem } from '../BlockRenderer';
 
 interface BlockEditorProps {
   blocks: Block[];
@@ -37,6 +37,7 @@ const BLOCK_TYPES: { type: BlockType; icon: React.ElementType; label: string; de
   { type: 'embed', icon: Youtube, label: 'Embed', desc: 'YouTube or video embed' },
   { type: 'faq', icon: HelpCircle, label: 'FAQ', desc: 'FAQ accordion + schema' },
   { type: 'toc', icon: BookOpen, label: 'TOC', desc: 'Auto table of contents' },
+  { type: 'newsletter', icon: Mail, label: 'Newsletter', desc: 'Email signup block' },
 ];
 
 function createEmptyBlock(type: BlockType): Block {
@@ -51,6 +52,7 @@ function createEmptyBlock(type: BlockType): Block {
     case 'embed': return { id, type: 'embed', url: '', caption: '' };
     case 'faq': return { id, type: 'faq', items: [{ question: '', answer: '' }] };
     case 'toc': return { id, type: 'toc', auto: true, label: 'In this article' };
+    case 'newsletter': return { id, type: 'newsletter', heading: '', subheading: '' };
   }
 }
 
@@ -392,7 +394,32 @@ function TOCEditor({ block, onUpdate, allBlocks }: { block: TOCBlock; onUpdate: 
   );
 }
 
-// ── Block Wrapper ────────────────────────────────────────────────────
+function NewsletterEditor({ block, onUpdate }: { block: NewsletterBlock; onUpdate: (u: Partial<NewsletterBlock>) => void }) {
+  return (
+    <div className="space-y-3">
+      <p className="text-xs font-medium text-muted-foreground">Newsletter signup block — renders the email capture form</p>
+      <div>
+        <Label className="text-xs">Heading (optional)</Label>
+        <Input
+          value={block.heading ?? ''}
+          onChange={(e) => onUpdate({ heading: e.target.value })}
+          placeholder="Stay in the loop"
+          className="text-sm"
+        />
+      </div>
+      <div>
+        <Label className="text-xs">Subheading (optional)</Label>
+        <Input
+          value={block.subheading ?? ''}
+          onChange={(e) => onUpdate({ subheading: e.target.value })}
+          placeholder="Industry news and digital marketing insights, straight to your inbox."
+          className="text-sm"
+        />
+      </div>
+    </div>
+  );
+}
+
 function BlockWrapper({
   block, index, total, focused, onFocus, onUpdate, onDelete, onMove, onDuplicate, onInsert, allBlocks
 }: {
@@ -439,6 +466,7 @@ function BlockWrapper({
           {block.type === 'embed' && <EmbedEditor block={block as EmbedBlock} onUpdate={onUpdate as (u: Partial<EmbedBlock>) => void} />}
           {block.type === 'faq' && <FAQEditor block={block as FAQBlock} onUpdate={onUpdate as (u: Partial<FAQBlock>) => void} />}
           {block.type === 'toc' && <TOCEditor block={block as TOCBlock} onUpdate={onUpdate as (u: Partial<TOCBlock>) => void} allBlocks={allBlocks} />}
+          {block.type === 'newsletter' && <NewsletterEditor block={block as NewsletterBlock} onUpdate={onUpdate as (u: Partial<NewsletterBlock>) => void} />}
         </div>
       </div>
 
