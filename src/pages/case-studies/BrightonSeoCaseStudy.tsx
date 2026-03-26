@@ -130,10 +130,9 @@ const BrightonSeoCaseStudy = () => {
       {/* Top pills — overlapping into video grid */}
       <div className="relative z-10 -mb-6 md:-mb-8">
         <ParallaxPillStrip
-          className="h-12"
           pills={[
-            { text: "Trend-driven, social-ready videos", x: "8%", rotate: -2 },
-            { text: "Informed by client brand pillars", x: "55%", rotate: 1.5 },
+            "Trend-driven, social-ready videos",
+            "Informed by client brand pillars",
           ]}
         />
       </div>
@@ -162,11 +161,10 @@ const BrightonSeoCaseStudy = () => {
       {/* Bottom pills — overlapping into video grid from below */}
       <div className="relative z-10 -mt-10 md:-mt-14 mb-8">
         <ParallaxPillStrip
-          className="h-16"
           pills={[
-            { text: "Produced 100 videos", x: "5%", rotate: 1 },
-            { text: "Planned over 2 months", x: "38%", rotate: -1.5 },
-            { text: "Shot in 2 days", x: "72%", rotate: 2 },
+            "Produced 100 videos",
+            "Planned over 2 months",
+            "Shot in 2 days",
           ]}
         />
       </div>
