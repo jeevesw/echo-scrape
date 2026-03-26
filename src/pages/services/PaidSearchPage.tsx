@@ -4,6 +4,7 @@ import { Layout } from "@/components/layout/Layout";
 import { ServiceSchema, FAQSchema } from "@/components/seo/SchemaMarkup";
 import { servicesData } from "@/data/servicesData";
 import { ServiceHero } from "@/components/services/ServiceHero";
+import paidSearchHero from "@/assets/services/paid-search.jpg";
 import { ClientLogoCarousel } from "@/components/home/ClientLogoCarousel";
 import { InlineCaseStudy } from "@/components/services/InlineCaseStudy";
 import { TestimonialBlock } from "@/components/services/TestimonialBlock";
