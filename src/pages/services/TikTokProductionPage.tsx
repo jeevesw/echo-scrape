@@ -19,6 +19,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useCountUp } from "@/hooks/use-count-up";
 
 const service = servicesData["tiktok-production"];
 const baseUrl = "https://trapezemedia.com";
