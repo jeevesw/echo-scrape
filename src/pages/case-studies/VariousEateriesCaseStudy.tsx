@@ -12,7 +12,7 @@ const VariousEateriesCaseStudy = () => {
   return (
     <Layout>
       <Helmet>
-        <title>Google Pay-Per-Click Ads for Various Eateries | Trapeze Media</title>
+        <title>Google Pay-Per-Click Ads for Various Eateries: driving restaurant visits and bookings | Trapeze Media</title>
         <meta 
           name="description" 
           content="We drove an 88% increase in table bookings, 12x ROAS, and 92% lower cost-per-visit for restaurant group Various Eateries through strategic Google Ads campaigns." 
@@ -21,9 +21,20 @@ const VariousEateriesCaseStudy = () => {
       </Helmet>
 
       {/* Hero Section - Phone mockup cropped at bottom edge */}
-      <section className="relative h-[65vh] max-h-[75vh] min-h-[420px] overflow-hidden bg-primary">
+      <section className="relative h-[65vh] max-h-[75vh] min-h-[520px] overflow-hidden bg-primary">
         {/* Background gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-primary/80" />
+
+        {/* Breadcrumb at top */}
+        <div className="container-content mx-auto px-4 relative z-20 pt-6">
+          <BreadcrumbNav
+            items={[
+              { label: "Case Studies", href: "/case-studies" },
+              { label: "Various Eateries", href: "/case-studies/various-eateries" },
+            ]}
+            variant="light"
+          />
+        </div>
 
         <div className="container-content mx-auto px-4 relative z-10 h-full">
           {/* Desktop: two-column layout */}
@@ -40,11 +51,11 @@ const VariousEateriesCaseStudy = () => {
               </ScrollReveal>
             </div>
 
-            {/* Right column — phone frame, anchored to bottom, flush right */}
-            <div className="relative hidden md:block overflow-visible">
+            {/* Right column — phone frame, anchored to bottom */}
+            <div className="relative hidden md:block self-stretch">
               <div 
-                className="absolute bottom-0 right-0 w-[320px] lg:w-[360px]"
-                style={{ right: 'calc(-1 * (100vw - 100%) / 2)', marginRight: '-1rem' }}
+                className="absolute bottom-0 w-[320px]"
+                style={{ right: '-20px' }}
               >
                 <img
                   src="/images/various-eateries-hero.png"
@@ -71,19 +82,12 @@ const VariousEateriesCaseStudy = () => {
       {/* Intro Statement */}
       <section className="py-20 bg-background">
         <div className="container-content mx-auto px-4">
-          <BreadcrumbNav
-            items={[
-              { label: "Case Studies", href: "/case-studies" },
-              { label: "Various Eateries", href: "/case-studies/various-eateries" },
-            ]}
-          />
-          
-          <div className="grid md:grid-cols-[auto_1fr] gap-12 items-center mt-8">
+          <div className="grid md:grid-cols-[auto_1fr] gap-12 items-center">
             <ScrollReveal animation="left">
               <img
                 src="/images/various-eateries-intro.webp"
                 alt="Coppa Club restaurant interior"
-                className="w-[320px] lg:w-[400px] rounded-2xl shadow-xl"
+                className="w-[320px] lg:w-[400px] rounded-2xl"
               />
             </ScrollReveal>
             
@@ -202,12 +206,15 @@ const VariousEateriesCaseStudy = () => {
         </div>
       </section>
 
-      {/* Story Section */}
+      {/* Story + Tracking Section */}
       <section className="py-24 bg-muted">
         <div className="container-content mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <ScrollReveal animation="left">
               <div className="space-y-6">
+                <h2 className="heading-display text-3xl md:text-4xl text-foreground">
+                  Tracking Bookings Back to Acquisition
+                </h2>
                 <p className="text-xl md:text-2xl text-foreground leading-relaxed">
                   We built and ran cross-platform campaigns using{" "}
                   <span className="text-primary font-semibold">
@@ -215,10 +222,13 @@ const VariousEateriesCaseStudy = () => {
                   </span>.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  The result: 2.2 million monthly impressions and unprecedented year-on-year growth.
+                  We deployed a tracking solution which empowered Various Eateries to connect customer contact information from the point of booking back to Google's ad services.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  We were able to achieve higher efficiency alongside higher revenue and bookings with each passing month.
+                  This enables us to create reports which provide reliable stats on ad spend ROI.
+                </p>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  Feeding this data back to Google makes our retargeting campaigns far more effective.
                 </p>
               </div>
             </ScrollReveal>
@@ -231,31 +241,6 @@ const VariousEateriesCaseStudy = () => {
               />
             </ScrollReveal>
           </div>
-        </div>
-      </section>
-
-      {/* Tracking Section */}
-      <section className="py-24 bg-background">
-        <div className="container-content mx-auto px-4">
-          <ScrollReveal>
-            <h2 className="heading-display text-3xl md:text-4xl text-center text-foreground mb-8">
-              Tracking Bookings Back to Acquisition
-            </h2>
-            <p className="text-xl text-muted-foreground text-center max-w-3xl mx-auto mb-12">
-              We deployed a tracking solution called WhatConverts that enables us to clearly see which marketing touchpoint the table booking came from.
-            </p>
-          </ScrollReveal>
-
-          <ScrollReveal>
-            <div className="bg-muted rounded-2xl p-8 max-w-4xl mx-auto">
-              <p className="text-lg text-foreground leading-relaxed mb-6">
-                By connecting this data back to Google Analytics, we can adjust our campaigns for even better results.
-              </p>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                This comprehensive tracking approach ensures every marketing pound is accountable and optimised for maximum return.
-              </p>
-            </div>
-          </ScrollReveal>
         </div>
       </section>
 
