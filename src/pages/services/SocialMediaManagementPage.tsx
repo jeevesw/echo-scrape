@@ -16,6 +16,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { TeamSection } from "@/components/services/TeamSection";
+import { ClientLogoCarousel } from "@/components/home/ClientLogoCarousel";
 import heroImage from "@/assets/services/social-media-management.jpg";
 import fitzImage from "@/assets/case-studies/fitz-sparkling-wine.webp";
 
