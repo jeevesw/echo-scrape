@@ -6,6 +6,7 @@ import { servicesData } from "@/data/servicesData";
 import { ServiceHero } from "@/components/services/ServiceHero";
 import { ClientLogoStrip } from "@/components/services/ClientLogoStrip";
 import { InlineCaseStudy } from "@/components/services/InlineCaseStudy";
+import michaelEmmettBg from "@/assets/services/michael-emmett-tiktok.webp";
 import { TestimonialBlock } from "@/components/services/TestimonialBlock";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -87,31 +88,42 @@ const TikTokProductionPage = () => {
       </section>
 
       {/* Case Study — Michael Emmett */}
-      <InlineCaseStudy
-        variant="dark"
-        label="TikTok · Case Study"
-        clientName="Michael Emmett"
-        headline="1.5 Million Views in Three Months"
-        body={
-          <div>
-            <p className="mb-4">Over three months we helped recovering addict and reformed naughty boy Michael Emmett share his story and promote his book, Sins of Fathers — starting from a brand new TikTok account.</p>
-            <ul className="list-disc list-inside space-y-1 text-sm">
-              <li>Shot and edited new content with subtitles and thumbnails</li>
-              <li>Edited existing footage into TikTok formats</li>
-              <li>Atomised content across other social platforms</li>
-              <li>Created landing pages and a LinkTree</li>
-              <li>Managed comments to nurture a loyal community</li>
-              <li>Achieved all of this in just five months</li>
-              <li>Mentored Michael in continued TikTok use as exit strategy</li>
-            </ul>
+      <section className="relative overflow-hidden min-h-[420px]">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-fixed"
+          style={{ backgroundImage: `url(${michaelEmmettBg})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/20" />
+
+        <div className="relative z-10 flex flex-col justify-end px-8 md:px-16 py-32 max-w-5xl mx-auto">
+          <p className="text-white text-xs tracking-widest font-semibold uppercase mb-3">
+            TikTok · Case Study
+          </p>
+
+          <h2 className="heading-display text-3xl lg:text-5xl text-white leading-tight mb-4">
+            1.5 Million Views in Three Months
+          </h2>
+
+          <p className="text-white/80 text-lg mb-6 max-w-2xl">
+            Over three months we helped recovering addict and reformed naughty boy Michael Emmett share his story and promote his book, <em>Sins of Fathers</em> — starting from a brand new TikTok account.
+          </p>
+
+          <div className="flex gap-4 flex-wrap mb-6">
+            <div className="bg-background border-2 border-primary rounded-xl px-6 py-4 text-center min-w-[140px]">
+              <span className="heading-display text-4xl text-primary">1.5M</span>
+              <span className="text-xs text-muted-foreground uppercase tracking-wide mt-1 block">Views · In three months from zero</span>
+            </div>
+            <div className="bg-background border-2 border-primary rounded-xl px-6 py-4 text-center min-w-[140px]">
+              <span className="heading-display text-4xl text-primary">14,000</span>
+              <span className="text-xs text-muted-foreground uppercase tracking-wide mt-1 block">Followers · And 43,000+ video likes</span>
+            </div>
+            <div className="bg-background border-2 border-primary rounded-xl px-6 py-4 text-center min-w-[140px]">
+              <span className="heading-display text-4xl text-primary">1,700</span>
+              <span className="text-xs text-muted-foreground uppercase tracking-wide mt-1 block">Link clicks · Including 1,100+ to Amazon</span>
+            </div>
           </div>
-        }
-        stats={[
-          { value: "1.5M", label: "Views · In three months from zero" },
-          { value: "14,000", label: "Followers · And 43,000+ video likes" },
-          { value: "1,700", label: "Link clicks · Including 1,100+ to Amazon" },
-        ]}
-      />
+        </div>
+      </section>
 
       {/* Case Study — Caravanserai Brighton */}
       <InlineCaseStudy
