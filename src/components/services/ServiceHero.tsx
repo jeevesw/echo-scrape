@@ -73,8 +73,13 @@ export function ServiceHero({
 
   if (variant === "split") {
     return (
-      <section className="bg-background py-16 lg:py-24">
+      <section className="bg-background pt-6 pb-16 lg:pb-24">
         <div className="container mx-auto px-4">
+          {breadcrumbItems && (
+            <div className="mb-8">
+              <BreadcrumbNav items={breadcrumbItems} />
+            </div>
+          )}
           <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
             <div>
               {eyebrow && (
