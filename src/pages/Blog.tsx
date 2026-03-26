@@ -545,7 +545,7 @@ const Blog = () => {
                   Blog
                 </h1>
                 <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-                  News, insights, and updates from the world of social media marketing, online advertising, and digital culture.
+                  Insights on paid social, TikTok, SEO, and digital marketing for hospitality and beyond.
                 </p>
               </div>
               
