@@ -187,8 +187,8 @@ const SocialMediaManagementPage = () => {
                   key={s.label}
                   className="rounded-xl px-6 py-4 text-center border border-border bg-background"
                 >
-                  <span className="heading-display text-3xl text-primary block">{s.value}</span>
-                  <span className="text-xs uppercase tracking-wide mt-1 block text-muted-foreground">
+                  <span className="heading-display text-4xl text-primary block">{s.value}</span>
+                  <span className="text-sm uppercase tracking-wide mt-1 block text-muted-foreground">
                     {s.label}
                   </span>
                 </div>
