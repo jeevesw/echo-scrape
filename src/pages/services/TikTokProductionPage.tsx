@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
-import { BreadcrumbNav } from "@/components/ui/breadcrumb-nav";
+import { ServiceSchema, FAQSchema } from "@/components/seo/SchemaMarkup";
 import { ServiceSchema, FAQSchema } from "@/components/seo/SchemaMarkup";
 import { servicesData } from "@/data/servicesData";
 import { ServiceHero } from "@/components/services/ServiceHero";
