@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { X } from "lucide-react";
 
 interface SpotlightCarouselProps {
@@ -8,19 +8,30 @@ interface SpotlightCarouselProps {
 }
 
 export function SpotlightCarousel({ images, bgClass = "bg-background", interval = 2000 }: SpotlightCarouselProps) {
-  const [centre, setCentre] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [containerHeight, setContainerHeight] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const len = images.length;
   const getIdx = (i: number) => ((i % len) + len) % len;
 
+  // Measure max height on mount and lock it
+  useEffect(() => {
+    if (containerRef.current && containerHeight === null) {
+      const h = containerRef.current.getBoundingClientRect().height;
+      if (h > 0) setContainerHeight(h);
+    }
+  });
+
+  // Auto-rotate
   useEffect(() => {
     if (lightboxOpen) return;
     const timer = setInterval(() => {
-      setCentre((prev) => (prev + 1) % len);
+      setCurrentIndex((prev) => prev + 1);
     }, interval);
     return () => clearInterval(timer);
-  }, [interval, lightboxOpen, len]);
+  }, [interval, lightboxOpen]);
 
   const handleClick = useCallback(() => setLightboxOpen(true), []);
 
@@ -29,23 +40,69 @@ export function SpotlightCarousel({ images, bgClass = "bg-background", interval 
     ? "from-[hsl(var(--muted))]"
     : "from-[hsl(var(--background))]";
 
-  const leftIdx = getIdx(centre - 1);
-  const rightIdx = getIdx(centre + 1);
+  // Build an extended array: we render enough copies to allow smooth infinite scroll.
+  // We show 3 at a time. Track has many items, we translate to keep current centre visible.
+  // To create infinite illusion: render 3 copies of the array side by side.
+  const extendedImages = [...images, ...images, ...images];
+  const totalExtended = extendedImages.length;
+  
+  // The "real" centre in the extended array — offset by len so we start in the middle copy
+  const extendedIndex = len + (currentIndex % len);
+  
+  // Each item width as percentage of container
+  const itemWidthPercent = 33.333;
+  // Track width
+  const trackWidthPercent = totalExtended * itemWidthPercent;
+  // Translate to centre the active item (put it at position 1 of the visible 3)
+  const translatePercent = -((extendedIndex - 1) * itemWidthPercent);
 
   return (
     <>
-      <div className="relative w-full overflow-hidden cursor-pointer" onClick={handleClick}>
+      <div
+        ref={containerRef}
+        className="relative w-full overflow-hidden cursor-pointer"
+        style={containerHeight ? { height: containerHeight } : undefined}
+        onClick={handleClick}
+      >
         {/* Fade edges */}
-        <div className={`absolute left-0 top-0 bottom-0 w-12 md:w-20 bg-gradient-to-r ${fadeColor} to-transparent z-10 pointer-events-none`} />
-        <div className={`absolute right-0 top-0 bottom-0 w-12 md:w-20 bg-gradient-to-l ${fadeColor} to-transparent z-10 pointer-events-none`} />
+        <div className={`absolute left-0 top-0 bottom-0 w-16 md:w-24 bg-gradient-to-r ${fadeColor} to-transparent z-10 pointer-events-none`} />
+        <div className={`absolute right-0 top-0 bottom-0 w-16 md:w-24 bg-gradient-to-l ${fadeColor} to-transparent z-10 pointer-events-none`} />
 
-        <div className="flex items-center justify-center gap-3 md:gap-4 px-2">
-          {/* Left */}
-          <CarouselSlot images={images} index={leftIdx} faded />
-          {/* Centre */}
-          <CarouselSlot images={images} index={centre} faded={false} />
-          {/* Right */}
-          <CarouselSlot images={images} index={rightIdx} faded />
+        {/* Sliding track */}
+        <div
+          className="flex items-center transition-transform duration-700 ease-in-out"
+          style={{
+            width: `${trackWidthPercent}%`,
+            transform: `translateX(${translatePercent / (totalExtended / 3)}%)`,
+          }}
+        >
+          {extendedImages.map((img, i) => {
+            const distFromCentre = Math.abs(i - extendedIndex);
+            const isCentre = distFromCentre === 0;
+
+            return (
+              <div
+                key={i}
+                className="flex-shrink-0 px-2"
+                style={{ width: `${100 / totalExtended}%` }}
+              >
+                <div
+                  className={`rounded-xl overflow-hidden shadow-lg transition-all duration-700 ease-in-out ${
+                    isCentre
+                      ? "opacity-100 scale-100"
+                      : "opacity-35 scale-[0.88]"
+                  }`}
+                >
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    className="w-full h-auto object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            );
+          })}
         </div>
 
         {/* Dots */}
@@ -53,9 +110,9 @@ export function SpotlightCarousel({ images, bgClass = "bg-background", interval 
           {images.map((_, i) => (
             <button
               key={i}
-              onClick={(e) => { e.stopPropagation(); setCentre(i); }}
+              onClick={(e) => { e.stopPropagation(); setCurrentIndex(i); }}
               className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                centre === i ? "bg-primary w-5" : "bg-primary/30"
+                getIdx(currentIndex) === i ? "bg-primary w-5" : "bg-primary/30"
               }`}
               aria-label={`Go to slide ${i + 1}`}
             />
@@ -63,65 +120,41 @@ export function SpotlightCarousel({ images, bgClass = "bg-background", interval 
         </div>
       </div>
 
-      {/* Lightbox */}
+      {/* Full-page lightbox overlay */}
       {lightboxOpen && (
         <div
-          className="fixed inset-0 z-50 bg-foreground/80 backdrop-blur-sm flex items-center justify-center p-4 md:p-8"
+          className="fixed inset-0 z-[9999] flex items-center justify-center p-6 md:p-12 animate-fade-in"
           onClick={() => setLightboxOpen(false)}
         >
+          {/* Dark translucent backdrop */}
+          <div className="absolute inset-0 bg-black/75 backdrop-blur-sm" />
+
+          {/* Close button */}
           <button
             onClick={() => setLightboxOpen(false)}
-            className="absolute top-6 right-6 text-background hover:text-background/80 transition-colors z-50"
+            className="absolute top-6 right-6 z-10 text-white/80 hover:text-white transition-colors"
             aria-label="Close lightbox"
           >
             <X className="w-8 h-8" />
           </button>
 
+          {/* Image grid */}
           <div
-            className="grid grid-cols-2 gap-4 max-w-5xl w-full max-h-[85vh] overflow-y-auto"
+            className="relative z-10 grid grid-cols-2 gap-4 md:gap-6 max-w-4xl w-full max-h-[85vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             {images.map((img, i) => (
-              <div key={i} className="rounded-xl overflow-hidden">
-                <img src={img.src} alt={img.alt} className="w-full h-auto object-cover" />
+              <div key={i} className="rounded-xl overflow-hidden shadow-2xl">
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  className="w-full h-auto object-cover"
+                />
               </div>
             ))}
           </div>
         </div>
       )}
     </>
-  );
-}
-
-/** A single slot that crossfades between images using stacked absolute layers */
-function CarouselSlot({
-  images,
-  index,
-  faded,
-}: {
-  images: { src: string; alt: string }[];
-  index: number;
-  faded: boolean;
-}) {
-  return (
-    <div
-      className={`flex-shrink-0 rounded-xl overflow-hidden shadow-lg relative transition-transform duration-500 ease-in-out ${
-        faded ? "w-[28%] md:w-[30%] scale-90" : "w-[44%] md:w-[40%] scale-100"
-      }`}
-      style={{ opacity: faded ? 0.35 : 1 }}
-    >
-      {/* Stack all images, only the active one is visible */}
-      {images.map((img, i) => (
-        <img
-          key={i}
-          src={img.src}
-          alt={img.alt}
-          className={`w-full h-auto object-cover transition-opacity duration-500 ease-in-out ${
-            i === index ? "opacity-100 relative" : "opacity-0 absolute inset-0"
-          }`}
-          loading="lazy"
-        />
-      ))}
-    </div>
   );
 }
