@@ -158,13 +158,13 @@ const SocialMediaManagementPage = () => {
       >
         <div className="absolute inset-0 bg-black/60" />
         <div className="relative z-10 container mx-auto px-4 text-center max-w-3xl">
-          <span className="text-primary text-xs font-semibold uppercase tracking-widest mb-3 block">
+          <span className="text-white text-sm font-semibold uppercase tracking-widest mb-4 block">
             Social Media Management · Case Study
           </span>
-          <p className="text-white/60 text-sm mb-1">Fitz Sparkling Wine</p>
-          <h2 className="heading-display text-4xl lg:text-5xl text-white">
+          <h2 className="heading-display text-5xl lg:text-6xl text-white mb-3">
             2,419 New Followers in Two Months
           </h2>
+          <p className="text-white/70 text-lg">for sparkling wine brand Fitz</p>
         </div>
       </section>
 
@@ -187,8 +187,8 @@ const SocialMediaManagementPage = () => {
                   key={s.label}
                   className="rounded-xl px-6 py-4 text-center border border-border bg-background"
                 >
-                  <span className="heading-display text-3xl text-primary block">{s.value}</span>
-                  <span className="text-xs uppercase tracking-wide mt-1 block text-muted-foreground">
+                  <span className="heading-display text-4xl text-primary block">{s.value}</span>
+                  <span className="text-sm uppercase tracking-wide mt-1 block text-muted-foreground">
                     {s.label}
                   </span>
                 </div>
