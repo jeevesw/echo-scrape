@@ -197,7 +197,7 @@ export const servicesData: Record<string, ServiceData> = {
     heroHeadline: "GOOGLE ADS THAT FILL TABLES, VENUES, & INBOXES",
     heroSubheadline: "We design and run PPC campaigns which drive high-intent traffic, convert sales, and generates leads, across Google Search, Display, Performance Max, and beyond.",
     icon: Search,
-    summary: "We run Google Ads campaigns at all scales, from small budgets to multi-million pound ad spends. Our PPC strategies pair intelligent targeting and engaging storytelling with industry expertise and meaningful reporting. As a hyperlocal marketing agency, we're known for delivering Performance Max campaigns with incredible ROI.",
+    summary: "Our paid search campaigns are built to scale, from small budgets to multi-million pound ad spends. We pair intelligent targeting and engaging storytelling with industry expertise and meaningful reporting. As a hyperlocal marketing agency, we're known for delivering Performance Max campaigns with incredible ROI.",
     bestFor: [
       "Restaurants and venues targeting local searchers",
       "Multi-location hospitality groups needing consistent bookings",
