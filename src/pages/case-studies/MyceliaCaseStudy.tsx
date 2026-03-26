@@ -103,11 +103,11 @@ const MyceliaCaseStudy = () => {
 
             {/* Flush-right image */}
             <ScrollReveal animation="right">
-              <div className="max-h-[400px] overflow-hidden">
+              <div>
                 <img
                   src="https://images.squarespace-cdn.com/content/v1/5edc691de451f275e3b4ae86/89027574-42b7-4b6b-9616-c8d40b05277a/Mycelia-Board-Game-Cards-Trapeze-Media.png"
                   alt="Mycelia board game cards"
-                  className="w-full h-full object-cover object-left"
+                  className="w-3/4 h-auto object-contain object-left mx-auto lg:mx-0 lg:ml-auto"
                 />
               </div>
             </ScrollReveal>
@@ -253,7 +253,7 @@ const MyceliaCaseStudy = () => {
       </section>
 
       {/* Results */}
-      <section className="py-24 bg-muted relative overflow-hidden">
+      <section className="py-24 bg-background relative overflow-hidden">
         <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
 
