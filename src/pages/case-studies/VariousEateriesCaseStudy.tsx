@@ -54,9 +54,9 @@ const VariousEateriesCaseStudy = () => {
             </div>
           </div>
 
-          {/* Phone absolutely positioned flush to right edge of viewport */}
+          {/* Phone absolutely positioned flush right, vertically centred, larger */}
           <div 
-            className="absolute bottom-0 right-0 w-[320px] hidden md:block"
+            className="absolute top-1/2 right-0 -translate-y-1/2 w-[45%] max-w-[520px] hidden md:block"
           >
             <img
               src="/images/various-eateries-hero.png"
