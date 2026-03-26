@@ -43,9 +43,6 @@ const VariousEateriesCaseStudy = () => {
               {/* Left column — text, vertically centred */}
               <div className="flex items-center">
                 <ScrollReveal animation="left">
-                  <span className="heading-display text-primary-foreground/80 text-lg md:text-xl uppercase tracking-wider mb-4 block">
-                    Case Study: Google Pay-Per-Click Ads
-                  </span>
                   <h1 className="heading-display text-3xl md:text-5xl lg:text-6xl text-primary-foreground leading-tight">
                     Google Pay-Per-Click Ads for Various Eateries: driving restaurant visits and bookings
                   </h1>
