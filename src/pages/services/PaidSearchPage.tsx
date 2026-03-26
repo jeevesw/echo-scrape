@@ -77,16 +77,13 @@ const PaidSearchPage = () => {
       />
 
       {/* 2 — INTRO + LOGO CAROUSEL */}
-      <section className="bg-background py-16 lg:py-24">
-        <div className="container mx-auto px-4 max-w-4xl text-center">
-          <p className="text-xl md:text-2xl text-primary font-semibold leading-snug mb-4">
-            {service.summary}
-          </p>
-          <Button variant="hero" asChild>
-            <a href="https://calendly.com/trapezemedia/discovery-call" target="_blank" rel="noopener noreferrer">
-              Schedule a Call
-            </a>
-          </Button>
+      <section className="bg-background py-16 lg:py-20">
+        <div className="container mx-auto px-4 flex justify-center">
+          <div className="max-w-4xl">
+            <p className="text-xl md:text-2xl text-foreground leading-relaxed">
+              {service.summary}
+            </p>
+          </div>
         </div>
       </section>
 
