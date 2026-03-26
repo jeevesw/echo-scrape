@@ -8,7 +8,7 @@ const services = [
     title: "Social Media Management",
     icon: Megaphone,
     href: "/services/social-media-management",
-    image: "https://images.squarespace-cdn.com/content/v1/5edc691de451f275e3b4ae86/1592971752931-3VUFFCSZSYP9942UG8NC/Trapeze-Media-Social-Media-Marketing-Agency.jpg",
+    image: "/assets/services/social-media-management.jpg",
   },
   {
     title: "Paid Advertising",
