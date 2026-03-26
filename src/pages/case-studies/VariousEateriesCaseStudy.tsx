@@ -21,32 +21,7 @@ const VariousEateriesCaseStudy = () => {
         <link rel="canonical" href="https://trapezemedia.com/case-studies/various-eateries" />
       </Helmet>
 
-      {/* Hero Section - Full bleed with dramatic headline */}
-      <section className="relative min-h-[50vh] max-h-[75vh] flex items-center justify-center overflow-hidden bg-primary">
-        {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-primary/80" />
-
-        <div className="container-content mx-auto px-4 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <ScrollReveal animation="left">
-              <span className="heading-display text-primary-foreground/80 text-lg md:text-xl uppercase tracking-wider mb-4 block">
-                Case Study: Google Pay-Per-Click Ads
-              </span>
-              <h1 className="heading-display text-4xl md:text-5xl lg:text-6xl text-primary-foreground leading-tight">
-                Driving Restaurant Visits and Bookings
-              </h1>
-            </ScrollReveal>
-            
-            <ScrollReveal animation="right" className="absolute right-0 top-1/2 -translate-y-1/2 hidden lg:block">
-              <img
-                src="/images/various-eateries-hero.png"
-                alt="Coppa Club Google Ads campaign on mobile"
-                className="w-auto max-w-none h-[60vh] object-contain object-right"
-              />
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
+      <VariousEateriesHero />
 
       {/* Intro Statement */}
       <section className="py-20 bg-background">
