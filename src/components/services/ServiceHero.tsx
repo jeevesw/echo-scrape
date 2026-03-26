@@ -19,6 +19,7 @@ interface ServiceHeroProps {
   variant: "brand-pink" | "dark" | "split";
   visualSlot?: ReactNode;
   backgroundImage?: string;
+  breadcrumbItems?: { label: string; href: string }[];
 }
 
 export function ServiceHero({
