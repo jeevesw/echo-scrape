@@ -143,6 +143,11 @@ export function ServiceHero({
           <div className="absolute inset-0 bg-primary/60" />
         </>
       )}
+      {breadcrumbItems && (
+        <div className="relative z-10 container mx-auto px-4 mb-8">
+          <BreadcrumbNav variant="light" items={breadcrumbItems} />
+        </div>
+      )}
       <div className="relative z-10 container mx-auto px-4 text-center max-w-4xl">
         {eyebrow && (
           <span className="text-primary-foreground/70 text-sm font-semibold uppercase tracking-widest mb-4 block">
