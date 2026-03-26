@@ -54,7 +54,7 @@ const MyceliaCaseStudy = () => {
       </section>
 
       {/* Intro */}
-      <section className="py-20 bg-background">
+      <section className="py-12 bg-background">
         <div className="container-content mx-auto px-4">
           <ScrollReveal>
             <div className="max-w-3xl mx-auto space-y-6 text-lg text-muted-foreground leading-relaxed">
@@ -70,7 +70,7 @@ const MyceliaCaseStudy = () => {
       </section>
 
       {/* The Challenge — flush-left image, centered copy, flush-right image */}
-      <section className="py-24 bg-muted overflow-hidden">
+      <section className="py-14 bg-muted overflow-hidden">
         <div className="relative">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr_1fr] items-center gap-0">
             {/* Flush-left image */}
@@ -116,7 +116,7 @@ const MyceliaCaseStudy = () => {
       </section>
 
       {/* Strategy — image left, text right */}
-      <section className="py-24 bg-background">
+      <section className="py-14 bg-background">
         <div className="container-content mx-auto px-4">
           <div className="grid lg:grid-cols-[1fr_1fr] gap-12 items-center">
             <ScrollReveal animation="left">
@@ -149,7 +149,7 @@ const MyceliaCaseStudy = () => {
       </section>
 
       {/* Ad Localisation — video embed + text */}
-      <section className="py-24 bg-muted">
+      <section className="py-14 bg-muted">
         <div className="container-content mx-auto px-4">
           <div className="grid lg:grid-cols-[1fr_1fr] gap-12 items-center">
             <ScrollReveal animation="left">
@@ -184,7 +184,7 @@ const MyceliaCaseStudy = () => {
       </section>
 
       {/* Social Videos — staggered images flanking copy */}
-      <section className="py-24 bg-background">
+      <section className="py-14 bg-background">
         <div className="container-content mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr_1fr] items-center gap-8">
             {/* Left image — shifted down */}
@@ -225,7 +225,7 @@ const MyceliaCaseStudy = () => {
       </section>
 
       {/* Reddit Marketing */}
-      <section className="py-24 bg-muted">
+      <section className="py-14 bg-muted">
         <div className="container-content mx-auto px-4">
           <div className="grid lg:grid-cols-[1fr_1fr] gap-12 items-center">
             <ScrollReveal animation="left">
@@ -253,7 +253,7 @@ const MyceliaCaseStudy = () => {
       </section>
 
       {/* Results */}
-      <section className="py-24 bg-background relative overflow-hidden">
+      <section className="py-14 bg-background relative overflow-hidden">
         <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
 
@@ -265,7 +265,7 @@ const MyceliaCaseStudy = () => {
             <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto leading-relaxed mb-4">
               These strategies and campaigns resulted in Mycelia surpassing its £9,000 target within the first 50 minutes of the Kickstarter launching, <span className="text-primary font-semibold">ultimately raising an impressive £545,804.</span>
             </p>
-            <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto leading-relaxed mb-16">
+            <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto leading-relaxed mb-10">
               The success of this project highlights the importance of meticulous campaign alignment, the synergy between physical and digital activations, and the necessity of clear goals, KPIs, and CPLs.
             </p>
           </ScrollReveal>
@@ -312,7 +312,7 @@ const MyceliaCaseStudy = () => {
       </section>
 
       {/* Testimonial */}
-      <section className="py-24 bg-primary text-primary-foreground relative overflow-hidden">
+      <section className="py-14 bg-primary text-primary-foreground relative overflow-hidden">
         <div className="absolute top-12 left-12 opacity-10 rotate-180">
           <Quote className="w-32 h-32" />
         </div>
@@ -338,7 +338,7 @@ const MyceliaCaseStudy = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-background">
+      <section className="py-12 bg-background">
         <div className="container-content mx-auto px-4">
           <ScrollReveal>
             <div className="flex flex-col md:flex-row items-center justify-between gap-8">
