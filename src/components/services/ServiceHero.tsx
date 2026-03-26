@@ -129,8 +129,18 @@ export function ServiceHero({
 
   // brand-pink
   return (
-    <section className="bg-primary py-20 lg:py-32">
-      <div className="container mx-auto px-4 text-center max-w-4xl">
+    <section className="relative bg-primary py-20 lg:py-32 overflow-hidden">
+      {backgroundImage && (
+        <>
+          <img
+            src={backgroundImage}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-primary/60" />
+        </>
+      )}
+      <div className="relative z-10 container mx-auto px-4 text-center max-w-4xl">
         {eyebrow && (
           <span className="text-primary-foreground/70 text-sm font-semibold uppercase tracking-widest mb-4 block">
             {eyebrow}

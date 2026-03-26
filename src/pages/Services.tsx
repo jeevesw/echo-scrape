@@ -7,7 +7,7 @@ import { ArrowRight } from "lucide-react";
 import { ScrollReveal } from "@/hooks/use-scroll-reveal";
 
 // Service images
-import socialMediaImg from "@/assets/services/social-media-management.webp";
+import socialMediaImg from "@/assets/services/social-media-management.jpg";
 import paidAdsImg from "@/assets/services/paid-advertising.webp";
 import paidSearchImg from "@/assets/services/paid-advertising.webp";
 import creativeImg from "@/assets/services/creative-services.webp";
