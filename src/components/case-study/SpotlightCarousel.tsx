@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { createPortal } from "react-dom";
-import { X } from "lucide-react";
+import { X, Maximize2 } from "lucide-react";
 
 interface SpotlightCarouselProps {
   images: { src: string; alt: string }[];
@@ -12,6 +12,7 @@ export function SpotlightCarousel({ images, bgClass = "bg-background", interval 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
 
@@ -20,13 +21,13 @@ export function SpotlightCarousel({ images, bgClass = "bg-background", interval 
 
   // Auto-rotate
   useEffect(() => {
-    if (lightboxOpen) return;
+    if (lightboxOpen || isHovered) return;
     const timer = setInterval(() => {
       setCurrentIndex((prev) => prev + 1);
       setIsTransitioning(true);
     }, interval);
     return () => clearInterval(timer);
-  }, [interval, lightboxOpen]);
+  }, [interval, lightboxOpen, isHovered]);
 
   // Listen for transition end to do silent reset
   useEffect(() => {
@@ -86,6 +87,8 @@ export function SpotlightCarousel({ images, bgClass = "bg-background", interval 
       <div
         ref={containerRef}
         className="relative w-full overflow-hidden cursor-pointer"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
         onClick={handleClick}
       >
         {/* Fade edges */}
@@ -143,6 +146,15 @@ export function SpotlightCarousel({ images, bgClass = "bg-background", interval 
             />
           ))}
         </div>
+
+        {/* Expand icon */}
+        <button
+          onClick={(e) => { e.stopPropagation(); setLightboxOpen(true); }}
+          className="flex items-center justify-center mx-auto mt-2 text-muted-foreground/50 hover:text-primary transition-colors"
+          aria-label="View all images"
+        >
+          <Maximize2 className="w-4 h-4" />
+        </button>
       </div>
 
       {/* Lightbox — portalled to document.body, 4×1 row */}
