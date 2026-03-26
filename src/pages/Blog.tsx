@@ -151,6 +151,8 @@ const BlogList = () => {
   const handleCategoryChange = (categorySlug: string) => {
     setSelectedCategory(categorySlug);
     setVisibleCount(INITIAL_POSTS);
+    
+    if (categorySlug === 'all') {
       searchParams.delete('category');
     } else {
       searchParams.set('category', categorySlug);
@@ -194,22 +196,19 @@ const BlogList = () => {
     return result;
   }, [posts, searchQuery, sortOrder, selectedCategory, categories]);
 
-  // Pagination
-  const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
-  const paginatedPosts = filteredPosts.slice(
-    (currentPage - 1) * POSTS_PER_PAGE,
-    currentPage * POSTS_PER_PAGE
-  );
+  // Visible posts (load more)
+  const visiblePosts = filteredPosts.slice(0, visibleCount);
+  const hasMore = visibleCount < filteredPosts.length;
 
-  // Reset to page 1 when filters change
+  // Reset visible count when filters change
   const handleSearchChange = (value: string) => {
     setSearchQuery(value);
-    setCurrentPage(1);
+    setVisibleCount(INITIAL_POSTS);
   };
 
   const handleSortChange = (value: 'newest' | 'oldest') => {
     setSortOrder(value);
-    setCurrentPage(1);
+    setVisibleCount(INITIAL_POSTS);
   };
 
   if (isLoading) {
