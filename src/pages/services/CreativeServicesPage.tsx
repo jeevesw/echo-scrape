@@ -37,30 +37,18 @@ const CreativeServicesPage = () => {
         url={`${baseUrl}/services/creative-services`}
       />
 
-      {/* Hero — brand-pink with mosaic grid placeholder */}
-      <section className="relative bg-primary py-20 lg:py-32 overflow-hidden">
-        <div className="absolute inset-0 grid grid-cols-4 md:grid-cols-6 gap-2 p-4 opacity-10">
-          {Array.from({ length: 24 }).map((_, i) => (
-            <div key={i} className="bg-primary-foreground rounded-lg aspect-square" />
-          ))}
-        </div>
-        <div className="relative z-10 container mx-auto px-4 text-center max-w-4xl">
-          <h1 className="heading-display text-4xl md:text-5xl lg:text-6xl text-primary-foreground mb-6">
-            {service.heroHeadline}
-          </h1>
-          <p className="text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto">{service.heroSubheadline}</p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Button variant="hero" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90" asChild>
-              <a href="https://calendly.com/trapezemedia/discovery-call" target="_blank" rel="noopener noreferrer">
-                Schedule a Call <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
-            </Button>
-            <Button variant="hero-outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary" asChild>
-              <Link to="/contact">Contact Us</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
+      <ServiceHero
+        variant="brand-pink"
+        backgroundImage={creativeHero}
+        headline={service.heroHeadline}
+        subheadline={service.heroSubheadline}
+        primaryCta={{ label: "Schedule a Call", href: "https://calendly.com/trapezemedia/discovery-call", external: true }}
+        secondaryCta={{ label: "Contact Us", href: "/contact" }}
+        breadcrumbItems={[
+          { label: "Services", href: "/services" },
+          { label: "Creative Services", href: "/services/creative-services" },
+        ]}
+      />
 
       {/* Photography */}
       <SubServiceHero
