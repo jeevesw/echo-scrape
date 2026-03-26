@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { createPortal } from "react-dom";
-import { X } from "lucide-react";
+import { X, Maximize2 } from "lucide-react";
 
 interface SpotlightCarouselProps {
   images: { src: string; alt: string }[];
