@@ -271,40 +271,6 @@ const PaidAdvertisingPage = () => {
         </div>
       </section>
 
-      {/* 7 — WHAT'S INCLUDED */}
-      <section className="bg-muted py-16 lg:py-24">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-[45%_55%] gap-10 max-w-6xl mx-auto items-start">
-            <div className="bg-background rounded-2xl flex items-center justify-center p-8 min-h-[400px] lg:min-h-[520px]">
-              <p className="text-xs text-muted-foreground text-center leading-relaxed max-w-sm">
-                Image: Trapeze Media team at work, or a campaign reporting
-                dashboard. A behind-the-scenes or 'craft' image works well here —
-                something that communicates process and expertise.
-              </p>
-            </div>
-            <div>
-              <h2 className="heading-display text-3xl md:text-4xl text-foreground mb-8">
-                What's Included
-              </h2>
-              <div className="space-y-0">
-                {includedItems.map((item, i) => (
-                  <div
-                    key={item}
-                    className={`flex items-start gap-3 py-3 ${
-                      i < includedItems.length - 1
-                        ? "border-b border-border/40"
-                        : ""
-                    }`}
-                  >
-                    <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                    <span className="text-foreground">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* 8 — SECTORS (dark background) */}
       <section className="bg-foreground py-16 lg:py-24">
