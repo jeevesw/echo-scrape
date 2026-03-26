@@ -65,6 +65,7 @@ const PaidSearchPage = () => {
       {/* 1 — HERO */}
       <ServiceHero
         variant="brand-pink"
+        backgroundImage={paidSearchHero}
         headline={service.heroHeadline}
         subheadline={service.heroSubheadline}
         primaryCta={{ label: "Schedule a Call", href: "https://calendly.com/trapezemedia/discovery-call", external: true }}
