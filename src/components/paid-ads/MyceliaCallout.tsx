@@ -20,7 +20,7 @@ const MyceliaCallout = () => (
     <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/20" />
 
     {/* Content */}
-    <div className="relative z-10 flex flex-col justify-end px-8 md:px-16 pb-12 pt-32 max-w-5xl mx-auto">
+    <div className="relative z-10 flex flex-col justify-end px-8 md:px-16 py-32 max-w-5xl mx-auto">
       <p className="text-white text-xs tracking-widest font-semibold uppercase mb-3">
         Meta Lead Generation · Case Study
       </p>
