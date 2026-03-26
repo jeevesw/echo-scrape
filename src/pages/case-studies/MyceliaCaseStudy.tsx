@@ -302,7 +302,7 @@ const MyceliaCaseStudy = () => {
                   prefix="£"
                   label="raised"
                   delay={300}
-                  separator=","
+                  formatValue={(v) => v.toLocaleString()}
                 />
               </div>
             </ScrollReveal>
