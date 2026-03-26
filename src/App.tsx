@@ -20,6 +20,11 @@ import Blog from "./pages/Blog";
 import Services from "./pages/Services";
 import ServicePage from "./pages/ServicePage";
 import PaidAdvertisingPage from "./pages/services/PaidAdvertisingPage";
+import PaidSearchPage from "./pages/services/PaidSearchPage";
+import TikTokProductionPage from "./pages/services/TikTokProductionPage";
+import SocialMediaManagementPage from "./pages/services/SocialMediaManagementPage";
+import CreativeServicesPage from "./pages/services/CreativeServicesPage";
+import WebsiteDesignPage from "./pages/services/WebsiteDesignPage";
 import PaidAdsQuiz from "./pages/PaidAdsQuiz";
 import HFSSAssessment from "./pages/HFSSAssessment";
 import NotFound from "./pages/NotFound";
@@ -56,6 +61,11 @@ const App = () => (
               <Route path="/blog/:slug" element={<Blog />} />
               <Route path="/services" element={<Services />} />
               <Route path="/services/paid-advertising" element={<PaidAdvertisingPage />} />
+              <Route path="/services/paid-search" element={<PaidSearchPage />} />
+              <Route path="/services/tiktok-production" element={<TikTokProductionPage />} />
+              <Route path="/services/social-media-management" element={<SocialMediaManagementPage />} />
+              <Route path="/services/creative-services" element={<CreativeServicesPage />} />
+              <Route path="/services/website-design" element={<WebsiteDesignPage />} />
               <Route path="/services/:slug" element={<ServicePage />} />
               <Route path="/paid-ads-quiz" element={<PaidAdsQuiz />} />
               <Route path="/training" element={<Services />} />
@@ -67,39 +77,25 @@ const App = () => (
               
               {/* Admin routes - protected */}
               <Route path="/admin/blog" element={
-                <ProtectedRoute requireAdmin>
-                  <BlogDashboard />
-                </ProtectedRoute>
+                <ProtectedRoute requireAdmin><BlogDashboard /></ProtectedRoute>
               } />
               <Route path="/admin/blog/new" element={
-                <ProtectedRoute requireAdmin>
-                  <BlogEditor />
-                </ProtectedRoute>
+                <ProtectedRoute requireAdmin><BlogEditor /></ProtectedRoute>
               } />
               <Route path="/admin/blog/edit/:id" element={
-                <ProtectedRoute requireAdmin>
-                  <BlogEditor />
-                </ProtectedRoute>
+                <ProtectedRoute requireAdmin><BlogEditor /></ProtectedRoute>
               } />
               <Route path="/admin/blog/migrate" element={
-                <ProtectedRoute requireAdmin>
-                  <BlogMigrate />
-                </ProtectedRoute>
+                <ProtectedRoute requireAdmin><BlogMigrate /></ProtectedRoute>
               } />
               <Route path="/admin/blog/cleanup" element={
-                <ProtectedRoute requireAdmin>
-                  <BlogCleanup />
-                </ProtectedRoute>
+                <ProtectedRoute requireAdmin><BlogCleanup /></ProtectedRoute>
               } />
               <Route path="/admin/case-studies" element={
-                <ProtectedRoute requireAdmin>
-                  <CaseStudiesAdmin />
-                </ProtectedRoute>
+                <ProtectedRoute requireAdmin><CaseStudiesAdmin /></ProtectedRoute>
               } />
               <Route path="/admin/authors" element={
-                <ProtectedRoute requireAdmin>
-                  <Authors />
-                </ProtectedRoute>
+                <ProtectedRoute requireAdmin><Authors /></ProtectedRoute>
               } />
               
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

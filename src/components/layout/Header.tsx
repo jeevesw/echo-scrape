@@ -18,7 +18,7 @@ import websiteImg from "@/assets/services/website-design.jpg";
 const services = [
   { slug: "social-media-management", title: "Social Media", description: "Content, community & engagement", image: socialMediaImg },
   { slug: "paid-advertising", title: "Paid Advertising", description: "Meta, Google & TikTok ads", image: paidAdsImg },
-  { slug: "email-marketing", title: "Email Marketing", description: "Campaigns & automation", image: emailMarketingImg },
+  { slug: "paid-search", title: "Paid Search", description: "Google Ads & PPC", image: paidSearchImg },
   { slug: "creative-services", title: "Creative Services", description: "Design, video & branding", image: creativeImg },
   { slug: "tiktok-production", title: "TikTok Production", description: "Content, ads & influencers", image: tiktokImg },
   { slug: "website-design", title: "Website Design", description: "Build, launch & manage", image: websiteImg },
