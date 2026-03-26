@@ -265,7 +265,7 @@ const MyceliaCaseStudy = () => {
             <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto leading-relaxed mb-4">
               These strategies and campaigns resulted in Mycelia surpassing its £9,000 target within the first 50 minutes of the Kickstarter launching, <span className="text-primary font-semibold">ultimately raising an impressive £545,804.</span>
             </p>
-            <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto leading-relaxed mb-16">
+            <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto leading-relaxed mb-10">
               The success of this project highlights the importance of meticulous campaign alignment, the synergy between physical and digital activations, and the necessity of clear goals, KPIs, and CPLs.
             </p>
           </ScrollReveal>
