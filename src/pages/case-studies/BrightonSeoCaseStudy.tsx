@@ -109,7 +109,7 @@ const BrightonSeoCaseStudy = () => {
 
           {/* First two pills */}
           <ScrollReveal animation="up" delay={200}>
-            <div className="flex flex-wrap justify-center gap-3 mt-6">
+            <div className="flex flex-wrap justify-center gap-3 mt-6 mb-8">
               <ParallaxPill speed={0.8}>Trend-driven, social-ready videos</ParallaxPill>
               <ParallaxPill speed={-0.6}>Informed by client brand pillars</ParallaxPill>
             </div>
@@ -121,13 +121,13 @@ const BrightonSeoCaseStudy = () => {
       <section className="py-8 md:py-12 bg-background">
         <div className="max-w-6xl mx-auto px-4">
           <ScrollReveal>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
               {videoFiles.map((file, i) => {
-                const offsets = [0, 12, -8, 6, -12, 4];
+                const offsets = [0, 16, -10, 10, -16, 6];
                 return (
                   <div
                     key={file}
-                    style={{ transform: `translateY(${offsets[i]}px)` }}
+                    style={{ marginTop: `${Math.max(offsets[i], 0)}px`, marginBottom: `${Math.max(-offsets[i], 0)}px` }}
                   >
                     <VideoCard src={`${videoBaseUrl}/${file}`} />
                   </div>
@@ -138,7 +138,7 @@ const BrightonSeoCaseStudy = () => {
 
           {/* Last three pills */}
           <ScrollReveal animation="up" delay={200}>
-            <div className="flex flex-wrap justify-center gap-3 mt-10">
+            <div className="flex flex-wrap justify-center gap-3 mt-12">
               <ParallaxPill speed={0.7}>Produced 100 videos</ParallaxPill>
               <ParallaxPill speed={-0.5}>Planned over 2 months</ParallaxPill>
               <ParallaxPill speed={0.9}>Shot in 2 days</ParallaxPill>
