@@ -5,17 +5,18 @@ import { BreadcrumbNav } from "@/components/ui/breadcrumb-nav";
 import { ServiceSchema, FAQSchema } from "@/components/seo/SchemaMarkup";
 import { servicesData } from "@/data/servicesData";
 import { ServiceHero } from "@/components/services/ServiceHero";
-import { InlineCaseStudy } from "@/components/services/InlineCaseStudy";
 import { TestimonialBlock } from "@/components/services/TestimonialBlock";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Check, X, ArrowRight } from "lucide-react";
+import { ArrowRight, PenLine, Share2, Mic, MessageCircle, Target, Trophy, Users, FileText } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import heroImage from "@/assets/services/social-media-management.jpg";
+import fitzImage from "@/assets/case-studies/fitz-sparkling-wine.webp";
 
 const service = servicesData["social-media-management"];
 const baseUrl = "https://trapezemedia.com";
@@ -35,12 +36,24 @@ const objections = [
   },
 ];
 
+const servicesGrid = [
+  { icon: PenLine, title: "Content Creation", description: "Our copywriters, photographers, filmmakers, and designers will produce the content that will become the figureheading visuals for your social feeds and campaigns" },
+  { icon: Share2, title: "Content Curation", description: "User-generated content is not to be overlooked — we can re-share posts from your followers and other brands in your industry, showcasing your product as an established consumer favourite" },
+  { icon: Mic, title: "Brand Voice", description: "We'll identify, distill, and adapt your brand voice, creating a consistent tone through copy and visual motifs, and evolving that tone to work effectively across a variety of social campaigns" },
+  { icon: MessageCircle, title: "Follower Engagement", description: "We'll keep existing followers engaged with regular conversations, and track relevant hashtags and topics to find new people to spark discussions with, all with your brand at the forefront" },
+  { icon: Target, title: "Creative Campaigns", description: "We can plan strategic social media campaigns around your specific business goals, e.g. raising awareness of new products, targeting certain demographics, and selling out events" },
+  { icon: Trophy, title: "Creative Competitions", description: "Giveaways can be a core part of any successful social media campaign. We'll manage competitions, engage with entrants, and find ways to collect customer data for later retargeting" },
+  { icon: Users, title: "User Journey", description: "Where you lead your followers after they see your content dictates how you'll convert them to customers. We'll ensure your user journey is simple, discoverable, and focused on key goals" },
+  { icon: FileText, title: "Monthly Reports", description: "We prepare reports at the end of every month detailing the successes of our work, and highlighting how we'll continue to support your key goals and campaigns in the following month" },
+];
+
 const SocialMediaManagementPage = () => {
   return (
     <Layout>
       <Helmet>
         <title>{service.metaTitle}</title>
         <meta name="description" content={service.metaDescription} />
+        <meta property="og:image" content={heroImage} />
         <link rel="canonical" href={`${baseUrl}/services/social-media-management`} />
       </Helmet>
       <ServiceSchema
@@ -69,13 +82,14 @@ const SocialMediaManagementPage = () => {
         variant="brand-pink"
         headline={service.heroHeadline}
         subheadline={service.heroSubheadline}
+        backgroundImage={heroImage}
         primaryCta={{ label: "Schedule a Call", href: "https://calendly.com/trapezemedia/discovery-call", external: true }}
         secondaryCta={{ label: "Contact Us", href: "/contact" }}
       />
 
       {/* Summary */}
       <section className="bg-muted py-16 lg:py-20">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 flex justify-center">
           <div className="max-w-4xl">
             <p className="text-xl md:text-2xl text-foreground leading-relaxed">{service.summary}</p>
           </div>
@@ -95,44 +109,6 @@ const SocialMediaManagementPage = () => {
                 </CardContent>
               </Card>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Best For / Not For */}
-      <section className="py-16 bg-muted">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <Card className="border-0 bg-background">
-              <CardContent className="p-8">
-                <h2 className="heading-display text-2xl md:text-3xl text-foreground mb-6 flex items-center gap-3">
-                  <Check className="h-7 w-7 text-primary" /> Best For
-                </h2>
-                <ul className="space-y-4">
-                  {service.bestFor.map((item, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <Check className="h-5 w-5 text-primary shrink-0 mt-1" />
-                      <span className="text-foreground text-lg">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-            <Card className="border-0 bg-background">
-              <CardContent className="p-8">
-                <h2 className="heading-display text-2xl md:text-3xl text-foreground mb-6 flex items-center gap-3">
-                  <X className="h-7 w-7 text-muted-foreground" /> Not For
-                </h2>
-                <ul className="space-y-4">
-                  {service.notFor.map((item, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <X className="h-5 w-5 text-muted-foreground shrink-0 mt-1" />
-                      <span className="text-muted-foreground text-lg">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </section>
@@ -157,16 +133,17 @@ const SocialMediaManagementPage = () => {
         </div>
       </section>
 
-      {/* Features */}
+      {/* Our Social Media Management Services */}
       <section className="py-16 bg-muted">
         <div className="container mx-auto px-4">
-          <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-12">What's Included</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {service.features.map((f, i) => (
-              <Card key={i} className="border-0 bg-background">
+          <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-12">Our Social Media Management Services</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            {servicesGrid.map((f, i) => (
+              <Card key={i} className="border-0 bg-background text-center">
                 <CardContent className="p-6">
-                  <h3 className="heading-display text-xl text-foreground mb-3">{f.title}</h3>
-                  <p className="text-muted-foreground text-base">{f.description}</p>
+                  <f.icon className="h-10 w-10 text-primary mx-auto mb-4" />
+                  <h3 className="heading-display text-lg text-foreground mb-3">{f.title}</h3>
+                  <p className="text-muted-foreground text-sm">{f.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -174,19 +151,52 @@ const SocialMediaManagementPage = () => {
         </div>
       </section>
 
-      {/* Case Study — Fitz */}
-      <InlineCaseStudy
-        variant="light"
-        label="Social Media Management · Case Study"
-        clientName="Fitz Sparkling Wine"
-        headline="2,419 New Followers in Two Months"
-        body="English sparkling wine brand Fitz needed a social presence that matched their bold, rebellious personality. Our #PerfectDayOutIn campaign put the spotlight on things people could enjoy from home — movies, theatre livestreams, virtual museum tours — all with a glass of Fitz in hand. We kept Fitz culturally relevant throughout lockdown, built a loyal community, and created a content bank that lasted months."
-        stats={[
-          { value: "2,419", label: "New followers · Gained 100% organically" },
-          { value: "6,273", label: "People engaged · Over two months" },
-          { value: "100+", label: "Pieces of content · From one shoot day" },
-        ]}
-      />
+      {/* Case Study — Fitz — Banner */}
+      <section
+        className="relative bg-cover bg-center bg-fixed py-24 lg:py-32"
+        style={{ backgroundImage: `url(${fitzImage})` }}
+      >
+        <div className="absolute inset-0 bg-black/60" />
+        <div className="relative z-10 container mx-auto px-4 text-center max-w-3xl">
+          <span className="text-primary text-xs font-semibold uppercase tracking-widest mb-3 block">
+            Social Media Management · Case Study
+          </span>
+          <p className="text-white/60 text-sm mb-1">Fitz Sparkling Wine</p>
+          <h2 className="heading-display text-4xl lg:text-5xl text-white">
+            2,419 New Followers in Two Months
+          </h2>
+        </div>
+      </section>
+
+      {/* Case Study — Fitz — Body */}
+      <section className="bg-muted py-16 lg:py-20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start">
+            <div>
+              <p className="text-lg md:text-xl text-foreground leading-relaxed">
+                English sparkling wine brand Fitz needed a social presence that matched their bold, rebellious personality. Our #PerfectDayOutIn campaign put the spotlight on things people could enjoy from home — movies, theatre livestreams, virtual museum tours — all with a glass of Fitz in hand. We kept Fitz culturally relevant throughout lockdown, built a loyal community, and created a content bank that lasted months.
+              </p>
+            </div>
+            <div className="flex flex-col gap-4">
+              {[
+                { value: "2,419", label: "New followers · Gained 100% organically" },
+                { value: "6,273", label: "People engaged · Over two months" },
+                { value: "100+", label: "Pieces of content · From one shoot day" },
+              ].map((s) => (
+                <div
+                  key={s.label}
+                  className="rounded-xl px-6 py-4 text-center border border-border bg-background"
+                >
+                  <span className="heading-display text-3xl text-primary block">{s.value}</span>
+                  <span className="text-xs uppercase tracking-wide mt-1 block text-muted-foreground">
+                    {s.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Testimonial */}
       <TestimonialBlock
