@@ -45,7 +45,7 @@ function VideoCard({ src }: { src: string }) {
 
 function StatPill({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center px-5 py-2.5 rounded-full bg-primary text-primary-foreground text-sm md:text-base font-semibold font-ui whitespace-nowrap">
+    <span className="inline-flex items-center px-5 py-2.5 rounded-md bg-primary text-primary-foreground text-sm md:text-base font-normal font-ui whitespace-nowrap">
       {children}
     </span>
   );
@@ -53,18 +53,7 @@ function StatPill({ children }: { children: React.ReactNode }) {
 
 const BrightonSeoCaseStudy = () => {
   const videoBaseUrl = `${SUPABASE_URL}/storage/v1/object/public/videos`;
-
-  // 4-column layout: each column gets staggered vertical offset
-  const columns = [
-    { file: videoFiles[0], offset: 40 },
-    { file: videoFiles[1], offset: 0 },
-    { file: videoFiles[2], offset: 60 },
-    { file: videoFiles[3], offset: 20 },
-  ];
-  const bottomRow = [
-    { file: videoFiles[4], offset: 0 },
-    { file: videoFiles[5], offset: 40 },
-  ];
+  const columnOffsets = [0, 40, 16];
 
   return (
     <Layout>
@@ -98,11 +87,11 @@ const BrightonSeoCaseStudy = () => {
         </div>
       </section>
 
-      {/* Video Grid with floating pills */}
+      {/* Video Grid with overlapping pills */}
       <section className="pb-12 md:pb-16 bg-background">
-        <div className="max-w-7xl mx-auto px-4 relative">
-          {/* Floating pills above the grid */}
-          <div className="relative z-10 flex flex-wrap justify-between px-4 md:px-12 mb-4 pointer-events-none">
+        <div className="max-w-6xl mx-auto px-4 relative">
+          {/* Top pills — overlap onto top of grid */}
+          <div className="relative z-10 flex flex-wrap justify-between px-2 md:px-8 mb-[-20px] pointer-events-none">
             <ScrollReveal animation="up" delay={100}>
               <StatPill>Trend-driven, social-ready videos</StatPill>
             </ScrollReveal>
@@ -111,30 +100,25 @@ const BrightonSeoCaseStudy = () => {
             </ScrollReveal>
           </div>
 
-          {/* Main 4-column staggered grid — desktop */}
+          {/* Desktop: 3-column, 2-row staggered grid */}
           <ScrollReveal>
-            <div className="hidden md:grid md:grid-cols-4 gap-5">
-              {columns.map(({ file, offset }) => (
-                <div key={file} style={{ paddingTop: `${offset}px` }}>
-                  <VideoCard src={`${videoBaseUrl}/${file}`} />
+            <div className="hidden md:grid md:grid-cols-3 gap-6">
+              {[0, 1, 2].map((col) => (
+                <div
+                  key={col}
+                  className="flex flex-col gap-6"
+                  style={{ paddingTop: `${columnOffsets[col]}px` }}
+                >
+                  <VideoCard src={`${videoBaseUrl}/${videoFiles[col]}`} />
+                  <VideoCard src={`${videoBaseUrl}/${videoFiles[col + 3]}`} />
                 </div>
               ))}
-            </div>
-
-            {/* Bottom two videos centred */}
-            <div className="hidden md:grid md:grid-cols-4 gap-5 mt-5">
-              <div className="col-start-2" style={{ paddingTop: `${bottomRow[0].offset}px` }}>
-                <VideoCard src={`${videoBaseUrl}/${bottomRow[0].file}`} />
-              </div>
-              <div style={{ paddingTop: `${bottomRow[1].offset}px` }}>
-                <VideoCard src={`${videoBaseUrl}/${bottomRow[1].file}`} />
-              </div>
             </div>
 
             {/* Mobile: 2-column grid */}
             <div className="grid grid-cols-2 gap-4 md:hidden">
               {videoFiles.map((file, i) => {
-                const offsets = [0, 20, -12, 12, -20, 8];
+                const offsets = [0, 24, 8, 16, -8, 20];
                 return (
                   <div key={file} style={{ paddingTop: `${Math.max(offsets[i], 0)}px` }}>
                     <VideoCard src={`${videoBaseUrl}/${file}`} />
@@ -144,9 +128,9 @@ const BrightonSeoCaseStudy = () => {
             </div>
           </ScrollReveal>
 
-          {/* Bottom pills */}
+          {/* Bottom pills — overlap onto bottom of grid */}
           <ScrollReveal animation="up" delay={200}>
-            <div className="flex flex-wrap justify-center gap-3 mt-10">
+            <div className="relative z-10 flex flex-wrap justify-center gap-3 mt-[-16px]">
               <StatPill>Produced 100 videos</StatPill>
               <StatPill>Planned over 2 months</StatPill>
               <StatPill>Shot in 2 days</StatPill>
