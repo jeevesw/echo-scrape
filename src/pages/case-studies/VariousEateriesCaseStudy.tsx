@@ -32,6 +32,7 @@ const VariousEateriesCaseStudy = () => {
               { label: "Case Studies", href: "/case-studies" },
               { label: "Various Eateries", href: "/case-studies/various-eateries" },
             ]}
+            variant="light"
           />
         </div>
 
