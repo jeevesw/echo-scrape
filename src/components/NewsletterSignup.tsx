@@ -9,10 +9,15 @@ interface NewsletterSignupProps {
   subheading?: string;
 }
 
+const DEFAULT_HEADING = "The latest insights on the digital landscape, direct to your inbox";
+const DEFAULT_SUBHEADING = "Ad industry trends, social media headlines, and digital marketing guides and insights, direct from the Trapeze Media team.";
+
 export default function NewsletterSignup({
-  heading = "The latest insights on the digital landscape, direct to your inbox",
-  subheading = "Ad industry trends, social media headlines, and digital marketing guides and insights, direct from the Trapeze Media team.",
+  heading,
+  subheading,
 }: NewsletterSignupProps) {
+  const displayHeading = heading?.trim() || DEFAULT_HEADING;
+  const displaySubheading = subheading?.trim() || DEFAULT_SUBHEADING;
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
