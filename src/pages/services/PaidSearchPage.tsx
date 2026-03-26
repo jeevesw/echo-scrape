@@ -4,12 +4,12 @@ import { Layout } from "@/components/layout/Layout";
 import { ServiceSchema, FAQSchema } from "@/components/seo/SchemaMarkup";
 import { servicesData } from "@/data/servicesData";
 import { ServiceHero } from "@/components/services/ServiceHero";
-import { ClientLogoStrip } from "@/components/services/ClientLogoStrip";
+import { ClientLogoCarousel } from "@/components/home/ClientLogoCarousel";
 import { InlineCaseStudy } from "@/components/services/InlineCaseStudy";
 import { TestimonialBlock } from "@/components/services/TestimonialBlock";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Check, X, ArrowRight } from "lucide-react";
+import { ArrowRight, Search, MapPin, BarChart3, FileText } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -20,11 +20,27 @@ import {
 const service = servicesData["paid-search"];
 const baseUrl = "https://trapezemedia.com";
 
-const hyperlocalRows = [
-  { label: "Precisely-Picked Keywords", description: "Your search ads targeted towards high-intent, traffic-driving keywords to maximise ROAS." },
-  { label: "Smart, Strategic Ad Bidding", description: "We optimise PPC bids for the best ROI, balancing cost-per-click with acquisition value." },
-  { label: "Landing Page Optimisation", description: "Our designers can help build high-converting landing pages for PPC campaigns." },
-  { label: "Reporting & Refining Ad Performance", description: "We monitor, report on, and fine-tune ads, strengthening campaigns and sharing insights on performance." },
+const serviceCards = [
+  {
+    icon: Search,
+    title: "Precisely-Picked Keywords",
+    description: "Your search ads targeted towards high-intent, traffic-driving keywords to maximise ROAS.",
+  },
+  {
+    icon: BarChart3,
+    title: "Smart, Strategic Ad Bidding",
+    description: "We optimise PPC bids for the best ROI, balancing cost-per-click with acquisition value.",
+  },
+  {
+    icon: FileText,
+    title: "Landing Page Optimisation",
+    description: "Our designers can help build high-converting landing pages for PPC campaigns.",
+  },
+  {
+    icon: MapPin,
+    title: "Reporting & Refining Ad Performance",
+    description: "We monitor, report on, and fine-tune ads, strengthening campaigns and sharing insights on performance.",
+  },
 ];
 
 const PaidSearchPage = () => {
@@ -45,7 +61,7 @@ const PaidSearchPage = () => {
       />
       <FAQSchema faqs={service.faqs} />
 
-      {/* Hero */}
+      {/* 1 — HERO */}
       <ServiceHero
         variant="brand-pink"
         headline={service.heroHeadline}
@@ -58,60 +74,43 @@ const PaidSearchPage = () => {
         ]}
       />
 
-      {/* Summary + Logos */}
+      {/* 2 — INTRO + LOGO CAROUSEL */}
       <section className="bg-background py-16 lg:py-24">
+        <div className="container mx-auto px-4 max-w-4xl text-center">
+          <p className="text-xl md:text-2xl text-primary font-semibold leading-snug mb-4">
+            {service.summary}
+          </p>
+          <Button variant="hero" asChild>
+            <a href="https://calendly.com/trapezemedia/discovery-call" target="_blank" rel="noopener noreferrer">
+              Schedule a Call
+            </a>
+          </Button>
+        </div>
+      </section>
+
+      <ClientLogoCarousel />
+
+      {/* 3 — OUR PPC SERVICES (card grid matching paid ads page) */}
+      <section className="bg-muted pt-6 pb-16 lg:pb-24">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-[55%_45%] gap-12 max-w-6xl mx-auto items-center">
-            <div>
-              <p className="text-xl text-muted-foreground leading-relaxed mb-8">{service.summary}</p>
-              <Button variant="hero" asChild>
-                <a href="https://calendly.com/trapezemedia/discovery-call" target="_blank" rel="noopener noreferrer">
-                  Schedule a Call
-                </a>
-              </Button>
-            </div>
-            <ClientLogoStrip
-              heading="Brands we've worked with"
-              logos={[
-                { name: "Warner Bros. Discovery", imageSrc: "/images/clients/warner-bros-discovery.svg" },
-                { name: "Various Eateries", imageSrc: "/images/clients/various-eateries.svg" },
-                { name: "YO! Sushi", imageSrc: "/images/clients/yo-sushi.svg" },
-                { name: "Patty & Bun", imageSrc: "/images/clients/patty-and-bun.svg" },
-                { name: "Radisson Hotels", imageSrc: "/images/clients/radisson-hotels.svg" },
-              ]}
-            />
+          <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-12">
+            Our Paid Search Services
+          </h2>
+          <div className="grid sm:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            {serviceCards.map((item) => (
+              <Card key={item.title} className="border-0 shadow-none bg-background">
+                <CardContent className="p-6 md:p-8">
+                  <item.icon className="h-8 w-8 text-primary mb-4" />
+                  <h3 className="heading-display text-lg text-primary mb-3">{item.title}</h3>
+                  <p className="text-base text-muted-foreground leading-relaxed">{item.description}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Hyperlocal PPC */}
-      <section className="bg-muted py-16 lg:py-24">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-            <div>
-              <h2 className="heading-display text-3xl md:text-4xl text-foreground mb-6">
-                Hyperlocal PPC Strategies
-              </h2>
-              <p className="text-muted-foreground text-lg mb-8">
-                As well as campaigns targeting wide areas, we run tightly-focused hyperlocal Google Ads which reach the right people in specific locations — for local businesses and online shops.
-              </p>
-              <div className="space-y-6">
-                {hyperlocalRows.map((row) => (
-                  <div key={row.label} className="grid md:grid-cols-[180px_1fr] gap-4 items-start">
-                    <span className="heading-display text-base text-primary">{row.label}</span>
-                    <p className="text-muted-foreground text-base">{row.description}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="bg-background rounded-2xl flex items-center justify-center min-h-[400px]">
-              <span className="text-xs text-muted-foreground text-center p-4">[Google search results / phone mockup]</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Case Study — Various Eateries */}
+      {/* 4 — CASE STUDY — Various Eateries */}
       <InlineCaseStudy
         variant="dark"
         label="Google Ads · Case Study"
@@ -123,11 +122,11 @@ const PaidSearchPage = () => {
           { value: "13:1", label: "ROAS · Average £13 made for every £1 spent" },
           { value: "68%", label: "Lower CPA · Cost per click to book" },
         ]}
-        ctaLabel="Read the full case study"
+        ctaLabel="Read the Full Case Study"
         ctaHref="/case-studies/various-eateries"
       />
 
-      {/* Testimonial */}
+      {/* 5 — TESTIMONIAL */}
       <TestimonialBlock
         quote="We provided a challenging brief: reduce overall ad spend, lower our CPA, and increase tracked visits and confirmed bookings. The team at Trapeze not only managed this but were able to find new and innovative ways for us to track our results end-to-end, and present findings in a way that the wider VEL team could understand and buy into. Working with Ash and Dani on this project has been great and I'd recommend Trapeze Media to anyone that's looking to improve their paid ads performance."
         attribution="Steve Roberts"
@@ -136,45 +135,7 @@ const PaidSearchPage = () => {
         ctaHref="https://calendly.com/trapezemedia/discovery-call"
       />
 
-      {/* Best For / Not For */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <Card className="border-0 bg-muted">
-              <CardContent className="p-8">
-                <h2 className="heading-display text-2xl md:text-3xl text-foreground mb-6 flex items-center gap-3">
-                  <Check className="h-7 w-7 text-primary" /> Best For
-                </h2>
-                <ul className="space-y-4">
-                  {service.bestFor.map((item, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <Check className="h-5 w-5 text-primary shrink-0 mt-1" />
-                      <span className="text-foreground text-lg">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-            <Card className="border-0 bg-muted">
-              <CardContent className="p-8">
-                <h2 className="heading-display text-2xl md:text-3xl text-foreground mb-6 flex items-center gap-3">
-                  <X className="h-7 w-7 text-muted-foreground" /> Not For
-                </h2>
-                <ul className="space-y-4">
-                  {service.notFor.map((item, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <X className="h-5 w-5 text-muted-foreground shrink-0 mt-1" />
-                      <span className="text-muted-foreground text-lg">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Features */}
+      {/* 6 — WHAT'S INCLUDED */}
       <section className="py-16 bg-muted">
         <div className="container mx-auto px-4">
           <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-12">What's Included</h2>
@@ -191,7 +152,7 @@ const PaidSearchPage = () => {
         </div>
       </section>
 
-      {/* Industries */}
+      {/* 7 — INDUSTRIES */}
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4 text-center">
           <h2 className="heading-display text-3xl text-foreground mb-8">Industries We Serve</h2>
@@ -203,7 +164,7 @@ const PaidSearchPage = () => {
         </div>
       </section>
 
-      {/* FAQs */}
+      {/* 8 — FAQs */}
       <section className="py-16 bg-muted">
         <div className="container mx-auto px-4">
           <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-12">Frequently Asked Questions</h2>
@@ -224,19 +185,26 @@ const PaidSearchPage = () => {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="heading-display text-4xl md:text-5xl mb-6">{service.ctaHeadline}</h2>
-          <p className="text-primary-foreground/80 text-lg md:text-xl max-w-xl mx-auto mb-8">{service.ctaText}</p>
+      {/* 9 — CLOSING CTA */}
+      <section className="bg-muted relative overflow-hidden py-20 lg:py-28">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: "radial-gradient(ellipse at center, hsl(var(--primary) / 0.08) 0%, transparent 70%)",
+          }}
+          aria-hidden="true"
+        />
+        <div className="relative z-10 max-w-2xl mx-auto px-4 text-center">
+          <h2 className="heading-display text-3xl md:text-4xl text-foreground mb-6">{service.ctaHeadline}</h2>
+          <p className="text-lg text-muted-foreground mb-8">{service.ctaText}</p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <Button variant="hero" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90" asChild>
+            <Button variant="hero" asChild>
               <a href="https://calendly.com/trapezemedia/discovery-call" target="_blank" rel="noopener noreferrer">
-                Schedule a Call <ArrowRight className="ml-2 h-4 w-4" />
+                Schedule a Call
               </a>
             </Button>
-            <Button variant="hero-outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary" asChild>
-              <Link to="/contact">Contact Us</Link>
+            <Button variant="hero-outline" asChild>
+              <Link to="/case-studies">View Case Studies</Link>
             </Button>
           </div>
         </div>
