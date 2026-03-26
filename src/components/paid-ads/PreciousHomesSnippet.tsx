@@ -6,7 +6,7 @@ const statPills = [
 ];
 
 const PreciousHomesSnippet = () => (
-  <div className="mt-16 max-w-5xl mx-auto">
+  <div className="mt-20 pt-16 border-t border-border/40 max-w-5xl mx-auto">
     <div className="grid md:grid-cols-2 gap-10 items-center">
       {/* Left column — videos */}
       <div className="grid grid-cols-2 gap-4">
