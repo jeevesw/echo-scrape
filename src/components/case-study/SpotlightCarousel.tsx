@@ -111,6 +111,7 @@ export function SpotlightCarousel({ images, bgClass = "bg-background", interval 
                 style={{ width: `${100 / totalExtended}%` }}
               >
                 <div
+                  data-carousel-item
                   className={`rounded-xl overflow-hidden shadow-lg transition-all duration-700 ease-in-out ${
                     isCentre
                       ? "opacity-100 scale-100"
