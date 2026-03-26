@@ -29,7 +29,7 @@ const IntroLogos = () => (
               Billions of active monthly social media users means billions of opportunities to get your brand seen — and booked.
             </p>
             <p className="text-xl md:text-2xl text-foreground leading-relaxed">
-              We design and deliver ambitious, creative paid ad strategies using real data to reach key goals: clicks, leads, bookings, and sales conversions. Our hyperlocal approach means your ads don't just reach people — they reach the right people, near the right locations, at the right time.
+              We design and deliver ambitious, creative paid ads campaigns using real data to reach key goals: clicks, leads, bookings, and sales conversions. Our hyperlocal approach means your ads reach the right people, near the right locations, at the right time (and even under the right weather conditions, if you want to get that specific).
             </p>
           </div>
         </div>
