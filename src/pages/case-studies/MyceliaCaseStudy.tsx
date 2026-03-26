@@ -103,11 +103,11 @@ const MyceliaCaseStudy = () => {
 
             {/* Flush-right image */}
             <ScrollReveal animation="right">
-              <div>
+              <div className="max-h-[400px] overflow-hidden">
                 <img
                   src="https://images.squarespace-cdn.com/content/v1/5edc691de451f275e3b4ae86/89027574-42b7-4b6b-9616-c8d40b05277a/Mycelia-Board-Game-Cards-Trapeze-Media.png"
                   alt="Mycelia board game cards"
-                  className="w-full h-auto object-cover object-left"
+                  className="w-full h-full object-cover object-left"
                 />
               </div>
             </ScrollReveal>
@@ -184,12 +184,12 @@ const MyceliaCaseStudy = () => {
       </section>
 
       {/* Social Videos — staggered images flanking copy */}
-      <section className="py-24 bg-background overflow-hidden">
-        <div className="relative">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr_1fr] items-center gap-0">
+      <section className="py-24 bg-background">
+        <div className="container-content mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr_1fr] items-center gap-8">
             {/* Left image — shifted down */}
             <ScrollReveal animation="left">
-              <div className="lg:mt-16">
+              <div className="lg:mt-16 rounded-xl overflow-hidden">
                 <img
                   src="https://images.squarespace-cdn.com/content/v1/5edc691de451f275e3b4ae86/d3673216-bba4-41aa-8cae-de27928544a3/Mycelia-Reels-1.jpg"
                   alt="Mycelia social media Reels"
@@ -200,7 +200,7 @@ const MyceliaCaseStudy = () => {
 
             {/* Center copy */}
             <ScrollReveal>
-              <div className="space-y-6 px-8 lg:px-12 py-8 lg:py-0">
+              <div className="space-y-6 py-8 lg:py-0">
                 <h2 className="heading-display text-3xl md:text-4xl text-foreground">
                   Social Videos
                 </h2>
@@ -212,7 +212,7 @@ const MyceliaCaseStudy = () => {
 
             {/* Right image — shifted up */}
             <ScrollReveal animation="right">
-              <div className="lg:-mt-16">
+              <div className="lg:-mt-16 rounded-xl overflow-hidden">
                 <img
                   src="https://images.squarespace-cdn.com/content/v1/5edc691de451f275e3b4ae86/843d3ddb-f92f-4705-80d7-a16ffa628d65/Mycelia-Reels-2.jpg"
                   alt="Mycelia social video content"
