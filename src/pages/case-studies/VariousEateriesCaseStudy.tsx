@@ -36,45 +36,47 @@ const VariousEateriesCaseStudy = () => {
           />
         </div>
 
-        <div className="container-content mx-auto px-4 relative z-10 h-full">
-          {/* Desktop: two-column layout */}
-          <div className="grid md:grid-cols-[55%_45%] h-full">
-            {/* Left column — text, vertically centred */}
-            <div className="flex items-center">
-              <ScrollReveal animation="left">
-                <span className="heading-display text-primary-foreground/80 text-lg md:text-xl uppercase tracking-wider mb-4 block">
-                  Case Study: Google Pay-Per-Click Ads
-                </span>
-                <h1 className="heading-display text-3xl md:text-5xl lg:text-6xl text-primary-foreground leading-tight">
-                  Driving Restaurant Visits and Bookings
-                </h1>
-              </ScrollReveal>
-            </div>
-
-            {/* Right column — phone frame, anchored to bottom */}
-            <div className="relative hidden md:block self-stretch">
-              <div 
-                className="absolute bottom-0 w-[320px]"
-                style={{ right: '-20px' }}
-              >
-                <img
-                  src="/images/various-eateries-hero.png"
-                  alt="Coppa Club Google Ads campaign on mobile"
-                  className="w-full h-auto block"
-                />
+        {/* Desktop: two-column layout - full width, no container padding on right */}
+        <div className="h-full relative z-10">
+          <div className="container-content mx-auto px-4 h-full">
+            <div className="grid md:grid-cols-[55%_45%] h-full">
+              {/* Left column — text, vertically centred */}
+              <div className="flex items-center">
+                <ScrollReveal animation="left">
+                  <span className="heading-display text-primary-foreground/80 text-lg md:text-xl uppercase tracking-wider mb-4 block">
+                    Case Study: Google Pay-Per-Click Ads
+                  </span>
+                  <h1 className="heading-display text-3xl md:text-5xl lg:text-6xl text-primary-foreground leading-tight">
+                    Google Pay-Per-Click Ads for Various Eateries: driving restaurant visits and bookings
+                  </h1>
+                </ScrollReveal>
               </div>
+
+              {/* Right column — placeholder for grid alignment */}
+              <div className="hidden md:block" />
             </div>
           </div>
 
-          {/* Mobile: phone centred below text, same crop effect */}
-          <div className="md:hidden flex justify-center mt-6">
-            <div className="w-[260px]">
-              <img
-                src="/images/various-eateries-hero.png"
-                alt="Coppa Club Google Ads campaign on mobile"
-                className="w-full h-auto block"
-              />
-            </div>
+          {/* Phone absolutely positioned flush to right edge of viewport */}
+          <div 
+            className="absolute bottom-0 right-0 w-[320px] hidden md:block"
+          >
+            <img
+              src="/images/various-eateries-hero.png"
+              alt="Coppa Club Google Ads campaign on mobile"
+              className="w-full h-auto block"
+            />
+          </div>
+        </div>
+
+        {/* Mobile: phone centred below text, same crop effect */}
+        <div className="md:hidden flex justify-center mt-6 relative z-10">
+          <div className="w-[260px]">
+            <img
+              src="/images/various-eateries-hero.png"
+              alt="Coppa Club Google Ads campaign on mobile"
+              className="w-full h-auto block"
+            />
           </div>
         </div>
       </section>
@@ -117,7 +119,7 @@ const VariousEateriesCaseStudy = () => {
             <div className="grid md:grid-cols-3 gap-12 md:gap-8">
               <ScrollReveal delay={0}>
                 <AnimatedStat 
-                  value={88} 
+                  value={85} 
                   suffix="%" 
                   label="increase in table bookings through Google Ads" 
                   delay={0}
@@ -126,18 +128,20 @@ const VariousEateriesCaseStudy = () => {
               
               <ScrollReveal delay={150}>
                 <AnimatedStat 
-                  value={12} 
-                  suffix="x" 
-                  label="ROAS (average revenue for every £1 spent)" 
+                  value={13}
+                  start={1}
+                  suffix=":1" 
+                  label="ROAS (average £13 made for every £1 spent)" 
                   delay={150}
+                  formatValue={(v) => `${v}`}
                 />
               </ScrollReveal>
               
               <ScrollReveal delay={300}>
                 <AnimatedStat 
-                  value={88} 
+                  value={68} 
                   suffix="%" 
-                  label="lower CPA (cost per click to book)" 
+                  label="average lower CPA (cost per clicks to book)" 
                   delay={300}
                 />
               </ScrollReveal>
@@ -171,33 +175,36 @@ const VariousEateriesCaseStudy = () => {
 
             <ScrollReveal animation="right" className="xl:col-span-1">
               <div className="grid grid-cols-1 gap-8">
-                <div className="text-center p-6 bg-muted rounded-2xl">
+                <div className="text-center p-4 bg-muted rounded-2xl">
                   <AnimatedStat 
                     value={91} 
                     prefix="+" 
                     suffix="%" 
                     label="venue visits" 
                     delay={0}
+                    size="compact"
                   />
                 </div>
                 
-                <div className="text-center p-6 bg-muted rounded-2xl">
+                <div className="text-center p-4 bg-muted rounded-2xl">
                   <AnimatedStat 
-                    value={92} 
+                    value={62} 
                     prefix="-" 
                     suffix="%" 
                     label="cost-per-visit" 
                     delay={150}
+                    size="compact"
                   />
                 </div>
                 
-                <div className="text-center p-6 bg-muted rounded-2xl">
+                <div className="text-center p-4 bg-muted rounded-2xl">
                   <AnimatedStat 
-                    value={145} 
+                    value={45} 
                     prefix="+" 
                     suffix="%" 
                     label="revenue from venue visits" 
                     delay={300}
+                    size="compact"
                   />
                 </div>
               </div>
