@@ -19,7 +19,7 @@ const services = [
   },
   {
     title: "Paid Search",
-    icon: Mail,
+    icon: Search,
     href: "/services/paid-search",
     image: "https://126bd4da-ec3d-4eca-b8bb-32cc9782210f.lovableproject.com/src/assets/services/paid-search.jpg",
   },
