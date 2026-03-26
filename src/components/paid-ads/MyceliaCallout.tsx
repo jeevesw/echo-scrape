@@ -3,10 +3,11 @@ import { Button } from "@/components/ui/button";
 import { useCountUp } from "@/hooks/use-count-up";
 import myceliaImage from "@/assets/case-studies/mycelia-board-game.webp";
 
-function AnimatedStatCard({ end, prefix, suffix, label, delay }: {
+function AnimatedStatCard({ end, prefix, suffix, label, delay, formatValue }: {
   end: number; prefix?: string; suffix?: string; label: string; delay?: number;
+  formatValue?: (v: number) => string;
 }) {
-  const { ref, displayValue } = useCountUp({ end, prefix, suffix, delay, duration: 2500 });
+  const { ref, displayValue } = useCountUp({ end, prefix, suffix, delay, duration: 2500, formatValue });
   return (
     <div ref={ref} className="bg-background border-2 border-primary rounded-xl px-6 py-4 text-center min-w-[140px]">
       <span className="heading-display text-4xl text-primary">{displayValue}</span>
