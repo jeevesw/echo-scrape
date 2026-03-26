@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { ChevronDown } from "lucide-react";
+import NewsletterSignup from "@/components/NewsletterSignup";
 
 export type BlockType =
   | 'text' | 'heading' | 'image' | 'quote'
-  | 'list' | 'divider' | 'embed' | 'faq' | 'toc';
+  | 'list' | 'divider' | 'embed' | 'faq' | 'toc' | 'newsletter';
 
 export interface TextBlock      { id: string; type: 'text'; content: string; }
 export interface HeadingBlock   { id: string; type: 'heading'; level: 2 | 3; content: string; anchor: string; }
