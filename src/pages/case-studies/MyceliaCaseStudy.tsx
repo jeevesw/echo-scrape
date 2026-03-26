@@ -69,12 +69,24 @@ const MyceliaCaseStudy = () => {
         </div>
       </section>
 
-      {/* The Challenge — two-column with image */}
-      <section className="py-24 bg-muted">
-        <div className="container-content mx-auto px-4">
-          <div className="grid lg:grid-cols-[1fr_1fr] gap-12 items-center">
+      {/* The Challenge — flush-left image, centered copy, flush-right image */}
+      <section className="py-24 bg-muted overflow-hidden">
+        <div className="relative">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr_1fr] items-center gap-0">
+            {/* Flush-left image */}
             <ScrollReveal animation="left">
-              <div className="space-y-6">
+              <div className="lg:-ml-0">
+                <img
+                  src="https://images.squarespace-cdn.com/content/v1/5edc691de451f275e3b4ae86/6b05c2f0-7784-46c8-b0c6-b4b473606f1f/Mycelia-Side.png"
+                  alt="Mycelia board game box side view"
+                  className="w-full h-auto object-cover object-right"
+                />
+              </div>
+            </ScrollReveal>
+
+            {/* Centered copy */}
+            <ScrollReveal>
+              <div className="space-y-6 px-8 lg:px-12 py-8 lg:py-0">
                 <h2 className="heading-display text-3xl md:text-4xl text-foreground">
                   The Challenge
                 </h2>
@@ -89,12 +101,13 @@ const MyceliaCaseStudy = () => {
               </div>
             </ScrollReveal>
 
+            {/* Flush-right image */}
             <ScrollReveal animation="right">
-              <div className="rounded-2xl overflow-hidden shadow-xl">
+              <div>
                 <img
-                  src="https://images.squarespace-cdn.com/content/v1/5edc691de451f275e3b4ae86/6b05c2f0-7784-46c8-b0c6-b4b473606f1f/Mycelia-Side.png"
-                  alt="Mycelia board game box side view"
-                  className="w-full h-auto object-cover"
+                  src="https://images.squarespace-cdn.com/content/v1/5edc691de451f275e3b4ae86/89027574-42b7-4b6b-9616-c8d40b05277a/Mycelia-Board-Game-Cards-Trapeze-Media.png"
+                  alt="Mycelia board game cards"
+                  className="w-full h-auto object-cover object-left"
                 />
               </div>
             </ScrollReveal>
@@ -107,7 +120,7 @@ const MyceliaCaseStudy = () => {
         <div className="container-content mx-auto px-4">
           <div className="grid lg:grid-cols-[1fr_1fr] gap-12 items-center">
             <ScrollReveal animation="left">
-              <div className="rounded-2xl overflow-hidden shadow-xl">
+              <div className="overflow-hidden">
                 <img
                   src="https://images.squarespace-cdn.com/content/v1/5edc691de451f275e3b4ae86/e194b6dc-6eb8-43e0-8ab4-9ae180201f2e/Trapeze-Media-Mycelia-Board-Game-Case-Study.png"
                   alt="Mycelia board game case study creative"
@@ -156,7 +169,7 @@ const MyceliaCaseStudy = () => {
             </ScrollReveal>
 
             <ScrollReveal animation="right">
-              <div className="rounded-2xl overflow-hidden shadow-xl aspect-video">
+              <div className="overflow-hidden aspect-video">
                 <iframe
                   src="https://www.youtube.com/embed/6tKw5jaYF9w"
                   title="How To Play: Mycelia"
@@ -170,12 +183,13 @@ const MyceliaCaseStudy = () => {
         </div>
       </section>
 
-      {/* Social Reels image */}
-      <section className="py-24 bg-background">
-        <div className="container-content mx-auto px-4">
-          <div className="grid lg:grid-cols-[1fr_1fr] gap-12 items-center">
+      {/* Social Videos — staggered images flanking copy */}
+      <section className="py-24 bg-background overflow-hidden">
+        <div className="relative">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr_1fr] items-center gap-0">
+            {/* Left image — shifted down */}
             <ScrollReveal animation="left">
-              <div className="rounded-2xl overflow-hidden shadow-xl">
+              <div className="lg:mt-16">
                 <img
                   src="https://images.squarespace-cdn.com/content/v1/5edc691de451f275e3b4ae86/d3673216-bba4-41aa-8cae-de27928544a3/Mycelia-Reels-1.jpg"
                   alt="Mycelia social media Reels"
@@ -184,11 +198,24 @@ const MyceliaCaseStudy = () => {
               </div>
             </ScrollReveal>
 
+            {/* Center copy */}
+            <ScrollReveal>
+              <div className="space-y-6 px-8 lg:px-12 py-8 lg:py-0">
+                <h2 className="heading-display text-3xl md:text-4xl text-foreground">
+                  Social Videos
+                </h2>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  Jack's creativity, and the ingenuity of his friends and collaborators, made Mycelia's presence at gaming conferences across the UK vibrant and exciting — which is ideal for Reels and TikToks! <span className="text-primary font-semibold">Strong organic content kept ad-procured followers engaged for the full duration of the campaign</span> and beyond, turning them from leads into investors, then into long-time fans.
+                </p>
+              </div>
+            </ScrollReveal>
+
+            {/* Right image — shifted up */}
             <ScrollReveal animation="right">
-              <div className="rounded-2xl overflow-hidden shadow-xl">
+              <div className="lg:-mt-16">
                 <img
-                  src="https://images.squarespace-cdn.com/content/v1/5edc691de451f275e3b4ae86/89027574-42b7-4b6b-9616-c8d40b05277a/Mycelia-Board-Game-Cards-Trapeze-Media.png"
-                  alt="Mycelia board game cards"
+                  src="https://images.squarespace-cdn.com/content/v1/5edc691de451f275e3b4ae86/843d3ddb-f92f-4705-80d7-a16ffa628d65/Mycelia-Reels-2.jpg"
+                  alt="Mycelia social video content"
                   className="w-full h-auto object-cover"
                 />
               </div>
@@ -213,40 +240,12 @@ const MyceliaCaseStudy = () => {
             </ScrollReveal>
 
             <ScrollReveal animation="right">
-              <div className="rounded-2xl overflow-hidden shadow-xl">
+              <div className="overflow-hidden">
                 <img
                   src="https://images.squarespace-cdn.com/content/v1/5edc691de451f275e3b4ae86/544cfff8-fd59-490c-ba8f-01f87b4629db/Reddit-Marketing-Mycelia-Trapeze-Media.png"
                   alt="Mycelia Reddit marketing campaign"
                   className="w-full h-auto object-cover"
                 />
-              </div>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
-
-      {/* Social Videos */}
-      <section className="py-24 bg-background">
-        <div className="container-content mx-auto px-4">
-          <div className="grid lg:grid-cols-[1fr_1fr] gap-12 items-center">
-            <ScrollReveal animation="left">
-              <div className="rounded-2xl overflow-hidden shadow-xl">
-                <img
-                  src="https://images.squarespace-cdn.com/content/v1/5edc691de451f275e3b4ae86/843d3ddb-f92f-4705-80d7-a16ffa628d65/Mycelia-Reels-2.jpg"
-                  alt="Mycelia social video content"
-                  className="w-full h-auto object-cover"
-                />
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal animation="right">
-              <div className="space-y-6">
-                <h2 className="heading-display text-3xl md:text-4xl text-foreground">
-                  Social Videos
-                </h2>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  Jack's creativity, and the ingenuity of his friends and collaborators, made Mycelia's presence at gaming conferences across the UK vibrant and exciting — which is ideal for Reels and TikToks! Strong organic content kept ad-procured followers engaged for the full duration of the campaign and beyond, turning them from leads into investors, then into long-time fans.
-                </p>
               </div>
             </ScrollReveal>
           </div>
@@ -280,6 +279,7 @@ const MyceliaCaseStudy = () => {
                   label="backers"
                   delay={0}
                   formatValue={(v) => v.toLocaleString()}
+                  size="compact"
                 />
               </div>
             </ScrollReveal>
@@ -287,10 +287,10 @@ const MyceliaCaseStudy = () => {
             <ScrollReveal delay={150}>
               <div className="text-center space-y-2">
                 <Clock className="w-8 h-8 text-primary mx-auto mb-2" />
-                <div className="heading-display text-5xl md:text-6xl text-primary">
+                <div className="heading-display text-4xl md:text-5xl text-primary">
                   50 mins
                 </div>
-                <p className="text-muted-foreground text-base">to hit funding target</p>
+                <p className="text-foreground text-base md:text-lg mt-3 font-medium">to hit funding target</p>
               </div>
             </ScrollReveal>
 
@@ -303,6 +303,7 @@ const MyceliaCaseStudy = () => {
                   label="raised"
                   delay={300}
                   formatValue={(v) => v.toLocaleString()}
+                  size="compact"
                 />
               </div>
             </ScrollReveal>
