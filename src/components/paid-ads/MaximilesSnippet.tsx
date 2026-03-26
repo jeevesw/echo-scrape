@@ -48,10 +48,10 @@ const MaximilesSnippet = () => (
             </p>
 
             <div className="border-l-4 border-primary pl-4 mb-6">
-              <p className="text-sm text-muted-foreground italic">
+              <p className="text-base text-muted-foreground italic">
                 "Great to work with, super responsive, knowledgeable, and creative."
               </p>
-              <p className="text-sm text-muted-foreground mt-1">
+              <p className="text-base text-muted-foreground mt-1">
                 — Head of Marketing & Media Sales, Maximiles
               </p>
             </div>
