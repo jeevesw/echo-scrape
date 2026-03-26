@@ -87,6 +87,8 @@ export function SpotlightCarousel({ images, bgClass = "bg-background", interval 
       <div
         ref={containerRef}
         className="relative w-full overflow-hidden cursor-pointer"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
         onClick={handleClick}
       >
         {/* Fade edges */}
