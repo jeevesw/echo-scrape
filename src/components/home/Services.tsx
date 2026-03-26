@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
-import { Megaphone, Target, Mail, Palette } from "lucide-react";
+import { Megaphone, Target, Search, Palette } from "lucide-react";
 import { ScrollReveal } from "@/hooks/use-scroll-reveal";
 import socialMediaImg from "@/assets/services/social-media-management.jpg";
 
