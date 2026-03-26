@@ -63,6 +63,10 @@ const TikTokProductionPage = () => {
         subheadline={service.heroSubheadline}
         primaryCta={{ label: "Schedule a Call", href: "https://calendly.com/trapezemedia/discovery-call", external: true }}
         secondaryCta={{ label: "Contact Us", href: "/contact" }}
+        breadcrumbItems={[
+          { label: "Services", href: "/services" },
+          { label: "TikTok Production", href: "/services/tiktok-production" },
+        ]}
       />
 
       {/* 6-service icon grid */}

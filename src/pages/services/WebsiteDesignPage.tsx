@@ -56,6 +56,10 @@ const WebsiteDesignPage = () => {
         subheadline={service.heroSubheadline}
         primaryCta={{ label: "Schedule a Call", href: "https://calendly.com/trapezemedia/discovery-call", external: true }}
         secondaryCta={{ label: "Contact Us", href: "/contact" }}
+        breadcrumbItems={[
+          { label: "Services", href: "/services" },
+          { label: "Website Design", href: "/services/website-design" },
+        ]}
       />
 
       {/* 8-feature icon grid */}
