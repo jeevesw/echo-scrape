@@ -33,7 +33,7 @@ export function AnimatedStat({
 
   const valueClasses = size === "compact"
     ? "heading-display text-4xl md:text-5xl text-primary block relative"
-    : "heading-display text-6xl md:text-7xl lg:text-8xl text-primary block relative transition-transform duration-500 group-hover:scale-105";
+    : "heading-display text-6xl md:text-7xl lg:text-8xl text-primary block relative";
 
   return (
     <div ref={ref} className="text-center group overflow-hidden">
