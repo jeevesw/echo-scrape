@@ -42,8 +42,8 @@ const MaximilesSnippet = () => (
             <h3 className="heading-display text-3xl text-foreground mb-4">Maximiles</h3>
 
             <div className="flex gap-3 flex-wrap mb-6">
-              <AnimatedStatPill end={66} prefix="+" suffix="%" label="Double opt-ins" delay={0} />
-              <AnimatedStatPill end={50} suffix="%" label="Cost-per-result reduction" delay={200} />
+              <AnimatedStatPill end={66} prefix="+" suffix="%" label="double opt-ins" delay={0} />
+              <AnimatedStatPill end={50} suffix="%" label="cost-per-result reduction" delay={200} />
             </div>
 
             <p className="text-muted-foreground text-lg mb-6">
