@@ -172,6 +172,16 @@ function RenderBlock({ block, allBlocks }: { block: Block; allBlocks: Block[] })
       );
     }
 
+    case 'newsletter':
+      return (
+        <div className="my-8">
+          <NewsletterSignup
+            heading={(block as NewsletterBlock).heading}
+            subheading={(block as NewsletterBlock).subheading}
+          />
+        </div>
+      );
+
     default:
       return null;
   }

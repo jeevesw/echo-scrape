@@ -441,6 +441,7 @@ function BlockWrapper({
           {block.type === 'embed' && <EmbedEditor block={block as EmbedBlock} onUpdate={onUpdate as (u: Partial<EmbedBlock>) => void} />}
           {block.type === 'faq' && <FAQEditor block={block as FAQBlock} onUpdate={onUpdate as (u: Partial<FAQBlock>) => void} />}
           {block.type === 'toc' && <TOCEditor block={block as TOCBlock} onUpdate={onUpdate as (u: Partial<TOCBlock>) => void} allBlocks={allBlocks} />}
+          {block.type === 'newsletter' && <NewsletterEditor block={block as NewsletterBlock} onUpdate={onUpdate as (u: Partial<NewsletterBlock>) => void} />}
         </div>
       </div>
 
