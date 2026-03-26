@@ -150,9 +150,7 @@ const BlogList = () => {
   // Handle category change and update URL
   const handleCategoryChange = (categorySlug: string) => {
     setSelectedCategory(categorySlug);
-    setCurrentPage(1);
-    
-    if (categorySlug === 'all') {
+    setVisibleCount(INITIAL_POSTS);
       searchParams.delete('category');
     } else {
       searchParams.set('category', categorySlug);
