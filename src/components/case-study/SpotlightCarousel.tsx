@@ -27,7 +27,7 @@ export function SpotlightCarousel({ images, bgClass = "bg-background", interval 
       setIsTransitioning(true);
     }, interval);
     return () => clearInterval(timer);
-  }, [interval, lightboxOpen]);
+  }, [interval, lightboxOpen, isHovered]);
 
   // Listen for transition end to do silent reset
   useEffect(() => {
