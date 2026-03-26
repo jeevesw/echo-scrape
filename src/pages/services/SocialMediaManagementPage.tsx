@@ -44,12 +44,19 @@ function TeamSection() {
   const [authors, setAuthors] = useState<Author[]>([]);
 
   useEffect(() => {
+    const nameOrder = ["Kitty", "Dani", "Lily", "Ashley", "Jeeves"];
     supabase
       .from("authors")
       .select("id, name, role, avatar_url")
-      .order("name")
       .then(({ data }) => {
-        if (data) setAuthors(data);
+        if (data) {
+          const sorted = [...data].sort((a, b) => {
+            const aIdx = nameOrder.findIndex(n => a.name.startsWith(n));
+            const bIdx = nameOrder.findIndex(n => b.name.startsWith(n));
+            return (aIdx === -1 ? 99 : aIdx) - (bIdx === -1 ? 99 : bIdx);
+          });
+          setAuthors(sorted);
+        }
       });
   }, []);
 

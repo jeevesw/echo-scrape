@@ -73,8 +73,13 @@ export function ServiceHero({
 
   if (variant === "split") {
     return (
-      <section className="bg-background py-16 lg:py-24">
+      <section className="bg-background pt-6 pb-16 lg:pb-24">
         <div className="container mx-auto px-4">
+          {breadcrumbItems && (
+            <div className="mb-8">
+              <BreadcrumbNav items={breadcrumbItems} />
+            </div>
+          )}
           <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
             <div>
               {eyebrow && (
@@ -100,7 +105,7 @@ export function ServiceHero({
 
   if (variant === "dark") {
     return (
-      <section className="relative bg-[hsl(60,1%,8%)] py-20 lg:py-32 overflow-hidden">
+      <section className="relative bg-[hsl(60,1%,8%)] pt-6 pb-20 lg:pb-32 overflow-hidden">
         {backgroundImage && (
           <>
             <img
@@ -110,6 +115,11 @@ export function ServiceHero({
             />
             <div className="absolute inset-0 bg-black/50" />
           </>
+        )}
+        {breadcrumbItems && (
+          <div className="relative z-10 container mx-auto px-4 mb-12 lg:mb-16">
+            <BreadcrumbNav variant="light" items={breadcrumbItems} />
+          </div>
         )}
         <div className="relative z-10 container mx-auto px-4 text-center max-w-4xl">
           {eyebrow && (

@@ -1,7 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
-import { BreadcrumbNav } from "@/components/ui/breadcrumb-nav";
 import { ServiceSchema, FAQSchema } from "@/components/seo/SchemaMarkup";
 import { servicesData } from "@/data/servicesData";
 import { ServiceHero } from "@/components/services/ServiceHero";
@@ -56,6 +55,10 @@ const WebsiteDesignPage = () => {
         subheadline={service.heroSubheadline}
         primaryCta={{ label: "Schedule a Call", href: "https://calendly.com/trapezemedia/discovery-call", external: true }}
         secondaryCta={{ label: "Contact Us", href: "/contact" }}
+        breadcrumbItems={[
+          { label: "Services", href: "/services" },
+          { label: "Website Design", href: "/services/website-design" },
+        ]}
       />
 
       {/* 8-feature icon grid */}
