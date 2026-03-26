@@ -102,7 +102,7 @@ export function SpotlightCarousel({ images, bgClass = "bg-background", interval 
       <div
         ref={containerRef}
         className="relative w-full overflow-hidden cursor-pointer"
-        style={containerHeight ? { height: containerHeight } : undefined}
+        style={containerHeight ? { height: containerHeight } : { minHeight: 200 }}
         onClick={handleClick}
       >
         {/* Fade edges */}
