@@ -36,45 +36,47 @@ const VariousEateriesCaseStudy = () => {
           />
         </div>
 
-        <div className="container-content mx-auto px-4 relative z-10 h-full">
-          {/* Desktop: two-column layout */}
-          <div className="grid md:grid-cols-[55%_45%] h-full">
-            {/* Left column — text, vertically centred */}
-            <div className="flex items-center">
-              <ScrollReveal animation="left">
-                <span className="heading-display text-primary-foreground/80 text-lg md:text-xl uppercase tracking-wider mb-4 block">
-                  Case Study: Google Pay-Per-Click Ads
-                </span>
-                <h1 className="heading-display text-3xl md:text-5xl lg:text-6xl text-primary-foreground leading-tight">
-                  Driving Restaurant Visits and Bookings
-                </h1>
-              </ScrollReveal>
-            </div>
-
-            {/* Right column — phone frame, anchored to bottom */}
-            <div className="relative hidden md:block self-stretch">
-              <div 
-                className="absolute bottom-0 w-[320px]"
-                style={{ right: '-20px' }}
-              >
-                <img
-                  src="/images/various-eateries-hero.png"
-                  alt="Coppa Club Google Ads campaign on mobile"
-                  className="w-full h-auto block"
-                />
+        {/* Desktop: two-column layout - full width, no container padding on right */}
+        <div className="h-full relative z-10">
+          <div className="container-content mx-auto px-4 h-full">
+            <div className="grid md:grid-cols-[55%_45%] h-full">
+              {/* Left column — text, vertically centred */}
+              <div className="flex items-center">
+                <ScrollReveal animation="left">
+                  <span className="heading-display text-primary-foreground/80 text-lg md:text-xl uppercase tracking-wider mb-4 block">
+                    Case Study: Google Pay-Per-Click Ads
+                  </span>
+                  <h1 className="heading-display text-3xl md:text-5xl lg:text-6xl text-primary-foreground leading-tight">
+                    Google Pay-Per-Click Ads for Various Eateries: driving restaurant visits and bookings
+                  </h1>
+                </ScrollReveal>
               </div>
+
+              {/* Right column — placeholder for grid alignment */}
+              <div className="hidden md:block" />
             </div>
           </div>
 
-          {/* Mobile: phone centred below text, same crop effect */}
-          <div className="md:hidden flex justify-center mt-6">
-            <div className="w-[260px]">
-              <img
-                src="/images/various-eateries-hero.png"
-                alt="Coppa Club Google Ads campaign on mobile"
-                className="w-full h-auto block"
-              />
-            </div>
+          {/* Phone absolutely positioned flush to right edge of viewport */}
+          <div 
+            className="absolute bottom-0 right-0 w-[320px] hidden md:block"
+          >
+            <img
+              src="/images/various-eateries-hero.png"
+              alt="Coppa Club Google Ads campaign on mobile"
+              className="w-full h-auto block"
+            />
+          </div>
+        </div>
+
+        {/* Mobile: phone centred below text, same crop effect */}
+        <div className="md:hidden flex justify-center mt-6 relative z-10">
+          <div className="w-[260px]">
+            <img
+              src="/images/various-eateries-hero.png"
+              alt="Coppa Club Google Ads campaign on mobile"
+              className="w-full h-auto block"
+            />
           </div>
         </div>
       </section>
