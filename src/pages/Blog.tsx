@@ -514,10 +514,10 @@ const Blog = () => {
               {/* Header */}
               <div className="text-center mb-12">
                 <h1 className="heading-display text-5xl md:text-6xl text-primary mb-4">
-                  Blog
+                  Digital Marketing Insights
                 </h1>
                 <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-                  Insights on paid social, TikTok, SEO, and digital marketing for hospitality and beyond.
+                  Updates and guides on paid social, TikTok, SEO, and digital marketing for hospitality and beyond.
                 </p>
               </div>
               
