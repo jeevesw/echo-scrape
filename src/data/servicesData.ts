@@ -194,8 +194,8 @@ export const servicesData: Record<string, ServiceData> = {
     title: "Paid Search",
     metaTitle: "Google Ads Agency for Hospitality & Lifestyle Brands | Trapeze Media",
     metaDescription: "Google Ads management for UK hospitality, restaurants, and lifestyle brands. PPC campaigns that drive bookings, footfall, and sales. Hyperlocal targeting specialists.",
-    heroHeadline: "Google Ads That Fill Tables, Venues & Inboxes",
-    heroSubheadline: "PPC that drives high-intent traffic, converts sales, and generates leads — on Google Search, Display, Performance Max, and beyond.",
+    heroHeadline: "GOOGLE ADS THAT FILL TABLES, VENUES, & INBOXES",
+    heroSubheadline: "We design and run PPC campaigns which drive high-intent traffic, convert sales, and generates leads, across Google Search, Display, Performance Max, and beyond.",
     icon: Search,
     summary: "We run Google Ads campaigns at all scales, from small budgets to multi-million pound ad spends. Our PPC strategies pair intelligent targeting and engaging storytelling with industry expertise and meaningful reporting. As a hyperlocal marketing agency, we're known for delivering Performance Max campaigns with incredible ROI.",
     bestFor: [
