@@ -551,3 +551,12 @@
 .prose ul { list-style-type: disc; }
 .prose ol { list-style-type: decimal; }
 .prose li { display: list-item; }
+
+/* Hide scrollbar for pill bars */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

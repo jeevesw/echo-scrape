@@ -247,23 +247,29 @@ const BlogList = () => {
     <>
       {/* Category Filter Buttons */}
       {categories && categories.length > 0 && (
-        <div className="flex flex-wrap gap-2 mb-8">
-          <Button
-            variant={selectedCategory === 'all' ? 'default' : 'outline'}
-            size="sm"
+        <div className="flex gap-2 mb-8 overflow-x-auto scrollbar-hide pb-1 -mx-1 px-1">
+          <button
             onClick={() => handleCategoryChange('all')}
+            className={`shrink-0 px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
+              selectedCategory === 'all'
+                ? 'bg-primary text-primary-foreground'
+                : 'border border-border text-muted-foreground hover:bg-muted'
+            }`}
           >
             All
-          </Button>
+          </button>
           {categories.map(cat => (
-            <Button
+            <button
               key={cat.id}
-              variant={selectedCategory === cat.slug ? 'default' : 'outline'}
-              size="sm"
               onClick={() => handleCategoryChange(cat.slug)}
+              className={`shrink-0 px-4 py-1.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap ${
+                selectedCategory === cat.slug
+                  ? 'bg-primary text-primary-foreground'
+                  : 'border border-border text-muted-foreground hover:bg-muted'
+              }`}
             >
               {cat.name}
-            </Button>
+            </button>
           ))}
         </div>
       )}
@@ -539,7 +545,7 @@ const Blog = () => {
                   Blog
                 </h1>
                 <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-                  News, insights, and updates from the world of social media marketing, online advertising, and digital culture.
+                  Insights on paid social, TikTok, SEO, and digital marketing for hospitality and beyond.
                 </p>
               </div>
               
