@@ -13,6 +13,7 @@ interface AnimatedStatProps {
 
 export function AnimatedStat({ 
   value, 
+  start,
   suffix = "", 
   prefix = "", 
   label,
@@ -22,6 +23,7 @@ export function AnimatedStat({
 }: AnimatedStatProps) {
   const { ref, displayValue } = useCountUp({
     end: value,
+    start,
     duration: 2500,
     delay,
     suffix,
