@@ -1,14 +1,22 @@
 import { ParallaxVideo } from "@/components/case-study/ParallaxVideo";
+import { useCountUp } from "@/hooks/use-count-up";
 
-const statPills = [
-  { value: "£1.88", label: "Cost-per-lead average across all placements" },
-  { value: "76%", label: "Interviewees offered a job from 4% contact rate" },
-];
+function AnimatedStatPill({ end, prefix, suffix, label, delay, formatValue }: {
+  end: number; prefix?: string; suffix?: string; label: string; delay?: number;
+  formatValue?: (v: number) => string;
+}) {
+  const { ref, displayValue } = useCountUp({ end, prefix, suffix, delay, duration: 2500, formatValue });
+  return (
+    <div ref={ref} className="bg-background border-2 border-primary rounded-xl px-5 py-3">
+      <span className="heading-display text-2xl text-primary block">{displayValue}</span>
+      <span className="text-sm text-muted-foreground block mt-1">{label}</span>
+    </div>
+  );
+}
 
 const PreciousHomesSnippet = () => (
   <div className="mt-20 pt-16 border-t border-border/40 max-w-5xl mx-auto">
     <div className="grid md:grid-cols-2 gap-10 items-center">
-      {/* Left column — videos */}
       <div className="grid grid-cols-2 gap-4">
         <ParallaxVideo
           src="https://trapezemedia.co.uk/s/Testimonial_NoexperienceNeeded_PreciousHomes.mp4"
@@ -24,7 +32,6 @@ const PreciousHomesSnippet = () => (
         />
       </div>
 
-      {/* Right column — copy */}
       <div>
         <span className="bg-primary/10 text-primary text-xs font-semibold uppercase tracking-widest rounded-full px-3 py-1 inline-block mb-4">
           Paid Social · Recruitment
@@ -33,15 +40,8 @@ const PreciousHomesSnippet = () => (
         <h3 className="heading-display text-3xl text-foreground mb-4">Precious Homes</h3>
 
         <div className="flex gap-3 flex-wrap mb-6">
-          {statPills.map((s) => (
-            <div
-              key={s.label}
-              className="bg-background border-2 border-primary rounded-xl px-5 py-3"
-            >
-              <span className="heading-display text-2xl text-primary block">{s.value}</span>
-              <span className="text-sm text-muted-foreground block mt-1">{s.label}</span>
-            </div>
-          ))}
+          <AnimatedStatPill end={1} prefix="£" suffix=".88" label="Cost-per-lead average across all placements" delay={0} />
+          <AnimatedStatPill end={76} suffix="%" label="Interviewees offered a job from 4% contact rate" delay={200} />
         </div>
 
         <p className="text-muted-foreground text-lg mb-6">
