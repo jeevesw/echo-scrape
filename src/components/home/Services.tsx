@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
-import { Megaphone, Target, Mail, Palette } from "lucide-react";
+import { Megaphone, Target, Search, Palette } from "lucide-react";
 import { ScrollReveal } from "@/hooks/use-scroll-reveal";
 import socialMediaImg from "@/assets/services/social-media-management.jpg";
 
@@ -15,13 +15,13 @@ const services = [
     title: "Paid Advertising",
     icon: Target,
     href: "/services/paid-advertising",
-    image: "https://images.squarespace-cdn.com/content/v1/5edc691de451f275e3b4ae86/1593146998755-K4PSVSK49MUPN6JA2EJE/Trapeze+Media+Social+Media+Agency+Paid+Ads.jpg",
+    image: "https://126bd4da-ec3d-4eca-b8bb-32cc9782210f.lovableproject.com/src/assets/services/paid-advertising.webp",
   },
   {
-    title: "Email Marketing",
-    icon: Mail,
-    href: "/services/email-marketing",
-    image: "https://images.squarespace-cdn.com/content/v1/5edc691de451f275e3b4ae86/1593147380477-3533O887DB75NQ9XRURB/Trapeze+Media+Social+Media+Agency+Email+Marketing.jpg",
+    title: "Paid Search",
+    icon: Search,
+    href: "/services/paid-search",
+    image: "https://126bd4da-ec3d-4eca-b8bb-32cc9782210f.lovableproject.com/src/assets/services/paid-search.jpg",
   },
   {
     title: "Creative Services",
