@@ -7,6 +7,7 @@ import { AnimatedStat } from "@/components/case-study/AnimatedStat";
 import { ScrollReveal } from "@/hooks/use-scroll-reveal";
 import { VenueVisitsCPAChart } from "@/components/charts/VenueVisitsCPAChart";
 import { ArrowLeft, Quote } from "lucide-react";
+import VariousEateriesHero from "@/components/case-study/VariousEateriesHero";
 
 const VariousEateriesCaseStudy = () => {
   return (
