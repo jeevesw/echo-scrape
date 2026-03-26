@@ -43,39 +43,9 @@ function VideoCard({ src }: { src: string }) {
   );
 }
 
-function ParallaxPill({
-  children,
-  speed = 1,
-  baseOffset = 0,
-}: {
-  children: React.ReactNode;
-  speed?: number;
-  baseOffset?: number;
-}) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const [offset, setOffset] = useState(baseOffset);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!ref.current) return;
-      const rect = ref.current.getBoundingClientRect();
-      const windowCenter = window.innerHeight / 2;
-      const elementCenter = rect.top + rect.height / 2;
-      const distance = (elementCenter - windowCenter) / window.innerHeight;
-      setOffset(baseOffset + distance * 24 * speed);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [baseOffset, speed]);
-
+function StatPill({ children }: { children: React.ReactNode }) {
   return (
-    <span
-      ref={ref}
-      className="inline-flex items-center px-5 py-2.5 rounded-full bg-primary text-primary-foreground text-sm md:text-base font-semibold font-ui transition-transform duration-100 ease-out"
-      style={{ transform: `translateY(${offset}px)` }}
-    >
+    <span className="inline-flex items-center px-5 py-2.5 rounded-full bg-primary text-primary-foreground text-sm md:text-base font-semibold font-ui whitespace-nowrap">
       {children}
     </span>
   );
@@ -83,12 +53,18 @@ function ParallaxPill({
 
 const BrightonSeoCaseStudy = () => {
   const videoBaseUrl = `${SUPABASE_URL}/storage/v1/object/public/videos`;
-  const desktopVideoPairs = [
-    [videoFiles[0], videoFiles[3]],
-    [videoFiles[1], videoFiles[4]],
-    [videoFiles[2], videoFiles[5]],
+
+  // 4-column layout: each column gets staggered vertical offset
+  const columns = [
+    { file: videoFiles[0], offset: 40 },
+    { file: videoFiles[1], offset: 0 },
+    { file: videoFiles[2], offset: 60 },
+    { file: videoFiles[3], offset: 20 },
   ];
-  const desktopPairOffsets = [0, 16, -16];
+  const bottomRow = [
+    { file: videoFiles[4], offset: 0 },
+    { file: videoFiles[5], offset: 40 },
+  ];
 
   return (
     <Layout>
@@ -102,9 +78,8 @@ const BrightonSeoCaseStudy = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="relative flex items-center justify-center overflow-hidden bg-background pt-8 pb-6 md:pt-12 md:pb-8">
+      <section className="relative flex items-center justify-center overflow-hidden bg-background pt-8 pb-4 md:pt-12 md:pb-6">
         <div className="container-content mx-auto px-4 relative z-10 text-center">
-          {/* Breadcrumb at top */}
           <BreadcrumbNav
             items={[
               { label: "Case Studies", href: "/case-studies" },
@@ -120,56 +95,61 @@ const BrightonSeoCaseStudy = () => {
               100 short-form videos. Shot in 2 days. Edited with TikTok, Instagram Reels, and YouTube Shorts at their core.
             </p>
           </ScrollReveal>
-
-          {/* First two pills */}
-          <ScrollReveal animation="up" delay={200}>
-            <div className="flex flex-wrap justify-center gap-3 mt-6 mb-8">
-              <ParallaxPill speed={1} baseOffset={-6}>Trend-driven, social-ready videos</ParallaxPill>
-              <ParallaxPill speed={1} baseOffset={8}>Informed by client brand pillars</ParallaxPill>
-            </div>
-          </ScrollReveal>
         </div>
       </section>
 
-      {/* Video Grid */}
-      <section className="py-8 md:py-12 bg-background">
-        <div className="max-w-6xl mx-auto px-4">
+      {/* Video Grid with floating pills */}
+      <section className="pb-12 md:pb-16 bg-background">
+        <div className="max-w-7xl mx-auto px-4 relative">
+          {/* Floating pills above the grid */}
+          <div className="relative z-10 flex flex-wrap justify-between px-4 md:px-12 mb-4 pointer-events-none">
+            <ScrollReveal animation="up" delay={100}>
+              <StatPill>Trend-driven, social-ready videos</StatPill>
+            </ScrollReveal>
+            <ScrollReveal animation="up" delay={200}>
+              <StatPill>Informed by client brand pillars</StatPill>
+            </ScrollReveal>
+          </div>
+
+          {/* Main 4-column staggered grid — desktop */}
           <ScrollReveal>
-            <div className="grid grid-cols-2 gap-6 md:hidden">
+            <div className="hidden md:grid md:grid-cols-4 gap-5">
+              {columns.map(({ file, offset }) => (
+                <div key={file} style={{ paddingTop: `${offset}px` }}>
+                  <VideoCard src={`${videoBaseUrl}/${file}`} />
+                </div>
+              ))}
+            </div>
+
+            {/* Bottom two videos centred */}
+            <div className="hidden md:grid md:grid-cols-4 gap-5 mt-5">
+              <div className="col-start-2" style={{ paddingTop: `${bottomRow[0].offset}px` }}>
+                <VideoCard src={`${videoBaseUrl}/${bottomRow[0].file}`} />
+              </div>
+              <div style={{ paddingTop: `${bottomRow[1].offset}px` }}>
+                <VideoCard src={`${videoBaseUrl}/${bottomRow[1].file}`} />
+              </div>
+            </div>
+
+            {/* Mobile: 2-column grid */}
+            <div className="grid grid-cols-2 gap-4 md:hidden">
               {videoFiles.map((file, i) => {
-                const offsets = [0, 16, -10, 10, -16, 6];
+                const offsets = [0, 20, -12, 12, -20, 8];
                 return (
-                  <div
-                    key={file}
-                    style={{ marginTop: `${Math.max(offsets[i], 0)}px`, marginBottom: `${Math.max(-offsets[i], 0)}px` }}
-                  >
+                  <div key={file} style={{ paddingTop: `${Math.max(offsets[i], 0)}px` }}>
                     <VideoCard src={`${videoBaseUrl}/${file}`} />
                   </div>
                 );
               })}
             </div>
-
-            <div className="hidden md:grid md:grid-cols-3 md:gap-8 md:items-start">
-              {desktopVideoPairs.map((pair, pairIndex) => (
-                <div
-                  key={pair.join("-")}
-                  className="flex flex-col gap-8"
-                  style={{ marginTop: `${Math.max(desktopPairOffsets[pairIndex], 0)}px`, marginBottom: `${Math.max(-desktopPairOffsets[pairIndex], 0)}px` }}
-                >
-                  {pair.map((file) => (
-                    <VideoCard key={file} src={`${videoBaseUrl}/${file}`} />
-                  ))}
-                </div>
-              ))}
-            </div>
           </ScrollReveal>
 
-          {/* Last three pills */}
+          {/* Bottom pills */}
           <ScrollReveal animation="up" delay={200}>
-            <div className="flex flex-wrap justify-center gap-3 mt-12">
-              <ParallaxPill speed={1} baseOffset={4}>Produced 100 videos</ParallaxPill>
-              <ParallaxPill speed={1} baseOffset={-10}>Planned over 2 months</ParallaxPill>
-              <ParallaxPill speed={1} baseOffset={10}>Shot in 2 days</ParallaxPill>
+            <div className="flex flex-wrap justify-center gap-3 mt-10">
+              <StatPill>Produced 100 videos</StatPill>
+              <StatPill>Planned over 2 months</StatPill>
+              <StatPill>Shot in 2 days</StatPill>
             </div>
           </ScrollReveal>
         </div>
