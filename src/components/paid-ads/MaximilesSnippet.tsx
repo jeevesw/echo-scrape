@@ -43,7 +43,7 @@ const MaximilesSnippet = () => (
               ))}
             </div>
 
-            <p className="text-muted-foreground text-base mb-6">
+            <p className="text-muted-foreground text-lg mb-6">
               Our Meta and TikTok ads drove a 66% increase in double opt-ins and cut cost-per-results by half in just 12 months — by building and retargeting a robust, value-aligned audience.
             </p>
 
