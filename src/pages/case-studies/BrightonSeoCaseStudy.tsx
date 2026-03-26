@@ -43,33 +43,57 @@ function VideoCard({ src }: { src: string }) {
   );
 }
 
-function ParallaxPill({ children, speed = 1 }: { children: React.ReactNode; speed?: number }) {
-  const ref = useRef<HTMLSpanElement>(null);
+interface PillConfig {
+  text: string;
+  x: string; // CSS left/right position
+  rotate: number;
+}
+
+function ParallaxPillStrip({ pills, className = "" }: { pills: PillConfig[]; className?: string }) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState(0);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!ref.current) return;
-      const rect = ref.current.getBoundingClientRect();
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
       const windowCenter = window.innerHeight / 2;
       const elementCenter = rect.top + rect.height / 2;
       const distance = (elementCenter - windowCenter) / window.innerHeight;
-      setOffset(distance * 30 * speed);
+      setOffset(distance * 40);
+
+      if (rect.top < window.innerHeight * 0.85) {
+        setVisible(true);
+      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [speed]);
+  }, []);
 
   return (
-    <span
-      ref={ref}
-      className="inline-flex items-center px-5 py-2.5 rounded-full bg-primary text-primary-foreground text-sm md:text-base font-semibold font-ui transition-transform duration-100 ease-out"
-      style={{ transform: `translateY(${offset}px)` }}
+    <div
+      ref={containerRef}
+      className={`relative w-full ${className}`}
+      style={{ transform: `translateY(${offset}px)`, transition: "transform 0.15s ease-out" }}
     >
-      {children}
-    </span>
+      {pills.map((pill, i) => (
+        <span
+          key={pill.text}
+          className="absolute inline-flex items-center px-5 py-2.5 rounded-full bg-primary text-primary-foreground text-sm md:text-base font-semibold font-ui shadow-lg transition-all duration-700 ease-out"
+          style={{
+            left: pill.x,
+            transform: `rotate(${pill.rotate}deg) ${visible ? "translateY(0) scale(1)" : "translateY(20px) scale(0.9)"}`,
+            opacity: visible ? 1 : 0,
+            transitionDelay: `${i * 120}ms`,
+          }}
+        >
+          {pill.text}
+        </span>
+      ))}
+    </div>
   );
 }
 
