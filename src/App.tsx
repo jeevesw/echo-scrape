@@ -27,6 +27,7 @@ import Auth from "./pages/Auth";
 import BlogDashboard from "./pages/admin/BlogDashboard";
 import BlogEditor from "./pages/admin/BlogEditor";
 import BlogMigrate from "./pages/admin/BlogMigrate";
+import BlogCleanup from "./pages/admin/BlogCleanup";
 import Authors from "./pages/admin/Authors";
 import CaseStudiesAdmin from "./pages/admin/CaseStudies";
 
@@ -83,6 +84,11 @@ const App = () => (
               <Route path="/admin/blog/migrate" element={
                 <ProtectedRoute requireAdmin>
                   <BlogMigrate />
+                </ProtectedRoute>
+              } />
+              <Route path="/admin/blog/cleanup" element={
+                <ProtectedRoute requireAdmin>
+                  <BlogCleanup />
                 </ProtectedRoute>
               } />
               <Route path="/admin/case-studies" element={
