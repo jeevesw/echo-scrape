@@ -63,6 +63,36 @@ export default function BlogDashboard() {
   const [sortField, setSortField] = useState<SortField>('published_at');
   const [sortOrder, setSortOrder] = useState<SortOrder>('desc');
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
+  const [isExporting, setIsExporting] = useState(false);
+
+  const handleExport = async () => {
+    setIsExporting(true);
+    try {
+      const { data, error } = await supabase
+        .from('blog_posts')
+        .select('*')
+        .order('created_at', { ascending: false });
+      if (error) throw error;
+
+      const JSZip = (await import('jszip')).default;
+      const zip = new JSZip();
+      data.forEach((post) => {
+        zip.file(`${post.slug}.json`, JSON.stringify(post, null, 2));
+      });
+      const blob = await zip.generateAsync({ type: 'blob' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `blog-export-${format(new Date(), 'yyyy-MM-dd')}.zip`;
+      a.click();
+      URL.revokeObjectURL(url);
+      toast.success(`Exported ${data.length} posts`);
+    } catch (err: any) {
+      toast.error('Export failed: ' + err.message);
+    } finally {
+      setIsExporting(false);
+    }
+  };
 
   // Fetch all categories
   const { data: categories } = useQuery({
