@@ -170,11 +170,6 @@ export function BlogPreview() {
                   {/* Meta row */}
                   <div className="flex items-center gap-3 text-xs text-muted-foreground mb-3">
                     <span className="flex items-center gap-1">
-                      <Calendar className="h-3 w-3" />
-                      {format(new Date(post.published_at), 'MMM d, yyyy')}
-                    </span>
-                    <span>·</span>
-                    <span className="flex items-center gap-1">
                       <User className="h-3 w-3" />
                       {post.author}
                     </span>

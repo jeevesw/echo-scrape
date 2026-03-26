@@ -449,10 +449,6 @@ const BlogPost = ({ slug }: { slug: string }) => {
         </h1>
         <div className="flex items-center gap-4 text-muted-foreground">
           <span className="flex items-center gap-1">
-            <Calendar className="h-4 w-4" />
-            {format(new Date(post.published_at), 'MMMM d, yyyy')}
-          </span>
-          <span className="flex items-center gap-1">
             <User className="h-4 w-4" />
             {authorData?.name || post.author}
           </span>
