@@ -5,7 +5,7 @@ import { BreadcrumbNav } from "@/components/ui/breadcrumb-nav";
 import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/hooks/use-scroll-reveal";
 import { ArrowLeft, Quote } from "lucide-react";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
 
