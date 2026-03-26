@@ -109,17 +109,17 @@ const TikTokProductionPage = () => {
             Over three months we helped recovering addict and reformed naughty boy Michael Emmett share his story and promote his book, <em>Sins of Fathers</em> — starting from a brand new TikTok account.
           </p>
 
-          <div className="flex gap-4 flex-wrap mb-6">
-            <div className="bg-background border-2 border-primary rounded-xl px-6 py-4 text-center min-w-[140px]">
-              <span className="heading-display text-4xl text-primary">1.5M</span>
+          <div className="grid grid-cols-3 gap-4 mb-6">
+            <div className="bg-background border-2 border-primary rounded-xl px-6 py-4 text-center" ref={viewsRef}>
+              <span className="heading-display text-4xl text-primary block">{viewsDisplay}</span>
               <span className="text-xs text-muted-foreground uppercase tracking-wide mt-1 block">Views · In three months from zero</span>
             </div>
-            <div className="bg-background border-2 border-primary rounded-xl px-6 py-4 text-center min-w-[140px]">
-              <span className="heading-display text-4xl text-primary">14,000</span>
+            <div className="bg-background border-2 border-primary rounded-xl px-6 py-4 text-center" ref={followersRef}>
+              <span className="heading-display text-4xl text-primary block">{followersDisplay}</span>
               <span className="text-xs text-muted-foreground uppercase tracking-wide mt-1 block">Followers · And 43,000+ video likes</span>
             </div>
-            <div className="bg-background border-2 border-primary rounded-xl px-6 py-4 text-center min-w-[140px]">
-              <span className="heading-display text-4xl text-primary">1,700</span>
+            <div className="bg-background border-2 border-primary rounded-xl px-6 py-4 text-center" ref={clicksRef}>
+              <span className="heading-display text-4xl text-primary block">{clicksDisplay}</span>
               <span className="text-xs text-muted-foreground uppercase tracking-wide mt-1 block">Link clicks · Including 1,100+ to Amazon</span>
             </div>
           </div>

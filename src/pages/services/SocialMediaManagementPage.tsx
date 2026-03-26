@@ -68,6 +68,9 @@ const SocialMediaManagementPage = () => {
         ]}
       />
 
+      {/* Logo Carousel */}
+      <ClientLogoCarousel />
+
       {/* Summary */}
       <section className="bg-background py-16 lg:py-20">
         <div className="container mx-auto px-4 flex justify-center">
