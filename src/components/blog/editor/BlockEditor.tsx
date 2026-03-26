@@ -16,7 +16,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import type { Block, BlockType, TextBlock, HeadingBlock, ImageBlock, QuoteBlock, ListBlock, DividerBlock, EmbedBlock, FAQBlock, TOCBlock, FAQItem } from '../BlockRenderer';
+import type { Block, BlockType, TextBlock, HeadingBlock, ImageBlock, QuoteBlock, ListBlock, DividerBlock, EmbedBlock, FAQBlock, TOCBlock, NewsletterBlock, FAQItem } from '../BlockRenderer';
 
 interface BlockEditorProps {
   blocks: Block[];
