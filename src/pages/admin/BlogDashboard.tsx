@@ -65,6 +65,63 @@ export default function BlogDashboard() {
   const [sortOrder, setSortOrder] = useState<SortOrder>('desc');
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
   const [isExporting, setIsExporting] = useState(false);
+  const [thumbFix, setThumbFix] = useState<{
+    running: boolean;
+    done: boolean;
+    total: number;
+    processed: number;
+    fixed: number;
+    manual: { title: string; slug: string }[];
+  }>({ running: false, done: false, total: 0, processed: 0, fixed: 0, manual: [] });
+
+  const handleFixThumbnails = async () => {
+    setThumbFix({ running: true, done: false, total: 0, processed: 0, fixed: 0, manual: [] });
+    try {
+      // Fetch posts missing thumbnails
+      const { data: postsData, error } = await supabase
+        .from('blog_posts')
+        .select('id, slug, title, blocks')
+        .is('featured_image', null);
+      if (error) throw error;
+      if (!postsData || postsData.length === 0) {
+        setThumbFix(s => ({ ...s, running: false, done: true, total: 0 }));
+        toast.info('All posts already have thumbnails');
+        return;
+      }
+
+      const total = postsData.length;
+      setThumbFix(s => ({ ...s, total }));
+      let fixed = 0;
+      const manual: { title: string; slug: string }[] = [];
+
+      for (let i = 0; i < postsData.length; i++) {
+        const post = postsData[i];
+        let blocks: any[] = [];
+        try {
+          blocks = typeof post.blocks === 'string' ? JSON.parse(post.blocks) : post.blocks || [];
+        } catch { blocks = []; }
+
+        const firstImage = blocks.find((b: any) => b.type === 'image' && b.src);
+        if (firstImage) {
+          const { error: upErr } = await supabase
+            .from('blog_posts')
+            .update({ featured_image: firstImage.src })
+            .eq('id', post.id);
+          if (!upErr) fixed++;
+        } else {
+          manual.push({ title: post.title, slug: post.slug });
+        }
+        setThumbFix(s => ({ ...s, processed: i + 1, fixed, manual: [...manual] }));
+      }
+
+      setThumbFix(s => ({ ...s, running: false, done: true }));
+      queryClient.invalidateQueries({ queryKey: ['admin-blog-posts'] });
+      toast.success(`Fixed ${fixed} thumbnails`);
+    } catch (err: any) {
+      toast.error('Thumbnail fix failed: ' + err.message);
+      setThumbFix(s => ({ ...s, running: false }));
+    }
+  };
 
   const handleExport = async () => {
     setIsExporting(true);
