@@ -2,6 +2,7 @@ import { SpotlightCarousel } from "@/components/case-study/SpotlightCarousel";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import PreciousHomesSnippet from "./PreciousHomesSnippet";
 
 const statPills = [
   { value: "+66%", label: "Double opt-ins" },
@@ -22,6 +23,7 @@ const MaximilesSnippet = () => (
         More Campaigns That Delivered
       </h2>
 
+      {/* Maximiles */}
       <div className="max-w-5xl mx-auto">
         <div className="grid md:grid-cols-2 gap-10 items-center">
           {/* Left column — copy */}
@@ -67,6 +69,9 @@ const MaximilesSnippet = () => (
           </div>
         </div>
       </div>
+
+      {/* Precious Homes */}
+      <PreciousHomesSnippet />
     </div>
   </section>
 );

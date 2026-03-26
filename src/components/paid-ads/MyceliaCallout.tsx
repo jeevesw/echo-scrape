@@ -33,20 +33,16 @@ const MyceliaCallout = () => (
         {stats.map((s) => (
           <div
             key={s.label}
-            className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl px-6 py-4 text-center min-w-[140px]"
+            className="bg-background border-2 border-primary rounded-xl px-6 py-4 text-center min-w-[140px]"
           >
             <span className="heading-display text-4xl text-primary">{s.value}</span>
-            <span className="text-xs text-white/70 uppercase tracking-wide mt-1 block">{s.label}</span>
+            <span className="text-xs text-muted-foreground uppercase tracking-wide mt-1 block">{s.label}</span>
           </div>
         ))}
       </div>
 
       <div className="mt-6">
-        <Button
-          variant="outline"
-          className="border-white text-white hover:bg-white hover:text-foreground"
-          asChild
-        >
+        <Button variant="hero" asChild>
           <Link to="/case-studies/mycelia">
             Read the Full Case Study →
           </Link>
