@@ -58,26 +58,24 @@ const PaidSearchPage = () => {
           { label: "Services", href: "/services" },
           { label: "Paid Search", href: "/services/paid-search" },
         ]}
-            visualSlot={
-              <div className="space-y-4">
-                {/* Google Ad mockups placeholder */}
-                <div className="bg-muted rounded-xl p-6 border border-border">
-                  <div className="text-xs text-muted-foreground uppercase tracking-wider mb-2">Sponsored</div>
-                  <div className="text-primary font-semibold text-lg mb-1">Your Restaurant Name | Book a Table Today</div>
-                  <div className="text-sm text-muted-foreground mb-1">www.your-restaurant.co.uk</div>
-                  <div className="text-sm text-foreground">Award-winning dining in the heart of London. Reserve your table online with instant confirmation. Open 7 days.</div>
-                </div>
-                <div className="bg-muted rounded-xl p-6 border border-border">
-                  <div className="text-xs text-muted-foreground uppercase tracking-wider mb-2">Sponsored</div>
-                  <div className="text-primary font-semibold text-lg mb-1">Best Brunch Near Me | Weekend Bookings Open</div>
-                  <div className="text-sm text-muted-foreground mb-1">www.your-venue.co.uk</div>
-                  <div className="text-sm text-foreground">Bottomless brunch from £35pp. Live DJ, sharing plates, unlimited prosecco. Book now — limited availability.</div>
-                </div>
-              </div>
-            }
-          />
-        </div>
-      </section>
+        visualSlot={
+          <div className="space-y-4">
+            {/* Google Ad mockups placeholder */}
+            <div className="bg-muted rounded-xl p-6 border border-border">
+              <div className="text-xs text-muted-foreground uppercase tracking-wider mb-2">Sponsored</div>
+              <div className="text-primary font-semibold text-lg mb-1">Your Restaurant Name | Book a Table Today</div>
+              <div className="text-sm text-muted-foreground mb-1">www.your-restaurant.co.uk</div>
+              <div className="text-sm text-foreground">Award-winning dining in the heart of London. Reserve your table online with instant confirmation. Open 7 days.</div>
+            </div>
+            <div className="bg-muted rounded-xl p-6 border border-border">
+              <div className="text-xs text-muted-foreground uppercase tracking-wider mb-2">Sponsored</div>
+              <div className="text-primary font-semibold text-lg mb-1">Best Brunch Near Me | Weekend Bookings Open</div>
+              <div className="text-sm text-muted-foreground mb-1">www.your-venue.co.uk</div>
+              <div className="text-sm text-foreground">Bottomless brunch from £35pp. Live DJ, sharing plates, unlimited prosecco. Book now — limited availability.</div>
+            </div>
+          </div>
+        }
+      />
 
       {/* Summary + Logos */}
       <section className="bg-background py-16 lg:py-24">
