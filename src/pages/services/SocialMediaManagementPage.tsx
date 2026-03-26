@@ -96,42 +96,6 @@ const SocialMediaManagementPage = () => {
         </div>
       </section>
 
-      {/* Objection Handling */}
-      <section className="bg-background py-16 lg:py-24">
-        <div className="container mx-auto px-4">
-          <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-12">Common Questions</h2>
-          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {objections.map((obj, i) => (
-              <Card key={i} className="border-0 bg-muted">
-                <CardContent className="p-6">
-                  <h3 className="heading-display text-lg text-foreground mb-4">{obj.question}</h3>
-                  <p className="text-muted-foreground text-base">{obj.answer}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Process */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-12">Our Process</h2>
-          <div className="max-w-4xl mx-auto space-y-8">
-            {service.process.map((step) => (
-              <div key={step.step} className="flex gap-6">
-                <div className="w-14 h-14 rounded-full bg-primary text-primary-foreground flex items-center justify-center heading-display text-xl shrink-0">
-                  {step.step}
-                </div>
-                <div className="pt-2">
-                  <h3 className="heading-display text-xl md:text-2xl text-foreground mb-2">{step.title}</h3>
-                  <p className="text-muted-foreground text-lg">{step.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Our Social Media Management Services */}
       <section className="py-16 bg-muted">
@@ -143,7 +107,7 @@ const SocialMediaManagementPage = () => {
                 <CardContent className="p-6">
                   <f.icon className="h-10 w-10 text-primary mx-auto mb-4" />
                   <h3 className="heading-display text-lg text-foreground mb-3">{f.title}</h3>
-                  <p className="text-muted-foreground text-sm">{f.description}</p>
+                  <p className="text-muted-foreground text-base">{f.description}</p>
                 </CardContent>
               </Card>
             ))}
