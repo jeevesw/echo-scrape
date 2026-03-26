@@ -286,6 +286,10 @@ export default function BlogDashboard() {
             </p>
           </div>
           <div className="flex gap-2">
+            <Button variant="outline" onClick={handleFixThumbnails} disabled={thumbFix.running}>
+              <ImageIcon className="h-4 w-4 mr-2" />
+              {thumbFix.running ? 'Fixing…' : 'Fix Thumbnails'}
+            </Button>
             <Button variant="outline" onClick={handleExport} disabled={isExporting}>
               <Download className="h-4 w-4 mr-2" />
               {isExporting ? 'Exporting…' : 'Export'}
@@ -298,6 +302,37 @@ export default function BlogDashboard() {
             </Button>
           </div>
         </div>
+
+        {/* Thumbnail fix progress/results */}
+        {(thumbFix.running || thumbFix.done) && (
+          <div className="mb-6 p-4 border border-border rounded-lg bg-card">
+            {thumbFix.running && (
+              <>
+                <p className="text-sm text-muted-foreground mb-2">
+                  Processing {thumbFix.processed} / {thumbFix.total} posts…
+                </p>
+                <Progress value={thumbFix.total ? (thumbFix.processed / thumbFix.total) * 100 : 0} className="h-2" />
+              </>
+            )}
+            {thumbFix.done && (
+              <>
+                <p className="text-sm font-medium text-foreground">
+                  {thumbFix.fixed} thumbnail{thumbFix.fixed !== 1 ? 's' : ''} populated · {thumbFix.manual.length} post{thumbFix.manual.length !== 1 ? 's' : ''} still need a manual thumbnail
+                </p>
+                {thumbFix.manual.length > 0 && (
+                  <ul className="mt-2 text-sm text-muted-foreground list-disc pl-5 space-y-0.5">
+                    {thumbFix.manual.map(p => (
+                      <li key={p.slug}>{p.title} <span className="text-xs opacity-60">({p.slug})</span></li>
+                    ))}
+                  </ul>
+                )}
+                <Button variant="ghost" size="sm" className="mt-2" onClick={() => setThumbFix(s => ({ ...s, done: false }))}>
+                  Dismiss
+                </Button>
+              </>
+            )}
+          </div>
+        )}
 
         {/* Filters */}
         <div className="flex flex-col sm:flex-row gap-4 mb-6">
