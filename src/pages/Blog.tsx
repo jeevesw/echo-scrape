@@ -47,7 +47,8 @@ interface BlogPostWithCategories extends BlogPostBase {
   category_ids: string[];
 }
 
-const POSTS_PER_PAGE = 9;
+const INITIAL_POSTS = 9;
+const LOAD_MORE_COUNT = 6;
 
 // Strip HTML tags, decode entities, and remove markdown syntax from content
 const stripHtmlAndMarkdown = (text: string): string => {
@@ -92,7 +93,7 @@ const BlogList = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState('');
   const [sortOrder, setSortOrder] = useState<'newest' | 'oldest'>('newest');
-  const [currentPage, setCurrentPage] = useState(1);
+  const [visibleCount, setVisibleCount] = useState(INITIAL_POSTS);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
   // Sync category from URL on mount
@@ -149,7 +150,7 @@ const BlogList = () => {
   // Handle category change and update URL
   const handleCategoryChange = (categorySlug: string) => {
     setSelectedCategory(categorySlug);
-    setCurrentPage(1);
+    setVisibleCount(INITIAL_POSTS);
     
     if (categorySlug === 'all') {
       searchParams.delete('category');
@@ -195,22 +196,19 @@ const BlogList = () => {
     return result;
   }, [posts, searchQuery, sortOrder, selectedCategory, categories]);
 
-  // Pagination
-  const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
-  const paginatedPosts = filteredPosts.slice(
-    (currentPage - 1) * POSTS_PER_PAGE,
-    currentPage * POSTS_PER_PAGE
-  );
+  // Visible posts (load more)
+  const visiblePosts = filteredPosts.slice(0, visibleCount);
+  const hasMore = visibleCount < filteredPosts.length;
 
-  // Reset to page 1 when filters change
+  // Reset visible count when filters change
   const handleSearchChange = (value: string) => {
     setSearchQuery(value);
-    setCurrentPage(1);
+    setVisibleCount(INITIAL_POSTS);
   };
 
   const handleSortChange = (value: 'newest' | 'oldest') => {
     setSortOrder(value);
-    setCurrentPage(1);
+    setVisibleCount(INITIAL_POSTS);
   };
 
   if (isLoading) {
@@ -304,13 +302,13 @@ const BlogList = () => {
       )}
 
       {/* Posts grid */}
-      {paginatedPosts.length === 0 ? (
+      {visiblePosts.length === 0 ? (
         <div className="text-center py-16">
           <p className="text-muted-foreground">No posts found matching your filters.</p>
         </div>
       ) : (
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {paginatedPosts.map((post) => (
+          {visiblePosts.map((post) => (
             <Card 
               key={post.id} 
               className="group border border-border/50 bg-card overflow-hidden hover:border-primary/30 hover:shadow-lg transition-all duration-300 flex flex-col h-full"
@@ -366,39 +364,14 @@ const BlogList = () => {
         </div>
       )}
 
-      {/* Pagination */}
-      {totalPages > 1 && (
-        <div className="flex items-center justify-center gap-2 mt-12">
+      {/* Load More */}
+      {hasMore && (
+        <div className="flex justify-center mt-12">
           <Button
             variant="outline"
-            size="sm"
-            onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
-            disabled={currentPage === 1}
+            onClick={() => setVisibleCount(prev => prev + LOAD_MORE_COUNT)}
           >
-            Previous
-          </Button>
-          
-          <div className="flex items-center gap-1">
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
-              <Button
-                key={page}
-                variant={currentPage === page ? "default" : "ghost"}
-                size="sm"
-                onClick={() => setCurrentPage(page)}
-                className="w-9"
-              >
-                {page}
-              </Button>
-            ))}
-          </div>
-          
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
-            disabled={currentPage === totalPages}
-          >
-            Next
+            Load more
           </Button>
         </div>
       )}
