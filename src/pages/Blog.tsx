@@ -47,7 +47,8 @@ interface BlogPostWithCategories extends BlogPostBase {
   category_ids: string[];
 }
 
-const POSTS_PER_PAGE = 9;
+const INITIAL_POSTS = 9;
+const LOAD_MORE_COUNT = 6;
 
 // Strip HTML tags, decode entities, and remove markdown syntax from content
 const stripHtmlAndMarkdown = (text: string): string => {
