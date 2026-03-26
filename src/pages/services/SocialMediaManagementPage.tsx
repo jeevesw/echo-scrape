@@ -67,17 +67,6 @@ const SocialMediaManagementPage = () => {
       <FAQSchema faqs={service.faqs} />
 
       {/* Breadcrumb + Hero */}
-      <section className="bg-primary pt-8 pb-0">
-        <div className="container mx-auto px-4">
-          <BreadcrumbNav
-            variant="light"
-            items={[
-              { label: "Services", href: "/services" },
-              { label: "Social Media Management", href: "/services/social-media-management" },
-            ]}
-          />
-        </div>
-      </section>
       <ServiceHero
         variant="brand-pink"
         headline={service.heroHeadline}
@@ -85,6 +74,10 @@ const SocialMediaManagementPage = () => {
         backgroundImage={heroImage}
         primaryCta={{ label: "Schedule a Call", href: "https://calendly.com/trapezemedia/discovery-call", external: true }}
         secondaryCta={{ label: "Contact Us", href: "/contact" }}
+        breadcrumbItems={[
+          { label: "Services", href: "/services" },
+          { label: "Social Media Management", href: "/services/social-media-management" },
+        ]}
       />
 
       {/* Summary */}
