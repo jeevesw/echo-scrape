@@ -103,11 +103,11 @@ const MyceliaCaseStudy = () => {
 
             {/* Flush-right image */}
             <ScrollReveal animation="right">
-              <div>
+              <div className="max-h-[400px] overflow-hidden">
                 <img
                   src="https://images.squarespace-cdn.com/content/v1/5edc691de451f275e3b4ae86/89027574-42b7-4b6b-9616-c8d40b05277a/Mycelia-Board-Game-Cards-Trapeze-Media.png"
                   alt="Mycelia board game cards"
-                  className="w-full h-auto object-cover object-left"
+                  className="w-full h-full object-cover object-left"
                 />
               </div>
             </ScrollReveal>
