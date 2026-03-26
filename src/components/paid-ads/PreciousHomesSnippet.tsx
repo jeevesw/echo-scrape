@@ -40,8 +40,8 @@ const PreciousHomesSnippet = () => (
         <h3 className="heading-display text-3xl text-foreground mb-4">Precious Homes</h3>
 
         <div className="grid grid-cols-2 gap-3 mb-6">
-          <AnimatedStatPill end={1} prefix="£" suffix=".88" label="Cost-per-lead average across all placements" delay={0} />
-          <AnimatedStatPill end={76} suffix="%" label="Interviewees offered a job from 4% contact rate" delay={200} />
+          <AnimatedStatPill end={1} prefix="£" suffix=".88" label="cost-per-lead average across all placements" delay={0} />
+          <AnimatedStatPill end={76} suffix="%" label="interviewees offered a job from 4% contact rate" delay={200} />
         </div>
 
         <p className="text-muted-foreground text-lg mb-6">
