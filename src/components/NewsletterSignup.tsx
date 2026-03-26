@@ -58,9 +58,9 @@ export default function NewsletterSignup({
         <ScrollReveal>
           <div className="border-2 border-primary rounded-2xl p-8 md:p-10">
             <h2 className="heading-display text-3xl md:text-4xl text-foreground mb-4">
-              {heading}
+              {displayHeading}
             </h2>
-            <p className="text-muted-foreground mb-8 text-lg">{subheading}</p>
+            <p className="text-muted-foreground mb-8 text-lg">{displaySubheading}</p>
 
             {success ? (
               <p className="text-lg font-semibold text-primary">
