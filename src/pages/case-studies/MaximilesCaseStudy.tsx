@@ -38,11 +38,11 @@ const gallerySimplicity = [
 
 const successItems = [
   { icon: Target, text: "Optimised CPL (cost per lead) and CPR (cost per registration) for challenging target demographics" },
+  { icon: Video, text: "Created 'interactive' videos for Stories, TikToks, etc. to boost engagement, regularly adjusted based on ad performance" },
   { icon: TrendingUp, text: "Boosted DOI (double opt-in) sign-ups across all target audiences" },
   { icon: Shield, text: "Built loyalty in a space that's often perceived as untrustworthy" },
-  { icon: Star, text: "Leveraged TrustPilot reviews to further emphasise Maximiles' legitimacy" },
-  { icon: Video, text: "Created 'interactive' videos for Stories, TikToks, etc. to boost engagement, regularly adjusted based on ad performance" },
   { icon: Smartphone, text: "Increased mobile app downloads as an added bonus" },
+  { icon: Star, text: "Leveraged TrustPilot reviews to further emphasise Maximiles' legitimacy" },
 ];
 
 function VideoCard({ src }: { src: string }) {
