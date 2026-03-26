@@ -9,7 +9,7 @@ import { ScrollReveal } from "@/hooks/use-scroll-reveal";
 // Service images
 import socialMediaImg from "@/assets/services/social-media-management.webp";
 import paidAdsImg from "@/assets/services/paid-advertising.webp";
-import emailMarketingImg from "@/assets/services/email-marketing.webp";
+import paidSearchImg from "@/assets/services/paid-advertising.webp";
 import creativeImg from "@/assets/services/creative-services.webp";
 import tiktokImg from "@/assets/services/tiktok-production.png";
 import websiteImg from "@/assets/services/website-design.jpg";
