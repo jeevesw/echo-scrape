@@ -31,6 +31,7 @@ export function ServiceHero({
   variant,
   visualSlot,
   backgroundImage,
+  breadcrumbItems,
 }: ServiceHeroProps) {
   const CtaButton = ({ cta, isPrimary }: { cta: CTA; isPrimary: boolean }) => {
     const btnVariant = isPrimary
