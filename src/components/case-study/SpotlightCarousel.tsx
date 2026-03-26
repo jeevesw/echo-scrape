@@ -12,7 +12,6 @@ export function SpotlightCarousel({ images, bgClass = "bg-background", interval 
   // currentIndex increments forever — never resets — to avoid snap-back
   const [currentIndex, setCurrentIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [containerHeight, setContainerHeight] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
 
