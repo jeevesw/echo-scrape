@@ -7,8 +7,6 @@ import { AnimatedStat } from "@/components/case-study/AnimatedStat";
 import { ScrollReveal } from "@/hooks/use-scroll-reveal";
 import { ArrowLeft, Quote } from "lucide-react";
 
-// TODO: replace placeholders with actual
-// Patty&Bun video files once uploaded to public/videos/
 
 const PattyAndBunCaseStudy = () => {
   return (
