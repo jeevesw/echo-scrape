@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { TeamSection } from "@/components/services/TeamSection";
+import { ParallaxVideo } from "@/components/case-study/ParallaxVideo";
 import { getTeamForService } from "@/data/teamData";
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
