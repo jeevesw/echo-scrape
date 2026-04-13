@@ -197,7 +197,7 @@ export const servicesData: Record<string, ServiceData> = {
     heroHeadline: "GOOGLE ADS THAT FILL VENUES, DRIVE LEADS, AND GROW YOUR BUSINESS",
     heroSubheadline: "We design and run PPC campaigns which drive high-intent traffic, convert sales, and generates leads, across Google Search, Display, Performance Max, and beyond.",
     icon: Search,
-    summary: "Our paid search campaigns are built to scale, from small budgets to multi-million pound ad spends. We pair intelligent targeting and engaging storytelling with industry expertise and meaningful reporting. As a hyperlocal marketing agency, we're known for delivering Performance Max campaigns with incredible ROI.",
+    summary: "Our paid search campaigns are built to scale, from modest starting points to multi-million pound ad spends. We pair intelligent targeting and engaging storytelling with industry expertise and meaningful reporting. As a hyperlocal marketing agency, we're known for delivering Performance Max campaigns with incredible ROI.",
     bestFor: [
       "Restaurants and venues targeting local searchers",
       "Multi-location hospitality groups needing consistent bookings",
@@ -206,7 +206,7 @@ export const servicesData: Record<string, ServiceData> = {
       "Businesses ready to invest meaningfully in ad spend",
     ],
     notFor: [
-      "Businesses with no budget for ad spend",
+      "Businesses not yet ready to commit to conversion tracking and proper attribution setup",
       "Brands expecting results without conversion tracking",
       "Companies wanting one-off campaigns without ongoing optimisation",
       "Businesses without a clear landing page or booking flow",
