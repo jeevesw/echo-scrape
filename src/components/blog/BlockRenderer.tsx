@@ -216,6 +216,15 @@ export function BlockRenderer({ blocks: rawBlocks, fallbackHtml }: BlockRenderer
   }, [safeBlocks]);
 
   if (!safeBlocks || safeBlocks.length === 0) {
+    let sanitized = fallbackHtml || '';
+    // Strip class attributes containing 'sqs-'
+    sanitized = sanitized.replace(/\s*class="[^"]*sqs-[^"]*"/g, '');
+    // Remove sqs wrapper divs but keep inner content
+    sanitized = sanitized.replace(/<div[^>]*sqs[^>]*>/g, '');
+    sanitized = sanitized.replace(/<\/div>/g, '');
+    // Strip inline styles with Squarespace-specific fonts/colours
+    sanitized = sanitized.replace(/\s*style="[^"]*(?:font-family|color)[^"]*"/g, '');
+
     return (
       <div
         className="prose prose-lg max-w-none
@@ -226,7 +235,7 @@ export function BlockRenderer({ blocks: rawBlocks, fallbackHtml }: BlockRenderer
           prose-ul:text-foreground prose-ol:text-foreground
           prose-li:marker:text-primary
           prose-strong:text-foreground"
-        dangerouslySetInnerHTML={{ __html: fallbackHtml || '' }}
+        dangerouslySetInnerHTML={{ __html: sanitized }}
       />
     );
   }
