@@ -27,24 +27,14 @@ export function Hero() {
             <div className="mt-4 mb-6">
               <p className="text-sm text-muted-foreground mb-3">We run campaigns on</p>
               <div className="flex flex-wrap items-center gap-6">
-                {platformLogos.map((logo) =>
-                  logo.placeholder ? (
-                    <div
-                      key={logo.alt}
-                      className="h-8 w-16 rounded bg-muted flex items-center justify-center"
-                      title={logo.alt}
-                    >
-                      <span className="text-[10px] text-muted-foreground font-medium">{logo.alt}</span>
-                    </div>
-                  ) : (
-                    <img
-                      key={logo.alt}
-                      src={logo.src}
-                      alt={logo.alt}
-                      className="h-8 w-auto grayscale opacity-60"
-                    />
-                  )
-                )}
+                {platformLogos.map((logo) => (
+                  <img
+                    key={logo.alt}
+                    src={logo.src}
+                    alt={logo.alt}
+                    className="h-8 w-8 object-contain grayscale opacity-60"
+                  />
+                ))}
               </div>
             </div>
 
