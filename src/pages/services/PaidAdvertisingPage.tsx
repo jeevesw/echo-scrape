@@ -133,16 +133,16 @@ const PaidAdvertisingPage = () => {
           rel="canonical"
           href="https://trapezemedia.co.uk/services/paid-advertising"
         />
-        <ServiceSchema
-          name="Paid Advertising"
-          description="Paid social, paid search and TikTok ad campaigns for hospitality, restaurant and lifestyle brands."
-          provider="Trapeze Media"
-          serviceType="Paid Advertising"
-          areaServed={["GB"]}
-          url={`${baseUrl}/services/paid-advertising`}
-        />
-        <FAQSchema faqs={service.faqs} />
       </Helmet>
+      <ServiceSchema
+        name="Paid Advertising"
+        description="Paid social, paid search and TikTok ad campaigns for hospitality, restaurant and lifestyle brands."
+        provider="Trapeze Media"
+        serviceType="Paid Advertising"
+        areaServed={["GB"]}
+        url={`${baseUrl}/services/paid-advertising`}
+      />
+      <FAQSchema faqs={service.faqs} />
 
       {/* 1 — HERO */}
       <ServiceHero
