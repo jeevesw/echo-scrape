@@ -20,12 +20,10 @@ const VariousEateriesCaseStudy = () => {
         <link rel="canonical" href="https://trapezemedia.co.uk/case-studies/various-eateries" />
       </Helmet>
 
-      {/* Hero Section - Phone mockup cropped at bottom edge */}
+      {/* Hero Section */}
       <section className="relative h-[65vh] max-h-[75vh] min-h-[520px] overflow-hidden bg-primary">
-        {/* Background gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-primary/80" />
 
-        {/* Breadcrumb at top */}
         <div className="container-content mx-auto px-4 relative z-20 pt-6">
           <BreadcrumbNav
             items={[
@@ -36,11 +34,9 @@ const VariousEateriesCaseStudy = () => {
           />
         </div>
 
-        {/* Desktop: two-column layout - full width, no container padding on right */}
         <div className="h-full relative z-10">
           <div className="container-content mx-auto px-4 h-full">
             <div className="grid md:grid-cols-[55%_45%] h-full">
-              {/* Left column — text, vertically centred */}
               <div className="flex items-center">
                 <ScrollReveal animation="left">
                     <h1 className="heading-display text-3xl md:text-5xl lg:text-6xl text-primary-foreground leading-tight">
@@ -48,13 +44,10 @@ const VariousEateriesCaseStudy = () => {
                     </h1>
                 </ScrollReveal>
               </div>
-
-              {/* Right column — placeholder for grid alignment */}
               <div className="hidden md:block" />
             </div>
           </div>
 
-          {/* Phone absolutely positioned flush right, vertically centred, larger */}
           <div 
             className="absolute top-1/2 right-0 -translate-y-1/2 w-[45%] max-w-[520px] hidden md:block"
           >
@@ -66,7 +59,6 @@ const VariousEateriesCaseStudy = () => {
           </div>
         </div>
 
-        {/* Mobile: phone centred below text, same crop effect */}
         <div className="md:hidden flex justify-center mt-6 relative z-10">
           <div className="w-[260px]">
             <img
@@ -78,40 +70,12 @@ const VariousEateriesCaseStudy = () => {
         </div>
       </section>
 
-      {/* Intro Statement */}
-      <section className="py-20 bg-background">
-        <div className="container-content mx-auto px-4">
-          <div className="grid md:grid-cols-[auto_1fr] gap-12 items-center">
-            <ScrollReveal animation="left">
-              <img
-                src="/images/various-eateries-intro.webp"
-                alt="Coppa Club restaurant interior"
-                className="w-[320px] lg:w-[400px] rounded-2xl"
-              />
-            </ScrollReveal>
-            
-            <ScrollReveal>
-              <h2 className="heading-display text-3xl md:text-4xl lg:text-5xl text-primary max-w-4xl leading-relaxed">
-                Coppa Club — part of the Various Eateries group — approached us to drive footfall and bookings using Google Ads.
-              </h2>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section - Bold, animated counters */}
-      <section className="py-24 bg-muted relative overflow-hidden">
-        {/* Decorative background elements */}
+      {/* Stats Section — directly below hero */}
+      <section className="py-14 bg-muted relative overflow-hidden">
         <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
         
         <div className="container-content mx-auto px-4 relative z-10">
-          <ScrollReveal>
-            <h2 className="heading-display text-4xl md:text-5xl text-center text-foreground mb-16">
-              Successes
-            </h2>
-          </ScrollReveal>
-
           <div className="grid md:grid-cols-[1fr_auto] gap-12 items-center">
             <div className="grid md:grid-cols-3 gap-12 md:gap-8">
               <ScrollReveal delay={0}>
@@ -151,6 +115,27 @@ const VariousEateriesCaseStudy = () => {
                 className="w-[300px] lg:w-[360px] h-auto rounded-l-2xl"
                 style={{ marginRight: 'calc(-1 * (100vw - 100%) / 2 - 1rem)' }}
               />
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Intro Statement */}
+      <section className="py-20 bg-background">
+        <div className="container-content mx-auto px-4">
+          <div className="grid md:grid-cols-[auto_1fr] gap-12 items-center">
+            <ScrollReveal animation="left">
+              <img
+                src="/images/various-eateries-intro.webp"
+                alt="Coppa Club restaurant interior"
+                className="w-[320px] lg:w-[400px] rounded-2xl"
+              />
+            </ScrollReveal>
+            
+            <ScrollReveal>
+              <h2 className="heading-display text-3xl md:text-4xl lg:text-5xl text-primary max-w-4xl leading-relaxed">
+                Coppa Club — part of the Various Eateries group — approached us to drive footfall and bookings using Google Ads.
+              </h2>
             </ScrollReveal>
           </div>
         </div>
@@ -210,23 +195,20 @@ const VariousEateriesCaseStudy = () => {
         </div>
       </section>
 
-      {/* Story + Tracking Section */}
+      {/* Conversion Tracking */}
       <section className="py-24 bg-muted">
         <div className="container-content mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <ScrollReveal animation="left">
               <div className="space-y-6">
                 <h2 className="heading-display text-3xl md:text-4xl text-foreground">
-                  Tracking Bookings Back to Acquisition
+                  Full-Funnel Conversion Tracking
                 </h2>
                 <p className="text-xl md:text-2xl text-foreground leading-relaxed">
-                  We built and ran cross-platform campaigns using{" "}
+                  Before any campaign runs, we audit and build out conversion tracking end-to-end — so{" "}
                   <span className="text-primary font-semibold">
-                    specific goal and table-targeted retargeting
+                    every pound of ad spend is accountable
                   </span>.
-                </p>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  We deployed a tracking solution which empowered Coppa Club to connect customer contact information from the point of booking back to Google's ad services.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   This enables us to create reports which provide reliable stats on ad spend ROI.
@@ -250,7 +232,6 @@ const VariousEateriesCaseStudy = () => {
 
       {/* Testimonial Section */}
       <section className="py-24 bg-primary text-primary-foreground relative overflow-hidden">
-        {/* Decorative quote marks */}
         <div className="absolute top-12 left-12 opacity-10 rotate-180">
           <Quote className="w-32 h-32" />
         </div>
@@ -289,7 +270,7 @@ const VariousEateriesCaseStudy = () => {
           </ScrollReveal>
 
           <ScrollReveal>
-            <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20">
+            <div className="flex flex-wrap justify-center items-center gap-12 md:gap-16">
               <div className="text-center">
                 <div className="h-16 mx-auto mb-3 flex items-center justify-center">
                   <img src="/images/meta-logo.svg" alt="Meta" className="h-10 w-auto" />
@@ -301,7 +282,7 @@ const VariousEateriesCaseStudy = () => {
                 <div className="h-16 mx-auto mb-3 flex items-center justify-center">
                   <img src="/images/google-ads-logo.svg" alt="Google Ads" className="h-14 w-auto" />
                 </div>
-                <span className="text-sm text-muted-foreground">Google Ads, Search,<br/>YouTube, Display</span>
+                <span className="text-sm text-muted-foreground">Google Ads, Search,<br/>Display & PMax</span>
               </div>
               
               <div className="text-center">
@@ -309,6 +290,20 @@ const VariousEateriesCaseStudy = () => {
                   <img src="/images/tiktok-logo.svg" alt="TikTok" className="h-10 w-auto" />
                 </div>
                 <span className="text-sm text-muted-foreground">TikTok Ads, Creators,<br/>Spark/Whitelisting</span>
+              </div>
+
+              <div className="text-center">
+                <div className="h-16 mx-auto mb-3 flex items-center justify-center">
+                  <span className="inline-flex items-center justify-center h-10 px-4 rounded-lg bg-[#FF0000] text-white font-bold text-sm tracking-wide">YouTube</span>
+                </div>
+                <span className="text-sm text-muted-foreground">YouTube Ads<br/>& Video</span>
+              </div>
+
+              <div className="text-center">
+                <div className="h-16 mx-auto mb-3 flex items-center justify-center">
+                  <span className="inline-flex items-center justify-center h-10 px-4 rounded-lg bg-[#0A66C2] text-white font-bold text-sm tracking-wide">LinkedIn</span>
+                </div>
+                <span className="text-sm text-muted-foreground">LinkedIn Ads<br/>& Sponsored Content</span>
               </div>
             </div>
           </ScrollReveal>
