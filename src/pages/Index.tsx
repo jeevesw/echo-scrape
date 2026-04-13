@@ -6,7 +6,7 @@ import { FeaturedCampaigns } from "@/components/home/FeaturedCampaigns";
 import { Testimonial } from "@/components/home/Testimonial";
 import { BlogPreview } from "@/components/home/BlogPreview";
 import NewsletterSignup from "@/components/NewsletterSignup";
-import { FAQSchema } from "@/components/seo/SchemaMarkup";
+import { FAQSchema, LocalBusinessSchema } from "@/components/seo/SchemaMarkup";
 import {
   Accordion,
   AccordionContent,
@@ -36,6 +36,19 @@ const faqs = [
 const Index = () => {
   return (
     <Layout>
+      <LocalBusinessSchema
+        type="MarketingAgency"
+        name="Trapeze Media"
+        url="https://trapezemedia.co.uk"
+        telephone="07989478792"
+        email="info@trapezemedia.co.uk"
+        description="Trapeze Media is a UK digital marketing agency specialising in hyperlocal paid social, Google Ads, and social media management for hospitality, lifestyle, and events brands."
+        address={{ addressCountry: "GB" }}
+        sameAs={[
+          "https://www.instagram.com/trapezemedia",
+          "https://www.linkedin.com/company/trapeze-media",
+        ]}
+      />
       <FAQSchema faqs={faqs} />
       <Hero />
       <ClientLogoCarousel />

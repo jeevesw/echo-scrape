@@ -207,3 +207,52 @@ export function ArticleSchema({
     </Helmet>
   );
 }
+
+interface LocalBusinessSchemaProps {
+  type?: string;
+  name: string;
+  url: string;
+  telephone?: string;
+  email?: string;
+  description?: string;
+  address: {
+    streetAddress?: string;
+    addressLocality?: string;
+    addressRegion?: string;
+    postalCode?: string;
+    addressCountry: string;
+  };
+  sameAs?: string[];
+}
+
+export function LocalBusinessSchema({
+  type = "LocalBusiness",
+  name,
+  url,
+  telephone,
+  email,
+  description,
+  address,
+  sameAs = [],
+}: LocalBusinessSchemaProps) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": type,
+    name,
+    url,
+    ...(telephone && { telephone }),
+    ...(email && { email }),
+    ...(description && { description }),
+    address: {
+      "@type": "PostalAddress",
+      ...address,
+    },
+    sameAs,
+  };
+
+  return (
+    <Helmet>
+      <script type="application/ld+json">{JSON.stringify(schema)}</script>
+    </Helmet>
+  );
+}
