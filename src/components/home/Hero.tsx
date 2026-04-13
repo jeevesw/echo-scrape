@@ -72,9 +72,6 @@ export function Hero() {
                   Schedule a Call
                 </a>
               </Button>
-              <Button variant="hero-outline" asChild>
-                <Link to="/paid-ads-quiz">Take the Quiz</Link>
-              </Button>
             </div>
           </div>
 
