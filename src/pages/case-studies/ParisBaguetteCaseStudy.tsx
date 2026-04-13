@@ -55,11 +55,13 @@ const ParisBaguetteCaseStudy = () => {
         </div>
       </section>
 
-      {/* Hero image placeholder */}
+      {/* Hero image */}
       <div className="container-content mx-auto px-4 -mt-12 relative z-20 mb-8">
-        <div className="w-full aspect-video bg-muted rounded-xl flex items-center justify-center text-muted-foreground text-sm">
-          [Hero image placeholder — Paris Baguette campaign creative]
-        </div>
+        <img
+          src="/images/case-studies/paris-baguette-hero.jpg"
+          alt="Paris Baguette cakes and coffee with latte art"
+          className="w-full aspect-video object-cover rounded-xl"
+        />
       </div>
 
       {/* Intro */}
