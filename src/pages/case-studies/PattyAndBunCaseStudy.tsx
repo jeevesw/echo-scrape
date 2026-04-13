@@ -5,7 +5,7 @@ import { BreadcrumbNav } from "@/components/ui/breadcrumb-nav";
 import { Button } from "@/components/ui/button";
 import { AnimatedStat } from "@/components/case-study/AnimatedStat";
 import { ScrollReveal } from "@/hooks/use-scroll-reveal";
-import { ArrowLeft, Quote } from "lucide-react";
+import { ArrowLeft, Quote, Video, Camera, Users } from "lucide-react";
 
 
 const PattyAndBunCaseStudy = () => {
