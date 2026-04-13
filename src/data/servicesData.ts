@@ -60,7 +60,7 @@ export const servicesData: Record<string, ServiceData> = {
     heroSubheadline: "Build authentic connections with your audience through strategic content and community engagement.",
     icon: Megaphone,
     
-    summary: "We manage social media for restaurants, hotels, venues, and lifestyle brands across the UK. Our approach combines local market knowledge with creative content strategy to build engaged communities that drive footfall and bookings.",
+    summary: "We manage social media for global brands, including restaurants, hotels, and venues across the UK and worldwide. Our approach combines local market knowledge with creative content strategy to build engaged communities that drive footfall and bookings.",
     
     bestFor: [
       "Multi-location hospitality brands needing consistent local presence",
