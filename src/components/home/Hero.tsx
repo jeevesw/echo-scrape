@@ -3,13 +3,12 @@ import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-image.webp";
 
 const platformLogos = [
-  { src: "/images/meta-logo.svg", alt: "Meta" },
   { src: "/images/google-ads-logo.svg", alt: "Google Ads" },
-  { src: "/images/tiktok-logo.svg", alt: "TikTok" },
-  { src: "", alt: "Facebook", placeholder: true },
-  { src: "", alt: "Instagram", placeholder: true },
-  { src: "", alt: "YouTube", placeholder: true },
-  { src: "", alt: "LinkedIn", placeholder: true },
+  { src: "/images/facebook-logo.png", alt: "Facebook" },
+  { src: "/images/instagram-logo.png", alt: "Instagram" },
+  { src: "/images/tiktok-logo.png", alt: "TikTok" },
+  { src: "/images/youtube-logo.png", alt: "YouTube" },
+  { src: "/images/linkedin-logo.png", alt: "LinkedIn" },
 ];
 
 export function Hero() {
