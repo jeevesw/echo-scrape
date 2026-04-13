@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import parisBaguetteBg from "@/assets/case-studies/paris-baguette-bg.jpg";
 import { Helmet } from "react-helmet-async";
 import { Layout } from "@/components/layout/Layout";
 import { BreadcrumbNav } from "@/components/ui/breadcrumb-nav";
