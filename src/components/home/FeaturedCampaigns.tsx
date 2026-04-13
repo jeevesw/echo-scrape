@@ -6,23 +6,24 @@ import { ScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const campaigns = [
   {
-    category: "Google Ads",
-    title: "Increasing bookings for Various Eateries",
-    image: "https://images.squarespace-cdn.com/content/v1/5edc691de451f275e3b4ae86/99bb98a7-88f7-4295-87df-ead4bb1b64da/Various+Eateries.jpg",
-    href: "/case-studies/various-eateries",
+    category: "Google & Meta Ads",
+    title: "Driving footfall and orders for YO! Sushi",
+    image: "/images/yo-sushi-hero.jpg",
+    href: "/case-studies/yo-sushi",
   },
   {
-    category: "Lead Generation",
-    title: "Engaging Gen-Z audience for Maximiles",
-    image: "https://images.squarespace-cdn.com/content/v1/5edc691de451f275e3b4ae86/26c441b3-74f9-403a-b929-8af51bba0619/Maximiles-Paid-Ads-by-Trapeze-Media.jpg",
-    href: "/case-studies/maximiles",
-  },
-  {
-    category: "Crowdfunder Lead Generation",
-    title: "Raising half-a-million for board game Mycelia",
+    category: "Crowdfunder Ads",
+    title: "Raising half a million for board game Mycelia",
     image: "https://images.squarespace-cdn.com/content/v1/5edc691de451f275e3b4ae86/1711555599572-XAE74WRQ55SCVSPWVT7I/Mycelia-Case-Study-Trapeze-Media.jpg",
     href: "/case-studies/mycelia",
   },
+  {
+    category: "Paid Social",
+    title: "Coming Soon: Precious Homes",
+    image: "/placeholder.svg",
+    href: "/case-studies",
+  },
+  // TODO: Replace Brighton Fringe with Paris Baguette when assets are available
   {
     category: "Creative Content",
     title: "Live event coverage via social media for Brighton Fringe",
