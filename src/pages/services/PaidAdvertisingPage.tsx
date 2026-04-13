@@ -20,6 +20,8 @@ import {
   Video,
   CheckCircle2,
   ArrowRight,
+  CloudRain,
+  FileBarChart,
 } from "lucide-react";
 import IntroLogos from "@/components/paid-ads/IntroLogos";
 import MyceliaCallout from "@/components/paid-ads/MyceliaCallout";
