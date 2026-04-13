@@ -1,33 +1,35 @@
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
-import { Megaphone, Target, Search, Palette } from "lucide-react";
 import { ScrollReveal } from "@/hooks/use-scroll-reveal";
-import socialMediaImg from "@/assets/services/social-media-management.jpg";
+import socialMediaImg from "@/assets/services/social-media-management.webp";
+import paidAdsImg from "@/assets/services/paid-advertising.webp";
+import paidSearchImg from "@/assets/services/paid-search.jpg";
+import tiktokImg from "@/assets/services/video-production.jpg";
 
 const services = [
   {
     title: "Social Media Management",
-    icon: Megaphone,
+    subtitle: "Content, engagement, paid media",
     href: "/services/social-media-management",
     image: socialMediaImg,
   },
   {
-    title: "Paid Advertising",
-    icon: Target,
+    title: "Paid Social Ads",
+    subtitle: "Meta, TikTok, programmatic ads",
     href: "/services/paid-advertising",
-    image: "https://126bd4da-ec3d-4eca-b8bb-32cc9782210f.lovableproject.com/src/assets/services/paid-advertising.webp",
+    image: paidAdsImg,
   },
   {
-    title: "Paid Search",
-    icon: Search,
+    title: "PPC / Google Ads",
+    subtitle: "Search, Display, YouTube, & Shopping ads",
     href: "/services/paid-search",
-    image: "https://126bd4da-ec3d-4eca-b8bb-32cc9782210f.lovableproject.com/src/assets/services/paid-search.jpg",
+    image: paidSearchImg,
   },
   {
-    title: "Creative Services",
-    icon: Palette,
-    href: "/services/creative-services",
-    image: "https://images.squarespace-cdn.com/content/v1/5edc691de451f275e3b4ae86/60f3a568-f395-4b26-8b50-1533caba4bee/Trapeze+Media+%E2%80%94+Creative+Services.jpg",
+    title: "Video Production",
+    subtitle: "For social and big screens",
+    href: "/services/tiktok-production",
+    image: tiktokImg,
   },
 ];
 
@@ -45,7 +47,7 @@ export function Services() {
           <p className="text-center text-muted-foreground max-w-3xl mx-auto mb-4">
             For more than a decade, we've been helping clients reach new audiences by managing and optimising{" "}
             <Link to="/services/paid-advertising" className="text-primary hover:underline font-medium">paid social ads</Link>,{" "}
-            <Link to="/services/paid-advertising" className="text-primary hover:underline font-medium">paid search ads</Link>, and{" "}
+            <Link to="/services/paid-search" className="text-primary hover:underline font-medium">paid search ads</Link>, and{" "}
             <Link to="/services/social-media-management" className="text-primary hover:underline font-medium">organic social</Link>, plus{" "}
             <Link to="/services/creative-services" className="text-primary hover:underline font-medium">web design and optimisation</Link>.
           </p>
@@ -67,14 +69,10 @@ export function Services() {
                     />
                   </div>
                   <CardContent className="p-5">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                        <service.icon className="h-5 w-5 text-primary" />
-                      </div>
-                      <h3 className="heading-display text-xl text-foreground group-hover:text-primary transition-colors duration-300">
-                        {service.title}
-                      </h3>
-                    </div>
+                    <h3 className="heading-display text-xl text-foreground group-hover:text-primary transition-colors duration-300">
+                      {service.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground mt-1">{service.subtitle}</p>
                   </CardContent>
                 </Card>
               </Link>
