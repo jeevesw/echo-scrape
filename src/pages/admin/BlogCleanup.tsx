@@ -36,6 +36,9 @@ const LEAKED_JSON_PATTERNS = [
   /TextAttributes/,
 ];
 
+const SQSP_STYLE_RE = /<style[^>]*>[^<]*(?:#block-yui|--tweak-)[^<]*<\/style>/gi;
+const BLOCK_YUI_RE = /#block-yui[^}]+\}/g;
+
 const NEWSLETTER_MARKERS = [
   /newsletter-form/i,
   /squarespace-form-submit/i,
@@ -86,6 +89,19 @@ function countEmptyAltImages(blocks: Block[]): number {
   let count = 0;
   for (const b of blocks) {
     if (b.type === 'image' && !(b as ImageBlock).alt?.trim()) count++;
+  }
+  return count;
+}
+
+function countSquarespaceStyles(blocks: Block[]): number {
+  let count = 0;
+  for (const b of blocks) {
+    if (b.type !== 'text') continue;
+    const html = (b as TextBlock).content;
+    const styleMatches = html.match(SQSP_STYLE_RE);
+    const blockMatches = html.match(BLOCK_YUI_RE);
+    if (styleMatches) count += styleMatches.length;
+    if (blockMatches) count += blockMatches.length;
   }
   return count;
 }
@@ -237,6 +253,17 @@ function fixInternalLinks(blocks: Block[]): Block[] {
   });
 }
 
+function fixSquarespaceStyles(blocks: Block[]): Block[] {
+  return blocks.map(b => {
+    if (b.type !== 'text') return b;
+    let html = (b as TextBlock).content;
+    html = html.replace(SQSP_STYLE_RE, '');
+    html = html.replace(BLOCK_YUI_RE, '');
+    html = html.replace(/<style[^>]*>\s*<\/style>/gi, '');
+    return { ...b, content: html } as TextBlock;
+  });
+}
+
 /* ------------------------------------------------------------------ */
 /*  Types                                                              */
 /* ------------------------------------------------------------------ */
@@ -257,6 +284,7 @@ interface PreviewRow {
   emptyAltCount: number;
   hasNewsletter: boolean;
   newsletterDiffs: NewsletterDiff[];
+  sqspStyleCount: number;
 }
 
 interface LogEntry {
@@ -286,6 +314,7 @@ export default function BlogCleanup() {
   const [fixImages, setFixImages] = useState(true);
   const [fixAlt, setFixAlt] = useState(true);
   const [fixNewsletter, setFixNewsletter] = useState(true);
+  const [fixSqspStyles, setFixSqspStyles] = useState(true);
 
   const handlePreview = useCallback(async () => {
     setLoading(true);
@@ -318,9 +347,10 @@ export default function BlogCleanup() {
         emptyAltCount: countEmptyAltImages(blocks),
         hasNewsletter: hasNewsletterForm(blocks),
         newsletterDiffs: previewNewsletterStrip(blocks),
+        sqspStyleCount: countSquarespaceStyles(blocks),
       };
 
-      if (row.leakedJsonCount || row.hasLongIntro || row.internalLinkCount || row.sqImageCount || row.emptyAltCount || row.hasNewsletter) {
+      if (row.leakedJsonCount || row.hasLongIntro || row.internalLinkCount || row.sqImageCount || row.emptyAltCount || row.hasNewsletter || row.sqspStyleCount) {
         rows.push(row);
       }
     }
@@ -395,12 +425,19 @@ export default function BlogCleanup() {
           details.push('Stripped newsletter form');
         }
 
+        // Fix 7 — Squarespace CSS styles
+        if (fixSqspStyles && row.sqspStyleCount > 0) {
+          blocks = fixSquarespaceStyles(blocks);
+          details.push(`Stripped ${row.sqspStyleCount} Squarespace CSS blocks`);
+        }
+
         // Determine if we need to update
         const needsUpdate = (fixLeaked && row.leakedJsonCount > 0) ||
           (fixIntro && row.hasLongIntro) ||
           (fixLinks && row.internalLinkCount > 0) ||
           (fixImages && row.sqImageCount > 0) ||
-          (fixNewsletter && row.hasNewsletter);
+          (fixNewsletter && row.hasNewsletter) ||
+          (fixSqspStyles && row.sqspStyleCount > 0);
 
         if (needsUpdate) {
           const { error: updateError } = await supabase
@@ -432,7 +469,7 @@ export default function BlogCleanup() {
     }
 
     setStage('done');
-  }, [previewRows, fixLeaked, fixIntro, fixLinks, fixImages, fixAlt, fixNewsletter]);
+  }, [previewRows, fixLeaked, fixIntro, fixLinks, fixImages, fixAlt, fixNewsletter, fixSqspStyles]);
 
   const successCount = logs.filter(l => l.success).length;
   const errorCount = logs.filter(l => !l.success).length;
@@ -444,7 +481,7 @@ export default function BlogCleanup() {
   );
 
   const totalIssues = previewRows.reduce(
-    (s, r) => s + r.leakedJsonCount + (r.hasLongIntro ? 1 : 0) + r.internalLinkCount + r.sqImageCount + r.emptyAltCount + (r.hasNewsletter ? 1 : 0),
+    (s, r) => s + r.leakedJsonCount + (r.hasLongIntro ? 1 : 0) + r.internalLinkCount + r.sqImageCount + r.emptyAltCount + (r.hasNewsletter ? 1 : 0) + r.sqspStyleCount,
     0
   );
 
@@ -479,6 +516,7 @@ export default function BlogCleanup() {
                 <ToggleRow checked={fixImages} onChange={setFixImages} label="Migrate Squarespace CDN images" desc="Download images from squarespace-cdn.com and re-host in your storage." />
                 <ToggleRow checked={fixAlt} onChange={setFixAlt} label="Flag images missing alt text" desc="Surface image blocks with empty alt text for human review." />
                 <ToggleRow checked={fixNewsletter} onChange={setFixNewsletter} label="Strip leaked newsletter forms" desc="Remove Squarespace newsletter form HTML that leaked into text blocks." />
+                <ToggleRow checked={fixSqspStyles} onChange={setFixSqspStyles} label="Strip Squarespace CSS styles" desc="Remove #block-yui style blocks and --tweak- CSS custom properties embedded in content." />
               </div>
 
               <Button onClick={handlePreview} disabled={loading} className="w-full">
@@ -540,6 +578,7 @@ export default function BlogCleanup() {
                     <TableHead className="text-center">CDN images</TableHead>
                     <TableHead className="text-center">Empty alt</TableHead>
                     <TableHead className="text-center">Newsletter</TableHead>
+                    <TableHead className="text-center">CSS styles</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -567,6 +606,9 @@ export default function BlogCleanup() {
                         {row.hasNewsletter
                           ? <Badge variant={fixNewsletter ? 'destructive' : 'secondary'}>Yes</Badge>
                           : <span className="text-muted-foreground">—</span>}
+                      </TableCell>
+                      <TableCell className="text-center">
+                        <CountBadge count={row.sqspStyleCount} enabled={fixSqspStyles} />
                       </TableCell>
                     </TableRow>
                   ))}
