@@ -25,24 +25,10 @@ import MaximilesSnippet from "@/components/paid-ads/MaximilesSnippet";
 import HyperlocalMethodology from "@/components/paid-ads/HyperlocalMethodology";
 import paidAdsHero from "@/assets/services/paid-ads-hero.webp";
 
-const service = servicesData.find((s) => s.slug === "paid-advertising")!;
+const service = servicesData["paid-advertising"];
 
 const baseUrl = "https://trapezemedia.co.uk";
 
-const serviceSchema = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  name: "Paid Advertising",
-  provider: {
-    "@type": "Organization",
-    name: "Trapeze Media",
-    url: "https://trapezemedia.co.uk",
-  },
-  description:
-    "Paid social, paid search and TikTok ad campaigns for hospitality, restaurant and lifestyle brands.",
-  areaServed: "GB",
-  serviceType: "Paid Advertising",
-};
 
 const platforms = [
   {
