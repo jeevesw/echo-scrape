@@ -98,49 +98,15 @@ const SocialMediaManagementPage = () => {
         </div>
       </section>
 
-      {/* Case Study — Fitz — Banner */}
-      <section
-        className="relative bg-cover bg-center bg-fixed py-24 lg:py-32"
-        style={{ backgroundImage: `url(${fitzImage})` }}
-      >
-        <div className="absolute inset-0 bg-black/60" />
-        <div className="relative z-10 container mx-auto px-4 text-center max-w-3xl">
-          <span className="text-white text-sm font-semibold uppercase tracking-widest mb-4 block">
-            Social Media Management · Case Study
-          </span>
-          <h2 className="heading-display text-5xl lg:text-6xl text-white mb-3">
-            2,419 New Followers in Two Months
-          </h2>
-          <p className="text-white/70 text-lg">for sparkling wine brand Fitz</p>
-        </div>
-      </section>
-
-      {/* Case Study — Fitz — Body */}
+      {/* Case Study — Patty & Bun — Placeholder */}
       <section className="bg-muted py-16 lg:py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start">
-            <div>
-              <p className="text-lg md:text-xl text-foreground leading-relaxed">
-                English sparkling wine brand Fitz needed a social presence that matched their bold, rebellious personality. Our #PerfectDayOutIn campaign put the spotlight on things people could enjoy from home — movies, theatre livestreams, virtual museum tours — all with a glass of Fitz in hand. We kept Fitz culturally relevant throughout lockdown, built a loyal community, and created a content bank that lasted months.
-              </p>
-            </div>
-            <div className="flex flex-col gap-4">
-              {[
-                { value: "2,419", label: "New followers · Gained 100% organically" },
-                { value: "6,273", label: "People engaged · Over two months" },
-                { value: "100+", label: "Pieces of content · From one shoot day" },
-              ].map((s) => (
-                <div
-                  key={s.label}
-                  className="rounded-xl px-6 py-4 text-center border border-border bg-background"
-                >
-                  <span className="heading-display text-4xl text-primary block">{s.value}</span>
-                  <span className="text-sm uppercase tracking-wide mt-1 block text-muted-foreground">
-                    {s.label}
-                  </span>
-                </div>
-              ))}
-            </div>
+          <div className="max-w-3xl mx-auto text-center">
+            <img src="/images/clients/patty-and-bun.svg" alt="Patty & Bun" className="h-12 w-auto mx-auto mb-6 opacity-60" />
+            <span className="text-sm font-semibold uppercase tracking-widest text-primary mb-4 block">
+              Social Media Management · Case Study
+            </span>
+            <p className="text-muted-foreground text-lg">[Patty &amp; Bun case study — content TBC]</p>
           </div>
         </div>
       </section>
