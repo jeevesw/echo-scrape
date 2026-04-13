@@ -7,49 +7,49 @@ import { ArrowRight } from "lucide-react";
 import { ScrollReveal } from "@/hooks/use-scroll-reveal";
 
 // Service images
-import socialMediaImg from "@/assets/services/social-media-management.jpg";
+import socialMediaImg from "@/assets/services/social-media-management.webp";
 import paidAdsImg from "@/assets/services/paid-advertising.webp";
-import paidSearchImg from "@/assets/services/paid-advertising.webp";
-import creativeImg from "@/assets/services/creative-services.webp";
-import tiktokImg from "@/assets/services/tiktok-production.png";
+import paidSearchImg from "@/assets/services/paid-search.jpg";
+import tiktokImg from "@/assets/services/video-production.jpg";
 import websiteImg from "@/assets/services/website-design.jpg";
+import creativeImg from "@/assets/services/creative-services.webp";
 
 const services = [
   {
     slug: "social-media-management",
     title: "Social Media Management",
-    description: "Creating and managing engaging content, building customer loyalty, converting sales, and sharing detailed reports on campaign performance.",
+    description: "Content, engagement, paid media",
     image: socialMediaImg,
   },
   {
     slug: "paid-advertising",
-    title: "Paid Social & Search Ads",
-    description: "Meta, Google & TikTok ads that drive bookings, footfall, and sales for hospitality brands.",
+    title: "Paid Social Ads",
+    description: "Meta, TikTok, programmatic ads",
     image: paidAdsImg,
   },
   {
     slug: "paid-search",
-    title: "Paid Search (Google Ads)",
-    description: "PPC that drives high-intent traffic, converts sales, and generates leads on Google Search, Display, and Performance Max.",
+    title: "PPC / Google Ads",
+    description: "Search, Display, YouTube, & Shopping ads",
     image: paidSearchImg,
   },
   {
-    slug: "creative-services",
-    title: "Graphic Design & Branding",
-    description: "Full-service creative branding solutions: photography, graphic design, video production, and web design.",
-    image: creativeImg,
-  },
-  {
     slug: "tiktok-production",
-    title: "TikTok Production & Marketing",
-    description: "Your brand on the fastest-growing platform. Content creation, ads management, and influencer outreach driving discovery and engagement.",
+    title: "Video Production",
+    description: "For social and big screens",
     image: tiktokImg,
   },
   {
     slug: "website-design",
-    title: "Website Design & Management",
-    description: "Engaging responsive websites built on WordPress, Shopify, or Squarespace, designed by social-conscious developers and SEO experts.",
+    title: "Website Design",
+    description: "Build, launch, & management",
     image: websiteImg,
+  },
+  {
+    slug: "creative-services",
+    title: "Creative Services",
+    description: "Design, branding, & social assets",
+    image: creativeImg,
   },
 ];
 
