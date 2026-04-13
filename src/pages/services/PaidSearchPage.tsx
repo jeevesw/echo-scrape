@@ -18,6 +18,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { TrackingCallout } from "@/components/services/TrackingCallout";
 
 const service = servicesData["paid-search"];
 const baseUrl = "https://trapezemedia.co.uk";
@@ -76,6 +77,9 @@ const PaidSearchPage = () => {
           { label: "Paid Search", href: "/services/paid-search" },
         ]}
       />
+
+      {/* TRACKING CALLOUT */}
+      <TrackingCallout />
 
       {/* 2 — INTRO + LOGO CAROUSEL */}
       <section className="bg-background py-16 lg:py-20">
