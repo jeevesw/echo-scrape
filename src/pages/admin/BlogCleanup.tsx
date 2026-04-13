@@ -253,6 +253,17 @@ function fixInternalLinks(blocks: Block[]): Block[] {
   });
 }
 
+function fixSquarespaceStyles(blocks: Block[]): Block[] {
+  return blocks.map(b => {
+    if (b.type !== 'text') return b;
+    let html = (b as TextBlock).content;
+    html = html.replace(SQSP_STYLE_RE, '');
+    html = html.replace(BLOCK_YUI_RE, '');
+    html = html.replace(/<style[^>]*>\s*<\/style>/gi, '');
+    return { ...b, content: html } as TextBlock;
+  });
+}
+
 /* ------------------------------------------------------------------ */
 /*  Types                                                              */
 /* ------------------------------------------------------------------ */
