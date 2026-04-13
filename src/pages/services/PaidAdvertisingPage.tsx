@@ -23,7 +23,7 @@ import {
   CloudRain,
   FileBarChart,
 } from "lucide-react";
-import IntroLogos from "@/components/paid-ads/IntroLogos";
+import IntroLogos, { PaidAdsLogoStrip } from "@/components/paid-ads/IntroLogos";
 import MyceliaCallout from "@/components/paid-ads/MyceliaCallout";
 import MaximilesSnippet from "@/components/paid-ads/MaximilesSnippet";
 import HyperlocalMethodology from "@/components/paid-ads/HyperlocalMethodology";
