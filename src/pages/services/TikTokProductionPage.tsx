@@ -7,6 +7,8 @@ import { Layout } from "@/components/layout/Layout";
 import { ServiceSchema, FAQSchema } from "@/components/seo/SchemaMarkup";
 import { servicesData } from "@/data/servicesData";
 import { ServiceHero } from "@/components/services/ServiceHero";
+import { ScrollReveal } from "@/hooks/use-scroll-reveal";
+import parisBaguetteBg from "@/assets/case-studies/paris-baguette-bg.jpg";
 import { ClientLogoStrip } from "@/components/services/ClientLogoStrip";
 import { InlineCaseStudy } from "@/components/services/InlineCaseStudy";
 import michaelEmmettBg from "@/assets/services/michael-emmett-tiktok.webp";
