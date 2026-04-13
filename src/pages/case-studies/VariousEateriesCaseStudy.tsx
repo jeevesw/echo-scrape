@@ -301,14 +301,14 @@ const VariousEateriesCaseStudy = () => {
 
               <div className="text-center">
                 <div className="h-16 mx-auto mb-3 flex items-center justify-center">
-                  <span className="inline-flex items-center justify-center h-10 px-4 rounded-lg bg-[#FF0000] text-white font-bold text-sm tracking-wide">YouTube</span>
+                  <img src="/images/youtube-logo.png" alt="YouTube" className="h-10 w-auto" />
                 </div>
                 <span className="text-sm text-muted-foreground">YouTube Ads<br/>& Video</span>
               </div>
 
               <div className="text-center">
                 <div className="h-16 mx-auto mb-3 flex items-center justify-center">
-                  <span className="inline-flex items-center justify-center h-10 px-4 rounded-lg bg-[#0A66C2] text-white font-bold text-sm tracking-wide">LinkedIn</span>
+                  <img src="/images/linkedin-logo.png" alt="LinkedIn" className="h-10 w-auto" />
                 </div>
                 <span className="text-sm text-muted-foreground">LinkedIn Ads<br/>& Sponsored Content</span>
               </div>
