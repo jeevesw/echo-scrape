@@ -130,6 +130,7 @@ const ParisBaguetteCaseStudy = () => {
               <ParallaxVideo
                 src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Paris-Baguette-Trapeze-Media-Video-Production-1.mp4"
                 direction="left"
+                showMuteControl
               />
             </ScrollReveal>
 
@@ -168,6 +169,7 @@ const ParisBaguetteCaseStudy = () => {
               <ParallaxVideo
                 src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Paris-Baguette-Trapeze-Media-Video-Production-2.mp4"
                 direction="right"
+                showMuteControl
               />
             </ScrollReveal>
           </div>
@@ -178,6 +180,7 @@ const ParisBaguetteCaseStudy = () => {
               <ParallaxVideo
                 src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Paris-Baguette-Trapeze-Media-Video-Production-3.mp4"
                 direction="left"
+                showMuteControl
               />
             </ScrollReveal>
 
