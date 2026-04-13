@@ -3,6 +3,8 @@ import { TeamSection } from "@/components/services/TeamSection";
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { ServiceHero } from "@/components/services/ServiceHero";
+import { ServiceSchema, FAQSchema } from "@/components/seo/SchemaMarkup";
+import { servicesData } from "@/data/servicesData";
 import { Button } from "@/components/ui/button";
 import {
   Accordion,
@@ -23,67 +25,10 @@ import MaximilesSnippet from "@/components/paid-ads/MaximilesSnippet";
 import HyperlocalMethodology from "@/components/paid-ads/HyperlocalMethodology";
 import paidAdsHero from "@/assets/services/paid-ads-hero.webp";
 
-const faqs = [
-  {
-    question: "How much do I need to spend on paid ads?",
-    answer:
-      "There's no universal minimum, but we typically recommend a testing budget of at least £1,500–£3,000/month per platform to generate meaningful data. We'll be upfront about what's realistic for your goals before any work begins.",
-  },
-  {
-    question: "Do you manage the ad creative as well as the media buying?",
-    answer:
-      "Yes. Creative is one of the biggest variables in paid performance, and we don't treat it as an afterthought. We brief, direct and produce ad creative — or work with your existing assets — as part of the campaign management process.",
-  },
-  {
-    question: "Can you run ads across multiple locations?",
-    answer:
-      "Absolutely — this is one of our core specialisms. We use hyperlocal targeting to run geo-specific campaigns that deliver different messages to audiences near different venues, which is particularly powerful for multi-site hospitality groups.",
-  },
-  {
-    question:
-      "Do you handle the Less Healthy Food (LHF) ad restrictions for food brands?",
-    answer:
-      "Yes. We conduct an LHF compliance review as standard for all food and drink clients. Our team is up to date with ASA guidance and can advise on what's permissible, what needs adjustment, and how to stay creative within the rules.",
-  },
-  {
-    question: "What platforms do you advertise on?",
-    answer:
-      "We currently run paid campaigns on Meta (Facebook & Instagram), Google (Search, Display, Performance Max, YouTube) and TikTok. We can advise on which mix is right for your goals and budget.",
-  },
-  {
-    question: "How long before I see results?",
-    answer:
-      "Paid ads can drive results from day one — but the first 4–6 weeks are typically a testing and optimisation phase. We set expectations clearly upfront and report transparently on what's working and why.",
-  },
-];
+const service = servicesData["paid-advertising"];
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({
-    "@type": "Question",
-    name: faq.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: faq.answer,
-    },
-  })),
-};
+const baseUrl = "https://trapezemedia.co.uk";
 
-const serviceSchema = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  name: "Paid Advertising",
-  provider: {
-    "@type": "Organization",
-    name: "Trapeze Media",
-    url: "https://trapezemedia.co.uk",
-  },
-  description:
-    "Paid social, paid search and TikTok ad campaigns for hospitality, restaurant and lifestyle brands.",
-  areaServed: "GB",
-  serviceType: "Paid Advertising",
-};
 
 const platforms = [
   {
@@ -185,12 +130,15 @@ const PaidAdvertisingPage = () => {
           rel="canonical"
           href="https://trapezemedia.co.uk/services/paid-advertising"
         />
-        <script type="application/ld+json">
-          {JSON.stringify(serviceSchema)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(faqSchema)}
-        </script>
+        <ServiceSchema
+          name="Paid Advertising"
+          description="Paid social, paid search and TikTok ad campaigns for hospitality, restaurant and lifestyle brands."
+          provider="Trapeze Media"
+          serviceType="Paid Advertising"
+          areaServed={["GB"]}
+          url={`${baseUrl}/services/paid-advertising`}
+        />
+        <FAQSchema faqs={service.faqs} />
       </Helmet>
 
       {/* 1 — HERO */}
@@ -384,7 +332,7 @@ const PaidAdvertisingPage = () => {
           <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-12">Frequently Asked Questions</h2>
           <div className="max-w-3xl mx-auto">
             <Accordion type="single" collapsible className="space-y-4">
-              {faqs.map((faq, index) => (
+              {service.faqs.map((faq, index) => (
                 <AccordionItem
                   key={index}
                   value={`faq-${index}`}
