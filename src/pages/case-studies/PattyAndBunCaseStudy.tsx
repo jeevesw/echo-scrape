@@ -5,7 +5,7 @@ import { BreadcrumbNav } from "@/components/ui/breadcrumb-nav";
 import { Button } from "@/components/ui/button";
 import { AnimatedStat } from "@/components/case-study/AnimatedStat";
 import { ScrollReveal } from "@/hooks/use-scroll-reveal";
-import { ArrowLeft, Quote } from "lucide-react";
+import { ArrowLeft, Quote, Video, Camera, Users } from "lucide-react";
 
 
 const PattyAndBunCaseStudy = () => {
@@ -79,7 +79,7 @@ const PattyAndBunCaseStudy = () => {
 
       {/* Stats Section */}
       <section
-        className="py-14 text-white relative overflow-hidden"
+        className="py-20 text-white relative overflow-hidden"
         style={{ backgroundColor: "#C2185B" }}
       >
         <div className="container-content mx-auto px-4 relative z-10">
@@ -89,42 +89,65 @@ const PattyAndBunCaseStudy = () => {
             </h2>
           </ScrollReveal>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12">
+          <div className="grid grid-cols-2 lg:grid-cols-4">
+            {/* 93% */}
             <ScrollReveal delay={0}>
-              <AnimatedStat value={93} suffix="%" label="increase in engagement rate per impression" delay={0} />
+              <div className="text-center px-4 py-6 border-r border-white/20">
+                <div className="heading-display text-6xl md:text-7xl text-white mb-2">93%</div>
+                <p className="text-white/80 text-sm md:text-base">increase in engagement rate per impression</p>
+              </div>
             </ScrollReveal>
+            {/* 91% */}
             <ScrollReveal delay={150}>
-              <AnimatedStat value={91} suffix="%" label="increase in net audience growth" delay={150} />
+              <div className="text-center px-4 py-6 lg:border-r border-white/20">
+                <div className="heading-display text-6xl md:text-7xl text-white mb-2">91%</div>
+                <p className="text-white/80 text-sm md:text-base">increase in net audience growth</p>
+              </div>
             </ScrollReveal>
+            {/* 24K plays */}
             <ScrollReveal delay={300}>
-              <div className="text-center">
-                <div className="heading-display text-4xl md:text-5xl lg:text-6xl mb-2">24K plays &amp; 2.5K+ likes</div>
+              <div className="text-center px-4 py-6 border-r border-white/20">
+                <div className="heading-display text-5xl md:text-6xl text-white mb-2">
+                  24K plays<br />&amp; 2.5K+ likes
+                </div>
                 <p className="text-white/80 text-sm md:text-base">on top TikTok video</p>
               </div>
             </ScrollReveal>
+            {/* 35K plays */}
             <ScrollReveal delay={450}>
-              <div className="text-center">
-                <div className="heading-display text-4xl md:text-5xl lg:text-6xl mb-2">35K plays &amp; 550+ likes</div>
+              <div className="text-center px-4 py-6">
+                <div className="heading-display text-5xl md:text-6xl text-white mb-2">
+                  35K plays<br />&amp; 550+ likes
+                </div>
                 <p className="text-white/80 text-sm md:text-base">on top Instagram Reel</p>
               </div>
             </ScrollReveal>
           </div>
 
+          {/* Feature pills */}
           <ScrollReveal delay={200}>
-            <ul className="max-w-3xl mx-auto space-y-3 text-white/90 text-lg">
-              <li className="flex items-start gap-3">
-                <span className="mt-1.5 w-2 h-2 rounded-full bg-white/60 shrink-0" />
-                Planning, capturing, editing, and publishing videos for TikTok and Instagram Reels
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="mt-1.5 w-2 h-2 rounded-full bg-white/60 shrink-0" />
-                Consistent content creation: leading shoots twice per month
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="mt-1.5 w-2 h-2 rounded-full bg-white/60 shrink-0" />
-                Supporting Patty&amp;Bun's partnerships with cool brands, including Major League Baseball and the hipster vintage shop Duke's Cupboard in Soho
-              </li>
-            </ul>
+            <div className="border-t border-white/20 pt-10 mt-10">
+              <div className="grid md:grid-cols-3 gap-8">
+                <div className="flex items-start gap-3">
+                  <div className="p-2 rounded-full bg-white/20 shrink-0">
+                    <Video className="w-5 h-5 text-white/70" />
+                  </div>
+                  <p className="text-sm text-white/90">Planning, capturing, editing, and publishing videos for TikTok and Instagram Reels</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="p-2 rounded-full bg-white/20 shrink-0">
+                    <Camera className="w-5 h-5 text-white/70" />
+                  </div>
+                  <p className="text-sm text-white/90">Consistent content creation: leading shoots twice per month</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="p-2 rounded-full bg-white/20 shrink-0">
+                    <Users className="w-5 h-5 text-white/70" />
+                  </div>
+                  <p className="text-sm text-white/90">Supporting Patty&amp;Bun's partnerships with cool brands, including Major League Baseball and Duke's Cupboard in Soho</p>
+                </div>
+              </div>
+            </div>
           </ScrollReveal>
         </div>
       </section>
