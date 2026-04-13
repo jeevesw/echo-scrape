@@ -1,0 +1,1 @@
+UPDATE case_studies SET sort_order = 0 WHERE slug = 'paris-baguette';
