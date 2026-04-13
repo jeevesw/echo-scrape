@@ -25,7 +25,7 @@ const ParisBaguetteCaseStudy = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="relative min-h-[50vh] max-h-[75vh] flex items-center justify-center overflow-hidden bg-foreground">
+      <section className="relative min-h-[50vh] max-h-[75vh] flex items-center justify-center overflow-hidden bg-primary">
         <div className="absolute inset-0">
           <img
             src="/images/case-studies/paris-baguette-hero.jpg"
