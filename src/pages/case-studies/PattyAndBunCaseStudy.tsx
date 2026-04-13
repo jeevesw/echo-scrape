@@ -138,17 +138,23 @@ const PattyAndBunCaseStudy = () => {
           {/* Video Grid */}
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             {[
-              "24K+ Instagram plays",
-              "35K+ Instagram plays",
-              "35K+ Instagram plays",
-            ].map((badge, i) => (
+              { badge: "24K+ Instagram plays", src: "https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//TikTok-Reel-Video-Patty-and-Bun-Trapeze-Media-1.mp4" },
+              { badge: "35K+ Instagram plays", src: "https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//TikTok-Reel-Video-Patty-and-Bun-Trapeze-Media-2.mp4" },
+              { badge: "35K+ Instagram plays", src: "https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//TikTok-Reel-Video-Patty-and-Bun-Trapeze-Media-3.mp4" },
+            ].map((video, i) => (
               <ScrollReveal key={i} delay={i * 100}>
-                <div className="relative aspect-video rounded-xl bg-muted flex items-center justify-center overflow-hidden">
-                  <p className="text-muted-foreground text-sm text-center px-4">
-                    [Video coming soon — upload Patty&amp;Bun video files]
-                  </p>
+                <div className="relative aspect-video rounded-xl overflow-hidden bg-muted">
+                  <video
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="w-full h-full object-cover rounded-xl"
+                  >
+                    <source src={video.src} type="video/mp4" />
+                  </video>
                   <span className="absolute bottom-3 left-3 bg-primary text-white text-sm px-3 py-1 rounded">
-                    {badge}
+                    {video.badge}
                   </span>
                 </div>
               </ScrollReveal>
