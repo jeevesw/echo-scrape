@@ -578,6 +578,7 @@ export default function BlogCleanup() {
                     <TableHead className="text-center">CDN images</TableHead>
                     <TableHead className="text-center">Empty alt</TableHead>
                     <TableHead className="text-center">Newsletter</TableHead>
+                    <TableHead className="text-center">CSS styles</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -605,6 +606,9 @@ export default function BlogCleanup() {
                         {row.hasNewsletter
                           ? <Badge variant={fixNewsletter ? 'destructive' : 'secondary'}>Yes</Badge>
                           : <span className="text-muted-foreground">—</span>}
+                      </TableCell>
+                      <TableCell className="text-center">
+                        <CountBadge count={row.sqspStyleCount} enabled={fixSqspStyles} />
                       </TableCell>
                     </TableRow>
                   ))}
