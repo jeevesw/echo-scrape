@@ -20,6 +20,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { TrackingCallout } from "@/components/services/TrackingCallout";
+import { ScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const service = servicesData["paid-search"];
 const baseUrl = "https://trapezemedia.co.uk";
