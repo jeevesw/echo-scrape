@@ -165,9 +165,12 @@ const PaidAdvertisingPage = () => {
           { label: "Services", href: "/services" },
           { label: "Paid Advertising", href: "/services/paid-advertising" },
         ]}
-      />
+       />
 
-      {/* 2 — INTRO PULL QUOTE + CLIENT LOGO CAROUSEL */}
+      {/* Client logos — directly below hero */}
+      <PaidAdsLogoStrip />
+
+      {/* 2 — INTRO PULL QUOTE */}
       <IntroLogos />
 
       {/* TRACKING CALLOUT */}
