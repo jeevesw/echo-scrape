@@ -74,54 +74,47 @@ const ParisBaguetteCaseStudy = () => {
         </div>
       </section>
 
-      {/* Stats intro */}
-      <section className="py-12 bg-background">
-        <div className="container-content mx-auto px-4 text-center">
+      {/* Stats Section — hero-style with background image */}
+      <section className="relative py-20 overflow-hidden">
+        {/* Background placeholder (TODO: replace with campaign image) */}
+        <div className="absolute inset-0 bg-zinc-800" />
+        <div className="absolute inset-0 bg-black/55" />
+
+        <div className="container-content mx-auto px-4 relative z-10">
           <ScrollReveal>
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground block mb-3">The Results</span>
-            <h2 className="heading-display text-4xl md:text-5xl text-foreground">
+            <p className="text-xs tracking-widest uppercase text-white/60 mb-2">The Results</p>
+            <h2 className="heading-display text-4xl md:text-5xl text-white mb-8">
               What We Delivered
             </h2>
           </ScrollReveal>
-        </div>
-      </section>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-foreground text-white relative overflow-hidden">
-        <div className="container-content mx-auto px-4 relative z-10">
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 max-w-5xl mx-auto">
-            <ScrollReveal delay={0}>
-              <div className="flex flex-col items-start gap-2 border-t border-white/10 pt-6">
-                <p className="heading-display text-5xl lg:text-7xl text-primary font-bold">+83%</p>
-                <p className="text-sm text-white/70 mt-2 max-w-[180px] leading-snug">increase in branded searches for "Paris Baguette Canary Wharf"</p>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal delay={100}>
-              <div className="flex flex-col items-start gap-2 border-t border-white/10 pt-6">
-                <p className="heading-display text-5xl lg:text-7xl text-primary font-bold">+23%</p>
-                <p className="text-sm text-white/70 mt-2 max-w-[180px] leading-snug">additional uplift in branded search demand within one month of launching video creative</p>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal delay={200}>
-              <div className="flex flex-col items-start gap-2 border-t border-white/10 pt-6">
-                <p className="heading-display text-5xl lg:text-7xl text-primary font-bold">+45%</p>
-                <p className="text-sm text-white/70 mt-2 max-w-[180px] leading-snug">increase in Google Ads investment after identifying strong early performance</p>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal delay={300}>
-              <div className="flex flex-col items-start gap-2 border-t border-white/10 pt-6">
-                <p className="heading-display text-5xl lg:text-7xl text-primary font-bold">+60%</p>
-                <p className="text-sm text-white/70 mt-2 max-w-[180px] leading-snug">increase in footfall-driven conversions</p>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal delay={400}>
-              <div className="flex flex-col items-start gap-2 border-t border-white/10 pt-6">
-                <p className="heading-display text-4xl lg:text-5xl text-primary font-bold">2</p>
-                <p className="heading-display text-xl text-primary">locations</p>
-                <p className="text-sm text-white/70 mt-2 max-w-[180px] leading-snug">supported — Canary Wharf and Westfield London</p>
-              </div>
-            </ScrollReveal>
-          </div>
+          <ScrollReveal delay={100}>
+            <div className="flex flex-wrap gap-4 mb-10">
+              {[
+                { number: "+83%", label: "Branded search uplift" },
+                { number: "+23%", label: "Search demand in month one" },
+                { number: "+45%", label: "Google Ads scaled" },
+                { number: "+60%", label: "Footfall conversions" },
+                { number: "2", label: "London locations" },
+              ].map((stat) => (
+                <div
+                  key={stat.label}
+                  className="bg-white rounded-2xl px-6 py-4 flex flex-col items-center justify-center min-w-[160px]"
+                >
+                  <p className="heading-display text-3xl md:text-4xl text-primary font-bold leading-none">{stat.number}</p>
+                  <p className="text-xs text-foreground/70 uppercase tracking-wide mt-1 text-center">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal delay={200}>
+            <Link to="/case-studies/paris-baguette">
+              <Button variant="hero" size="lg">
+                Read the Full Case Study →
+              </Button>
+            </Link>
+          </ScrollReveal>
         </div>
       </section>
 
