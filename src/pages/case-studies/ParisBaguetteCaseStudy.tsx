@@ -75,13 +75,15 @@ const ParisBaguetteCaseStudy = () => {
         </div>
       </section>
 
-      {/* Stats Section — hero-style with background image */}
-      <section className="relative py-20 overflow-hidden">
-        {/* Background placeholder (TODO: replace with campaign image) */}
-        <div className="absolute inset-0 bg-zinc-800" />
-        <div className="absolute inset-0 bg-black/55" />
+      {/* Stats Section — hero-style with parallax background */}
+      <section className="relative overflow-hidden min-h-[420px]">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-fixed"
+          style={{ backgroundImage: `url(${parisBaguetteBg})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/20" />
 
-        <div className="container-content mx-auto px-4 relative z-10">
+        <div className="container-content mx-auto px-4 relative z-10 py-20">
           <ScrollReveal>
             <p className="text-xs tracking-widest uppercase text-white/60 mb-2">The Results</p>
             <h2 className="heading-display text-4xl md:text-5xl text-white mb-8">
@@ -90,13 +92,12 @@ const ParisBaguetteCaseStudy = () => {
           </ScrollReveal>
 
           <ScrollReveal delay={100}>
-            <div className="flex flex-wrap gap-4 mb-10">
+            <div className="flex flex-wrap gap-4">
               {[
                 { number: "+83%", label: "Branded search uplift" },
                 { number: "+23%", label: "Search demand in month one" },
                 { number: "+45%", label: "Google Ads scaled" },
                 { number: "+60%", label: "Footfall conversions" },
-                { number: "2", label: "London locations" },
               ].map((stat) => (
                 <div
                   key={stat.label}
@@ -107,14 +108,6 @@ const ParisBaguetteCaseStudy = () => {
                 </div>
               ))}
             </div>
-          </ScrollReveal>
-
-          <ScrollReveal delay={200}>
-            <Link to="/case-studies/paris-baguette">
-              <Button variant="hero" size="lg">
-                Read the Full Case Study →
-              </Button>
-            </Link>
           </ScrollReveal>
         </div>
       </section>
