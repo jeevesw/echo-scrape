@@ -8,6 +8,8 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
+  ReferenceLine,
+  Label,
 } from "recharts";
 import { cn } from "@/lib/utils";
 
@@ -24,7 +26,6 @@ interface VenueVisitsCPAChartProps {
   className?: string;
 }
 
-// Sample data from March 2023 to June 2024 (16 points)
 const defaultData: DataPoint[] = [
   { month: "March 2023", venue_visits: 1200, cpa: 45 },
   { month: "April 2023", venue_visits: 280, cpa: 78 },
@@ -42,6 +43,14 @@ const defaultData: DataPoint[] = [
   { month: "April 2024", venue_visits: 75, cpa: 118 },
   { month: "May 2024", venue_visits: 65, cpa: 125 },
   { month: "June 2024", venue_visits: 55, cpa: 135 },
+];
+
+// Editorial callout labels positioned at key data points
+const editorialLabels = [
+  { dataIndex: 1, label: "Learning phase", position: "top" as const },
+  { dataIndex: 5, label: "Scaling begins", position: "top" as const },
+  { dataIndex: 8, label: "Peak performance", position: "top" as const },
+  { dataIndex: 13, label: "Sustained efficiency", position: "top" as const },
 ];
 
 interface CustomTooltipProps {
@@ -78,10 +87,7 @@ const CustomTooltip = ({
               className="w-3 h-3 rounded-sm" 
               style={{ backgroundColor: "hsl(338, 64%, 47%)" }} 
             />
-            <span className="text-sm text-muted-foreground">Venue Visits:</span>
-            <span className="text-sm font-medium text-foreground ml-auto">
-              {cpaData.value.toLocaleString()}
-            </span>
+            <span className="text-sm text-muted-foreground">Venue Visits</span>
           </div>
         )}
         {showVenueVisits && venueVisitsData && (
@@ -89,14 +95,54 @@ const CustomTooltip = ({
             <div 
               className="w-3 h-3 rounded-sm border-2 border-muted-foreground/40 bg-muted/60" 
             />
-            <span className="text-sm text-muted-foreground">Cost-Per-Acquisition:</span>
-            <span className="text-sm font-medium text-foreground ml-auto">
-              £{venueVisitsData.value.toLocaleString()}
-            </span>
+            <span className="text-sm text-muted-foreground">Cost-Per-Acquisition</span>
           </div>
         )}
       </div>
     </div>
+  );
+};
+
+// Custom dot renderer that shows editorial labels
+const EditorialDot = (props: any) => {
+  const { cx, cy, index } = props;
+  const editorial = editorialLabels.find(e => e.dataIndex === index);
+  
+  if (!editorial) return null;
+
+  return (
+    <g>
+      {/* Callout box */}
+      <rect
+        x={cx - 52}
+        y={cy - 40}
+        width={104}
+        height={24}
+        rx={6}
+        fill="hsl(338, 64%, 47%)"
+        opacity={0.9}
+      />
+      {/* Small triangle pointer */}
+      <polygon
+        points={`${cx - 4},${cy - 16} ${cx + 4},${cy - 16} ${cx},${cy - 10}`}
+        fill="hsl(338, 64%, 47%)"
+        opacity={0.9}
+      />
+      {/* Label text */}
+      <text
+        x={cx}
+        y={cy - 24}
+        textAnchor="middle"
+        fill="white"
+        fontSize={11}
+        fontWeight={600}
+        fontFamily="var(--font-ui)"
+      >
+        {editorial.label}
+      </text>
+      {/* Dot on the line */}
+      <circle cx={cx} cy={cy} r={4} fill="hsl(338, 64%, 47%)" stroke="white" strokeWidth={2} />
+    </g>
   );
 };
 
@@ -147,7 +193,7 @@ export function VenueVisitsCPAChart({
         <ResponsiveContainer width="100%" height="100%">
           <ComposedChart
             data={data}
-            margin={{ top: 20, right: 20, bottom: 80, left: 20 }}
+            margin={{ top: 50, right: 20, bottom: 80, left: 20 }}
           >
             <CartesianGrid 
               strokeDasharray="0" 
@@ -172,7 +218,6 @@ export function VenueVisitsCPAChart({
               interval={0}
             />
             
-            {/* Left Y-axis for Venue Visits (stepped area) - hidden labels */}
             <YAxis
               yAxisId="left"
               orientation="left"
@@ -182,7 +227,6 @@ export function VenueVisitsCPAChart({
               domain={[0, "auto"]}
             />
             
-            {/* Right Y-axis for CPA (line) - hidden labels */}
             <YAxis
               yAxisId="right"
               orientation="right"
@@ -206,7 +250,6 @@ export function VenueVisitsCPAChart({
               }}
             />
             
-            {/* Stepped Area for Cost-Per-Acquisition (grey) */}
             {showVenueVisits && (
               <Area
                 yAxisId="left"
@@ -220,7 +263,6 @@ export function VenueVisitsCPAChart({
               />
             )}
             
-            {/* Smooth Line for Venue Visits (magenta/primary) */}
             {showCPA && (
               <Line
                 yAxisId="right"
@@ -228,7 +270,7 @@ export function VenueVisitsCPAChart({
                 dataKey="cpa"
                 stroke="hsl(338, 64%, 47%)"
                 strokeWidth={3}
-                dot={false}
+                dot={<EditorialDot />}
                 activeDot={{ 
                   r: 6, 
                   fill: "hsl(338, 64%, 47%)",
