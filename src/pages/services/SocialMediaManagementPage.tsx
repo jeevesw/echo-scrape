@@ -99,15 +99,49 @@ const SocialMediaManagementPage = () => {
         </div>
       </section>
 
-      {/* Case Study — Patty & Bun — Placeholder */}
+      {/* Featured Case Studies */}
       <section className="bg-muted py-16 lg:py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <img src="/images/clients/patty-and-bun.svg" alt="Patty & Bun" className="h-12 w-auto mx-auto mb-6 opacity-60" />
-            <span className="text-sm font-semibold uppercase tracking-widest text-primary mb-4 block">
-              Social Media Management · Case Study
-            </span>
-            <p className="text-muted-foreground text-lg">[Patty &amp; Bun case study — content TBC]</p>
+          <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-12">Results We've Delivered</h2>
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {[
+              {
+                category: "Google, Meta & YouTube Ads",
+                title: "Growing Brand Demand and Footfall for Paris Baguette",
+                image: "/images/case-studies/paris-baguette-hero.jpg",
+                href: "/case-studies/paris-baguette",
+              },
+              {
+                category: "Google & Meta Ads",
+                title: "Driving footfall and orders for YO! Sushi",
+                image: "/images/case-studies/yo-sushi-hero.jpg",
+                href: "/case-studies/yo-sushi",
+              },
+              {
+                category: "Social Media Management · Video Production",
+                title: "Organic Social Media and Video Production for Patty&Bun",
+                image: "/images/case-studies/patty-and-bun-hero.jpg",
+                href: "/case-studies/patty-and-bun",
+              },
+            ].map((study, i) => (
+              <ScrollReveal key={study.title} delay={i * 100}>
+                <Link to={study.href}>
+                  <Card variant="interactive" className="overflow-hidden bg-background">
+                    <div className="aspect-video overflow-hidden">
+                      <img
+                        src={study.image}
+                        alt={study.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    </div>
+                    <CardContent className="p-6">
+                      <span className="heading-display text-sm text-primary">{study.category}</span>
+                      <h3 className="heading-display text-xl text-foreground mt-2">{study.title}</h3>
+                    </CardContent>
+                  </Card>
+                </Link>
+              </ScrollReveal>
+            ))}
           </div>
         </div>
       </section>
