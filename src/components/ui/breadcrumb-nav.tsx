@@ -13,7 +13,7 @@ interface BreadcrumbNavProps {
   variant?: "default" | "light";
 }
 
-export function BreadcrumbNav({ items, baseUrl = "https://trapezemedia.com", variant = "default" }: BreadcrumbNavProps) {
+export function BreadcrumbNav({ items, baseUrl = "https://trapezemedia.co.uk", variant = "default" }: BreadcrumbNavProps) {
   const schemaItems = items.map((item) => ({
     name: item.label,
     url: `${baseUrl}${item.href}`,

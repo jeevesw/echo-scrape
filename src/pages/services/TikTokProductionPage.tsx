@@ -22,7 +22,7 @@ import {
 import { useCountUp } from "@/hooks/use-count-up";
 
 const service = servicesData["tiktok-production"];
-const baseUrl = "https://trapezemedia.com";
+const baseUrl = "https://trapezemedia.co.uk";
 
 const tiktokServices = [
   { icon: Lightbulb, title: "Pre-Production", description: "Strategy, scripting, storyboarding, and creative direction for every piece of TikTok content." },

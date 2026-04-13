@@ -17,7 +17,7 @@ const VariousEateriesCaseStudy = () => {
           name="description" 
           content="We drove an 88% increase in table bookings, 12x ROAS, and 92% lower cost-per-visit for restaurant group Various Eateries through strategic Google Ads campaigns." 
         />
-        <link rel="canonical" href="https://trapezemedia.com/case-studies/various-eateries" />
+        <link rel="canonical" href="https://trapezemedia.co.uk/case-studies/various-eateries" />
       </Helmet>
 
       {/* Hero Section - Phone mockup cropped at bottom edge */}

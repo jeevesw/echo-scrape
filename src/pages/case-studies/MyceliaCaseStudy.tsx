@@ -16,7 +16,7 @@ const MyceliaCaseStudy = () => {
           name="description"
           content="Our lead gen campaign helped board game Mycelia raise £545,804 from 10,492 backers on Kickstarter — 6,000% above its £9,000 goal. Funded in 50 minutes."
         />
-        <link rel="canonical" href="https://trapezemedia.com/case-studies/mycelia" />
+        <link rel="canonical" href="https://trapezemedia.co.uk/case-studies/mycelia" />
       </Helmet>
 
       {/* Hero Section */}

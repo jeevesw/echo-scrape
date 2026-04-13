@@ -21,7 +21,7 @@ import heroImage from "@/assets/services/social-media-management.jpg";
 import fitzImage from "@/assets/case-studies/fitz-sparkling-wine.webp";
 
 const service = servicesData["social-media-management"];
-const baseUrl = "https://trapezemedia.com";
+const baseUrl = "https://trapezemedia.co.uk";
 
 const servicesGrid = [
   { icon: PenLine, title: "Content Creation", description: "Our copywriters, photographers, filmmakers, and designers will produce the content that will become the figureheading visuals for your social feeds and campaigns" },

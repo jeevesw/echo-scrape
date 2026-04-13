@@ -72,7 +72,7 @@ const MaximilesCaseStudy = () => {
           name="description"
           content="We drove a 66% increase in double opt-in leads and reduced cost per registration by 46% for survey-and-reward brand Maximiles through creative paid social campaigns."
         />
-        <link rel="canonical" href="https://trapezemedia.com/case-studies/maximiles" />
+        <link rel="canonical" href="https://trapezemedia.co.uk/case-studies/maximiles" />
       </Helmet>
 
       {/* Hero Section */}
