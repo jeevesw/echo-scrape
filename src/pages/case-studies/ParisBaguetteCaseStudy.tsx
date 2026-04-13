@@ -25,25 +25,25 @@ const ParisBaguetteCaseStudy = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="relative min-h-[50vh] max-h-[75vh] flex items-center justify-center overflow-hidden bg-foreground">
+      <section className="relative min-h-[50vh] max-h-[75vh] flex items-center justify-center overflow-hidden bg-primary">
         <div className="absolute inset-0">
           <img
             src="/images/case-studies/paris-baguette-hero.jpg"
             alt="Paris Baguette cakes and coffee"
             className="w-full h-full object-cover opacity-30"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-foreground/50 via-foreground/70 to-foreground" />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/50 via-primary/70 to-primary" />
         </div>
 
         <div className="container-content mx-auto px-4 relative z-10 text-center">
           <ScrollReveal animation="up">
-            <span className="heading-display text-white/60 text-lg md:text-xl uppercase tracking-wider mb-4 block">
+            <span className="heading-display text-primary-foreground/80 text-lg md:text-xl uppercase tracking-wider mb-4 block">
               Paid Google, Meta, &amp; YouTube Ads
             </span>
-            <h1 className="heading-display text-4xl md:text-5xl lg:text-7xl text-white leading-tight max-w-4xl mx-auto">
+            <h1 className="heading-display text-4xl md:text-5xl lg:text-7xl text-primary-foreground leading-tight max-w-4xl mx-auto">
               Growing brand demand and footfall for Paris Baguette
             </h1>
-            <p className="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto mt-6 leading-relaxed">
+            <p className="text-xl md:text-2xl text-primary-foreground/80 max-w-3xl mx-auto mt-6 leading-relaxed">
               Hyperlocal YouTube, Google, and Meta campaigns that built brand awareness, navigated new 'Less Healthy Food' regulations, and drove measurable in-store visits across two London locations.
             </p>
           </ScrollReveal>
