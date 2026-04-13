@@ -133,6 +133,9 @@ const PaidAdvertisingPage = () => {
         <ServiceSchema
           name="Paid Advertising"
           description="Paid social, paid search and TikTok ad campaigns for hospitality, restaurant and lifestyle brands."
+          provider="Trapeze Media"
+          serviceType="Paid Advertising"
+          areaServed={["GB"]}
           url={`${baseUrl}/services/paid-advertising`}
         />
         <FAQSchema faqs={service.faqs} />
