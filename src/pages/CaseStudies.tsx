@@ -68,7 +68,7 @@ const CaseStudies = () => {
                         {study.category}
                       </span>
                       <h3 className="heading-display text-2xl text-foreground mt-2 mb-3 leading-tight group-hover:text-primary transition-colors duration-300 uppercase">
-                        {study.title}
+                        {study.client_name}
                       </h3>
                       <p className="text-muted-foreground text-sm leading-relaxed mb-6 line-clamp-3 flex-1">
                         {study.description}
