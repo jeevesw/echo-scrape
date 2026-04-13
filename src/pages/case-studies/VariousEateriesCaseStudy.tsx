@@ -12,10 +12,10 @@ const VariousEateriesCaseStudy = () => {
   return (
     <Layout>
       <Helmet>
-        <title>Google Pay-Per-Click Ads for Various Eateries: driving restaurant visits and bookings | Trapeze Media</title>
+        <title>How Coppa Club Used Google Ads to Drive Restaurant Visits and Bookings | Trapeze Media</title>
         <meta 
           name="description" 
-          content="We drove an 88% increase in table bookings, 12x ROAS, and 92% lower cost-per-visit for restaurant group Various Eateries through strategic Google Ads campaigns." 
+          content="We drove an 88% increase in table bookings, 12x ROAS, and 92% lower cost-per-visit for Coppa Club through strategic Google Ads campaigns." 
         />
         <link rel="canonical" href="https://trapezemedia.co.uk/case-studies/various-eateries" />
       </Helmet>
@@ -43,9 +43,9 @@ const VariousEateriesCaseStudy = () => {
               {/* Left column — text, vertically centred */}
               <div className="flex items-center">
                 <ScrollReveal animation="left">
-                  <h1 className="heading-display text-3xl md:text-5xl lg:text-6xl text-primary-foreground leading-tight">
-                    Google Pay-Per-Click Ads for Various Eateries: driving restaurant visits and bookings
-                  </h1>
+                    <h1 className="heading-display text-3xl md:text-5xl lg:text-6xl text-primary-foreground leading-tight">
+                      How Coppa Club Used Google Ads to Drive Restaurant Visits and Bookings
+                    </h1>
                 </ScrollReveal>
               </div>
 
@@ -92,7 +92,7 @@ const VariousEateriesCaseStudy = () => {
             
             <ScrollReveal>
               <h2 className="heading-display text-3xl md:text-4xl lg:text-5xl text-primary max-w-4xl leading-relaxed">
-                Restaurant group Various Eateries, who count Coppa Club, Noci, and Tavolino among their 13 venues, approached us to increase footfall and bookings using Google Ads.
+                Coppa Club — part of the Various Eateries group — approached us to drive footfall and bookings using Google Ads.
               </h2>
             </ScrollReveal>
           </div>
@@ -226,7 +226,7 @@ const VariousEateriesCaseStudy = () => {
                   </span>.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  We deployed a tracking solution which empowered Various Eateries to connect customer contact information from the point of booking back to Google's ad services.
+                  We deployed a tracking solution which empowered Coppa Club to connect customer contact information from the point of booking back to Google's ad services.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   This enables us to create reports which provide reliable stats on ad spend ROI.
@@ -273,7 +273,7 @@ const VariousEateriesCaseStudy = () => {
             </blockquote>
             
             <cite className="block text-center mt-8 text-lg not-italic text-primary-foreground/80">
-              — <span className="font-semibold text-primary-foreground">Steve Roberts</span>, Digital Marketing Director at Various Eateries
+              — <span className="font-semibold text-primary-foreground">Steve Roberts</span>, Digital Marketing Director at Coppa Club
             </cite>
           </ScrollReveal>
         </div>
