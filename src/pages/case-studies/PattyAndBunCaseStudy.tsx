@@ -17,20 +17,21 @@ const PattyAndBunCaseStudy = () => {
           name="description"
           content="We doubled Patty&Bun's cross-platform engagements and TikTok following by creating stronger, trend-driven content for the London burger restaurant brand."
         />
+        <meta property="og:image" content="https://trapezemedia.co.uk/images/case-studies/patty-and-bun-hero.jpg" />
         <link rel="canonical" href="https://trapezemedia.co.uk/case-studies/patty-and-bun" />
       </Helmet>
 
       {/* Hero Section */}
       <section
         className="relative min-h-[50vh] max-h-[75vh] flex items-center justify-center overflow-hidden"
-        style={{ backgroundColor: "#C2185B" }}
       >
-        <div className="absolute inset-0 flex items-center justify-center opacity-10">
+        <div className="absolute inset-0">
           <img
-            src="/images/clients/patty-and-bun.svg"
-            alt="Patty & Bun logo"
-            className="w-64 md:w-96"
+            src="/images/case-studies/patty-and-bun-hero.jpg"
+            alt="Patty & Bun burger held up beneath neon sign"
+            className="w-full h-full object-cover"
           />
+          <div className="absolute inset-0 bg-[#C2185B]/60" />
         </div>
 
         <div className="container-content mx-auto px-4 relative z-10 text-center">
