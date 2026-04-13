@@ -134,27 +134,31 @@ const PattyAndBunCaseStudy = () => {
             </h2>
           </ScrollReveal>
 
-          {/* Video Grid */}
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
+          {/* Video Grid — vertical / staggered */}
+          <div className="grid md:grid-cols-3 gap-8 mb-12 items-start">
             {[
-              { badge: "24K+ Instagram plays", src: "https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//TikTok-Reel-Video-Patty-and-Bun-Trapeze-Media-1.mp4" },
-              { badge: "35K+ Instagram plays", src: "https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//TikTok-Reel-Video-Patty-and-Bun-Trapeze-Media-2.mp4" },
-              { badge: "35K+ Instagram plays", src: "https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//TikTok-Reel-Video-Patty-and-Bun-Trapeze-Media-3.mp4" },
+              { badge: "24K+ Instagram plays", src: "https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//TikTok-Reel-Video-Patty-and-Bun-Trapeze-Media-1.mp4", offset: "md:mt-0" },
+              { badge: "35K+ Instagram plays", src: "https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//TikTok-Reel-Video-Patty-and-Bun-Trapeze-Media-2.mp4", offset: "md:mt-16" },
+              { badge: "35K+ Instagram plays", src: "https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//TikTok-Reel-Video-Patty-and-Bun-Trapeze-Media-3.mp4", offset: "md:mt-8" },
             ].map((video, i) => (
               <ScrollReveal key={i} delay={i * 100}>
-                <div className="relative aspect-video rounded-xl overflow-hidden bg-muted">
-                  <video
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className="w-full h-full object-cover rounded-xl"
-                  >
-                    <source src={video.src} type="video/mp4" />
-                  </video>
-                  <span className="absolute bottom-3 left-3 bg-primary text-white text-sm px-3 py-1 rounded">
-                    {video.badge}
-                  </span>
+                <div className={video.offset}>
+                  <div className="relative">
+                    <div className="aspect-[9/16] rounded-xl overflow-hidden bg-muted">
+                      <video
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="w-full h-full object-cover"
+                      >
+                        <source src={video.src} type="video/mp4" />
+                      </video>
+                    </div>
+                    <div className="absolute -bottom-4 -left-3 md:-left-4 bg-primary text-white text-base md:text-lg font-semibold px-5 py-2.5 rounded-lg shadow-lg">
+                      {video.badge}
+                    </div>
+                  </div>
                 </div>
               </ScrollReveal>
             ))}
