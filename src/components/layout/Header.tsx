@@ -26,7 +26,6 @@ const services = [
 
 const navItems = [
   { label: "Blog", href: "/blog" },
-  { label: "LHF Ad Ban", href: "/lhf-ad-ban" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -66,13 +65,6 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-background">
-      {/* Announcement Bar */}
-      <div className="bg-primary px-4 py-2 text-center text-sm text-primary-foreground">
-        <Link to="/lhf-ad-ban" className="hover:underline">
-          Ready for the 'Less-Healthy Foods' ads ban? Learn more at our events →
-        </Link>
-      </div>
-
       {/* Main Navigation */}
       <div className="border-b border-border">
         <div className="container-content mx-auto flex h-20 items-center justify-between px-4">
