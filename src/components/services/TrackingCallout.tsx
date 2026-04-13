@@ -5,10 +5,12 @@ export function TrackingCallout() {
     <section className="relative py-14 lg:py-16 overflow-hidden">
       {/* Solid brand pink background */}
       <div className="absolute inset-0 bg-primary" />
-      {/* Tiling pattern on top with color-burn blend */}
+      {/* Tiling pattern – toggle blend modes below */}
+      {/* mixBlendMode: 'overlay', opacity: 0.12  ← punchier */}
+      {/* mixBlendMode: 'soft-light', opacity: 0.18  ← subtler (active) */}
       <div
-        className="absolute inset-0 opacity-40"
-        style={{ backgroundImage: `url(${emailPattern})`, backgroundRepeat: "repeat", backgroundSize: "300px", mixBlendMode: "color-burn" }}
+        className="absolute inset-0 w-full h-full pointer-events-none z-0"
+        style={{ backgroundImage: `url(${emailPattern})`, backgroundRepeat: "repeat", backgroundSize: "300px", mixBlendMode: "soft-light", opacity: 0.18 }}
       />
 
       <div className="container mx-auto px-4 relative z-10">
