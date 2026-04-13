@@ -36,23 +36,25 @@ const IntroLogos = () => (
       </div>
     </section>
 
-    {/* Static logo row */}
-    <section className="bg-muted py-10">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-center gap-8 md:gap-12 flex-wrap">
-          {logos.map((logo) => (
-            <img
-              key={logo.alt}
-              src={logo.src}
-              alt={logo.alt}
-              className="h-8 md:h-10 opacity-70 hover:opacity-100 transition-opacity duration-300"
-              loading="lazy"
-            />
-          ))}
-        </div>
-      </div>
-    </section>
   </>
 );
 
 export default IntroLogos;
+
+export const PaidAdsLogoStrip = () => (
+  <section className="bg-muted py-10">
+    <div className="container mx-auto px-4">
+      <div className="flex items-center justify-center gap-8 md:gap-12 flex-wrap">
+        {logos.map((logo) => (
+          <img
+            key={logo.alt}
+            src={logo.src}
+            alt={logo.alt}
+            className="h-8 md:h-10"
+            loading="lazy"
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+);
