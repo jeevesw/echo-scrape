@@ -116,6 +116,71 @@ const TikTokProductionPage = () => {
         }
       />
 
+      {/* Paris Baguette — Phase 1 */}
+      <section className="py-24 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
+            <ScrollReveal animation="left">
+              <ParallaxVideo
+                src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Paris-Baguette-Trapeze-Media-Video-Production-1.mp4"
+                direction="left"
+                showMuteControl
+              />
+            </ScrollReveal>
+
+            <ScrollReveal animation="right">
+              <div className="space-y-6">
+                <h3 className="heading-display text-2xl md:text-3xl text-foreground">
+                  Phase 1: Establishing Local Visibility
+                </h3>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  From February to June 2025, we launched hyperlocal ad campaigns across Google and Meta using image-based creative to build initial awareness.
+                </p>
+                <div className="bg-primary/10 rounded-lg px-4 py-3">
+                  <p className="text-foreground font-semibold text-sm">+83% increase in branded searches for "Paris Baguette Canary Wharf" by people in London</p>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Paris Baguette — What We Delivered */}
+      <section className="relative overflow-hidden min-h-[420px]">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-fixed"
+          style={{ backgroundImage: `url(${parisBaguetteBg})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/20" />
+
+        <div className="container mx-auto px-4 relative z-10 py-20">
+          <ScrollReveal>
+            <h2 className="heading-display text-4xl md:text-5xl text-white mb-8">
+              What We Delivered
+            </h2>
+          </ScrollReveal>
+
+          <ScrollReveal delay={100}>
+            <div className="flex flex-wrap gap-4">
+              {[
+                { number: "+83%", label: "Branded search uplift" },
+                { number: "+23%", label: "Search demand in month one" },
+                { number: "+45%", label: "Google Ads scaled" },
+                { number: "+60%", label: "Footfall conversions" },
+              ].map((stat) => (
+                <div
+                  key={stat.label}
+                  className="bg-white rounded-2xl px-6 py-4 flex flex-col items-center justify-center min-w-[160px]"
+                >
+                  <p className="heading-display text-3xl md:text-4xl text-primary font-bold leading-none">{stat.number}</p>
+                  <p className="text-xs text-foreground uppercase tracking-wide mt-1 text-center font-medium">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
       {/* Case Study — Michael Emmett */}
       <section className="relative overflow-hidden min-h-[420px]">
         <div
@@ -156,136 +221,6 @@ const TikTokProductionPage = () => {
 
       {/* Workflow Grid */}
       <WorkflowGrid heading="Our TikTok Workflow" steps={workflowSteps} columns={4} />
-
-      {/* Paris Baguette — Phase 1 */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
-            <ScrollReveal animation="left">
-              <ParallaxVideo
-                src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Paris-Baguette-Trapeze-Media-Video-Production-1.mp4"
-                direction="left"
-                showMuteControl
-              />
-            </ScrollReveal>
-
-            <ScrollReveal animation="right">
-              <div className="space-y-6">
-                <h3 className="heading-display text-2xl md:text-3xl text-foreground">
-                  Phase 1: Establishing Local Visibility
-                </h3>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  From February to June 2025, we launched hyperlocal ad campaigns across Google and Meta using image-based creative to build initial awareness.
-                </p>
-                <div className="bg-primary/10 rounded-lg px-4 py-3">
-                  <p className="text-foreground font-semibold text-sm">+83% increase in branded searches for "Paris Baguette Canary Wharf" by people in London</p>
-                </div>
-              </div>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
-
-      {/* Paris Baguette — What We Delivered */}
-      <section className="relative overflow-hidden min-h-[420px]">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-fixed"
-          style={{ backgroundImage: `url(${parisBaguetteBg})` }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/20" />
-
-        <div className="container mx-auto px-4 relative z-10 py-20">
-          <ScrollReveal>
-            <h2 className="heading-display text-4xl md:text-5xl text-white mb-8">
-              What We Delivered
-            </h2>
-          </ScrollReveal>
-
-          <ScrollReveal delay={100}>
-            <div className="flex flex-wrap gap-4">
-              {[
-                { number: "+83%", label: "Branded search uplift" },
-                { number: "+23%", label: "Search demand in month one" },
-                { number: "+45%", label: "Google Ads scaled" },
-                { number: "+60%", label: "Footfall conversions" },
-              ].map((stat) => (
-                <div
-                  key={stat.label}
-                  className="bg-white rounded-2xl px-6 py-4 flex flex-col items-center justify-center min-w-[160px]"
-                >
-                  <p className="heading-display text-3xl md:text-4xl text-primary font-bold leading-none">{stat.number}</p>
-                  <p className="text-xs text-foreground uppercase tracking-wide mt-1 text-center font-medium">{stat.label}</p>
-                </div>
-              ))}
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* Paris Baguette — Phase 1 */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
-            <ScrollReveal animation="left">
-              <ParallaxVideo
-                src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Paris-Baguette-Trapeze-Media-Video-Production-1.mp4"
-                direction="left"
-                showMuteControl
-              />
-            </ScrollReveal>
-
-            <ScrollReveal animation="right">
-              <div className="space-y-6">
-                <h3 className="heading-display text-2xl md:text-3xl text-foreground">
-                  Phase 1: Establishing Local Visibility
-                </h3>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  From February to June 2025, we launched hyperlocal ad campaigns across Google and Meta using image-based creative to build initial awareness.
-                </p>
-                <div className="bg-primary/10 rounded-lg px-4 py-3">
-                  <p className="text-foreground font-semibold text-sm">+83% increase in branded searches for "Paris Baguette Canary Wharf" by people in London</p>
-                </div>
-              </div>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
-
-      {/* Paris Baguette — What We Delivered */}
-      <section className="relative overflow-hidden min-h-[420px]">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-fixed"
-          style={{ backgroundImage: `url(${parisBaguetteBg})` }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/20" />
-
-        <div className="container mx-auto px-4 relative z-10 py-20">
-          <ScrollReveal>
-            <h2 className="heading-display text-4xl md:text-5xl text-white mb-8">
-              What We Delivered
-            </h2>
-          </ScrollReveal>
-
-          <ScrollReveal delay={100}>
-            <div className="flex flex-wrap gap-4">
-              {[
-                { number: "+83%", label: "Branded search uplift" },
-                { number: "+23%", label: "Search demand in month one" },
-                { number: "+45%", label: "Google Ads scaled" },
-                { number: "+60%", label: "Footfall conversions" },
-              ].map((stat) => (
-                <div
-                  key={stat.label}
-                  className="bg-white rounded-2xl px-6 py-4 flex flex-col items-center justify-center min-w-[160px]"
-                >
-                  <p className="heading-display text-3xl md:text-4xl text-primary font-bold leading-none">{stat.number}</p>
-                  <p className="text-xs text-foreground uppercase tracking-wide mt-1 text-center font-medium">{stat.label}</p>
-                </div>
-              ))}
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
 
       {/* Industries */}
       <section className="py-16 bg-background">
