@@ -481,7 +481,7 @@ export default function BlogCleanup() {
   );
 
   const totalIssues = previewRows.reduce(
-    (s, r) => s + r.leakedJsonCount + (r.hasLongIntro ? 1 : 0) + r.internalLinkCount + r.sqImageCount + r.emptyAltCount + (r.hasNewsletter ? 1 : 0),
+    (s, r) => s + r.leakedJsonCount + (r.hasLongIntro ? 1 : 0) + r.internalLinkCount + r.sqImageCount + r.emptyAltCount + (r.hasNewsletter ? 1 : 0) + r.sqspStyleCount,
     0
   );
 
