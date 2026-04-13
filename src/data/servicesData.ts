@@ -317,7 +317,7 @@ export const servicesData: Record<string, ServiceData> = {
 
   "tiktok-production": {
     slug: "tiktok-production",
-    title: "TikTok Production",
+    title: "Video Production",
     metaTitle: "TikTok Marketing: Production, Ads & Influencers | Trapeze Media",
     metaDescription: "Your brand, on the fastest-growing social platform in history. TikTok content creation, ads management, and influencer outreach for UK hospitality and events.",
     heroHeadline: "TikTok Marketing That Drives Discovery & Engagement",
