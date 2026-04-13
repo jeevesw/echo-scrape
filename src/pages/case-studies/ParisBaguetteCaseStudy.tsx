@@ -4,14 +4,10 @@ import { Layout } from "@/components/layout/Layout";
 import { BreadcrumbNav } from "@/components/ui/breadcrumb-nav";
 import { Button } from "@/components/ui/button";
 import { AnimatedStat } from "@/components/case-study/AnimatedStat";
+import { ParallaxVideo } from "@/components/case-study/ParallaxVideo";
 import { ScrollReveal } from "@/hooks/use-scroll-reveal";
 import { ArrowLeft, Quote, Check, MapPin, Video } from "lucide-react";
 import ParisBaguetteBrandSearchChart from "@/components/charts/ParisBaguetteBrandSearchChart";
-
-// TODO: replace with Paris Baguette hero image
-// TODO: replace chart placeholder with actual chart component or screenshot once provided
-// TODO: upload ad creative screenshot
-// TODO: replace video placeholders with actual video elements using Supabase storage URLs once uploaded
 
 const ParisBaguetteCaseStudy = () => {
   return (
@@ -30,7 +26,6 @@ const ParisBaguetteCaseStudy = () => {
 
       {/* Hero Section */}
       <section className="relative min-h-[50vh] max-h-[75vh] flex items-center justify-center overflow-hidden bg-foreground">
-        {/* Background image with overlay */}
         <div className="absolute inset-0">
           <img
             src="/images/case-studies/paris-baguette-hero.jpg"
@@ -54,15 +49,6 @@ const ParisBaguetteCaseStudy = () => {
           </ScrollReveal>
         </div>
       </section>
-
-      {/* Hero image */}
-      <div className="container-content mx-auto px-4 -mt-12 relative z-20 mb-8">
-        <img
-          src="/images/case-studies/paris-baguette-hero.jpg"
-          alt="Paris Baguette cakes and coffee with latte art"
-          className="w-full aspect-video object-cover rounded-xl"
-        />
-      </div>
 
       {/* Intro */}
       <section className="py-16 bg-background">
@@ -117,7 +103,7 @@ const ParisBaguetteCaseStudy = () => {
         </div>
       </section>
 
-      {/* Section 1 — Awareness */}
+      {/* Awareness + Chart */}
       <section className="py-16 bg-background">
         <div className="container-content mx-auto px-4 max-w-4xl">
           <ScrollReveal>
@@ -129,11 +115,30 @@ const ParisBaguetteCaseStudy = () => {
             </p>
           </ScrollReveal>
 
-          <div className="grid md:grid-cols-2 gap-6 mb-10">
-            <ScrollReveal delay={0}>
-              <div className="border-l-4 border-primary pl-6 py-4">
-                <h3 className="heading-display text-xl text-foreground mb-3">Phase 1: Establishing Local Visibility</h3>
-                <p className="text-muted-foreground leading-relaxed mb-4">
+          <ScrollReveal delay={100}>
+            <ParisBaguetteBrandSearchChart />
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Alternating Video Sections */}
+      <section className="py-24 bg-background">
+        <div className="container-content mx-auto px-4">
+          {/* Row 1: Video left, text right */}
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <ScrollReveal animation="left">
+              <ParallaxVideo
+                src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Paris-Baguette-Trapeze-Media-Video-Production-1.mp4"
+                direction="left"
+              />
+            </ScrollReveal>
+
+            <ScrollReveal animation="right">
+              <div className="space-y-6">
+                <h3 className="heading-display text-2xl md:text-3xl text-foreground">
+                  Phase 1: Establishing Local Visibility
+                </h3>
+                <p className="text-lg text-muted-foreground leading-relaxed">
                   From February to June 2025, we launched hyperlocal ad campaigns across Google and Meta using image-based creative to build initial awareness.
                 </p>
                 <div className="bg-primary/10 rounded-lg px-4 py-3">
@@ -141,10 +146,16 @@ const ParisBaguetteCaseStudy = () => {
                 </div>
               </div>
             </ScrollReveal>
-            <ScrollReveal delay={100}>
-              <div className="border-l-4 border-primary pl-6 py-4">
-                <h3 className="heading-display text-xl text-foreground mb-3">Phase 2: Scaling with Bespoke Video Creative</h3>
-                <p className="text-muted-foreground leading-relaxed mb-4">
+          </div>
+
+          {/* Row 2: Text left, video right */}
+          <div className="grid lg:grid-cols-2 gap-16 items-center mt-24">
+            <ScrollReveal animation="left" className="order-2 lg:order-1">
+              <div className="space-y-6">
+                <h3 className="heading-display text-2xl md:text-3xl text-foreground">
+                  Phase 2: Scaling with Bespoke Video Creative
+                </h3>
+                <p className="text-lg text-muted-foreground leading-relaxed">
                   Once bespoke video creative was introduced, we expanded distribution across YouTube and the full Google ecosystem. Within just one month — June to July 2025 — this drove a further +23% uplift in branded search demand.
                 </p>
                 <div className="bg-primary/10 rounded-lg px-4 py-3">
@@ -152,58 +163,50 @@ const ParisBaguetteCaseStudy = () => {
                 </div>
               </div>
             </ScrollReveal>
+
+            <ScrollReveal animation="right" className="order-1 lg:order-2">
+              <ParallaxVideo
+                src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Paris-Baguette-Trapeze-Media-Video-Production-2.mp4"
+                direction="right"
+              />
+            </ScrollReveal>
           </div>
 
-          {/* Chart placeholder */}
-          <ScrollReveal delay={150}>
-            <ParisBaguetteBrandSearchChart />
-          </ScrollReveal>
+          {/* Row 3: Video left, text right */}
+          <div className="grid lg:grid-cols-2 gap-16 items-center mt-24">
+            <ScrollReveal animation="left">
+              <ParallaxVideo
+                src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Paris-Baguette-Trapeze-Media-Video-Production-3.mp4"
+                direction="left"
+              />
+            </ScrollReveal>
+
+            <ScrollReveal animation="right">
+              <div className="space-y-6">
+                <h3 className="heading-display text-2xl md:text-3xl text-foreground">
+                  Supporting a New Store Launch: Westfield London
+                </h3>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  Alongside Canary Wharf, we supported the Westfield London opening in November 2025 with a dedicated launch strategy — video-led campaigns to generate immediate awareness, and hyperlocal targeting to capture nearby demand from day one.
+                </p>
+                <div className="flex gap-4 flex-wrap">
+                  <div className="flex items-center gap-2 bg-primary/10 rounded-lg px-4 py-2">
+                    <Video className="h-4 w-4 text-primary shrink-0" />
+                    <span className="text-foreground text-sm font-medium">Video-led campaigns</span>
+                  </div>
+                  <div className="flex items-center gap-2 bg-primary/10 rounded-lg px-4 py-2">
+                    <MapPin className="h-4 w-4 text-primary shrink-0" />
+                    <span className="text-foreground text-sm font-medium">Hyperlocal targeting</span>
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 
-      {/* Section 2 — New Store Launch */}
+      {/* LHF Regulations */}
       <section className="py-16 bg-muted">
-        <div className="container-content mx-auto px-4 max-w-4xl">
-          <ScrollReveal>
-            <h2 className="heading-display text-3xl md:text-4xl text-foreground mb-6">
-              Supporting a New Store Launch: Westfield London
-            </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-              Alongside Canary Wharf, we supported the Westfield London opening in November 2025 with a dedicated launch strategy — video-led campaigns to generate immediate awareness, and hyperlocal targeting to capture nearby demand from day one.
-            </p>
-          </ScrollReveal>
-
-          <div className="grid sm:grid-cols-2 gap-6 mb-10">
-            <ScrollReveal delay={0}>
-              <div className="flex items-start gap-4 bg-background rounded-xl p-6">
-                <Video className="h-6 w-6 text-primary shrink-0 mt-0.5" />
-                <div>
-                  <h3 className="heading-display text-base text-foreground mb-1">Video-led campaigns</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">Generating immediate awareness at launch</p>
-                </div>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal delay={100}>
-              <div className="flex items-start gap-4 bg-background rounded-xl p-6">
-                <MapPin className="h-6 w-6 text-primary shrink-0 mt-0.5" />
-                <div>
-                  <h3 className="heading-display text-base text-foreground mb-1">Hyperlocal targeting</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">Capturing demand from people near Westfield London before and after opening</p>
-                </div>
-              </div>
-            </ScrollReveal>
-          </div>
-
-          <ScrollReveal delay={150}>
-            <div className="w-full aspect-video bg-muted rounded-xl flex items-center justify-center text-muted-foreground text-sm border border-border">
-              [Image placeholder — Paris Baguette Google &amp; Meta ad creative examples]
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* Section 3 — LHF Regulations */}
-      <section className="py-16 bg-background">
         <div className="container-content mx-auto px-4 max-w-4xl">
           <ScrollReveal>
             <h2 className="heading-display text-3xl md:text-4xl text-foreground mb-6">
@@ -231,31 +234,17 @@ const ParisBaguetteCaseStudy = () => {
           </ScrollReveal>
 
           <ScrollReveal delay={100}>
-            <div className="bg-primary/10 border-l-4 border-primary px-6 py-4 rounded-r-lg mb-10">
+            <div className="bg-primary/10 border-l-4 border-primary px-6 py-4 rounded-r-lg">
               <p className="text-foreground leading-relaxed font-medium">
                 This is one of the clearest examples of what it means to be a specialist in food and hospitality advertising. We knew the regulations before our clients did — and already had a plan.
               </p>
             </div>
           </ScrollReveal>
-
-          {/* Vertical video placeholders */}
-          <ScrollReveal delay={150}>
-            <div className="flex justify-center gap-4 flex-wrap">
-              {[1, 2, 3].map((n) => (
-                <div
-                  key={n}
-                  className="aspect-[9/16] bg-muted rounded-xl flex items-center justify-center text-muted-foreground text-sm border border-border w-full max-w-[220px]"
-                >
-                  [Video placeholder — Paris Baguette LHF-compliant creative]
-                </div>
-              ))}
-            </div>
-          </ScrollReveal>
         </div>
       </section>
 
-      {/* Section 4 — Footfall */}
-      <section className="py-16 bg-muted">
+      {/* Footfall */}
+      <section className="py-16 bg-background">
         <div className="container-content mx-auto px-4 max-w-4xl">
           <ScrollReveal>
             <h2 className="heading-display text-3xl md:text-4xl text-foreground mb-6">
@@ -268,7 +257,7 @@ const ParisBaguetteCaseStudy = () => {
 
           <div className="grid md:grid-cols-2 gap-6">
             <ScrollReveal delay={0}>
-              <div className="bg-background rounded-xl p-8 h-full">
+              <div className="bg-muted rounded-xl p-8 h-full">
                 <h3 className="heading-display text-xl text-foreground mb-3">Google Performance Max</h3>
                 <p className="text-muted-foreground leading-relaxed">
                   We ran PMax campaigns optimised specifically for store visits and "Get Directions" actions — tracking the moments where online interest becomes a physical visit.
@@ -276,7 +265,7 @@ const ParisBaguetteCaseStudy = () => {
               </div>
             </ScrollReveal>
             <ScrollReveal delay={100}>
-              <div className="bg-background rounded-xl p-8 h-full">
+              <div className="bg-muted rounded-xl p-8 h-full">
                 <h3 className="heading-display text-xl text-foreground mb-3">Scaling What Works</h3>
                 <p className="text-muted-foreground leading-relaxed">
                   After identifying strong early performance, we increased Google Ads investment by 45% between July and September 2025 — resulting in a 60% uplift in footfall-driven conversions and improved cost efficiency.
