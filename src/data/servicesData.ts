@@ -54,9 +54,9 @@ export const servicesData: Record<string, ServiceData> = {
   "social-media-management": {
     slug: "social-media-management",
     title: "Social Media Management",
-    metaTitle: "Social Media Management for Hospitality & Events | Trapeze Media",
+    metaTitle: "Social Media Management Agency UK | Trapeze Media",
     metaDescription: "Expert social media management for UK hospitality, tourism, and events brands. Content strategy, community management, and audience growth by Trapeze Media.",
-    heroHeadline: "Social Media Management for Hospitality & Lifestyle Brands",
+    heroHeadline: "Social Media Management That Builds Brands and Drives Results",
     heroSubheadline: "Build authentic connections with your audience through strategic content and community engagement.",
     icon: Megaphone,
     
@@ -126,7 +126,7 @@ export const servicesData: Record<string, ServiceData> = {
     title: "Paid Advertising",
     metaTitle: "Paid Social & Search Advertising for Hospitality | Trapeze Media",
     metaDescription: "Meta, Google, and TikTok advertising for UK hospitality, events, and tourism brands. Strategic campaigns that drive bookings and footfall.",
-    heroHeadline: "Meta, Google & TikTok Ads That Drive Real Results",
+    heroHeadline: "Paid Social & Search Campaigns That Fill Venues, Inboxes, and Order Books",
     heroSubheadline: "Strategic campaigns across Meta, Google, TikTok, and LinkedIn that reach the right people at the right time.",
     icon: Target,
     
@@ -194,7 +194,7 @@ export const servicesData: Record<string, ServiceData> = {
     title: "Paid Search",
     metaTitle: "Google Ads Agency for Hospitality & Lifestyle Brands | Trapeze Media",
     metaDescription: "Google Ads management for UK hospitality, restaurants, and lifestyle brands. PPC campaigns that drive bookings, footfall, and sales. Hyperlocal targeting specialists.",
-    heroHeadline: "GOOGLE ADS THAT FILL TABLES, VENUES, & INBOXES",
+    heroHeadline: "GOOGLE ADS THAT FILL VENUES, DRIVE LEADS, AND GROW YOUR BUSINESS",
     heroSubheadline: "We design and run PPC campaigns which drive high-intent traffic, convert sales, and generates leads, across Google Search, Display, Performance Max, and beyond.",
     icon: Search,
     summary: "Our paid search campaigns are built to scale, from small budgets to multi-million pound ad spends. We pair intelligent targeting and engaging storytelling with industry expertise and meaningful reporting. As a hyperlocal marketing agency, we're known for delivering Performance Max campaigns with incredible ROI.",
