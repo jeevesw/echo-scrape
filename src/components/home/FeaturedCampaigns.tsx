@@ -18,10 +18,10 @@ const campaigns = [
     href: "/case-studies/mycelia",
   },
   {
-    category: "Paid Social",
-    title: "Coming Soon: Precious Homes",
+    category: "Google, Meta & YouTube Ads",
+    title: "How We Grew Brand Demand and Footfall for Paris Baguette",
     image: "/placeholder.svg",
-    href: "/case-studies",
+    href: "/case-studies/paris-baguette",
   },
   // TODO: Replace Brighton Fringe with Paris Baguette when assets are available
   {
