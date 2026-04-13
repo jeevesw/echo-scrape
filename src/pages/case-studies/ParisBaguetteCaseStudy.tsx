@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { AnimatedStat } from "@/components/case-study/AnimatedStat";
 import { ScrollReveal } from "@/hooks/use-scroll-reveal";
 import { ArrowLeft, Quote, Check, MapPin, Video } from "lucide-react";
+import ParisBaguetteBrandSearchChart from "@/components/charts/ParisBaguetteBrandSearchChart";
 
 // TODO: replace with Paris Baguette hero image
 // TODO: replace chart placeholder with actual chart component or screenshot once provided
