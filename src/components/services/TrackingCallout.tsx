@@ -6,13 +6,11 @@ export function TrackingCallout() {
       {/* Solid brand pink background */}
       <div className="absolute inset-0 bg-primary" />
       {/* Tiling pattern – white icons over pink, no blend mode */}
-      {/* opacity: 0.08  ← subtle */}
-      {/* opacity: 0.12  ← more visible (active) */}
+      {/* opacity: 0.07  ← subtler */}
+      {/* opacity: 0.10  ← bolder (active) */}
       <div
         className="absolute inset-0 w-full h-full pointer-events-none"
         style={{ backgroundImage: `url(${emailPattern})`, backgroundRepeat: "repeat", backgroundSize: "120px 120px", filter: "invert(1)", opacity: 0.10 }}
-        {/* opacity: 0.07  ← subtler */}
-        {/* opacity: 0.10  ← bolder (active) */}
       />
 
       <div className="container mx-auto px-4 relative z-10">
