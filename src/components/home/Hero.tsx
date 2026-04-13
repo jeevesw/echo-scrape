@@ -1,44 +1,18 @@
-import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-image.webp";
 
-const PHRASES = [
-  "Hospitality Brands",
-  "Restaurants, Bars, & Pubs",
-  "Tourism & Travel Authorities",
-  "Hospitality Organisations",
-  "Lifestyle & Consumer Brands",
-  "Hotels & Resorts",
-  "Events & Festivals",
-  "Private Medical Businesses",
-  "D2C Crowdfunding Campaigns",
-  "Indie & Franchise Shops",
+const platformLogos = [
+  { src: "/images/meta-logo.svg", alt: "Meta" },
+  { src: "/images/google-ads-logo.svg", alt: "Google Ads" },
+  { src: "/images/tiktok-logo.svg", alt: "TikTok" },
+  { src: "", alt: "Facebook", placeholder: true },
+  { src: "", alt: "Instagram", placeholder: true },
+  { src: "", alt: "YouTube", placeholder: true },
+  { src: "", alt: "LinkedIn", placeholder: true },
 ];
 
 export function Hero() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isVisible, setIsVisible] = useState(true);
-  const timeoutRef = useRef<number | null>(null);
-
-  useEffect(() => {
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReduced) return;
-
-    const interval = setInterval(() => {
-      setIsVisible(false);
-      timeoutRef.current = window.setTimeout(() => {
-        setCurrentIndex((i) => (i + 1) % PHRASES.length);
-        setIsVisible(true);
-      }, 350);
-    }, 2600);
-
-    return () => {
-      clearInterval(interval);
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    };
-  }, []);
-
   return (
     <section className="relative overflow-hidden bg-background">
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-radial opacity-50 pointer-events-none" />
@@ -52,17 +26,26 @@ export function Hero() {
             </h1>
 
             <div className="mt-4 mb-6">
-              <p className="heading-display text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">
-                We are a digital marketing agency for
-              </p>
-              <div className="min-h-[1.2em]">
-                <span
-                  className={`heading-display text-2xl md:text-3xl lg:text-4xl font-bold text-foreground inline-block transition-all duration-300 ease-in-out ${
-                    isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
-                  }`}
-                >
-                  {PHRASES[currentIndex]}
-                </span>
+              <p className="text-sm text-muted-foreground mb-3">We run campaigns on</p>
+              <div className="flex flex-wrap items-center gap-6">
+                {platformLogos.map((logo) =>
+                  logo.placeholder ? (
+                    <div
+                      key={logo.alt}
+                      className="h-8 w-16 rounded bg-muted flex items-center justify-center"
+                      title={logo.alt}
+                    >
+                      <span className="text-[10px] text-muted-foreground font-medium">{logo.alt}</span>
+                    </div>
+                  ) : (
+                    <img
+                      key={logo.alt}
+                      src={logo.src}
+                      alt={logo.alt}
+                      className="h-8 w-auto grayscale opacity-60"
+                    />
+                  )
+                )}
               </div>
             </div>
 
