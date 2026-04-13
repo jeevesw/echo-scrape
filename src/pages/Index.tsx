@@ -6,7 +6,7 @@ import { FeaturedCampaigns } from "@/components/home/FeaturedCampaigns";
 import { Testimonial } from "@/components/home/Testimonial";
 import { BlogPreview } from "@/components/home/BlogPreview";
 import NewsletterSignup from "@/components/NewsletterSignup";
-import { FAQSchema } from "@/components/seo/SchemaMarkup";
+import { FAQSchema, LocalBusinessSchema } from "@/components/seo/SchemaMarkup";
 import {
   Accordion,
   AccordionContent,
