@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { TeamSection } from "@/components/services/TeamSection";
+import { ParallaxVideo } from "@/components/case-study/ParallaxVideo";
 import { getTeamForService } from "@/data/teamData";
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
@@ -143,9 +144,10 @@ const TikTokProductionPage = () => {
         body="Caravanserai — an immersive pop-up festival inside a weird little world of rusty trailers and eclectic entertainers — became part of the Brighton Fringe line-up in 2023. During the lead-up and first week, we were making the build crew do TikTok dances, flying drones, posting about hundreds of events, interviewing Caravanserai's creator, and curating hundreds of bits of UGC. We posted hundreds of pieces of content over the month — videos, graphics, schedule posts, carousels, fun copy, and loads of TikToks and Reels scoring tens of thousands of plays."
         stats={[]}
         visualSlot={
-          <div className="bg-background rounded-2xl flex items-center justify-center min-h-[300px] border border-border">
-            <span className="text-xs text-muted-foreground text-center p-4">[Brighton Fringe / Caravanserai imagery]</span>
-          </div>
+          <ParallaxVideo
+            src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Caravanserai-Trapeze-Media-TikTok-Brighton.mp4"
+            showMuteControl
+          />
         }
       />
 
