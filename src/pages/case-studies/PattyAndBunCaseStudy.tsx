@@ -34,7 +34,7 @@ const PattyAndBunCaseStudy = () => {
           <div className="absolute inset-0 bg-[#C2185B]/60" />
         </div>
 
-        <div className="container-content mx-auto px-4 relative z-20 pt-6">
+        <div className="absolute top-0 left-0 right-0 container-content mx-auto px-4 z-20 pt-6">
           <BreadcrumbNav
             items={[
               { label: "Case Studies", href: "/case-studies" },
