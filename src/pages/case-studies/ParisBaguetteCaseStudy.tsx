@@ -35,6 +35,16 @@ const ParisBaguetteCaseStudy = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-primary/50 via-primary/70 to-primary" />
         </div>
 
+        <div className="container-content mx-auto px-4 relative z-20 pt-6">
+          <BreadcrumbNav
+            items={[
+              { label: "Case Studies", href: "/case-studies" },
+              { label: "Paris Baguette", href: "/case-studies/paris-baguette" },
+            ]}
+            variant="light"
+          />
+        </div>
+
         <div className="container-content mx-auto px-4 relative z-10 text-center">
           <ScrollReveal animation="up">
             <span className="heading-display text-primary-foreground/80 text-lg md:text-xl uppercase tracking-wider mb-4 block">
@@ -53,12 +63,6 @@ const ParisBaguetteCaseStudy = () => {
       {/* Intro */}
       <section className="py-16 bg-background">
         <div className="container-content mx-auto px-4">
-          <BreadcrumbNav
-            items={[
-              { label: "Case Studies", href: "/case-studies" },
-              { label: "Paris Baguette", href: "/case-studies/paris-baguette" },
-            ]}
-          />
           <ScrollReveal>
             <div className="max-w-3xl mx-auto mt-8">
               <p className="text-xl md:text-2xl text-foreground leading-relaxed">
