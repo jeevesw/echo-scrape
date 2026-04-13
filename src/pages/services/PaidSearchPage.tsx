@@ -18,6 +18,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { TrackingCallout } from "@/components/services/TrackingCallout";
 
 const service = servicesData["paid-search"];
 const baseUrl = "https://trapezemedia.co.uk";
