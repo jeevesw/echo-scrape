@@ -79,10 +79,10 @@ const PaidSearchPage = () => {
         ]}
       />
 
-      {/* TRACKING CALLOUT */}
-      <TrackingCallout />
+      {/* Client logo carousel — directly below hero */}
+      <ClientLogoCarousel />
 
-      {/* 2 — INTRO + LOGO CAROUSEL */}
+      {/* 2 — INTRO */}
       <section className="bg-background py-16 lg:py-20">
         <div className="container mx-auto px-4 flex justify-center">
           <div className="max-w-4xl">
@@ -92,8 +92,6 @@ const PaidSearchPage = () => {
           </div>
         </div>
       </section>
-
-      <ClientLogoCarousel />
 
       {/* 3 — OUR PPC SERVICES (card grid matching paid ads page) */}
       <section className="bg-muted pt-6 pb-16 lg:pb-24">
@@ -114,6 +112,9 @@ const PaidSearchPage = () => {
           </div>
         </div>
       </section>
+
+      {/* TRACKING CALLOUT */}
+      <TrackingCallout />
 
       {/* 4 — CASE STUDY — Various Eateries */}
       <InlineCaseStudy
