@@ -22,13 +22,20 @@ const VariousEateriesCaseStudy = () => {
 
       {/* Hero Section */}
       <section className="relative h-[65vh] max-h-[75vh] min-h-[520px] overflow-hidden bg-primary">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-primary/80" />
+        <div className="absolute inset-0">
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/5edc691de451f275e3b4ae86/99bb98a7-88f7-4295-87df-ead4bb1b64da/Various+Eateries.jpg"
+            alt="Coppa Club restaurant"
+            className="w-full h-full object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/70 to-primary/80" />
+        </div>
 
         <div className="container-content mx-auto px-4 relative z-20 pt-6">
           <BreadcrumbNav
             items={[
               { label: "Case Studies", href: "/case-studies" },
-              { label: "Various Eateries", href: "/case-studies/various-eateries" },
+              { label: "Coppa Club", href: "/case-studies/various-eateries" },
             ]}
             variant="light"
           />
