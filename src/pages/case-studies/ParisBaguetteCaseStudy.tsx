@@ -103,7 +103,7 @@ const ParisBaguetteCaseStudy = () => {
                   className="bg-white rounded-2xl px-6 py-4 flex flex-col items-center justify-center min-w-[160px]"
                 >
                   <p className="heading-display text-3xl md:text-4xl text-primary font-bold leading-none">{stat.number}</p>
-                  <p className="text-xs text-foreground/70 uppercase tracking-wide mt-1 text-center">{stat.label}</p>
+                  <p className="text-xs text-foreground uppercase tracking-wide mt-1 text-center font-medium">{stat.label}</p>
                 </div>
               ))}
             </div>
