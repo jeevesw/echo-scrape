@@ -74,33 +74,51 @@ const ParisBaguetteCaseStudy = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-foreground text-white relative overflow-hidden">
-        <div className="container-content mx-auto px-4 relative z-10">
+      {/* Stats intro */}
+      <section className="py-12 bg-background">
+        <div className="container-content mx-auto px-4 text-center">
           <ScrollReveal>
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-white/50 block text-center mb-3">The Results</span>
-            <h2 className="heading-display text-4xl md:text-5xl text-center mb-14">
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground block mb-3">The Results</span>
+            <h2 className="heading-display text-4xl md:text-5xl text-foreground">
               What We Delivered
             </h2>
           </ScrollReveal>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 max-w-5xl mx-auto">
+      {/* Stats Section */}
+      <section className="py-16 bg-foreground text-white relative overflow-hidden">
+        <div className="container-content mx-auto px-4 relative z-10">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 max-w-5xl mx-auto">
             <ScrollReveal delay={0}>
-              <AnimatedStat value={83} prefix="+" suffix="%" label='increase in branded searches for "Paris Baguette Canary Wharf"' delay={0} />
+              <div className="flex flex-col items-start gap-2 border-t border-white/10 pt-6">
+                <p className="heading-display text-5xl lg:text-7xl text-primary font-bold">+83%</p>
+                <p className="text-sm text-white/70 mt-2 max-w-[180px] leading-snug">increase in branded searches for "Paris Baguette Canary Wharf"</p>
+              </div>
             </ScrollReveal>
             <ScrollReveal delay={100}>
-              <AnimatedStat value={23} prefix="+" suffix="%" label="additional uplift in branded search demand within one month of launching video creative" delay={100} />
+              <div className="flex flex-col items-start gap-2 border-t border-white/10 pt-6">
+                <p className="heading-display text-5xl lg:text-7xl text-primary font-bold">+23%</p>
+                <p className="text-sm text-white/70 mt-2 max-w-[180px] leading-snug">additional uplift in branded search demand within one month of launching video creative</p>
+              </div>
             </ScrollReveal>
             <ScrollReveal delay={200}>
-              <AnimatedStat value={45} prefix="+" suffix="%" label="increase in Google Ads investment after identifying strong early performance" delay={200} />
+              <div className="flex flex-col items-start gap-2 border-t border-white/10 pt-6">
+                <p className="heading-display text-5xl lg:text-7xl text-primary font-bold">+45%</p>
+                <p className="text-sm text-white/70 mt-2 max-w-[180px] leading-snug">increase in Google Ads investment after identifying strong early performance</p>
+              </div>
             </ScrollReveal>
             <ScrollReveal delay={300}>
-              <AnimatedStat value={60} prefix="+" suffix="%" label="increase in footfall-driven conversions" delay={300} />
+              <div className="flex flex-col items-start gap-2 border-t border-white/10 pt-6">
+                <p className="heading-display text-5xl lg:text-7xl text-primary font-bold">+60%</p>
+                <p className="text-sm text-white/70 mt-2 max-w-[180px] leading-snug">increase in footfall-driven conversions</p>
+              </div>
             </ScrollReveal>
             <ScrollReveal delay={400}>
-              <div className="text-center col-span-2 lg:col-span-1">
-                <div className="heading-display text-4xl md:text-5xl lg:text-6xl mb-2">2 locations</div>
-                <p className="text-white/70 text-sm md:text-base">supported — Canary Wharf and Westfield London</p>
+              <div className="flex flex-col items-start gap-2 border-t border-white/10 pt-6">
+                <p className="heading-display text-4xl lg:text-5xl text-primary font-bold">2</p>
+                <p className="heading-display text-xl text-primary">locations</p>
+                <p className="text-sm text-white/70 mt-2 max-w-[180px] leading-snug">supported — Canary Wharf and Westfield London</p>
               </div>
             </ScrollReveal>
           </div>
