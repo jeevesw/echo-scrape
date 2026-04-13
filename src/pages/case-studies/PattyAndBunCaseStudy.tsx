@@ -34,6 +34,16 @@ const PattyAndBunCaseStudy = () => {
           <div className="absolute inset-0 bg-[#C2185B]/60" />
         </div>
 
+        <div className="container-content mx-auto px-4 relative z-20 pt-6">
+          <BreadcrumbNav
+            items={[
+              { label: "Case Studies", href: "/case-studies" },
+              { label: "Patty & Bun", href: "/case-studies/patty-and-bun" },
+            ]}
+            variant="light"
+          />
+        </div>
+
         <div className="container-content mx-auto px-4 relative z-10 text-center">
           <ScrollReveal animation="up">
             <span className="heading-display text-white/80 text-lg md:text-xl uppercase tracking-wider mb-4 block">
@@ -52,12 +62,6 @@ const PattyAndBunCaseStudy = () => {
       {/* Intro Section */}
       <section className="py-20 bg-background">
         <div className="container-content mx-auto px-4">
-          <BreadcrumbNav
-            items={[
-              { label: "Case Studies", href: "/case-studies" },
-              { label: "Patty & Bun", href: "/case-studies/patty-and-bun" },
-            ]}
-          />
 
           <ScrollReveal>
             <div className="max-w-3xl mx-auto mt-8 space-y-6">
