@@ -16,12 +16,12 @@ import tiktokImg from "@/assets/services/tiktok-production.png";
 import websiteImg from "@/assets/services/website-design.jpg";
 
 const services = [
-  { slug: "social-media-management", title: "Social Media", description: "Content, community & engagement", image: socialMediaImg },
-  { slug: "paid-advertising", title: "Paid Advertising", description: "Meta, Google & TikTok ads", image: paidAdsImg },
-  { slug: "paid-search", title: "Paid Search", description: "Google Ads & PPC", image: paidSearchImg },
-  { slug: "creative-services", title: "Creative Services", description: "Design, video & branding", image: creativeImg },
-  { slug: "tiktok-production", title: "TikTok Production", description: "Content, ads & influencers", image: tiktokImg },
+  { slug: "social-media-management", title: "Social Media", description: "Content, engagement & paid media", image: socialMediaImg },
+  { slug: "paid-advertising", title: "Paid Advertising", description: "Meta, TikTok & programmatic ads", image: paidAdsImg },
+  { slug: "paid-search", title: "PPC / Google Ads", description: "Search, Display & YouTube", image: paidSearchImg },
+  { slug: "tiktok-production", title: "Video Production", description: "For social and big screens", image: tiktokImg },
   { slug: "website-design", title: "Website Design", description: "Build, launch & manage", image: websiteImg },
+  { slug: "creative-services", title: "Creative Services", description: "Design, branding & assets", image: creativeImg },
 ];
 
 const navItems = [
