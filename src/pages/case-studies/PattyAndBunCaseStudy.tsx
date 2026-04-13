@@ -89,24 +89,24 @@ const PattyAndBunCaseStudy = () => {
             </h2>
           </ScrollReveal>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 items-stretch">
             {/* 93% */}
-            <ScrollReveal delay={0}>
-              <div className="text-center px-4 py-6 border-r border-white/20">
+            <ScrollReveal delay={0} className="h-full">
+              <div className="h-full flex flex-col items-center justify-center text-center px-4 py-6 border-r border-white/20">
                 <div className="heading-display text-6xl md:text-7xl text-white mb-2">93%</div>
                 <p className="text-white/80 text-sm md:text-base">increase in engagement rate per impression</p>
               </div>
             </ScrollReveal>
             {/* 91% */}
-            <ScrollReveal delay={150}>
-              <div className="text-center px-4 py-6 lg:border-r border-white/20">
+            <ScrollReveal delay={150} className="h-full">
+              <div className="h-full flex flex-col items-center justify-center text-center px-4 py-6 lg:border-r border-white/20">
                 <div className="heading-display text-6xl md:text-7xl text-white mb-2">91%</div>
                 <p className="text-white/80 text-sm md:text-base">increase in net audience growth</p>
               </div>
             </ScrollReveal>
             {/* 24K plays */}
-            <ScrollReveal delay={300}>
-              <div className="text-center px-4 py-6 border-r border-white/20">
+            <ScrollReveal delay={300} className="h-full">
+              <div className="h-full flex flex-col items-center justify-center text-center px-4 py-6 border-r border-white/20">
                 <div className="heading-display text-5xl md:text-6xl text-white mb-2">
                   24K plays<br />&amp; 2.5K+ likes
                 </div>
@@ -114,8 +114,8 @@ const PattyAndBunCaseStudy = () => {
               </div>
             </ScrollReveal>
             {/* 35K plays */}
-            <ScrollReveal delay={450}>
-              <div className="text-center px-4 py-6">
+            <ScrollReveal delay={450} className="h-full">
+              <div className="h-full flex flex-col items-center justify-center text-center px-4 py-6">
                 <div className="heading-display text-5xl md:text-6xl text-white mb-2">
                   35K plays<br />&amp; 550+ likes
                 </div>
