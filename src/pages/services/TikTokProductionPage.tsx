@@ -147,6 +147,7 @@ const TikTokProductionPage = () => {
           <ParallaxVideo
             src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Caravanserai-Trapeze-Media-TikTok-Brighton.mp4"
             showMuteControl
+            className="shadow-none rounded-none"
           />
         }
       />
