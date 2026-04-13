@@ -36,7 +36,19 @@ const faqs = [
 const Index = () => {
   return (
     <Layout>
-      <FAQSchema faqs={faqs} />
+      <LocalBusinessSchema
+        type="MarketingAgency"
+        name="Trapeze Media"
+        url="https://trapezemedia.co.uk"
+        telephone="07989478792"
+        email="info@trapezemedia.co.uk"
+        description="Trapeze Media is a UK digital marketing agency specialising in hyperlocal paid social, Google Ads, and social media management for hospitality, lifestyle, and events brands."
+        address={{ addressCountry: "GB" }}
+        sameAs={[
+          "https://www.instagram.com/trapezemedia",
+          "https://www.linkedin.com/company/trapeze-media",
+        ]}
+      />
       <Hero />
       <ClientLogoCarousel />
       <Services />
