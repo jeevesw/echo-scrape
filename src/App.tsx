@@ -16,6 +16,7 @@ import BrightonSeoCaseStudy from "./pages/case-studies/BrightonSeoCaseStudy";
 import VariousEateriesCaseStudy from "./pages/case-studies/VariousEateriesCaseStudy";
 import MaximilesCaseStudy from "./pages/case-studies/MaximilesCaseStudy";
 import MyceliaCaseStudy from "./pages/case-studies/MyceliaCaseStudy";
+import PattyAndBunCaseStudy from "./pages/case-studies/PattyAndBunCaseStudy";
 import Blog from "./pages/Blog";
 import Services from "./pages/Services";
 import ServicePage from "./pages/ServicePage";
@@ -57,6 +58,7 @@ const App = () => (
               <Route path="/case-studies/brightonseo" element={<BrightonSeoCaseStudy />} />
               <Route path="/case-studies/maximiles" element={<MaximilesCaseStudy />} />
               <Route path="/case-studies/mycelia" element={<MyceliaCaseStudy />} />
+              <Route path="/case-studies/patty-and-bun" element={<PattyAndBunCaseStudy />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:slug" element={<Blog />} />
               <Route path="/services" element={<Services />} />
