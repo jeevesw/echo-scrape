@@ -6,6 +6,7 @@ import { ServiceHero } from "@/components/services/ServiceHero";
 import { ServiceSchema, FAQSchema } from "@/components/seo/SchemaMarkup";
 import { servicesData } from "@/data/servicesData";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Accordion,
   AccordionContent,
