@@ -36,6 +36,9 @@ const LEAKED_JSON_PATTERNS = [
   /TextAttributes/,
 ];
 
+const SQSP_STYLE_RE = /<style[^>]*>[^<]*(?:#block-yui|--tweak-)[^<]*<\/style>/gi;
+const BLOCK_YUI_RE = /#block-yui[^}]+\}/g;
+
 const NEWSLETTER_MARKERS = [
   /newsletter-form/i,
   /squarespace-form-submit/i,
@@ -86,6 +89,19 @@ function countEmptyAltImages(blocks: Block[]): number {
   let count = 0;
   for (const b of blocks) {
     if (b.type === 'image' && !(b as ImageBlock).alt?.trim()) count++;
+  }
+  return count;
+}
+
+function countSquarespaceStyles(blocks: Block[]): number {
+  let count = 0;
+  for (const b of blocks) {
+    if (b.type !== 'text') continue;
+    const html = (b as TextBlock).content;
+    const styleMatches = html.match(SQSP_STYLE_RE);
+    const blockMatches = html.match(BLOCK_YUI_RE);
+    if (styleMatches) count += styleMatches.length;
+    if (blockMatches) count += blockMatches.length;
   }
   return count;
 }
