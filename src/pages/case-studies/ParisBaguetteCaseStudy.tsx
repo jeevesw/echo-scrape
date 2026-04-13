@@ -16,7 +16,7 @@ const ParisBaguetteCaseStudy = () => {
   return (
     <Layout>
       <Helmet>
-        <title>How We Grew Brand Demand and Footfall for Paris Baguette | Trapeze Media</title>
+        <title>Growing Brand Demand and Footfall for Paris Baguette | Trapeze Media</title>
         <meta
           name="description"
           content="We drove an 83% increase in branded searches and 60% uplift in footfall conversions for Paris Baguette's Canary Wharf and Westfield London locations through hyperlocal YouTube, Google, and Meta campaigns."
@@ -29,13 +29,13 @@ const ParisBaguetteCaseStudy = () => {
         <div className="container-content mx-auto px-4 relative z-10 text-center">
           <ScrollReveal animation="up">
             <span className="heading-display text-white/60 text-lg md:text-xl uppercase tracking-wider mb-4 block">
-              Google, Meta &amp; YouTube Ads
+              Paid Google, Meta, &amp; YouTube Ads
             </span>
             <h1 className="heading-display text-4xl md:text-5xl lg:text-7xl text-white leading-tight max-w-4xl mx-auto">
-              How We Grew Brand Demand and Footfall for Paris Baguette
+              Growing brand demand and footfall for Paris Baguette
             </h1>
             <p className="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto mt-6 leading-relaxed">
-              Hyperlocal YouTube, Google, and Meta campaigns that built brand awareness, navigated LHF regulations, and drove measurable in-store visits across two London locations.
+              Hyperlocal YouTube, Google, and Meta campaigns that built brand awareness, navigated new 'Less Healthy Food' regulations, and drove measurable in-store visits across two London locations.
             </p>
           </ScrollReveal>
         </div>
@@ -60,7 +60,7 @@ const ParisBaguetteCaseStudy = () => {
           <ScrollReveal>
             <div className="max-w-3xl mx-auto mt-8">
               <p className="text-xl md:text-2xl text-foreground leading-relaxed">
-                We partnered with Paris Baguette to grow brand awareness and drive in-store visits for their Canary Wharf franchise location — while also supporting the launch of their new Westfield London branch.{" "}
+                We worked with Paris Baguette to grow brand awareness and drive in-store visits for their Canary Wharf franchise location, while also supporting the launch of their new Westfield London branch.{" "}
                 <span className="text-primary font-semibold">The brief: build a brand that London recognises, and turn that recognition into footfall.</span>
               </p>
             </div>
