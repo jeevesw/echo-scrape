@@ -32,7 +32,7 @@ export function Hero() {
                     key={logo.alt}
                     src={logo.src}
                     alt={logo.alt}
-                    className="h-8 w-8 object-contain grayscale opacity-60"
+                    className="h-8 w-8 object-contain"
                   />
                 ))}
               </div>
