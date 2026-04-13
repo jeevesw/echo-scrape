@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { TeamSection } from "@/components/services/TeamSection";
+import { getTeamForService } from "@/data/teamData";
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { ServiceHero } from "@/components/services/ServiceHero";
@@ -355,7 +356,7 @@ const PaidAdvertisingPage = () => {
       </section>
 
       {/* Meet the Team */}
-      <TeamSection serviceName="Paid Advertising" />
+      <TeamSection serviceName="Paid Advertising" memberNames={getTeamForService("paid-advertising")} />
 
       {/* 11 — FAQ */}
       <section className="py-16 bg-muted">

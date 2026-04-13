@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { TeamSection } from "@/components/services/TeamSection";
+import { getTeamForService } from "@/data/teamData";
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { ServiceSchema, FAQSchema } from "@/components/seo/SchemaMarkup";
@@ -163,7 +164,7 @@ const TikTokProductionPage = () => {
       </section>
 
       {/* Meet the Team */}
-      <TeamSection serviceName="Video Production" />
+      <TeamSection serviceName="Video Production" memberNames={getTeamForService("tiktok-production")} />
 
       {/* FAQs */}
       <section className="py-16 bg-muted">

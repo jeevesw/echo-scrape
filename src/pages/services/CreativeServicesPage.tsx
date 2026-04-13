@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { TeamSection } from "@/components/services/TeamSection";
+import { getTeamForService } from "@/data/teamData";
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { ServiceSchema } from "@/components/seo/SchemaMarkup";
@@ -226,7 +227,7 @@ const CreativeServicesPage = () => {
       </section>
 
       {/* Meet the Team */}
-      <TeamSection serviceName="Creative Services" />
+      <TeamSection serviceName="Creative Services" memberNames={getTeamForService("creative-services")} />
 
       {/* FAQs */}
       <section className="py-16 bg-muted">

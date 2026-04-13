@@ -16,6 +16,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { TeamSection } from "@/components/services/TeamSection";
+import { getTeamForService } from "@/data/teamData";
 import { ClientLogoCarousel } from "@/components/home/ClientLogoCarousel";
 import heroImage from "@/assets/services/social-media-management.jpg";
 
@@ -131,7 +132,7 @@ const SocialMediaManagementPage = () => {
       </section>
 
       {/* Meet the Team */}
-      <TeamSection serviceName="Social Media Management" />
+      <TeamSection serviceName="Social Media Management" memberNames={getTeamForService("social-media-management")} />
 
       {/* FAQs */}
       <section className="py-16 bg-muted">

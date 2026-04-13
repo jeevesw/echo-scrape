@@ -11,27 +11,31 @@ interface Author {
 
 interface TeamSectionProps {
   serviceName: string;
+  /** If provided, only show authors whose name starts with one of these strings (in this order). */
+  memberNames?: string[];
 }
 
-export function TeamSection({ serviceName }: TeamSectionProps) {
+export function TeamSection({ serviceName, memberNames }: TeamSectionProps) {
   const [authors, setAuthors] = useState<Author[]>([]);
 
   useEffect(() => {
-    const nameOrder = ["Kitty", "Dani", "Lily", "Ashley", "Jeeves"];
     supabase
       .from("authors")
       .select("id, name, role, avatar_url")
       .then(({ data }) => {
         if (data) {
-          const sorted = [...data].sort((a, b) => {
-            const aIdx = nameOrder.findIndex(n => a.name.startsWith(n));
-            const bIdx = nameOrder.findIndex(n => b.name.startsWith(n));
-            return (aIdx === -1 ? 99 : aIdx) - (bIdx === -1 ? 99 : bIdx);
-          });
+          const order = memberNames ?? ["Kitty", "Dani", "Lily", "Ashley", "Jeeves"];
+          const sorted = [...data]
+            .filter((a) => order.some((n) => a.name.startsWith(n)))
+            .sort((a, b) => {
+              const aIdx = order.findIndex((n) => a.name.startsWith(n));
+              const bIdx = order.findIndex((n) => b.name.startsWith(n));
+              return (aIdx === -1 ? 99 : aIdx) - (bIdx === -1 ? 99 : bIdx);
+            });
           setAuthors(sorted);
         }
       });
-  }, []);
+  }, [memberNames]);
 
   if (authors.length === 0) return null;
 
