@@ -19,8 +19,8 @@ const campaigns = [
   },
   {
     category: "Google, Meta & YouTube Ads",
-    title: "How We Grew Brand Demand and Footfall for Paris Baguette",
-    image: "/placeholder.svg",
+    title: "Growing Brand Demand and Footfall for Paris Baguette",
+    image: "/images/case-studies/paris-baguette-hero.jpg",
     href: "/case-studies/paris-baguette",
   },
   // TODO: Replace Brighton Fringe with Paris Baguette when assets are available

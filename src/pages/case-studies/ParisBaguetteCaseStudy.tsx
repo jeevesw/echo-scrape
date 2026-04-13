@@ -23,10 +23,23 @@ const ParisBaguetteCaseStudy = () => {
           content="We drove an 83% increase in branded searches and 60% uplift in footfall conversions for Paris Baguette's Canary Wharf and Westfield London locations through hyperlocal YouTube, Google, and Meta campaigns."
         />
         <link rel="canonical" href="https://trapezemedia.co.uk/case-studies/paris-baguette" />
+        <meta property="og:image" content="/images/case-studies/paris-baguette-hero.jpg" />
+        <meta property="og:title" content="Growing Brand Demand and Footfall for Paris Baguette | Trapeze Media" />
+        <meta property="og:description" content="We drove an 83% increase in branded searches and 60% uplift in footfall conversions for Paris Baguette's Canary Wharf and Westfield London locations through hyperlocal YouTube, Google, and Meta campaigns." />
       </Helmet>
 
       {/* Hero Section */}
       <section className="relative min-h-[50vh] max-h-[75vh] flex items-center justify-center overflow-hidden bg-foreground">
+        {/* Background image with overlay */}
+        <div className="absolute inset-0">
+          <img
+            src="/images/case-studies/paris-baguette-hero.jpg"
+            alt="Paris Baguette cakes and coffee"
+            className="w-full h-full object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-foreground/50 via-foreground/70 to-foreground" />
+        </div>
+
         <div className="container-content mx-auto px-4 relative z-10 text-center">
           <ScrollReveal animation="up">
             <span className="heading-display text-white/60 text-lg md:text-xl uppercase tracking-wider mb-4 block">
