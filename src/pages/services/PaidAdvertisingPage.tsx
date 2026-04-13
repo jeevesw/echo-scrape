@@ -162,6 +162,9 @@ const PaidAdvertisingPage = () => {
         ]}
       />
 
+      {/* TRACKING CALLOUT */}
+      <TrackingCallout />
+
       {/* 2 — INTRO PULL QUOTE + CLIENT LOGO CAROUSEL */}
       <IntroLogos />
 
