@@ -30,12 +30,12 @@ const service = servicesData["tiktok-production"];
 const baseUrl = "https://trapezemedia.co.uk";
 
 const tiktokServices = [
-  { icon: Lightbulb, title: "Pre-Production", description: "Strategy, scripting, storyboarding, and creative direction for every piece of TikTok content." },
+  { icon: Lightbulb, title: "Pre-Production", description: "Strategy, scripting, storyboarding, and creative direction for every piece of short-form and long-form piece of content." },
   { icon: Video, title: "Production", description: "On-location filming with professional equipment, capturing authentic, platform-native content." },
-  { icon: Film, title: "Post-Production", description: "Editing, captioning, sound design, and thumbnail creation optimised for TikTok's algorithm." },
+  { icon: Film, title: "Post-Production", description: "Editing, captioning, sound design, and thumbnail creation optimised for social algorithms." },
   { icon: Settings, title: "Account Management", description: "Daily posting, community engagement, comment responses, and trend monitoring." },
   { icon: MessageCircle, title: "Engagement", description: "Building loyal communities through authentic interaction and creator collaborations." },
-  { icon: Megaphone, title: "Ads & Influencers", description: "Paid amplification via Spark Ads, In-Feed, and managed influencer partnerships." },
+  { icon: Megaphone, title: "Ads & Influencers", description: "Paid amplification via cross-platform video ads and managed influencer partnerships." },
 ];
 
 const workflowSteps = [
@@ -84,7 +84,7 @@ const TikTokProductionPage = () => {
       {/* 6-service icon grid */}
       <section className="bg-muted py-16 lg:py-24">
         <div className="container mx-auto px-4">
-          <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-12">Our TikTok Services</h2>
+          <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-12">OUR VIDEO PRODUCTION SERVICES</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {tiktokServices.map((svc) => (
               <Card key={svc.title} className="border-0 bg-background">
@@ -131,7 +131,7 @@ const TikTokProductionPage = () => {
             <ScrollReveal animation="right">
               <div className="space-y-6">
                 <h3 className="heading-display text-2xl md:text-3xl text-foreground">
-                  Phase 1: Establishing Local Visibility
+                  PARIS BAGUETTE
                 </h3>
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   From February to June 2025, we launched hyperlocal ad campaigns across Google and Meta using image-based creative to build initial awareness.
