@@ -49,6 +49,7 @@ const Index = () => {
           "https://www.linkedin.com/company/trapeze-media",
         ]}
       />
+      <FAQSchema faqs={faqs} />
       <Hero />
       <ClientLogoCarousel />
       <Services />
