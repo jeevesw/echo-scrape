@@ -8,7 +8,7 @@ const campaigns = [
   {
     category: "Google & Meta Ads",
     title: "Driving footfall and orders for YO! Sushi",
-    image: "/images/yo-sushi-hero.jpg",
+    image: "/images/case-studies/yo-sushi-hero.jpg",
     href: "/case-studies/yo-sushi",
   },
   {
