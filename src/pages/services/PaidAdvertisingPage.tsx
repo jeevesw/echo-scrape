@@ -172,7 +172,33 @@ const PaidAdvertisingPage = () => {
       {/* 3 — HOW WE DO IT (services grid) */}
       <HyperlocalMethodology />
 
-      {/* 4 — MYCELIA FULL-WIDTH CALLOUT */}
+      {/* HOW WE STAY AHEAD */}
+      <section className="bg-background py-16 lg:py-24">
+        <div className="container mx-auto px-4">
+          <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-12">
+            How We Stay Ahead
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <Card className="border-0 bg-muted">
+              <CardContent className="p-8">
+                <h3 className="heading-display text-xl text-foreground mb-4">Weather-Triggered Campaign Optimisation</h3>
+                <p className="text-muted-foreground text-base leading-relaxed">
+                  We use live weather data to adjust campaign bids and creative in real time — showing different ads on cold days vs sunny ones. Less wasted spend. More relevant messages.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="border-0 bg-muted">
+              <CardContent className="p-8">
+                <h3 className="heading-display text-xl text-foreground mb-4">Client Reporting Portals</h3>
+                <p className="text-muted-foreground text-base leading-relaxed">
+                  We build custom reporting dashboards for clients who need full visibility into campaign performance — not just monthly PDFs, but live portals they can check any time.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       <MyceliaCallout />
 
       {/* 5 — MAXIMILES INLINE CASE SNIPPET */}
