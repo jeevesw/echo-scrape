@@ -9,6 +9,7 @@ import { ServiceHero } from "@/components/services/ServiceHero";
 import { ClientLogoStrip } from "@/components/services/ClientLogoStrip";
 import { InlineCaseStudy } from "@/components/services/InlineCaseStudy";
 import michaelEmmettBg from "@/assets/services/michael-emmett-tiktok.webp";
+import videoProductionHero from "@/assets/services/video-production.jpg";
 import { TestimonialBlock } from "@/components/services/TestimonialBlock";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -65,7 +66,8 @@ const TikTokProductionPage = () => {
 
       {/* Hero */}
       <ServiceHero
-        variant="brand-pink"
+        variant="dark"
+        backgroundImage={videoProductionHero}
         headline={service.heroHeadline}
         subheadline={service.heroSubheadline}
         primaryCta={{ label: "Schedule a Call", href: "https://calendly.com/trapezemedia/discovery-call", external: true }}
