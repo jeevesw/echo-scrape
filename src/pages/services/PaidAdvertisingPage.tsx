@@ -144,12 +144,12 @@ const PaidAdvertisingPage = () => {
           rel="canonical"
           href="https://trapezemedia.co.uk/services/paid-advertising"
         />
-        <script type="application/ld+json">
-          {JSON.stringify(serviceSchema)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(faqSchema)}
-        </script>
+        <ServiceSchema
+          name="Paid Advertising"
+          description="Paid social, paid search and TikTok ad campaigns for hospitality, restaurant and lifestyle brands."
+          url={`${baseUrl}/services/paid-advertising`}
+        />
+        <FAQSchema faqs={service.faqs} />
       </Helmet>
 
       {/* 1 — HERO */}
@@ -343,7 +343,7 @@ const PaidAdvertisingPage = () => {
           <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-12">Frequently Asked Questions</h2>
           <div className="max-w-3xl mx-auto">
             <Accordion type="single" collapsible className="space-y-4">
-              {faqs.map((faq, index) => (
+              {service.faqs.map((faq, index) => (
                 <AccordionItem
                   key={index}
                   value={`faq-${index}`}
