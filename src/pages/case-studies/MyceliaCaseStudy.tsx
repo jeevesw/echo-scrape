@@ -98,6 +98,9 @@ const MyceliaCaseStudy = () => {
             </ScrollReveal>
           </div>
         </div>
+      </section>
+
+      {/* Intro */}
       <section className="py-12 bg-background">
         <div className="container-content mx-auto px-4">
           <ScrollReveal>
