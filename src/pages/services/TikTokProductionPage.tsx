@@ -71,7 +71,7 @@ const TikTokProductionPage = () => {
         secondaryCta={{ label: "Contact Us", href: "/contact" }}
         breadcrumbItems={[
           { label: "Services", href: "/services" },
-          { label: "TikTok Production", href: "/services/tiktok-production" },
+          { label: "Video Production", href: "/services/tiktok-production" },
         ]}
       />
 
@@ -163,7 +163,7 @@ const TikTokProductionPage = () => {
       </section>
 
       {/* Meet the Team */}
-      <TeamSection serviceName="TikTok Production" />
+      <TeamSection serviceName="Video Production" />
 
       {/* FAQs */}
       <section className="py-16 bg-muted">

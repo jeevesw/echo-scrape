@@ -318,10 +318,10 @@ export const servicesData: Record<string, ServiceData> = {
   "tiktok-production": {
     slug: "tiktok-production",
     title: "Video Production",
-    metaTitle: "TikTok Marketing: Production, Ads & Influencers | Trapeze Media",
+    metaTitle: "Video Production for Social & Advertising | Trapeze Media",
     metaDescription: "Your brand, on the fastest-growing social platform in history. TikTok content creation, ads management, and influencer outreach for UK hospitality and events.",
-    heroHeadline: "TikTok Marketing That Drives Discovery & Engagement",
-    heroSubheadline: "Content creation, ads management, and influencer partnerships on the platform where trends are born.",
+    heroHeadline: "Video Production That Gets Seen and Shared",
+    heroSubheadline: "From TikToks to full brand films — we shoot, edit, and deliver content that performs on every platform.",
     icon: Video,
     
     summary: "TikTok has become essential for reaching younger audiences and driving discovery. We produce native-feeling content, manage ad campaigns, and connect brands with creators—all designed to build communities and convert views into visits.",
