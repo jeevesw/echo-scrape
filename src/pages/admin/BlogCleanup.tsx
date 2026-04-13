@@ -516,6 +516,7 @@ export default function BlogCleanup() {
                 <ToggleRow checked={fixImages} onChange={setFixImages} label="Migrate Squarespace CDN images" desc="Download images from squarespace-cdn.com and re-host in your storage." />
                 <ToggleRow checked={fixAlt} onChange={setFixAlt} label="Flag images missing alt text" desc="Surface image blocks with empty alt text for human review." />
                 <ToggleRow checked={fixNewsletter} onChange={setFixNewsletter} label="Strip leaked newsletter forms" desc="Remove Squarespace newsletter form HTML that leaked into text blocks." />
+                <ToggleRow checked={fixSqspStyles} onChange={setFixSqspStyles} label="Strip Squarespace CSS styles" desc="Remove #block-yui style blocks and --tweak- CSS custom properties embedded in content." />
               </div>
 
               <Button onClick={handlePreview} disabled={loading} className="w-full">
