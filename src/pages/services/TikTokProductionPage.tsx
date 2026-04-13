@@ -66,7 +66,7 @@ const TikTokProductionPage = () => {
 
       {/* Hero */}
       <ServiceHero
-        variant="dark"
+        variant="brand-pink"
         backgroundImage={videoProductionHero}
         headline={service.heroHeadline}
         subheadline={service.heroSubheadline}
