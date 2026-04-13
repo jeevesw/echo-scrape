@@ -225,6 +225,7 @@ export const servicesData: Record<string, ServiceData> = {
       { title: "Conversion Tracking", description: "Full attribution from click to booking. We track calls, form fills, reservations, and transactions." },
       { title: "Ad Creative & Copy", description: "In-house copywriters and designers produce ads that convert — not just ads that appear." },
       { title: "LHF Ad Compliance", description: "For food and drink brands, we navigate Less Healthy Food ad restrictions to keep campaigns running legally." },
+      { title: "YouTube Advertising", description: "Pre-roll, bumper, and skippable ads on YouTube — the world's second-largest search engine. We produce or adapt creative, set up targeting, and measure view-through and click performance." },
     ],
     industries: [
       "Restaurants & QSR",
