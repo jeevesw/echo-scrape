@@ -8,7 +8,7 @@ export function TrackingCallout() {
       {/* Tiling pattern on top */}
       <div
         className="absolute inset-0"
-        style={{ backgroundImage: `url(${emailPattern})`, backgroundRepeat: "repeat", backgroundSize: "400px" }}
+        style={{ backgroundImage: `url(${emailPattern})`, backgroundRepeat: "repeat", backgroundSize: "400px", mixBlendMode: "soft-light" }}
       />
 
       <div className="container mx-auto px-4 relative z-10">
