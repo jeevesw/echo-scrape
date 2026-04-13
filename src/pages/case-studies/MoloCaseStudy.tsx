@@ -17,7 +17,7 @@ const MoloCaseStudy = () => {
           name="description" 
           content="We helped seafood spot Molo become one of the top vendors at Mercato Mayfair and BOXPARK Wembley with a 40% sales uplift — with basically zero budget." 
         />
-        <link rel="canonical" href="https://trapezemedia.com/case-studies/molo" />
+        <link rel="canonical" href="https://trapezemedia.co.uk/case-studies/molo" />
       </Helmet>
 
       {/* Hero Section - Full bleed with dramatic headline */}

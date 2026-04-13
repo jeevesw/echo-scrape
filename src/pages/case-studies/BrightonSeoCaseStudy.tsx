@@ -63,7 +63,7 @@ const BrightonSeoCaseStudy = () => {
           name="description"
           content="We planned, shot, and edited 100 short-form videos for brightonSEO — built for TikTok, Instagram Reels & YouTube Shorts."
         />
-        <link rel="canonical" href="https://trapezemedia.com/case-studies/brightonseo" />
+        <link rel="canonical" href="https://trapezemedia.co.uk/case-studies/brightonseo" />
       </Helmet>
 
       {/* Hero Section */}

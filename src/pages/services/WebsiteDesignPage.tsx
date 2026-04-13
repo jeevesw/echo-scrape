@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/accordion";
 
 const service = servicesData["website-design"];
-const baseUrl = "https://trapezemedia.com";
+const baseUrl = "https://trapezemedia.co.uk";
 
 const websiteFeatures = [
   { icon: Smartphone, title: "Fully Responsive", description: "Every site offers an optimised experience on phones, tablets, and desktops—responsive to all screen sizes." },

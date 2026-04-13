@@ -62,7 +62,7 @@ const Services = () => {
           name="description" 
           content="Social media management, paid advertising, email marketing, and creative services for UK hospitality, tourism, and events brands. Hyperlocal marketing expertise." 
         />
-        <link rel="canonical" href="https://trapezemedia.com/services" />
+        <link rel="canonical" href="https://trapezemedia.co.uk/services" />
       </Helmet>
 
       <section className="py-16 lg:py-20 bg-background">

@@ -17,7 +17,7 @@ const YoSushiCaseStudy = () => {
           name="description" 
           content="A TikTok-led campaign that drove 1M+ views in week one, a 60% increase in restaurant bookings, and a 28% uplift in click-and-collect orders." 
         />
-        <link rel="canonical" href="https://trapezemedia.com/case-studies/yo-sushi" />
+        <link rel="canonical" href="https://trapezemedia.co.uk/case-studies/yo-sushi" />
       </Helmet>
 
       {/* Hero Section - Full bleed with dramatic headline */}

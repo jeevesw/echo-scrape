@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/accordion";
 
 const service = servicesData["paid-search"];
-const baseUrl = "https://trapezemedia.com";
+const baseUrl = "https://trapezemedia.co.uk";
 
 const serviceCards = [
   {

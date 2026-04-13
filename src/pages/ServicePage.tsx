@@ -22,7 +22,7 @@ const ServicePage = () => {
     return <Navigate to="/services" replace />;
   }
 
-  const baseUrl = "https://trapezemedia.com";
+  const baseUrl = "https://trapezemedia.co.uk";
 
   return (
     <Layout>

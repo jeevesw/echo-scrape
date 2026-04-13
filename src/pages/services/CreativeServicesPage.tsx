@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/accordion";
 
 const service = servicesData["creative-services"];
-const baseUrl = "https://trapezemedia.com";
+const baseUrl = "https://trapezemedia.co.uk";
 
 const CreativeServicesPage = () => {
   return (
