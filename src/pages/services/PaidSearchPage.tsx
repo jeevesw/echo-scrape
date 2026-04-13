@@ -116,21 +116,52 @@ const PaidSearchPage = () => {
         </div>
       </section>
 
-      {/* 4 — CASE STUDY — Various Eateries */}
-      <InlineCaseStudy
-        variant="dark"
-        label="Google Ads · Case Study"
-        clientName="Various Eateries"
-        headline="Driving Restaurant Visits and Bookings"
-        body="Restaurant group Various Eateries — who count Coppa Club, Noci, and Tavolino among their 13 venues — approached us to increase footfall and bookings using Google Ads. These results are across 13 Coppa Club sites in England and Wales."
-        stats={[
-          { value: "85%", label: "Increase · Table bookings through Google Ads" },
-          { value: "13:1", label: "ROAS · Average £13 made for every £1 spent" },
-          { value: "68%", label: "Lower CPA · Cost per click to book" },
-        ]}
-        ctaLabel="Read the Full Case Study"
-        ctaHref="/case-studies/various-eateries"
-      />
+      {/* 4 — CASE STUDY — Coppa Club (parallax hero style) */}
+      <section className="relative overflow-hidden min-h-[420px]">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-fixed"
+          style={{ backgroundImage: `url(https://images.squarespace-cdn.com/content/v1/5edc691de451f275e3b4ae86/99bb98a7-88f7-4295-87df-ead4bb1b64da/Various+Eateries.jpg)` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/20" />
+
+        <div className="container-content mx-auto px-4 relative z-10 py-20">
+          <ScrollReveal>
+            <p className="text-xs tracking-widest uppercase text-white/60 mb-2">Google Ads · Case Study</p>
+            <h2 className="heading-display text-4xl md:text-5xl text-white mb-4">
+              Driving Restaurant Visits and Bookings
+            </h2>
+            <p className="text-white/70 text-base leading-relaxed max-w-2xl mb-8">
+              Restaurant group Various Eateries — who count Coppa Club, Noci, and Tavolino among their 13 venues — approached us to increase footfall and bookings using Google Ads. These results are across 13 Coppa Club sites in England and Wales.
+            </p>
+          </ScrollReveal>
+
+          <ScrollReveal delay={100}>
+            <div className="flex flex-wrap gap-4 mb-8">
+              {[
+                { number: "85%", label: "Increase · Table bookings" },
+                { number: "13:1", label: "ROAS · £13 per £1 spent" },
+                { number: "68%", label: "Lower CPA · Cost per click" },
+              ].map((stat) => (
+                <div
+                  key={stat.label}
+                  className="bg-white rounded-2xl px-6 py-4 flex flex-col items-center justify-center min-w-[160px]"
+                >
+                  <p className="heading-display text-3xl md:text-4xl text-primary font-bold leading-none">{stat.number}</p>
+                  <p className="text-xs text-foreground uppercase tracking-wide mt-1 text-center font-medium">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal delay={200}>
+            <Button variant="hero" asChild>
+              <Link to="/case-studies/various-eateries">
+                Read the Full Case Study →
+              </Link>
+            </Button>
+          </ScrollReveal>
+        </div>
+      </section>
 
       {/* 5 — TESTIMONIAL */}
       <TestimonialBlock
