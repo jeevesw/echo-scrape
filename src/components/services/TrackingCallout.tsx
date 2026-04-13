@@ -10,7 +10,9 @@ export function TrackingCallout() {
       {/* opacity: 0.12  ← more visible (active) */}
       <div
         className="absolute inset-0 w-full h-full pointer-events-none"
-        style={{ backgroundImage: `url(${emailPattern})`, backgroundRepeat: "repeat", backgroundSize: "120px 120px", opacity: 0.10, filter: "invert(1) brightness(2)" }}
+        style={{ backgroundImage: `url(${emailPattern})`, backgroundRepeat: "repeat", backgroundSize: "120px 120px", filter: "invert(1)", opacity: 0.10 }}
+        {/* opacity: 0.07  ← subtler */}
+        {/* opacity: 0.10  ← bolder (active) */}
       />
 
       <div className="container mx-auto px-4 relative z-10">
