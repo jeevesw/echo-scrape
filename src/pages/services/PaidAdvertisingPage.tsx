@@ -167,11 +167,11 @@ const PaidAdvertisingPage = () => {
         ]}
       />
 
-      {/* TRACKING CALLOUT */}
-      <TrackingCallout />
-
       {/* 2 — INTRO PULL QUOTE + CLIENT LOGO CAROUSEL */}
       <IntroLogos />
+
+      {/* TRACKING CALLOUT */}
+      <TrackingCallout />
 
       {/* 3 — HOW WE DO IT (services grid) */}
       <HyperlocalMethodology />
