@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { AnimatedStat } from "@/components/case-study/AnimatedStat";
 import { ScrollReveal } from "@/hooks/use-scroll-reveal";
 import { ArrowLeft, Quote, Check, MapPin, Video } from "lucide-react";
+import ParisBaguetteBrandSearchChart from "@/components/charts/ParisBaguetteBrandSearchChart";
 
 // TODO: replace with Paris Baguette hero image
 // TODO: replace chart placeholder with actual chart component or screenshot once provided
@@ -140,10 +141,7 @@ const ParisBaguetteCaseStudy = () => {
 
           {/* Chart placeholder */}
           <ScrollReveal delay={150}>
-            <div className="w-full aspect-video max-w-2xl mx-auto bg-muted rounded-xl flex flex-col items-center justify-center gap-2 text-muted-foreground text-sm border border-border">
-              <span>📈</span>
-              <span>[Chart placeholder: Paris Baguette Canary Wharf branded search volume, Feb 2025–Feb 2026]</span>
-            </div>
+            <ParisBaguetteBrandSearchChart />
           </ScrollReveal>
         </div>
       </section>
