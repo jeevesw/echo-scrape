@@ -32,7 +32,7 @@ const MoloCaseStudy = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-primary/50 via-primary/70 to-primary" />
         </div>
 
-        <div className="container-content mx-auto px-4 relative z-20 pt-6">
+        <div className="absolute top-0 left-0 right-0 container-content mx-auto px-4 z-20 pt-6">
           <BreadcrumbNav
             items={[
               { label: "Case Studies", href: "/case-studies" },
