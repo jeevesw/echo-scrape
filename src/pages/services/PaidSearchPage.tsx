@@ -131,7 +131,7 @@ const PaidSearchPage = () => {
             <h2 className="heading-display text-4xl md:text-5xl text-white mb-4">
               Driving Restaurant Visits and Bookings
             </h2>
-            <p className="text-white/70 text-base leading-relaxed max-w-2xl mb-8">
+            <p className="text-white/70 text-base leading-relaxed max-w-2xl mb-8" style={{ textShadow: "0 1px 8px rgba(0,0,0,0.5)" }}>
               Restaurant group Various Eateries — who count Coppa Club, Noci, and Tavolino among their 13 venues — approached us to increase footfall and bookings using Google Ads. These results are across 13 Coppa Club sites in England and Wales.
             </p>
           </ScrollReveal>
