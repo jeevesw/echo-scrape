@@ -185,6 +185,7 @@ const PaidAdvertisingPage = () => {
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             <Card className="border-0 bg-muted">
               <CardContent className="p-8">
+                <CloudRain className="h-8 w-8 text-primary mb-4" />
                 <h3 className="heading-display text-xl text-foreground mb-4">Weather-Triggered Campaign Optimisation</h3>
                 <p className="text-muted-foreground text-base leading-relaxed">
                   We use live weather data to adjust campaign bids and creative in real time — showing different ads on cold days vs sunny ones. Less wasted spend. More relevant messages.
