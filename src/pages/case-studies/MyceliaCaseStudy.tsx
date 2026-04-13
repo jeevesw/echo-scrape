@@ -299,65 +299,6 @@ const MyceliaCaseStudy = () => {
         </div>
       </section>
 
-      {/* Results */}
-      <section className="py-14 bg-background relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
-
-        <div className="container-content mx-auto px-4 relative z-10">
-          <ScrollReveal>
-            <h2 className="heading-display text-4xl md:text-5xl text-center text-foreground mb-6">
-              Results
-            </h2>
-            <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto leading-relaxed mb-4">
-              These strategies and campaigns resulted in Mycelia surpassing its £9,000 target within the first 50 minutes of the Kickstarter launching, <span className="text-primary font-semibold">ultimately raising an impressive £545,804.</span>
-            </p>
-            <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto leading-relaxed mb-10">
-              The success of this project highlights the importance of meticulous campaign alignment, the synergy between physical and digital activations, and the necessity of clear goals, KPIs, and CPLs.
-            </p>
-          </ScrollReveal>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <ScrollReveal delay={0}>
-              <div className="text-center space-y-2">
-                <Users className="w-8 h-8 text-primary mx-auto mb-2" />
-                <AnimatedStat
-                  value={10492}
-                  label="backers"
-                  delay={0}
-                  formatValue={(v) => v.toLocaleString()}
-                  size="compact"
-                />
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal delay={150}>
-              <div className="text-center space-y-2">
-                <Clock className="w-8 h-8 text-primary mx-auto mb-2" />
-                <div className="heading-display text-4xl md:text-5xl text-primary">
-                  50 mins
-                </div>
-                <p className="text-foreground text-base md:text-lg mt-3 font-medium">to hit funding target</p>
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal delay={300}>
-              <div className="text-center space-y-2">
-                <PoundSterling className="w-8 h-8 text-primary mx-auto mb-2" />
-                <AnimatedStat
-                  value={545804}
-                  prefix="£"
-                  label="raised"
-                  delay={300}
-                  formatValue={(v) => v.toLocaleString()}
-                  size="compact"
-                />
-              </div>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
-
       {/* Testimonial */}
       <section className="py-14 bg-primary text-primary-foreground relative overflow-hidden">
         <div className="absolute top-12 left-12 opacity-10 rotate-180">
