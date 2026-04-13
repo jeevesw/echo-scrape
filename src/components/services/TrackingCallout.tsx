@@ -1,15 +1,15 @@
-import emailPattern from "@/assets/email-pattern.png";
+import emailPattern from "@/assets/email-pattern-2.png";
 
 export function TrackingCallout() {
   return (
     <section className="relative py-14 lg:py-16 overflow-hidden">
-      {/* Tiling pattern base */}
+      {/* Tiling pattern background */}
       <div
-        className="absolute inset-0 w-full h-full"
-        style={{ backgroundImage: `url(${emailPattern})`, backgroundRepeat: "repeat", backgroundSize: "120px 120px" }}
+        className="absolute inset-0"
+        style={{ backgroundImage: `url(${emailPattern})`, backgroundRepeat: "repeat", backgroundSize: "400px" }}
       />
-      {/* Pink overlay on top of pattern */}
-      <div className="absolute inset-0 bg-primary/90" />
+      {/* Pink overlay */}
+      <div className="absolute inset-0 bg-primary/85" />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
