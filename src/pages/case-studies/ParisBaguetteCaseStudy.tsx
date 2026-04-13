@@ -85,7 +85,6 @@ const ParisBaguetteCaseStudy = () => {
 
         <div className="container-content mx-auto px-4 relative z-10 py-20">
           <ScrollReveal>
-            <p className="text-xs tracking-widest uppercase text-white/60 mb-2">The Results</p>
             <h2 className="heading-display text-4xl md:text-5xl text-white mb-8">
               What We Delivered
             </h2>
@@ -104,7 +103,7 @@ const ParisBaguetteCaseStudy = () => {
                   className="bg-white rounded-2xl px-6 py-4 flex flex-col items-center justify-center min-w-[160px]"
                 >
                   <p className="heading-display text-3xl md:text-4xl text-primary font-bold leading-none">{stat.number}</p>
-                  <p className="text-xs text-foreground/70 uppercase tracking-wide mt-1 text-center">{stat.label}</p>
+                  <p className="text-xs text-foreground uppercase tracking-wide mt-1 text-center font-medium">{stat.label}</p>
                 </div>
               ))}
             </div>
