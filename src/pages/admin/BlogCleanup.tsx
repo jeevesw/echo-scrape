@@ -284,6 +284,7 @@ interface PreviewRow {
   emptyAltCount: number;
   hasNewsletter: boolean;
   newsletterDiffs: NewsletterDiff[];
+  sqspStyleCount: number;
 }
 
 interface LogEntry {
@@ -313,6 +314,7 @@ export default function BlogCleanup() {
   const [fixImages, setFixImages] = useState(true);
   const [fixAlt, setFixAlt] = useState(true);
   const [fixNewsletter, setFixNewsletter] = useState(true);
+  const [fixSqspStyles, setFixSqspStyles] = useState(true);
 
   const handlePreview = useCallback(async () => {
     setLoading(true);
@@ -345,9 +347,10 @@ export default function BlogCleanup() {
         emptyAltCount: countEmptyAltImages(blocks),
         hasNewsletter: hasNewsletterForm(blocks),
         newsletterDiffs: previewNewsletterStrip(blocks),
+        sqspStyleCount: countSquarespaceStyles(blocks),
       };
 
-      if (row.leakedJsonCount || row.hasLongIntro || row.internalLinkCount || row.sqImageCount || row.emptyAltCount || row.hasNewsletter) {
+      if (row.leakedJsonCount || row.hasLongIntro || row.internalLinkCount || row.sqImageCount || row.emptyAltCount || row.hasNewsletter || row.sqspStyleCount) {
         rows.push(row);
       }
     }
@@ -422,12 +425,19 @@ export default function BlogCleanup() {
           details.push('Stripped newsletter form');
         }
 
+        // Fix 7 — Squarespace CSS styles
+        if (fixSqspStyles && row.sqspStyleCount > 0) {
+          blocks = fixSquarespaceStyles(blocks);
+          details.push(`Stripped ${row.sqspStyleCount} Squarespace CSS blocks`);
+        }
+
         // Determine if we need to update
         const needsUpdate = (fixLeaked && row.leakedJsonCount > 0) ||
           (fixIntro && row.hasLongIntro) ||
           (fixLinks && row.internalLinkCount > 0) ||
           (fixImages && row.sqImageCount > 0) ||
-          (fixNewsletter && row.hasNewsletter);
+          (fixNewsletter && row.hasNewsletter) ||
+          (fixSqspStyles && row.sqspStyleCount > 0);
 
         if (needsUpdate) {
           const { error: updateError } = await supabase
@@ -459,7 +469,7 @@ export default function BlogCleanup() {
     }
 
     setStage('done');
-  }, [previewRows, fixLeaked, fixIntro, fixLinks, fixImages, fixAlt, fixNewsletter]);
+  }, [previewRows, fixLeaked, fixIntro, fixLinks, fixImages, fixAlt, fixNewsletter, fixSqspStyles]);
 
   const successCount = logs.filter(l => l.success).length;
   const errorCount = logs.filter(l => !l.success).length;
