@@ -93,8 +93,11 @@ const PaidSearchPage = () => {
         </div>
       </section>
 
+      {/* TRACKING CALLOUT */}
+      <TrackingCallout />
+
       {/* 3 — OUR PPC SERVICES (card grid matching paid ads page) */}
-      <section className="bg-muted pt-6 pb-16 lg:pb-24">
+      <section className="bg-muted pt-12 pb-16 lg:pt-16 lg:pb-24">
         <div className="container mx-auto px-4">
           <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-12">
             Our Paid Search Services
@@ -112,9 +115,6 @@ const PaidSearchPage = () => {
           </div>
         </div>
       </section>
-
-      {/* TRACKING CALLOUT */}
-      <TrackingCallout />
 
       {/* 4 — CASE STUDY — Various Eateries */}
       <InlineCaseStudy
