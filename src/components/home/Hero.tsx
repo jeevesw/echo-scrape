@@ -25,7 +25,7 @@ export function Hero() {
             </h1>
 
             <div className="mt-4 mb-6">
-              <p className="text-sm text-muted-foreground mb-3">We run campaigns on</p>
+              <p className="text-sm text-muted-foreground mb-3">Delivering campaigns via:</p>
               <div className="flex flex-wrap items-center gap-6">
                 {platformLogos.map((logo) => (
                   <img
