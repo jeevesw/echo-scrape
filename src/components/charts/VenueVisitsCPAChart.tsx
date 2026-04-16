@@ -27,31 +27,26 @@ interface VenueVisitsCPAChartProps {
 }
 
 const defaultData: DataPoint[] = [
-  { month: "March 2023", venue_visits: 1200, cpa: 45 },
-  { month: "April 2023", venue_visits: 280, cpa: 78 },
-  { month: "May 2023", venue_visits: 350, cpa: 92 },
-  { month: "June 2023", venue_visits: 520, cpa: 68 },
-  { month: "July 2023", venue_visits: 180, cpa: 42 },
-  { month: "August 2023", venue_visits: 420, cpa: 115 },
-  { month: "September 2023", venue_visits: 280, cpa: 138 },
-  { month: "October 2023", venue_visits: 240, cpa: 125 },
-  { month: "November 2023", venue_visits: 180, cpa: 142 },
-  { month: "December 2023", venue_visits: 120, cpa: 118 },
-  { month: "January 2024", venue_visits: 95, cpa: 98 },
-  { month: "February 2024", venue_visits: 110, cpa: 112 },
-  { month: "March 2024", venue_visits: 85, cpa: 105 },
-  { month: "April 2024", venue_visits: 75, cpa: 118 },
-  { month: "May 2024", venue_visits: 65, cpa: 125 },
-  { month: "June 2024", venue_visits: 55, cpa: 135 },
+  { month: "", venue_visits: 1200, cpa: 45 },
+  { month: "", venue_visits: 280, cpa: 78 },
+  { month: "", venue_visits: 350, cpa: 92 },
+  { month: "", venue_visits: 520, cpa: 68 },
+  { month: "", venue_visits: 180, cpa: 42 },
+  { month: "", venue_visits: 420, cpa: 115 },
+  { month: "", venue_visits: 280, cpa: 138 },
+  { month: "", venue_visits: 240, cpa: 125 },
+  { month: "", venue_visits: 180, cpa: 142 },
+  { month: "", venue_visits: 120, cpa: 118 },
+  { month: "", venue_visits: 95, cpa: 98 },
+  { month: "", venue_visits: 110, cpa: 112 },
+  { month: "", venue_visits: 85, cpa: 105 },
+  { month: "", venue_visits: 75, cpa: 118 },
+  { month: "", venue_visits: 65, cpa: 125 },
+  { month: "", venue_visits: 55, cpa: 135 },
 ];
 
-// Editorial callout labels positioned at key data points
-const editorialLabels = [
-  { dataIndex: 1, label: "Learning phase", position: "top" as const },
-  { dataIndex: 5, label: "Scaling begins", position: "top" as const },
-  { dataIndex: 8, label: "Peak performance", position: "top" as const },
-  { dataIndex: 13, label: "Sustained efficiency", position: "top" as const },
-];
+// No editorial callout labels — chart speaks for itself
+const editorialLabels: { dataIndex: number; label: string; position: "top" }[] = [];
 
 interface CustomTooltipProps {
   active?: boolean;
@@ -182,8 +177,8 @@ export function VenueVisitsCPAChart({
         >
           <span className="text-foreground">Cost-Per-Acquisition</span>
           <div 
-            className="w-4 h-4 rounded-sm border-2 bg-muted/60"
-            style={{ borderColor: "hsl(0, 0%, 70%)" }}
+            className="w-4 h-4 rounded-sm border-2"
+            style={{ borderColor: "hsl(0, 0%, 75%)", backgroundColor: "hsl(0, 0%, 92%)" }}
           />
         </button>
       </div>
