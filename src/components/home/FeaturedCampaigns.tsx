@@ -12,10 +12,10 @@ const campaigns = [
     href: "/case-studies/yo-sushi",
   },
   {
-    category: "Crowdfunder Ads",
-    title: "Raising half a million for board game Mycelia",
-    image: "https://images.squarespace-cdn.com/content/v1/5edc691de451f275e3b4ae86/1711555599572-XAE74WRQ55SCVSPWVT7I/Mycelia-Case-Study-Trapeze-Media.jpg",
-    href: "/case-studies/mycelia",
+    category: "Lead Gen, Paid Social",
+    title: "Driving pre-launch buzz and leads for Patty & Bun",
+    image: "/images/case-studies/patty-and-bun-hero.jpg",
+    href: "/case-studies/patty-and-bun",
   },
   {
     category: "Google, Meta & YouTube Ads",
