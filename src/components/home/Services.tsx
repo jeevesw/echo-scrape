@@ -52,7 +52,7 @@ export function Services() {
             <Link to="/services/creative-services" className="text-primary hover:underline font-medium">web design and optimisation</Link>.
           </p>
           <p className="text-center text-muted-foreground max-w-3xl mx-auto mb-12">
-            Our successes include campaigns in the <span className="text-foreground font-medium">hospitality</span>, <span className="text-foreground font-medium">tourism</span>, and <span className="text-foreground font-medium">events</span> sectors, with renowned food, drink, and experience brands as well as healthcare and private medical services, and crowdfunding.
+            Our successes include campaigns in the <span className="text-foreground font-medium">hospitality</span>, <span className="text-foreground font-medium">tourism</span>, and <span className="text-foreground font-medium">events</span> sectors, with renowned food, drink, and experience brands as well as <span className="text-foreground font-medium">healthcare and private medical services</span>, and <span className="text-foreground font-medium">crowdfunding</span>.
           </p>
         </ScrollReveal>
 
