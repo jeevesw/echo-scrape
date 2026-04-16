@@ -65,7 +65,10 @@ const ParisBaguetteCaseStudy = () => {
       <section className="py-16 bg-background">
         <div className="container-content mx-auto px-4">
           <ScrollReveal>
-            <div className="max-w-3xl mx-auto mt-8">
+            <div className="max-w-3xl mx-auto mt-8 space-y-6">
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Paris Baguette is a global bakery-café chain with over 3,700 locations in South Korea and more than 200 in the US — and they were just beginning their franchise journey in the UK. We joined them when they went from four to six sites, at exactly the moment they needed to build real brand recognition in London.
+              </p>
               <p className="text-xl md:text-2xl text-foreground leading-relaxed">
                 We worked with Paris Baguette to grow brand awareness and drive in-store visits for their Canary Wharf franchise location, while also supporting the launch of their new Westfield London branch.{" "}
                 <span className="text-primary font-semibold">The brief: build a brand that London recognises, and turn that recognition into footfall.</span>
@@ -311,7 +314,7 @@ const ParisBaguetteCaseStudy = () => {
         <div className="container-content mx-auto px-4 relative z-10">
           <ScrollReveal animation="scale">
             <blockquote className="text-xl md:text-2xl lg:text-3xl text-center max-w-4xl mx-auto leading-relaxed italic">
-              "I want to sincerely thank you and your team for the excellent work you've done. Your efforts came at a critical time and directly contributed to boosting our sales. That impact has been invaluable, and I truly appreciate the dedication you've shown."
+              "Trapeze Media's efforts came at a critical time and directly contributed to boosting our sales. The impact has been invaluable."
             </blockquote>
 
             <cite className="block text-center mt-8 text-lg not-italic text-primary-foreground/80">
