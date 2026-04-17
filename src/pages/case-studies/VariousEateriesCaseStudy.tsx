@@ -157,12 +157,12 @@ const VariousEateriesCaseStudy = () => {
             </h2>
           </ScrollReveal>
 
-          <div className="grid xl:grid-cols-4 gap-8 items-start">
-            <ScrollReveal animation="left" className="xl:col-span-3">
+          <div className="grid lg:grid-cols-4 gap-8 items-start">
+            <ScrollReveal animation="left" className="lg:col-span-3">
               <VenueVisitsCPAChart className="w-full min-h-[450px]" />
             </ScrollReveal>
 
-            <ScrollReveal animation="right" className="xl:col-span-1">
+            <ScrollReveal animation="right" className="lg:col-span-1">
               <div className="grid grid-cols-1 gap-8">
                 <div className="text-center p-4 bg-muted rounded-2xl">
                   <AnimatedStat 
