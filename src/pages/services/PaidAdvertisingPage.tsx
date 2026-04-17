@@ -267,14 +267,17 @@ const PaidAdvertisingPage = () => {
             Brands we've worked with
           </p>
           <div className="flex items-center justify-center gap-14 flex-wrap">
-            {clientLogos.map((logo) => (
-              <img
-                key={logo.alt}
-                src={logo.src}
-                alt={logo.alt}
-                className="h-14 brightness-0 invert opacity-80 hover:opacity-100 transition-opacity duration-300"
-              />
-            ))}
+            {clientLogos.map((logo) => {
+              const keepOriginal = logo.alt === "YO! Sushi";
+              return (
+                <img
+                  key={logo.alt}
+                  src={logo.src}
+                  alt={logo.alt}
+                  className={`h-14 opacity-80 hover:opacity-100 transition-opacity duration-300 ${keepOriginal ? "" : "brightness-0 invert"}`}
+                />
+              );
+            })}
           </div>
         </div>
       </section>
