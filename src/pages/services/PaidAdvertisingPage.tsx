@@ -223,7 +223,7 @@ const PaidAdvertisingPage = () => {
             {platforms.map((platform) => (
               <div
                 key={platform.name}
-                className="bg-muted rounded-2xl border border-border/40 p-8 flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+                className="bg-muted rounded-2xl border border-border/40 p-8 flex flex-col"
               >
                 <platform.icon className="h-10 w-10 text-primary mb-5" />
                 <h3 className="heading-display text-2xl text-foreground mb-4">
