@@ -79,9 +79,10 @@ export function FeaturedCampaigns() {
                 key={campaign.title}
                 animation={index % 2 === 0 ? "left" : "right"}
                 delay={index * 100}
+                className="h-full"
               >
-                <Link to={campaign.href} className="group block">
-                  <Card variant="interactive" className="overflow-hidden bg-background">
+                <Link to={campaign.href} className="group block h-full">
+                  <Card variant="interactive" className="overflow-hidden bg-background h-full flex flex-col">
                     <div className="aspect-video overflow-hidden">
                       <img
                         src={campaign.image}
@@ -89,8 +90,8 @@ export function FeaturedCampaigns() {
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                     </div>
-                    <CardContent className="p-6">
-                      <div className="flex gap-5 items-center">
+                    <CardContent className="p-6 flex-1 flex">
+                      <div className="flex gap-5 items-center w-full">
                         {/* Logo column ~30% */}
                         <div className="w-[30%] flex items-center justify-center shrink-0">
                           {logoSrc ? (
