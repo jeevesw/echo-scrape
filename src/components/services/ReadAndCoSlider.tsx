@@ -5,7 +5,18 @@ export function ReadAndCoSlider() {
   const [isDragging, setIsDragging] = useState(false);
   const [hasHinted, setHasHinted] = useState(false);
   const [isHinting, setIsHinting] = useState(false);
+  const [containerWidth, setContainerWidth] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const update = () => setContainerWidth(el.offsetWidth);
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   useEffect(() => {
     const el = containerRef.current;
@@ -101,7 +112,7 @@ export function ReadAndCoSlider() {
           src="/images/read-and-co-wireframe.webp"
           alt="Read & Co. — wireframe"
           className="absolute inset-0 h-full object-cover object-top"
-          style={{ width: containerRef.current ? `${containerRef.current.offsetWidth}px` : "100%" }}
+          style={{ width: containerWidth ? `${containerWidth}px` : "100%" }}
           draggable={false}
         />
       </div>
