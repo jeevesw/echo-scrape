@@ -95,20 +95,10 @@ const ParisBaguetteCaseStudy = () => {
 
           <ScrollReveal delay={100}>
             <div className="flex flex-wrap gap-4">
-              {[
-                { number: "+83%", label: "Branded search uplift" },
-                { number: "+23%", label: "Search demand in month one" },
-                { number: "+45%", label: "Google Ads scaled" },
-                { number: "+60%", label: "Footfall conversions" },
-              ].map((stat) => (
-                <div
-                  key={stat.label}
-                  className="bg-white rounded-2xl px-6 py-4 flex flex-col items-center justify-center min-w-[160px]"
-                >
-                  <p className="heading-display text-3xl md:text-4xl text-primary font-bold leading-none">{stat.number}</p>
-                  <p className="text-xs text-foreground uppercase tracking-wide mt-1 text-center font-medium">{stat.label}</p>
-                </div>
-              ))}
+              <AnimatedStatCard end={83} prefix="+" suffix="%" label="Branded search uplift" delay={0} />
+              <AnimatedStatCard end={23} prefix="+" suffix="%" label="Search demand in month one" delay={150} />
+              <AnimatedStatCard end={45} prefix="+" suffix="%" label="Google Ads scaled" delay={300} />
+              <AnimatedStatCard end={60} prefix="+" suffix="%" label="Footfall conversions" delay={450} />
             </div>
           </ScrollReveal>
         </div>
