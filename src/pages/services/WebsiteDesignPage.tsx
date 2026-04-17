@@ -84,6 +84,24 @@ const WebsiteDesignPage = () => {
         </div>
       </section>
 
+      {/* Case Study — Read & Co. */}
+      <InlineCaseStudy
+        variant="light"
+        clientName="Read & Co."
+        headline="Web Redesign, Development, and SEO for Online Bookshop Read & Co."
+        body="Read & Co., a half-century-old UK-based bookseller and publisher, needed a modern way to sell literary classics. We built a fast, accessible website around their impressive catalogue — rendered entirely in live text for SEO and mobile performance, with clickable titles and author names under every book cover and bespoke drag-and-drop sections that let the team update pages without touching code. On the back end, we streamlined their industry-standard book database and freed their product library to connect with third-party publishing data streams."
+        stats={[
+          { value: "+300%", label: "Keyword presence" },
+          { value: "90%", label: "Faster load times" },
+          { value: "+200%", label: "Internal links" },
+        ]}
+        visualSlot={
+          <div className="bg-muted rounded-2xl aspect-[4/3] flex items-center justify-center border border-border">
+            <span className="text-xs text-muted-foreground text-center p-4">[Read & Co. website mockup]</span>
+          </div>
+        }
+      />
+
       {/* Case Study — The Outside Organisation */}
       <InlineCaseStudy
         variant="dark"
