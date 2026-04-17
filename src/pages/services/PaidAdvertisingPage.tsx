@@ -219,42 +219,25 @@ const PaidAdvertisingPage = () => {
           <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-16">
             The Platforms We Work With
           </h2>
-          <div className="space-y-8 max-w-6xl mx-auto">
-            {platforms.map((platform, index) => {
-              const imageLeft = index % 2 === 0;
-              return (
-                <div
-                  key={platform.name}
-                  className="bg-muted rounded-2xl border border-border/40 overflow-hidden grid md:grid-cols-[40%_60%] min-h-[320px]"
-                  style={{ direction: imageLeft ? "ltr" : "rtl" }}
-                >
-                  <div className="bg-muted/60 flex items-center justify-center p-8 min-h-[200px] md:min-h-0">
-                    <p
-                      className="text-xs text-muted-foreground text-center leading-relaxed max-w-[200px]"
-                      style={{ direction: "ltr" }}
-                    >
-                      {platform.imageLabel}
-                    </p>
-                  </div>
-                  <div
-                    className="p-8 md:p-10 flex flex-col justify-center"
-                    style={{ direction: "ltr" }}
-                  >
-                    <platform.icon className="h-10 w-10 text-primary mb-5" />
-                    <h3 className="heading-display text-2xl text-foreground mb-4">
-                      {platform.name}
-                    </h3>
-                    <p className="text-base text-muted-foreground leading-relaxed mb-5">
-                      {platform.description}
-                    </p>
-                    <span className="text-primary text-sm font-semibold inline-flex items-center gap-1.5 hover:gap-2.5 transition-all duration-200 cursor-pointer">
-                      Learn more about {platform.learnMore}
-                      <ArrowRight className="h-3.5 w-3.5" />
-                    </span>
-                  </div>
-                </div>
-              );
-            })}
+          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {platforms.map((platform) => (
+              <div
+                key={platform.name}
+                className="bg-muted rounded-2xl border border-border/40 p-8 flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+              >
+                <platform.icon className="h-10 w-10 text-primary mb-5" />
+                <h3 className="heading-display text-2xl text-foreground mb-4">
+                  {platform.name}
+                </h3>
+                <p className="text-base text-muted-foreground leading-relaxed mb-5 flex-1">
+                  {platform.description}
+                </p>
+                <span className="text-primary text-sm font-semibold inline-flex items-center gap-1.5 hover:gap-2.5 transition-all duration-200 cursor-pointer">
+                  Learn more about {platform.learnMore}
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
