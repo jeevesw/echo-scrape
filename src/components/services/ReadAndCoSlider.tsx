@@ -112,7 +112,7 @@ export function ReadAndCoSlider() {
           src="/images/read-and-co-wireframe.webp"
           alt="Read & Co. — wireframe"
           className="absolute inset-0 h-full object-cover object-top"
-          style={{ width: containerRef.current ? `${containerRef.current.offsetWidth}px` : "100%" }}
+          style={{ width: containerWidth ? `${containerWidth}px` : "100%" }}
           draggable={false}
         />
       </div>
