@@ -9,6 +9,8 @@ import { ServiceHero } from "@/components/services/ServiceHero";
 import { InlineCaseStudy } from "@/components/services/InlineCaseStudy";
 import { ReadAndCoSlider } from "@/components/services/ReadAndCoSlider";
 import { TrustBadgeRow } from "@/components/services/TrustBadgeRow";
+import outsideOrgMockup from "@/assets/services/outside-org-mockup.webp";
+import hepburnsMockup from "@/assets/services/hepburns-mockup.webp";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Check, X, ArrowRight, Smartphone, ShoppingCart, Palette, Search, Share2, Settings, Server, BarChart } from "lucide-react";
@@ -98,28 +100,38 @@ const WebsiteDesignPage = () => {
       {/* Case Study — The Outside Organisation */}
       <InlineCaseStudy
         variant="dark"
+        bgColor="#030306"
+        compact
+        visualPosition="left"
         clientName="The Outside Organisation"
         headline="Big, Bold, and Bright: For The Outside Organisation"
         body="We built a bespoke WordPress website for music marketing agency The Outside Organisation, with a full-bleed front-page space for eye-catching videos, vibrant animations, and a simple user experience. The site build — and the logo we designed for it — tied up a broader rebrand for The Outside Organisation."
         stats={[]}
         visualSlot={
-          <div className="bg-white/10 rounded-2xl aspect-[4/3] flex items-center justify-center border border-white/10">
-            <span className="text-xs text-white/40 text-center p-4">[The Outside Organisation website mockup]</span>
-          </div>
+          <img
+            src={outsideOrgMockup}
+            alt="The Outside Organisation website shown across MacBook, iPad, and iPhone"
+            className="w-full h-auto rounded-2xl"
+            loading="lazy"
+          />
         }
       />
 
       {/* Case Study — Hepburns */}
       <InlineCaseStudy
         variant="light"
+        bgColor="#ffffff"
         clientName="Hepburns"
         headline="E-Commerce for Christmas: Hepburns"
         body="We started working on a new website for food and butcher business Hepburns fairly late in the year, and had it wrapped up — and integrated with their existing product management system — ahead of the Christmas rush. The site we delivered is easy for the Hepburns team to keep up to date, which is essential for on-the-fly inventory management."
         stats={[]}
         visualSlot={
-          <div className="bg-muted rounded-2xl aspect-[4/3] flex items-center justify-center border border-border">
-            <span className="text-xs text-muted-foreground text-center p-4">[Hepburns e-commerce website mockup]</span>
-          </div>
+          <img
+            src={hepburnsMockup}
+            alt="Hepburns e-commerce website shown across MacBook, iPad, and iPhone"
+            className="w-full h-auto rounded-2xl"
+            loading="lazy"
+          />
         }
       />
 
