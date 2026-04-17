@@ -77,7 +77,7 @@ export function Header() {
           <nav className="hidden lg:flex items-center gap-8">
             {/* Services Dropdown */}
             <div
-              className="relative"
+              className="relative h-20 flex items-center"
               onMouseEnter={() => setServicesOpen(true)}
               onMouseLeave={() => setServicesOpen(false)}
             >
@@ -125,7 +125,7 @@ export function Header() {
 
             {/* Case Studies Dropdown */}
             <div
-              className="relative"
+              className="relative h-20 flex items-center"
               onMouseEnter={() => setCaseStudiesOpen(true)}
               onMouseLeave={() => setCaseStudiesOpen(false)}
             >
@@ -141,7 +141,7 @@ export function Header() {
               <div
                 onMouseEnter={() => setCaseStudiesOpen(true)}
                 onMouseLeave={() => setCaseStudiesOpen(false)}
-                className={`fixed left-1/2 -translate-x-1/2 top-16 pt-2 transition-all duration-200 z-50 ${
+                className={`absolute left-1/2 -translate-x-1/2 top-full pt-4 transition-all duration-200 z-50 ${
                   caseStudiesOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible pointer-events-none -translate-y-2"
                 }`}
               >
