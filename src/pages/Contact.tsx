@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { Instagram, Linkedin, Mail, Phone } from "lucide-react";
+import { Instagram, Linkedin, Mail, Phone, Calendar, ArrowRight } from "lucide-react";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -56,6 +56,21 @@ const Contact = () => {
                     07989 478 792
                   </a>
                 </div>
+              </div>
+
+              <div className="mt-10">
+                <p className="text-sm uppercase tracking-widest text-muted-foreground mb-3">Prefer to book a time?</p>
+                <Button variant="hero" asChild>
+                  <a
+                    href="https://calendly.com/trapezemedia/discovery-call"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Calendar className="mr-2 h-4 w-4" />
+                    Schedule a Call
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </a>
+                </Button>
               </div>
 
               <div className="flex gap-4 mt-10">
