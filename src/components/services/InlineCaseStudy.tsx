@@ -20,6 +20,7 @@ interface InlineCaseStudyProps {
   visualSlot?: ReactNode;
   bgColor?: string;
   compact?: boolean;
+  visualPosition?: "left" | "right";
 }
 
 export function InlineCaseStudy({
@@ -34,6 +35,7 @@ export function InlineCaseStudy({
   visualSlot,
   bgColor,
   compact,
+  visualPosition = "right",
 }: InlineCaseStudyProps) {
   const isDark = variant === "dark";
   const paddingClass = compact ? "py-8 lg:py-12" : "py-16 lg:py-24";
@@ -45,7 +47,7 @@ export function InlineCaseStudy({
     >
       <div className="container mx-auto px-4">
         <div className={`max-w-6xl mx-auto ${visualSlot ? "grid md:grid-cols-2 gap-12 items-center" : ""}`}>
-          <div>
+          <div className={visualSlot && visualPosition === "left" ? "md:order-2" : ""}>
             {label && (
               <span className="text-primary text-xs font-semibold uppercase tracking-widest mb-3 block">
                 {label}
@@ -89,7 +91,7 @@ export function InlineCaseStudy({
               </Button>
             )}
           </div>
-          {visualSlot && <div>{visualSlot}</div>}
+          {visualSlot && <div className={visualPosition === "left" ? "md:order-1" : ""}>{visualSlot}</div>}
         </div>
       </div>
     </section>
