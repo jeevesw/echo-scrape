@@ -45,12 +45,12 @@ const services = [
     description: "Build, launch, & management",
     image: websiteImg,
   },
-  {
-    slug: "creative-services",
-    title: "Creative Services",
-    description: "Design, branding, & social assets",
-    image: creativeImg,
-  },
+  // {
+  //   slug: "creative-services",
+  //   title: "Creative Services",
+  //   description: "Design, branding, & social assets",
+  //   image: creativeImg,
+  // }, // Hidden temporarily
 ];
 
 const Services = () => {
