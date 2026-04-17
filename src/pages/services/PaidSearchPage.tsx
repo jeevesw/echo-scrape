@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/accordion";
 import { TrackingCallout } from "@/components/services/TrackingCallout";
 import { ScrollReveal } from "@/hooks/use-scroll-reveal";
+import { AnimatedStatCard } from "@/components/case-study/AnimatedStatCard";
 
 const service = servicesData["paid-search"];
 const baseUrl = "https://trapezemedia.co.uk";

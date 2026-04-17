@@ -5,6 +5,7 @@ import { Layout } from "@/components/layout/Layout";
 import { BreadcrumbNav } from "@/components/ui/breadcrumb-nav";
 import { Button } from "@/components/ui/button";
 import { AnimatedStat } from "@/components/case-study/AnimatedStat";
+import { AnimatedStatCard } from "@/components/case-study/AnimatedStatCard";
 import { ParallaxVideo } from "@/components/case-study/ParallaxVideo";
 import { ScrollReveal } from "@/hooks/use-scroll-reveal";
 import { ArrowLeft, Quote, Check, MapPin, Video } from "lucide-react";
