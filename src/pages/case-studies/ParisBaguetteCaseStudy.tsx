@@ -179,15 +179,7 @@ const ParisBaguetteCaseStudy = () => {
 
           {/* Row 3: Video left, text right — Westfield London */}
           <div className="grid lg:grid-cols-2 gap-16 items-center mt-24">
-            <ScrollReveal animation="left">
-              <ParallaxVideo
-                src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Video%201%20-%20Version%20A%20-%20Paris%20Baguette.mp4"
-                direction="left"
-                showMuteControl
-              />
-            </ScrollReveal>
-
-            <ScrollReveal animation="right">
+            <ScrollReveal animation="left" className="order-2 lg:order-1">
               <div className="space-y-6">
                 <h3 className="heading-display text-2xl md:text-3xl text-foreground">
                   Supporting a New Store Launch: Westfield London
@@ -206,6 +198,14 @@ const ParisBaguetteCaseStudy = () => {
                   </div>
                 </div>
               </div>
+            </ScrollReveal>
+
+            <ScrollReveal animation="right" className="order-1 lg:order-2">
+              <ParallaxVideo
+                src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Video%201%20-%20Version%20A%20-%20Paris%20Baguette.mp4"
+                direction="right"
+                showMuteControl
+              />
             </ScrollReveal>
           </div>
         </div>
