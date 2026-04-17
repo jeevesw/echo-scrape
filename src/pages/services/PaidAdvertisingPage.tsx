@@ -266,13 +266,13 @@ const PaidAdvertisingPage = () => {
           <p className="text-xs text-background/40 uppercase tracking-wider mb-4">
             Brands we've worked with
           </p>
-          <div className="flex items-center justify-center gap-10">
+          <div className="flex items-center justify-center gap-14 flex-wrap">
             {clientLogos.map((logo) => (
               <img
                 key={logo.alt}
                 src={logo.src}
                 alt={logo.alt}
-                className="h-8 opacity-80 hover:opacity-100 transition-opacity duration-300"
+                className="h-14 brightness-0 invert opacity-80 hover:opacity-100 transition-opacity duration-300"
               />
             ))}
           </div>
