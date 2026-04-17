@@ -120,7 +120,7 @@ export function ReadAndCoSlider() {
       />
       <div
         className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center z-10 pointer-events-none"
-        style={{ left: `${position}%`, transition }}
+        style={{ left: `${position}%`, transition: handleTransition }}
       >
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
           <path d="M7 5L3 10L7 15" stroke="#111" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
