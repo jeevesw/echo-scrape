@@ -19,6 +19,7 @@ interface InlineCaseStudyProps {
   variant?: "light" | "dark";
   visualSlot?: ReactNode;
   bgColor?: string;
+  compact?: boolean;
 }
 
 export function InlineCaseStudy({
@@ -32,12 +33,14 @@ export function InlineCaseStudy({
   variant = "light",
   visualSlot,
   bgColor,
+  compact,
 }: InlineCaseStudyProps) {
   const isDark = variant === "dark";
+  const paddingClass = compact ? "py-8 lg:py-12" : "py-16 lg:py-24";
 
   return (
     <section
-      className={`py-16 lg:py-24 ${!bgColor ? (isDark ? "bg-[hsl(60,1%,8%)]" : "bg-muted") : ""}`}
+      className={`${paddingClass} ${!bgColor ? (isDark ? "bg-[hsl(60,1%,8%)]" : "bg-muted") : ""}`}
       style={bgColor ? { backgroundColor: bgColor } : undefined}
     >
       <div className="container mx-auto px-4">
