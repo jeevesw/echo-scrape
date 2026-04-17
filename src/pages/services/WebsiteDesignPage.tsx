@@ -107,6 +107,7 @@ const WebsiteDesignPage = () => {
       <InlineCaseStudy
         variant="light"
         bgColor="#ffffff"
+        visualPosition="left"
         clientName="Hepburns"
         headline="E-Commerce for Christmas: Hepburns"
         body="We started working on a new website for food and butcher business Hepburns fairly late in the year, and had it wrapped up — and integrated with their existing product management system — ahead of the Christmas rush. The site we delivered is easy for the Hepburns team to keep up to date, which is essential for on-the-fly inventory management."
