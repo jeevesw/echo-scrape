@@ -6,7 +6,7 @@ const corsHeaders = {
 };
 
 const GATEWAY_URL = 'https://connector-gateway.lovable.dev/resend';
-const NOTIFY_TO = 'info@trapezemedia.co.uk';
+const NOTIFY_TO = ['info@trapezemedia.co.uk', 'jeeves@trapezemedia.co.uk'];
 const FROM_ADDRESS = 'Trapeze Media <noreply@trapezemedia.co.uk>';
 
 interface ContactPayload {
@@ -147,7 +147,7 @@ Deno.serve(async (req) => {
 
   try {
     const notify = await sendEmail({
-      to: [NOTIFY_TO],
+      to: NOTIFY_TO,
       subject: `New enquiry from ${name}`,
       html: notifyHtml,
       reply_to: email,
