@@ -53,7 +53,8 @@ const WebsiteDesignPage = () => {
 
       {/* Hero */}
       <ServiceHero
-        variant="dark"
+        variant="brand-pink"
+        backgroundImage={websiteHeroImg}
         headline={service.heroHeadline}
         subheadline={service.heroSubheadline}
         primaryCta={{ label: "Schedule a Call", href: "https://calendly.com/trapezemedia/discovery-call", external: true }}
