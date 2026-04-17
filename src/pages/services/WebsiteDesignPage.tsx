@@ -8,6 +8,7 @@ import { servicesData } from "@/data/servicesData";
 import { ServiceHero } from "@/components/services/ServiceHero";
 import { InlineCaseStudy } from "@/components/services/InlineCaseStudy";
 import { ReadAndCoSlider } from "@/components/services/ReadAndCoSlider";
+import { TrustBadgeRow } from "@/components/services/TrustBadgeRow";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Check, X, ArrowRight, Smartphone, ShoppingCart, Palette, Search, Share2, Settings, Server, BarChart } from "lucide-react";
