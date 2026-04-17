@@ -95,7 +95,7 @@ export function Header() {
                   servicesOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"
                 }`}
               >
-                <div className="bg-background border border-border rounded-xl shadow-xl p-6 w-[680px] max-w-[calc(100vw-2rem)]">
+                <div className="bg-background border border-border rounded-xl shadow-xl p-6 w-[820px] max-w-[calc(100vw-2rem)]">
                   <div className="grid grid-cols-3 gap-4">
                     {services.map((service) => (
                       <Link
