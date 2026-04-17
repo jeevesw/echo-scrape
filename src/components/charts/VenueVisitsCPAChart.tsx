@@ -152,35 +152,23 @@ export function VenueVisitsCPAChart({
 
   return (
     <div className={cn("w-full", className)}>
-      {/* Legend / Toggle Controls */}
+      {/* Legend (non-interactive) */}
       <div className="flex items-center justify-center gap-8 mb-6">
-        <button
-          onClick={() => setShowCPA(!showCPA)}
-          className={cn(
-            "flex items-center gap-2 text-sm font-medium transition-opacity duration-200",
-            !showCPA && "opacity-40"
-          )}
-        >
+        <div className="flex items-center gap-2 text-sm font-medium">
           <span className="text-foreground">Venue Visits</span>
-          <div 
+          <div
             className="w-6 h-3 rounded-full"
             style={{ backgroundColor: "hsl(338, 64%, 47%)" }}
           />
-        </button>
+        </div>
 
-        <button
-          onClick={() => setShowVenueVisits(!showVenueVisits)}
-          className={cn(
-            "flex items-center gap-2 text-sm font-medium transition-opacity duration-200",
-            !showVenueVisits && "opacity-40"
-          )}
-        >
+        <div className="flex items-center gap-2 text-sm font-medium">
           <span className="text-foreground">Cost-Per-Acquisition</span>
-          <div 
+          <div
             className="w-4 h-4 rounded-sm border-2"
             style={{ borderColor: "hsl(0, 0%, 75%)", backgroundColor: "hsl(0, 0%, 92%)" }}
           />
-        </button>
+        </div>
       </div>
 
       {/* Chart */}
