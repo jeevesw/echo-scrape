@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
-import { LogOut, FileText, Home, Wand2, UserCircle, Briefcase } from 'lucide-react';
+import { LogOut, FileText, Home, Wand2, UserCircle, Briefcase, Search } from 'lucide-react';
 import logoTwoTone from '@/assets/logo-two-tone.svg';
 
 interface AdminLayoutProps {
@@ -44,6 +44,12 @@ export function AdminLayout({ children }: AdminLayoutProps) {
                 <Link to="/admin/case-studies">
                   <Briefcase className="h-4 w-4 mr-2" />
                   Case Studies
+                </Link>
+              </Button>
+              <Button variant="ghost" size="sm" asChild>
+                <Link to="/admin/seo">
+                  <Search className="h-4 w-4 mr-2" />
+                  SEO Manager
                 </Link>
               </Button>
               <Button variant="ghost" size="sm" asChild>

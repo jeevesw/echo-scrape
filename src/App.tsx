@@ -37,6 +37,7 @@ import BlogMigrate from "./pages/admin/BlogMigrate";
 import BlogCleanup from "./pages/admin/BlogCleanup";
 import Authors from "./pages/admin/Authors";
 import CaseStudiesAdmin from "./pages/admin/CaseStudies";
+import SeoManager from "./pages/admin/SeoManager";
 
 const queryClient = new QueryClient();
 
@@ -100,6 +101,9 @@ const App = () => (
               } />
               <Route path="/admin/authors" element={
                 <ProtectedRoute requireAdmin><Authors /></ProtectedRoute>
+              } />
+              <Route path="/admin/seo" element={
+                <ProtectedRoute requireAdmin><SeoManager /></ProtectedRoute>
               } />
               
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
