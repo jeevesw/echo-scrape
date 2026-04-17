@@ -24,7 +24,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useCountUp } from "@/hooks/use-count-up";
+import { AnimatedStatCard } from "@/components/case-study/AnimatedStatCard";
 
 const service = servicesData["tiktok-production"];
 const baseUrl = "https://trapezemedia.co.uk";
@@ -46,9 +46,6 @@ const workflowSteps = [
 ];
 
 const TikTokProductionPage = () => {
-  const { ref: viewsRef, displayValue: viewsDisplay } = useCountUp({ end: 1500000, duration: 2000, formatValue: (v) => v >= 1000000 ? `${(v / 1000000).toFixed(1)}M` : v.toLocaleString() });
-  const { ref: followersRef, displayValue: followersDisplay } = useCountUp({ end: 14000, duration: 2000, formatValue: (v) => v.toLocaleString() });
-  const { ref: clicksRef, displayValue: clicksDisplay } = useCountUp({ end: 1700, duration: 2000, formatValue: (v) => v.toLocaleString() });
 
   return (
     <Layout>
@@ -162,20 +159,10 @@ const TikTokProductionPage = () => {
 
           <ScrollReveal delay={100}>
             <div className="flex flex-wrap gap-4">
-              {[
-                { number: "+83%", label: "Branded search uplift" },
-                { number: "+23%", label: "Search demand in month one" },
-                { number: "+45%", label: "Google Ads scaled" },
-                { number: "+60%", label: "Footfall conversions" },
-              ].map((stat) => (
-                <div
-                  key={stat.label}
-                  className="bg-white rounded-2xl px-6 py-4 flex flex-col items-center justify-center min-w-[160px]"
-                >
-                  <p className="heading-display text-3xl md:text-4xl text-primary font-bold leading-none">{stat.number}</p>
-                  <p className="text-xs text-foreground uppercase tracking-wide mt-1 text-center font-medium">{stat.label}</p>
-                </div>
-              ))}
+              <AnimatedStatCard end={83} prefix="+" suffix="%" label="Branded search uplift" delay={0} />
+              <AnimatedStatCard end={23} prefix="+" suffix="%" label="Search demand in month one" delay={150} />
+              <AnimatedStatCard end={45} prefix="+" suffix="%" label="Google Ads scaled" delay={300} />
+              <AnimatedStatCard end={60} prefix="+" suffix="%" label="Footfall conversions" delay={450} />
             </div>
           </ScrollReveal>
         </div>
@@ -202,19 +189,25 @@ const TikTokProductionPage = () => {
             Over three months we helped recovering addict and reformed naughty boy Michael Emmett share his story and promote his book, <em>Sins of Fathers</em> — starting from a brand new TikTok account.
           </p>
 
-          <div className="grid grid-cols-3 gap-4 mb-6">
-            <div className="bg-background border-2 border-primary rounded-xl px-6 py-4 text-center" ref={viewsRef}>
-              <span className="heading-display text-4xl text-primary block">{viewsDisplay}</span>
-              <span className="text-xs text-muted-foreground uppercase tracking-wide mt-1 block">Views · In three months from zero</span>
-            </div>
-            <div className="bg-background border-2 border-primary rounded-xl px-6 py-4 text-center" ref={followersRef}>
-              <span className="heading-display text-4xl text-primary block">{followersDisplay}</span>
-              <span className="text-xs text-muted-foreground uppercase tracking-wide mt-1 block">Followers · And 43,000+ video likes</span>
-            </div>
-            <div className="bg-background border-2 border-primary rounded-xl px-6 py-4 text-center" ref={clicksRef}>
-              <span className="heading-display text-4xl text-primary block">{clicksDisplay}</span>
-              <span className="text-xs text-muted-foreground uppercase tracking-wide mt-1 block">Link clicks · Including 1,100+ to Amazon</span>
-            </div>
+          <div className="flex flex-wrap gap-4 mb-6">
+            <AnimatedStatCard
+              end={1500000}
+              label="Views · In three months from zero"
+              delay={0}
+              formatValue={(v) => v >= 1000000 ? `${(v / 1000000).toFixed(1)}M` : v.toLocaleString()}
+            />
+            <AnimatedStatCard
+              end={14000}
+              label="Followers · And 43,000+ video likes"
+              delay={150}
+              formatValue={(v) => v.toLocaleString()}
+            />
+            <AnimatedStatCard
+              end={1700}
+              label="Link clicks · Including 1,100+ to Amazon"
+              delay={300}
+              formatValue={(v) => v.toLocaleString()}
+            />
           </div>
         </div>
       </section>
