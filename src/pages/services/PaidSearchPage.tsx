@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/accordion";
 import { TrackingCallout } from "@/components/services/TrackingCallout";
 import { ScrollReveal } from "@/hooks/use-scroll-reveal";
+import { AnimatedStatCard } from "@/components/case-study/AnimatedStatCard";
 
 const service = servicesData["paid-search"];
 const baseUrl = "https://trapezemedia.co.uk";
@@ -138,19 +139,9 @@ const PaidSearchPage = () => {
 
           <ScrollReveal delay={100}>
             <div className="flex flex-wrap gap-4 mb-8">
-              {[
-                { number: "85%", label: "Increase · Table bookings" },
-                { number: "13:1", label: "ROAS · £13 per £1 spent" },
-                { number: "68%", label: "Lower CPA · Cost per click" },
-              ].map((stat) => (
-                <div
-                  key={stat.label}
-                  className="bg-white rounded-2xl px-6 py-4 flex flex-col items-center justify-center min-w-[160px]"
-                >
-                  <p className="heading-display text-3xl md:text-4xl text-primary font-bold leading-none">{stat.number}</p>
-                  <p className="text-xs text-foreground uppercase tracking-wide mt-1 text-center font-medium">{stat.label}</p>
-                </div>
-              ))}
+              <AnimatedStatCard end={85} suffix="%" label="Increase · Table bookings" delay={0} />
+              <AnimatedStatCard end={13} suffix=":1" label="ROAS · £13 per £1 spent" delay={150} />
+              <AnimatedStatCard end={68} suffix="%" label="Lower CPA · Cost per click" delay={300} />
             </div>
           </ScrollReveal>
 
