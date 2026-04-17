@@ -5,7 +5,18 @@ export function ReadAndCoSlider() {
   const [isDragging, setIsDragging] = useState(false);
   const [hasHinted, setHasHinted] = useState(false);
   const [isHinting, setIsHinting] = useState(false);
+  const [containerWidth, setContainerWidth] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const update = () => setContainerWidth(el.offsetWidth);
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   useEffect(() => {
     const el = containerRef.current;
