@@ -11,6 +11,7 @@ import { TrustBadgeRow } from "@/components/services/TrustBadgeRow";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Check, X, ArrowRight, Smartphone, ShoppingCart, Palette, Search, Share2, Settings, Server, BarChart } from "lucide-react";
+import websiteHeroImg from "@/assets/services/website-design-hero.webp";
 import {
   Accordion,
   AccordionContent,
