@@ -91,7 +91,7 @@ export function Header() {
                 <ChevronDown className={`h-4 w-4 transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
               </Link>
               <div
-                className={`absolute right-0 top-full pt-4 transition-all duration-200 ${
+                className={`absolute left-1/2 -translate-x-1/2 top-full pt-4 transition-all duration-200 ${
                   servicesOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"
                 }`}
               >
