@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { Layout } from "@/components/layout/Layout";
 import { ServiceSchema, FAQSchema } from "@/components/seo/SchemaMarkup";
 import { ScrollReveal } from "@/hooks/use-scroll-reveal";
@@ -19,6 +20,7 @@ import {
 import { TeamSection } from "@/components/services/TeamSection";
 import { getTeamForService } from "@/data/teamData";
 import { ClientLogoCarousel } from "@/components/home/ClientLogoCarousel";
+import { supabase } from "@/integrations/supabase/client";
 import heroImage from "@/assets/services/social-media-management.jpg";
 
 
