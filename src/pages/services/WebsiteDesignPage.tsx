@@ -7,13 +7,11 @@ import { ServiceSchema, FAQSchema } from "@/components/seo/SchemaMarkup";
 import { servicesData } from "@/data/servicesData";
 import { ServiceHero } from "@/components/services/ServiceHero";
 import { InlineCaseStudy } from "@/components/services/InlineCaseStudy";
+import { ReadAndCoSlider } from "@/components/services/ReadAndCoSlider";
 import { TrustBadgeRow } from "@/components/services/TrustBadgeRow";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Check, X, ArrowRight, Smartphone, ShoppingCart, Palette, Search, Share2, Settings, Server, BarChart } from "lucide-react";
-import websiteHeroImg from "@/assets/services/website-design-hero.webp";
-import outsideOrgMockup from "@/assets/services/outside-org-mockup.webp";
-import hepburnsMockup from "@/assets/services/hepburns-mockup.webp";
 import {
   Accordion,
   AccordionContent,
@@ -55,8 +53,7 @@ const WebsiteDesignPage = () => {
 
       {/* Hero */}
       <ServiceHero
-        variant="brand-pink"
-        backgroundImage={websiteHeroImg}
+        variant="dark"
         headline={service.heroHeadline}
         subheadline={service.heroSubheadline}
         primaryCta={{ label: "Schedule a Call", href: "https://calendly.com/trapezemedia/discovery-call", external: true }}
@@ -95,48 +92,34 @@ const WebsiteDesignPage = () => {
           { value: "90%", label: "Faster load times" },
           { value: "+200%", label: "Internal links" },
         ]}
-        visualSlot={
-          <div className="bg-muted rounded-2xl aspect-[4/3] flex items-center justify-center border border-border">
-            <span className="text-xs text-muted-foreground text-center p-4">[Read & Co. website mockup]</span>
-          </div>
-        }
+        visualSlot={<ReadAndCoSlider />}
       />
 
       {/* Case Study — The Outside Organisation */}
       <InlineCaseStudy
         variant="dark"
-        bgColor="#030306"
-        compact
         clientName="The Outside Organisation"
         headline="Big, Bold, and Bright: For The Outside Organisation"
         body="We built a bespoke WordPress website for music marketing agency The Outside Organisation, with a full-bleed front-page space for eye-catching videos, vibrant animations, and a simple user experience. The site build — and the logo we designed for it — tied up a broader rebrand for The Outside Organisation."
         stats={[]}
         visualSlot={
-          <img
-            src={outsideOrgMockup}
-            alt="The Outside Organisation website shown across MacBook, iPad, and iPhone"
-            className="w-full h-auto rounded-2xl"
-            loading="lazy"
-          />
+          <div className="bg-white/10 rounded-2xl aspect-[4/3] flex items-center justify-center border border-white/10">
+            <span className="text-xs text-white/40 text-center p-4">[The Outside Organisation website mockup]</span>
+          </div>
         }
       />
 
       {/* Case Study — Hepburns */}
       <InlineCaseStudy
         variant="light"
-        bgColor="#ffffff"
-        visualPosition="left"
         clientName="Hepburns"
         headline="E-Commerce for Christmas: Hepburns"
         body="We started working on a new website for food and butcher business Hepburns fairly late in the year, and had it wrapped up — and integrated with their existing product management system — ahead of the Christmas rush. The site we delivered is easy for the Hepburns team to keep up to date, which is essential for on-the-fly inventory management."
         stats={[]}
         visualSlot={
-          <img
-            src={hepburnsMockup}
-            alt="Hepburns e-commerce website shown across MacBook, iPad, and iPhone"
-            className="w-full h-auto rounded-2xl"
-            loading="lazy"
-          />
+          <div className="bg-muted rounded-2xl aspect-[4/3] flex items-center justify-center border border-border">
+            <span className="text-xs text-muted-foreground text-center p-4">[Hepburns e-commerce website mockup]</span>
+          </div>
         }
       />
 
@@ -150,6 +133,26 @@ const WebsiteDesignPage = () => {
         ]}
       />
 
+
+      {/* Process */}
+      <section className="py-16 bg-muted">
+        <div className="container mx-auto px-4">
+          <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-12">Our Process</h2>
+          <div className="max-w-4xl mx-auto space-y-8">
+            {service.process.map((step) => (
+              <div key={step.step} className="flex gap-6">
+                <div className="w-14 h-14 rounded-full bg-primary text-primary-foreground flex items-center justify-center heading-display text-xl shrink-0">
+                  {step.step}
+                </div>
+                <div className="pt-2">
+                  <h3 className="heading-display text-xl md:text-2xl text-foreground mb-2">{step.title}</h3>
+                  <p className="text-muted-foreground text-lg">{step.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Industries */}
       <section className="py-16 bg-background">
