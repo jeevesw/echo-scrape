@@ -73,7 +73,13 @@ export function ReadAndCoSlider() {
 
   const onTouchEnd = () => setIsDragging(false);
 
-  const transition = isDragging ? "none" : "left 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94), width 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+  const handleTransition = isDragging
+    ? "none"
+    : "left 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+
+  const overlayTransition = isDragging
+    ? "none"
+    : "clip-path 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
 
   return (
     <div
@@ -89,24 +95,28 @@ export function ReadAndCoSlider() {
         <img
           src="/images/read-and-co-production.webp"
           alt="Read & Co. — finished site"
-          className="w-full h-full object-cover object-top"
+          className="absolute inset-0 w-full h-full object-cover object-top"
           draggable={false}
         />
       </div>
+
       <div
-        className="absolute inset-y-0 left-0 overflow-hidden"
-        style={{ width: `${position}%`, transition }}
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          clipPath: `inset(0 ${100 - position}% 0 0)`,
+          transition: overlayTransition,
+        }}
       >
         <img
           src="/images/read-and-co-wireframe.webp"
           alt="Read & Co. — wireframe"
-          className="absolute left-0 top-0 w-full h-full max-w-none object-cover object-top"
+          className="absolute inset-0 w-full h-full object-cover object-top"
           draggable={false}
         />
       </div>
       <div
         className="absolute top-0 bottom-0 w-px bg-white shadow-[0_0_8px_rgba(0,0,0,0.4)]"
-        style={{ left: `${position}%`, transition }}
+        style={{ left: `${position}%`, transition: handleTransition }}
       />
       <div
         className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center z-10 pointer-events-none"
