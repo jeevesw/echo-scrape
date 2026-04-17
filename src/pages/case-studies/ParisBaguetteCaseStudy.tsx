@@ -139,7 +139,7 @@ const ParisBaguetteCaseStudy = () => {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <ScrollReveal animation="left">
               <ParallaxVideo
-                src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Paris-Baguette-Trapeze-Media-Video-Production-1.mp4"
+                src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Video%203%20-%20Autumn%20Menu%20-%20Paris%20Baguette%20-%20Canary%20Wharf.mp4"
                 direction="left"
                 showMuteControl
               />
@@ -160,10 +160,10 @@ const ParisBaguetteCaseStudy = () => {
             </ScrollReveal>
           </div>
 
-          {/* Row 2: Text left, video right */}
-          <div className="grid lg:grid-cols-2 gap-16 items-center mt-24">
-            <ScrollReveal animation="left" className="order-2 lg:order-1">
-              <div className="space-y-6">
+          {/* Row 2: Centered text only (video removed) */}
+          <div className="mt-24 flex justify-center">
+            <ScrollReveal animation="up">
+              <div className="space-y-6 text-center max-w-xl mx-auto">
                 <h3 className="heading-display text-2xl md:text-3xl text-foreground">
                   Phase 2: Scaling with Bespoke Video Creative
                 </h3>
@@ -175,21 +175,13 @@ const ParisBaguetteCaseStudy = () => {
                 </div>
               </div>
             </ScrollReveal>
-
-            <ScrollReveal animation="right" className="order-1 lg:order-2">
-              <ParallaxVideo
-                src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Paris-Baguette-Trapeze-Media-Video-Production-2.mp4"
-                direction="right"
-                showMuteControl
-              />
-            </ScrollReveal>
           </div>
 
-          {/* Row 3: Video left, text right */}
+          {/* Row 3: Video left, text right — Westfield London */}
           <div className="grid lg:grid-cols-2 gap-16 items-center mt-24">
             <ScrollReveal animation="left">
               <ParallaxVideo
-                src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Paris-Baguette-Trapeze-Media-Video-Production-3.mp4"
+                src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Video%201%20-%20Version%20A%20-%20Paris%20Baguette.mp4"
                 direction="left"
                 showMuteControl
               />
@@ -221,39 +213,45 @@ const ParisBaguetteCaseStudy = () => {
 
       {/* LHF Regulations */}
       <section className="py-16 bg-muted">
-        <div className="container-content mx-auto px-4 max-w-4xl">
-          <ScrollReveal>
-            <h2 className="heading-display text-3xl md:text-4xl text-foreground mb-6">
-              Creative Strategy: Navigating LHF Regulations
-            </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-              When Less Healthy Food regulations came into force, traditional product-led advertising — especially content featuring indulgent cakes and pastries — became restricted for broad audience targeting. Rather than pulling back, we adapted.
-            </p>
-          </ScrollReveal>
+        <div className="container-content mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
+            <ScrollReveal animation="left">
+              <ParallaxVideo
+                src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Paris-Baguette-Trapeze-Media-Video-Production-3.mp4"
+                direction="left"
+                showMuteControl
+              />
+            </ScrollReveal>
 
-          <ScrollReveal delay={50}>
-            <ul className="space-y-4 mb-8">
-              {[
-                "Advised Paris Baguette on the LHF ban and its specific implications for their paid ad campaigns",
-                "Developed bespoke video creative concepts that implied indulgence without directly showing restricted products",
-                "Focused on occasion-led storytelling — celebrations, gifting, morning rituals",
-                "Maintained strong visual appeal and performance while staying fully compliant",
-              ].map((item, i) => (
-                <li key={i} className="flex items-start gap-3 text-foreground">
-                  <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                  <span className="leading-relaxed">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </ScrollReveal>
-
-          <ScrollReveal delay={100}>
-            <div className="bg-primary/10 border-l-4 border-primary px-6 py-4 rounded-r-lg">
-              <p className="text-foreground leading-relaxed font-medium">
-                This is one of the clearest examples of what it means to be a specialist in food and hospitality advertising. We knew the regulations before our clients did — and already had a plan.
+            <ScrollReveal animation="right">
+              <h2 className="heading-display text-3xl md:text-4xl text-foreground mb-6">
+                Creative Strategy: Navigating LHF Regulations
+              </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+                When Less Healthy Food regulations came into force, traditional product-led advertising — especially content featuring indulgent cakes and pastries — became restricted for broad audience targeting. Rather than pulling back, we adapted.
               </p>
-            </div>
-          </ScrollReveal>
+
+              <ul className="space-y-4 mb-8">
+                {[
+                  "Advised Paris Baguette on the LHF ban and its specific implications for their paid ad campaigns",
+                  "Developed bespoke video creative concepts that implied indulgence without directly showing restricted products",
+                  "Focused on occasion-led storytelling — celebrations, gifting, morning rituals",
+                  "Maintained strong visual appeal and performance while staying fully compliant",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3 text-foreground">
+                    <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                    <span className="leading-relaxed">{item}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="bg-primary/10 border-l-4 border-primary px-6 py-4 rounded-r-lg">
+                <p className="text-foreground leading-relaxed font-medium">
+                  This is one of the clearest examples of what it means to be a specialist in food and hospitality advertising. We knew the regulations before our clients did — and already had a plan.
+                </p>
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 
