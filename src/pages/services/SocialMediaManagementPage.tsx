@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { Layout } from "@/components/layout/Layout";
 import { ServiceSchema, FAQSchema } from "@/components/seo/SchemaMarkup";
 import { ScrollReveal } from "@/hooks/use-scroll-reveal";
@@ -19,6 +20,7 @@ import {
 import { TeamSection } from "@/components/services/TeamSection";
 import { getTeamForService } from "@/data/teamData";
 import { ClientLogoCarousel } from "@/components/home/ClientLogoCarousel";
+import { supabase } from "@/integrations/supabase/client";
 import heroImage from "@/assets/services/social-media-management.jpg";
 
 
@@ -37,7 +39,48 @@ const servicesGrid = [
 ];
 
 
+const caseStudies = [
+  {
+    slug: "paris-baguette",
+    category: "Google, Meta & YouTube Ads",
+    title: "Growing Brand Demand and Footfall for Paris Baguette",
+    image: "/images/case-studies/paris-baguette-hero.jpg",
+    href: "/case-studies/paris-baguette",
+    fallbackLogo: null as string | null,
+  },
+  {
+    slug: "yo-sushi",
+    category: "Google & Meta Ads",
+    title: "Driving footfall and orders for YO! Sushi",
+    image: "/images/case-studies/yo-sushi-hero.jpg",
+    href: "/case-studies/yo-sushi",
+    fallbackLogo: "/images/clients/yo-sushi.svg",
+  },
+  {
+    slug: "patty-and-bun",
+    category: "Social Media Management · Video Production",
+    title: "Organic Social Media and Video Production for Patty&Bun",
+    image: "/images/case-studies/patty-and-bun-hero.jpg",
+    href: "/case-studies/patty-and-bun",
+    fallbackLogo: "/images/clients/patty-and-bun.svg",
+  },
+];
+
 const SocialMediaManagementPage = () => {
+  const { data: logoMap = {} } = useQuery({
+    queryKey: ["smm-case-study-logos"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("case_studies")
+        .select("slug, client_logo_url, client_name")
+        .in("slug", caseStudies.map((c) => c.slug));
+      if (error) throw error;
+      return Object.fromEntries(
+        (data ?? []).map((cs) => [cs.slug, { logo: cs.client_logo_url, name: cs.client_name }])
+      ) as Record<string, { logo: string | null; name: string }>;
+    },
+    staleTime: 5 * 60 * 1000,
+  });
   return (
     <Layout>
       <Helmet>
@@ -105,44 +148,53 @@ const SocialMediaManagementPage = () => {
         <div className="container mx-auto px-4">
           <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-12">Results We've Delivered</h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {[
-              {
-                category: "Google, Meta & YouTube Ads",
-                title: "Growing Brand Demand and Footfall for Paris Baguette",
-                image: "/images/case-studies/paris-baguette-hero.jpg",
-                href: "/case-studies/paris-baguette",
-              },
-              {
-                category: "Google & Meta Ads",
-                title: "Driving footfall and orders for YO! Sushi",
-                image: "/images/case-studies/yo-sushi-hero.jpg",
-                href: "/case-studies/yo-sushi",
-              },
-              {
-                category: "Social Media Management · Video Production",
-                title: "Organic Social Media and Video Production for Patty&Bun",
-                image: "/images/case-studies/patty-and-bun-hero.jpg",
-                href: "/case-studies/patty-and-bun",
-              },
-            ].map((study, i) => (
-              <ScrollReveal key={study.title} delay={i * 100}>
-                <Link to={study.href}>
-                  <Card variant="interactive" className="overflow-hidden bg-background">
-                    <div className="aspect-video overflow-hidden">
-                      <img
-                        src={study.image}
-                        alt={study.title}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                    </div>
-                    <CardContent className="p-6">
-                      <span className="heading-display text-sm text-primary">{study.category}</span>
-                      <h3 className="heading-display text-xl text-foreground mt-2">{study.title}</h3>
-                    </CardContent>
-                  </Card>
-                </Link>
-              </ScrollReveal>
-            ))}
+            {caseStudies.map((study, i) => {
+              const dbInfo = logoMap[study.slug];
+              const logoSrc = dbInfo?.logo || study.fallbackLogo;
+              const altName = dbInfo?.name || study.title;
+              return (
+                <ScrollReveal key={study.title} delay={i * 100} className="h-full">
+                  <Link to={study.href} className="group block h-full">
+                    <Card variant="interactive" className="overflow-hidden bg-background h-full flex flex-col">
+                      <div className="aspect-video overflow-hidden">
+                        <img
+                          src={study.image}
+                          alt={study.title}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        />
+                      </div>
+                      <CardContent className="p-6 flex-1 flex">
+                        <div className="flex gap-5 items-center w-full">
+                          {/* Logo column ~30% */}
+                          <div className="w-[30%] flex items-center justify-center shrink-0">
+                            {logoSrc ? (
+                              <img
+                                src={logoSrc}
+                                alt={`${altName} logo`}
+                                className="max-h-16 w-auto max-w-full object-contain"
+                              />
+                            ) : (
+                              <span className="text-3xl font-bold text-muted-foreground">
+                                {altName.charAt(0)}
+                              </span>
+                            )}
+                          </div>
+                          {/* Text column ~70% */}
+                          <div className="w-[70%] min-w-0">
+                            <span className="heading-display text-sm md:text-base text-primary block">
+                              {study.category}
+                            </span>
+                            <h3 className="heading-display text-lg md:text-xl text-foreground mt-2 leading-tight">
+                              {study.title}
+                            </h3>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                </ScrollReveal>
+              );
+            })}
           </div>
         </div>
       </section>
