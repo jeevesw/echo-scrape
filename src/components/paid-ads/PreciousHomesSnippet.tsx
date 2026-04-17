@@ -19,13 +19,13 @@ const PreciousHomesSnippet = () => (
     <div className="grid md:grid-cols-2 gap-10 items-center">
       <div className="grid grid-cols-2 gap-4">
         <ParallaxVideo
-          src="https://trapezemedia.co.uk/s/Testimonial_NoexperienceNeeded_PreciousHomes.mp4"
+          src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Testimonial_NoexperienceNeeded_PreciousHomes.mp4"
           direction="left"
           showMuteControl
           className="rounded-xl"
         />
         <ParallaxVideo
-          src="https://trapezemedia.co.uk/s/Precious-Homes-Slideshow-01_2.mp4"
+          src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Precious+Homes+-+Slideshow+01_2.mp4"
           direction="right"
           showMuteControl
           className="rounded-xl"
