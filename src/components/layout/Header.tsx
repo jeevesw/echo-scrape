@@ -91,11 +91,11 @@ export function Header() {
                 <ChevronDown className={`h-4 w-4 transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
               </Link>
               <div
-                className={`absolute left-0 top-full pt-4 transition-all duration-200 ${
+                className={`absolute right-0 top-full pt-4 transition-all duration-200 ${
                   servicesOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"
                 }`}
               >
-                <div className="bg-background border border-border rounded-xl shadow-xl p-6 w-[780px]">
+                <div className="bg-background border border-border rounded-xl shadow-xl p-6 w-[680px] max-w-[calc(100vw-2rem)]">
                   <div className="grid grid-cols-3 gap-4">
                     {services.map((service) => (
                       <Link
