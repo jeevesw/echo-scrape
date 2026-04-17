@@ -31,7 +31,7 @@ export function AnimatedStatCard({
       className="bg-background border-2 border-primary rounded-xl px-6 py-4 text-center min-w-[140px]"
     >
       <span className="heading-display text-4xl text-primary block">{displayValue}</span>
-      <span className="text-xs text-muted-foreground uppercase tracking-wide mt-1 block">
+      <span className="text-sm md:text-base text-muted-foreground uppercase tracking-wide mt-1 block">
         {label}
       </span>
     </div>
