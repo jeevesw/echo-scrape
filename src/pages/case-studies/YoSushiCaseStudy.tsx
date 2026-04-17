@@ -162,8 +162,7 @@ const YoSushiCaseStudy = () => {
                   We supported the social-first campaign with strategic Google Ads across search and YouTube, increasing awareness and driving conversions.
                 </p>
                 <p className="text-xl md:text-2xl text-foreground leading-relaxed">
-                  Thanks to the success of this campaign, Furi Furi Chicken will be launching in YO! kiosks in Tesco,{" "}
-                  <span className="text-primary font-semibold italic">and</span> a new variation 'The Spice Bag' was developed, available exclusively on delivery.
+                  We worked with Diversity member, street dancer and radio presenter Perri Kiely, who partnered with YO! to mark the Furi Furi launch at Bluewater — bringing his signature breakdancing moves to the conveyor belt and sharing the collab with his audience on social. The partnership landed coverage in the Mirror and helped cement Furi Furi Chicken as YO!'s biggest menu shake-up in the brand's history.
                 </p>
               </div>
             </ScrollReveal>
