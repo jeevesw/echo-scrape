@@ -77,7 +77,7 @@ export function Header() {
           <nav className="hidden lg:flex items-center gap-8">
             {/* Services Dropdown */}
             <div
-              className="relative"
+              className="relative h-20 flex items-center"
               onMouseEnter={() => setServicesOpen(true)}
               onMouseLeave={() => setServicesOpen(false)}
             >
@@ -125,7 +125,7 @@ export function Header() {
 
             {/* Case Studies Dropdown */}
             <div
-              className="relative"
+              className="relative h-20 flex items-center"
               onMouseEnter={() => setCaseStudiesOpen(true)}
               onMouseLeave={() => setCaseStudiesOpen(false)}
             >
