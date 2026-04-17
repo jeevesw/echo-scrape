@@ -21,7 +21,7 @@ const services = [
   { slug: "paid-search", title: "PPC / Google Ads", description: "Search, Display, YouTube, & Shopping ads", image: paidSearchImg },
   { slug: "tiktok-production", title: "Video Production", description: "For social and big screens", image: tiktokImg },
   { slug: "website-design", title: "Website Design", description: "Build, launch, & management", image: websiteImg },
-  { slug: "creative-services", title: "Creative Services", description: "Design, branding, & social assets", image: creativeImg },
+  // { slug: "creative-services", title: "Creative Services", description: "Design, branding, & social assets", image: creativeImg }, // Hidden temporarily
 ];
 
 const navItems = [
