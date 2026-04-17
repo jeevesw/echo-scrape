@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Check, X, ArrowRight, Smartphone, ShoppingCart, Palette, Search, Share2, Settings, Server, BarChart } from "lucide-react";
 import websiteHeroImg from "@/assets/services/website-design-hero.webp";
 import outsideOrgMockup from "@/assets/services/outside-org-mockup.webp";
+import hepburnsMockup from "@/assets/services/hepburns-mockup.webp";
 import {
   Accordion,
   AccordionContent,
@@ -108,9 +109,12 @@ const WebsiteDesignPage = () => {
         body="We started working on a new website for food and butcher business Hepburns fairly late in the year, and had it wrapped up — and integrated with their existing product management system — ahead of the Christmas rush. The site we delivered is easy for the Hepburns team to keep up to date, which is essential for on-the-fly inventory management."
         stats={[]}
         visualSlot={
-          <div className="bg-muted rounded-2xl aspect-[4/3] flex items-center justify-center border border-border">
-            <span className="text-xs text-muted-foreground text-center p-4">[Hepburns e-commerce website mockup]</span>
-          </div>
+          <img
+            src={hepburnsMockup}
+            alt="Hepburns e-commerce website shown across MacBook, iPad, and iPhone"
+            className="w-full h-auto rounded-2xl"
+            loading="lazy"
+          />
         }
       />
 
