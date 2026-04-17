@@ -141,10 +141,12 @@ export function Header() {
               <div
                 onMouseEnter={() => setCaseStudiesOpen(true)}
                 onMouseLeave={() => setCaseStudiesOpen(false)}
-                className={`absolute left-1/2 -translate-x-1/2 top-full pt-4 transition-all duration-200 z-50 ${
+                className={`fixed left-1/2 -translate-x-1/2 top-20 transition-all duration-200 z-50 ${
                   caseStudiesOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible pointer-events-none -translate-y-2"
                 }`}
               >
+                {/* Invisible hover bridge to prevent gap between trigger and panel */}
+                <div className="h-4 w-full" aria-hidden="true" />
                 <div className="bg-background border border-border rounded-xl shadow-xl p-6 w-[860px] max-w-[calc(100vw-2rem)]">
                   <div className="grid grid-cols-3 gap-4">
                     {caseStudies.map((cs) => (
