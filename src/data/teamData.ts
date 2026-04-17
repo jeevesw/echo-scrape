@@ -41,24 +41,23 @@ export const teamMembers: TeamMember[] = [
   {
     name: "Lily",
     services: [
-      "social-media-management",
-      "tiktok-production",
       "creative-services",
     ],
   },
   {
     name: "Ashley",
     services: [
+      "paid-advertising",
+      "paid-search",
       "tiktok-production",
       "creative-services",
-      "website-design",
     ],
   },
   {
     name: "Jeeves",
     services: [
-      "paid-advertising",
-      "paid-search",
+      "social-media-management",
+      "tiktok-production",
       "website-design",
     ],
   },
