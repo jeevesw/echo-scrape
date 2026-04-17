@@ -139,8 +139,10 @@ export function Header() {
                 <ChevronDown className={`h-4 w-4 transition-transform ${caseStudiesOpen ? "rotate-180" : ""}`} />
               </Link>
               <div
-                className={`fixed left-1/2 -translate-x-1/2 top-20 pt-4 transition-all duration-200 z-50 ${
-                  caseStudiesOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"
+                onMouseEnter={() => setCaseStudiesOpen(true)}
+                onMouseLeave={() => setCaseStudiesOpen(false)}
+                className={`fixed left-1/2 -translate-x-1/2 top-16 pt-2 transition-all duration-200 z-50 ${
+                  caseStudiesOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible pointer-events-none -translate-y-2"
                 }`}
               >
                 <div className="bg-background border border-border rounded-xl shadow-xl p-6 w-[860px] max-w-[calc(100vw-2rem)]">
