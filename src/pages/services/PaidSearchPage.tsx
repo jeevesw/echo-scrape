@@ -173,10 +173,10 @@ const PaidSearchPage = () => {
         ctaHref="https://calendly.com/trapezemedia/discovery-call"
       />
 
-      {/* 6 — WHAT'S INCLUDED */}
+      {/* 6 — SPECIALISING IN */}
       <section className="py-16 bg-muted">
         <div className="container mx-auto px-4">
-          <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-12">What's Included</h2>
+          <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-12">Specialising In...</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {service.features.map((f, i) => (
               <Card key={i} className="border-0 bg-background">
