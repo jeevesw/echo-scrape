@@ -17,9 +17,9 @@ export function Hero() {
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-radial opacity-50 pointer-events-none" />
       <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="relative">
-        <div className="grid lg:grid-cols-2 items-center">
-          <div className="animate-fade-in container-content mx-auto px-4 py-12 lg:py-16 lg:mx-0 lg:ml-auto lg:pr-8 lg:pl-4 xl:pl-8">
+      <div className="relative container-content mx-auto px-4">
+        <div className="grid lg:grid-cols-2 items-center gap-8">
+          <div className="animate-fade-in py-12 lg:py-16">
             <h1 className="heading-display text-4xl md:text-5xl lg:text-6xl text-primary leading-none mb-6">
               HYPERLOCAL MARKETING: LOCAL CAMPAIGNS FOR GLOBAL BRANDS.
             </h1>
