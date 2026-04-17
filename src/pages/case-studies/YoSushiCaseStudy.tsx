@@ -171,7 +171,7 @@ const YoSushiCaseStudy = () => {
             {/* Right Video - Parallax down */}
             <ScrollReveal animation="right" className="order-1 lg:order-2">
               <ParallaxVideo 
-                src="/videos/yo-sushi-3-plates.mp4" 
+                src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Earnies x Yo! Sushi - Perri Kiely - Client Edit - V3.mp4" 
                 direction="right"
               />
             </ScrollReveal>
