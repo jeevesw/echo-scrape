@@ -87,6 +87,7 @@ const WebsiteDesignPage = () => {
       {/* Case Study — The Outside Organisation */}
       <InlineCaseStudy
         variant="dark"
+        bgColor="#030306"
         clientName="The Outside Organisation"
         headline="Big, Bold, and Bright: For The Outside Organisation"
         body="We built a bespoke WordPress website for music marketing agency The Outside Organisation, with a full-bleed front-page space for eye-catching videos, vibrant animations, and a simple user experience. The site build — and the logo we designed for it — tied up a broader rebrand for The Outside Organisation."
@@ -104,6 +105,7 @@ const WebsiteDesignPage = () => {
       {/* Case Study — Hepburns */}
       <InlineCaseStudy
         variant="light"
+        bgColor="#ffffff"
         clientName="Hepburns"
         headline="E-Commerce for Christmas: Hepburns"
         body="We started working on a new website for food and butcher business Hepburns fairly late in the year, and had it wrapped up — and integrated with their existing product management system — ahead of the Christmas rush. The site we delivered is easy for the Hepburns team to keep up to date, which is essential for on-the-fly inventory management."

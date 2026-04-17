@@ -18,6 +18,7 @@ interface InlineCaseStudyProps {
   ctaHref?: string;
   variant?: "light" | "dark";
   visualSlot?: ReactNode;
+  bgColor?: string;
 }
 
 export function InlineCaseStudy({
@@ -30,11 +31,15 @@ export function InlineCaseStudy({
   ctaHref,
   variant = "light",
   visualSlot,
+  bgColor,
 }: InlineCaseStudyProps) {
   const isDark = variant === "dark";
 
   return (
-    <section className={isDark ? "bg-[hsl(60,1%,8%)] py-16 lg:py-24" : "bg-muted py-16 lg:py-24"}>
+    <section
+      className={`py-16 lg:py-24 ${!bgColor ? (isDark ? "bg-[hsl(60,1%,8%)]" : "bg-muted") : ""}`}
+      style={bgColor ? { backgroundColor: bgColor } : undefined}
+    >
       <div className="container mx-auto px-4">
         <div className={`max-w-6xl mx-auto ${visualSlot ? "grid md:grid-cols-2 gap-12 items-center" : ""}`}>
           <div>
