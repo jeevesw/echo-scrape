@@ -4,8 +4,8 @@ import { Layout } from "@/components/layout/Layout";
 import { BreadcrumbNav } from "@/components/ui/breadcrumb-nav";
 import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/hooks/use-scroll-reveal";
-import { ArrowLeft, Quote } from "lucide-react";
-import { useRef, useState } from "react";
+import { ArrowLeft, Quote, Volume2, VolumeX } from "lucide-react";
+import { useRef, useState, useEffect } from "react";
 
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
 
@@ -20,25 +20,99 @@ const videoFiles = [
 
 function VideoCard({ src }: { src: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [hovered, setHovered] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+  const [progress, setProgress] = useState(0);
+  const [isScrubbing, setIsScrubbing] = useState(false);
+  const scrubberRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    const onTime = () => {
+      if (!isScrubbing && v.duration) setProgress((v.currentTime / v.duration) * 100);
+    };
+    v.addEventListener("timeupdate", onTime);
+    return () => v.removeEventListener("timeupdate", onTime);
+  }, [isScrubbing]);
+
+  const toggleMute = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (videoRef.current) {
+      videoRef.current.muted = !videoRef.current.muted;
+      setIsMuted(videoRef.current.muted);
+    }
+  };
+
+  const seekFromEvent = (clientX: number) => {
+    const el = scrubberRef.current;
+    const v = videoRef.current;
+    if (!el || !v || !v.duration) return;
+    const rect = el.getBoundingClientRect();
+    const pct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+    v.currentTime = pct * v.duration;
+    setProgress(pct * 100);
+  };
+
+  const onScrubStart = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsScrubbing(true);
+    seekFromEvent(e.clientX);
+  };
+
+  useEffect(() => {
+    if (!isScrubbing) return;
+    const onMove = (e: MouseEvent) => seekFromEvent(e.clientX);
+    const onUp = () => setIsScrubbing(false);
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseup", onUp);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mouseup", onUp);
+    };
+  }, [isScrubbing]);
 
   return (
-    <div
-      className="relative rounded-2xl overflow-hidden shadow-lg group"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
+    <div className="relative rounded-2xl overflow-hidden shadow-lg group">
       <video
         ref={videoRef}
         autoPlay
         loop
-        muted
+        muted={isMuted}
         playsInline
-        controls={hovered}
         className="w-full h-full object-cover aspect-[9/16]"
       >
         <source src={src} type="video/mp4" />
       </video>
+
+      {/* Bottom controls: scrubber + mute */}
+      <div className="absolute inset-x-0 bottom-0 p-3 opacity-0 group-hover:opacity-100 focus-within:opacity-100 transition-opacity duration-200 bg-gradient-to-t from-black/60 to-transparent">
+        <div className="flex items-center gap-3">
+          <div
+            ref={scrubberRef}
+            onMouseDown={onScrubStart}
+            onTouchStart={(e) => { setIsScrubbing(true); seekFromEvent(e.touches[0].clientX); }}
+            onTouchMove={(e) => seekFromEvent(e.touches[0].clientX)}
+            onTouchEnd={() => setIsScrubbing(false)}
+            className="flex-1 h-1.5 bg-white/25 rounded-full cursor-pointer relative group/scrub"
+          >
+            <div
+              className="absolute inset-y-0 left-0 bg-white rounded-full"
+              style={{ width: `${progress}%` }}
+            />
+            <div
+              className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-white shadow opacity-0 group-hover/scrub:opacity-100 transition-opacity"
+              style={{ left: `${progress}%` }}
+            />
+          </div>
+          <button
+            onClick={toggleMute}
+            className="p-2 rounded-full bg-background/80 backdrop-blur-sm text-foreground hover:bg-background hover:scale-110 transition-all duration-200 shrink-0"
+            aria-label={isMuted ? "Unmute video" : "Mute video"}
+          >
+            {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
