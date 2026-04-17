@@ -131,6 +131,7 @@ const YoSushiCaseStudy = () => {
               <ParallaxVideo 
                 src="/videos/yo-sushi-furi-furi.mp4" 
                 direction="left"
+                showMuteControl
               />
             </ScrollReveal>
 
@@ -177,6 +178,7 @@ const YoSushiCaseStudy = () => {
               <ParallaxVideo 
                 src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Earnies x Yo! Sushi - Perri Kiely - Client Edit - V3.mp4" 
                 direction="right"
+                showMuteControl
               />
             </ScrollReveal>
           </div>
