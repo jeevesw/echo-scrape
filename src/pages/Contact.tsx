@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 import { Instagram, Linkedin, Mail, Phone, Calendar, ArrowRight } from "lucide-react";
 
 const Contact = () => {
@@ -13,15 +14,53 @@ const Contact = () => {
     message: "",
     phone: "",
   });
+  const [submitting, setSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Message sent!",
-      description: "We'll get back to you as soon as possible.",
-    });
-    setFormData({ name: "", email: "", message: "", phone: "" });
+
+    // Basic client-side validation
+    const name = formData.name.trim();
+    const email = formData.email.trim();
+    const message = formData.message.trim();
+
+    if (!name || name.length > 100) {
+      toast({ title: "Please enter your name", variant: "destructive" });
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      toast({ title: "Please enter a valid email", variant: "destructive" });
+      return;
+    }
+    if (!message || message.length > 5000) {
+      toast({ title: "Please enter a message", variant: "destructive" });
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      const { error } = await supabase.functions.invoke("contact-form", {
+        body: { name, email, message, phone: formData.phone.trim() || undefined },
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Message sent!",
+        description: "We'll get back to you as soon as possible.",
+      });
+      setFormData({ name: "", email: "", message: "", phone: "" });
+    } catch (err) {
+      console.error("Contact form error", err);
+      toast({
+        title: "Something went wrong",
+        description: "Please try again or email us directly at info@trapezemedia.co.uk",
+        variant: "destructive",
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
