@@ -90,8 +90,8 @@ export function FeaturedCampaigns() {
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                     </div>
-                    <CardContent className="p-6">
-                      <div className="flex gap-5 items-center">
+                    <CardContent className="p-6 flex-1 flex">
+                      <div className="flex gap-5 items-center w-full">
                         {/* Logo column ~30% */}
                         <div className="w-[30%] flex items-center justify-center shrink-0">
                           {logoSrc ? (
