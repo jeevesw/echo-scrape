@@ -182,8 +182,8 @@ const Contact = () => {
                     className="border-0 border-b border-border rounded-none focus:ring-0 bg-transparent"
                   />
                 </div>
-                <Button type="submit" variant="hero">
-                  Send
+                <Button type="submit" variant="hero" disabled={submitting}>
+                  {submitting ? "Sending..." : "Send"}
                 </Button>
               </form>
             </div>
