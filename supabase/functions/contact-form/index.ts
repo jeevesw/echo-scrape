@@ -147,7 +147,7 @@ Deno.serve(async (req) => {
 
   try {
     const notify = await sendEmail({
-      to: [NOTIFY_TO],
+      to: NOTIFY_TO,
       subject: `New enquiry from ${name}`,
       html: notifyHtml,
       reply_to: email,
