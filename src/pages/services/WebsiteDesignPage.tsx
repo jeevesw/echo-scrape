@@ -144,28 +144,6 @@ const WebsiteDesignPage = () => {
           { label: "Squarespace Circle Member" },
         ]}
       />
-
-
-      {/* Process */}
-      <section className="py-16 bg-muted">
-        <div className="container mx-auto px-4">
-          <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-12">Our Process</h2>
-          <div className="max-w-4xl mx-auto space-y-8">
-            {service.process.map((step) => (
-              <div key={step.step} className="flex gap-6">
-                <div className="w-14 h-14 rounded-full bg-primary text-primary-foreground flex items-center justify-center heading-display text-xl shrink-0">
-                  {step.step}
-                </div>
-                <div className="pt-2">
-                  <h3 className="heading-display text-xl md:text-2xl text-foreground mb-2">{step.title}</h3>
-                  <p className="text-muted-foreground text-lg">{step.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Industries */}
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4 text-center">
