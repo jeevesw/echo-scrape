@@ -71,7 +71,7 @@ const ParisBaguetteCaseStudy = () => {
                 Paris Baguette is a global bakery-café chain with over 3,700 locations in South Korea and more than 200 in the US — and they were just beginning their franchise journey in the UK. We joined them when they went from four to six sites, at exactly the moment they needed to build real brand recognition in London.
               </p>
               <p className="text-xl md:text-2xl text-foreground leading-relaxed">
-                We worked with Paris Baguette to grow brand awareness and drive in-store visits for their Canary Wharf franchise location, while also supporting the launch of their new Westfield London branch.{" "}
+                We worked with global bakery-café chain Paris Baguette to grow brand awareness and drive in-store visits for their Canary Wharf franchise location, while also supporting the launch of their new Westfield London branch.{" "}
                 <span className="text-primary font-semibold">The brief: build a brand that London recognises, and turn that recognition into footfall.</span>
               </p>
             </div>
