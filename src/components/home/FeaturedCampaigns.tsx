@@ -79,9 +79,10 @@ export function FeaturedCampaigns() {
                 key={campaign.title}
                 animation={index % 2 === 0 ? "left" : "right"}
                 delay={index * 100}
+                className="h-full"
               >
-                <Link to={campaign.href} className="group block">
-                  <Card variant="interactive" className="overflow-hidden bg-background">
+                <Link to={campaign.href} className="group block h-full">
+                  <Card variant="interactive" className="overflow-hidden bg-background h-full flex flex-col">
                     <div className="aspect-video overflow-hidden">
                       <img
                         src={campaign.image}
