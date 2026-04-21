@@ -129,7 +129,7 @@ const PaidAdvertisingPage = () => {
         </title>
         <meta
           name="description"
-          content="Trapeze Media runs paid social, paid search and TikTok ads for hospitality, restaurant and lifestyle brands. Meta, Google & TikTok campaigns that drive bookings, footfall and sales."
+          content="Trapeze Media runs paid social, paid search and TikTok ads for global brands. Meta, Google & TikTok campaigns that drive bookings, footfall and sales."
         />
         <link
           rel="canonical"
