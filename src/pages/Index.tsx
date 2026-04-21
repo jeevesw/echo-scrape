@@ -76,7 +76,7 @@ const Index = () => {
                   <AccordionTrigger className="text-left text-base md:text-lg font-semibold text-foreground">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground text-base leading-relaxed">
+                  <AccordionContent className="text-muted-foreground text-base leading-relaxed whitespace-pre-line">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
