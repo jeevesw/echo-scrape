@@ -124,12 +124,12 @@ const PaidAdvertisingPage = () => {
     <Layout>
       <Helmet>
         <title>
-          Paid Advertising Agency for Hospitality &amp; Lifestyle Brands |
+          Paid Advertising Agency for Global Brands |
           Trapeze Media
         </title>
         <meta
           name="description"
-          content="Trapeze Media runs paid social, paid search and TikTok ads for hospitality, restaurant and lifestyle brands. Meta, Google & TikTok campaigns that drive bookings, footfall and sales."
+          content="Trapeze Media runs paid social, paid search and TikTok ads for global brands. Meta, Google & TikTok campaigns that drive bookings, footfall and sales."
         />
         <link
           rel="canonical"
@@ -138,7 +138,7 @@ const PaidAdvertisingPage = () => {
       </Helmet>
       <ServiceSchema
         name="Paid Advertising"
-        description="Paid social, paid search and TikTok ad campaigns for hospitality, restaurant and lifestyle brands."
+        description="Paid social, paid search and TikTok ad campaigns for global brands."
         provider="Trapeze Media"
         serviceType="Paid Advertising"
         areaServed={["GB"]}
@@ -150,7 +150,7 @@ const PaidAdvertisingPage = () => {
       <ServiceHero
         variant="brand-pink"
         backgroundImage={paidAdsHero}
-        headline="Paid Advertising for Hospitality & Lifestyle Brands"
+        headline="Paid Advertising for Global Brands"
         subheadline="Meta, Google, and TikTok ads that drive real-world results: bookings, footfall, sales, and sign-ups."
         primaryCta={{
           label: "Schedule a Call",
