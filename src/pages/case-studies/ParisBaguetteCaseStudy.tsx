@@ -127,7 +127,7 @@ const ParisBaguetteCaseStudy = () => {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <ScrollReveal animation="left">
               <ParallaxVideo
-                src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Video%203%20-%20Autumn%20Menu%20-%20Paris%20Baguette%20-%20Canary%20Wharf.mp4"
+                src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Video%201%20-%20Version%20A%20-%20Paris%20Baguette.mp4"
                 direction="left"
                 showMuteControl
               />
@@ -190,7 +190,7 @@ const ParisBaguetteCaseStudy = () => {
 
             <ScrollReveal animation="right" className="order-1 lg:order-2">
               <ParallaxVideo
-                src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Video%201%20-%20Version%20A%20-%20Paris%20Baguette.mp4"
+                src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Video%203%20-%20Autumn%20Menu%20-%20Paris%20Baguette%20-%20Canary%20Wharf.mp4"
                 direction="right"
                 showMuteControl
               />
