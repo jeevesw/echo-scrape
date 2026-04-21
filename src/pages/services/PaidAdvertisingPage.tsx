@@ -150,7 +150,7 @@ const PaidAdvertisingPage = () => {
       <ServiceHero
         variant="brand-pink"
         backgroundImage={paidAdsHero}
-        headline="Paid Advertising for Hospitality & Lifestyle Brands"
+        headline="Paid Advertising for Global Brands"
         subheadline="Meta, Google, and TikTok ads that drive real-world results: bookings, footfall, sales, and sign-ups."
         primaryCta={{
           label: "Schedule a Call",
