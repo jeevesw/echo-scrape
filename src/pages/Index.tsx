@@ -19,7 +19,7 @@ const faqs = [
   {
     question: "What is hyperlocal marketing?",
     answer:
-      "Hyperlocal marketing targets audiences within a specific geographic area — a neighbourhood, a postcode, or a set radius around a venue. Rather than broad national campaigns, hyperlocal ads reach the people most likely to walk through your door. Trapeze Media specialises in this approach for hospitality, events, and lifestyle brands.",
+      "Hyperlocal marketing targets audiences within a specific geographic area: a neighbourhood, a postcode, or a set radius around a venue. Rather than broad national campaigns, hyperlocal ads reach the people most likely to walk through your door. Trapeze Media specialises in this approach for hospitality, events, and healthcare brands.",
   },
   {
     question: "What services does Trapeze Media offer?",
