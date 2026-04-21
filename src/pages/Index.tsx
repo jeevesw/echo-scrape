@@ -28,8 +28,7 @@ const faqs = [
   },
   {
     question: "What sectors do you specialise in working with?",
-    answer:
-      "Yes. While hospitality and tourism have been a core focus for us, we also work with private medical and healthcare businesses, crowdfunding campaigns, D2C brands, and any brand that needs audiences reached in specific locations.",
+    answer: "While hospitality and tourism have been a core focus for us, we also work with private medical and healthcare businesses as they have a need to reach people located close to their bricks and mortar establishments. We've also had success with crowdfunding campaigns and D2C brands.",
   },
 ];
 
