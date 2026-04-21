@@ -124,7 +124,7 @@ const PaidAdvertisingPage = () => {
     <Layout>
       <Helmet>
         <title>
-          Paid Advertising Agency for Hospitality &amp; Lifestyle Brands |
+          Paid Advertising Agency for Global Brands |
           Trapeze Media
         </title>
         <meta
@@ -138,7 +138,7 @@ const PaidAdvertisingPage = () => {
       </Helmet>
       <ServiceSchema
         name="Paid Advertising"
-        description="Paid social, paid search and TikTok ad campaigns for hospitality, restaurant and lifestyle brands."
+        description="Paid social, paid search and TikTok ad campaigns for global brands."
         provider="Trapeze Media"
         serviceType="Paid Advertising"
         areaServed={["GB"]}
