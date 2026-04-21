@@ -30,6 +30,11 @@ const faqs = [
     question: "What sectors do you specialise in working with?",
     answer: "While hospitality and tourism have been a core focus for us, we also work with private medical and healthcare businesses as they have a need to reach people located close to their bricks and mortar establishments. We've also had success with crowdfunding campaigns and D2C brands.",
   },
+  {
+    question: "Can't AI just do what you do?",
+    answer:
+      "Short answer: only if you already know exactly what to do — and if you did, you probably wouldn't need either of us.\n\nAI is a powerful tool, but it amplifies expertise rather than replacing it. In the right hands, it makes skilled people significantly more efficient. Without that foundation of knowledge and experience, you won't know what to ask it, how to direct it, or — crucially — when it's got something wrong.\n\nWe're trained professionals who use AI to our advantage, which means we can work smarter and faster while still spotting the errors a non-expert would miss entirely.\n\nBut there's more to what we do than efficiency. We don't just follow templates or do what everyone else is doing — we never have. We take the time to genuinely understand your goals, and sometimes that means pushing back on your initial idea if there's a better route to where you want to get to. AI will generally give you what you ask for. We'll tell you if you're asking for the wrong thing.",
+  },
 ];
 
 const Index = () => {
@@ -71,7 +76,7 @@ const Index = () => {
                   <AccordionTrigger className="text-left text-base md:text-lg font-semibold text-foreground">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground text-base leading-relaxed">
+                  <AccordionContent className="text-muted-foreground text-base leading-relaxed whitespace-pre-line">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
