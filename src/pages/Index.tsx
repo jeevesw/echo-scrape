@@ -27,7 +27,7 @@ const faqs = [
       "We offer paid social advertising (Meta and TikTok), Google Ads and PPC, social media management, video production, creative services, and website design. All services are underpinned by our hyperlocal methodology.",
   },
   {
-    question: "Do you work with brands outside of hospitality?",
+    question: "What sectors do you specialise in working with?",
     answer:
       "Yes. While hospitality and tourism have been a core focus for us, we also work with private medical and healthcare businesses, crowdfunding campaigns, D2C brands, and any brand that needs audiences reached in specific locations.",
   },
