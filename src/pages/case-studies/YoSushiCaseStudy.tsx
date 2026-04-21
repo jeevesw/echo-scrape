@@ -164,7 +164,7 @@ const YoSushiCaseStudy = () => {
                 </p>
                 <div className="space-y-6 text-xl md:text-2xl text-foreground leading-relaxed">
                   <p>
-                    We worked with Diversity member, street dancer, and radio presenter Perri Kiely, who partnered with YO! to mark the Furi Furi launch at Bluewater, bringing his signature breakdancing moves to the conveyor belt and sharing the collab with his audience on social.
+                    Diversity member, street dancer, and radio presenter Perri Kiely, partnered with YO! to mark the Furi Furi launch at Bluewater. Bringing his signature breakdancing moves to the conveyor belt and sharing the collab with his audience on social.
                   </p>
                   <p>
                     The partnership landed press coverage and helped cement Furi Furi Chicken as <span className="text-primary font-bold">one of YO!'s biggest menu shake-ups in the brand's history</span>.
