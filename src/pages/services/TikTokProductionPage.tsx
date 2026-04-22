@@ -96,23 +96,6 @@ const TikTokProductionPage = () => {
         </div>
       </section>
 
-      {/* Case Study — Caravanserai Brighton */}
-      <InlineCaseStudy
-        variant="light"
-        label="TikTok & Social · Case Study"
-        clientName="Brighton Fringe / Caravanserai"
-        headline="Our TikTok Work: Caravanserai Brighton"
-        body="Caravanserai — an immersive pop-up festival inside a weird little world of rusty trailers and eclectic entertainers — became part of the Brighton Fringe line-up in 2023. During the lead-up and first week, we were making the build crew do TikTok dances, flying drones, posting about hundreds of events, interviewing Caravanserai's creator, and curating hundreds of bits of UGC. We posted hundreds of pieces of content over the month — videos, graphics, schedule posts, carousels, fun copy, and loads of TikToks and Reels scoring tens of thousands of plays."
-        stats={[]}
-        visualSlot={
-          <ParallaxVideo
-            src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Caravanserai-Trapeze-Media-TikTok-Brighton.mp4"
-            showMuteControl
-            className="shadow-none rounded-none"
-          />
-        }
-      />
-
       {/* Paris Baguette — Phase 1 */}
       <section className="py-24 bg-background">
         <div className="container mx-auto px-4">
@@ -167,6 +150,23 @@ const TikTokProductionPage = () => {
           </ScrollReveal>
         </div>
       </section>
+
+      {/* Case Study — Caravanserai Brighton */}
+      <InlineCaseStudy
+        variant="light"
+        label="TikTok & Social · Case Study"
+        clientName="Brighton Fringe / Caravanserai"
+        headline="Our TikTok Work: Caravanserai Brighton"
+        body="Caravanserai — an immersive pop-up festival inside a weird little world of rusty trailers and eclectic entertainers — became part of the Brighton Fringe line-up in 2023. During the lead-up and first week, we were making the build crew do TikTok dances, flying drones, posting about hundreds of events, interviewing Caravanserai's creator, and curating hundreds of bits of UGC. We posted hundreds of pieces of content over the month — videos, graphics, schedule posts, carousels, fun copy, and loads of TikToks and Reels scoring tens of thousands of plays."
+        stats={[]}
+        visualSlot={
+          <ParallaxVideo
+            src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Caravanserai-Trapeze-Media-TikTok-Brighton.mp4"
+            showMuteControl
+            className="shadow-none rounded-none"
+          />
+        }
+      />
 
       {/* Case Study — Michael Emmett */}
       <section className="relative overflow-hidden min-h-[420px]">
