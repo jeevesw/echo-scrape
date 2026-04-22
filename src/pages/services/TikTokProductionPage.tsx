@@ -96,6 +96,36 @@ const TikTokProductionPage = () => {
         </div>
       </section>
 
+      {/* The Cube */}
+      <section className="py-24 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <ScrollReveal>
+              <div className="grid lg:grid-cols-3 gap-8 items-center">
+                <ParallaxVideo
+                  src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//The-Cube-Trapeze-Media-Video-Production-1.mp4"
+                  showMuteControl
+                  className="shadow-none rounded-2xl"
+                />
+                <div className="space-y-6">
+                  <h3 className="heading-display text-2xl md:text-3xl text-foreground">
+                    THE CUBE
+                  </h3>
+                  <p className="text-lg text-muted-foreground leading-relaxed">
+                    We project managed and produced three concept videos for The Cube, an exhilarating experience based on the televised game show of the same name! We welcomed influencers to take part in the shoot, helping amplify the reach of the videos. Here are couple of the Tron-inspired pieces we produced for The Cube.
+                  </p>
+                </div>
+                <ParallaxVideo
+                  src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//The-Cube-Trapeze-Media-Video-Production-2.mp4"
+                  showMuteControl
+                  className="shadow-none rounded-2xl"
+                />
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
       {/* Paris Baguette — Phase 1 */}
       <section className="py-24 bg-muted">
         <div className="container mx-auto px-4">
