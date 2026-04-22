@@ -102,7 +102,7 @@ const TikTokProductionPage = () => {
           <div className="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
             <ScrollReveal animation="left">
               <ParallaxVideo
-                src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Paris-Baguette-Trapeze-Media-Video-Production-1.mp4"
+                src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Paris-Baguette-Trapeze-Media-Video-Production.mp4"
                 direction="left"
                 showMuteControl
               />
