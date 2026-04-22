@@ -130,6 +130,15 @@ const PaidSearchPage = () => {
               </Link>
             </Button>
           </ScrollReveal>
+
+          <ScrollReveal delay={300}>
+            <div className="mt-12 flex justify-center">
+              <YouTubeMockup
+                src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//YO-Sushi-Trapeze-Media-PPC-Video.mp4"
+                maxWidth={780}
+              />
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
