@@ -134,20 +134,22 @@ const TikTokProductionPage = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/20" />
 
         <div className="container mx-auto px-4 relative z-10 py-20">
-          <ScrollReveal>
-            <h2 className="heading-display text-4xl md:text-5xl text-white mb-8">
-              What We Delivered
-            </h2>
-          </ScrollReveal>
+          <div className="max-w-6xl mx-auto">
+            <ScrollReveal>
+              <h2 className="heading-display text-4xl md:text-5xl text-white mb-8">
+                What We Delivered
+              </h2>
+            </ScrollReveal>
 
-          <ScrollReveal delay={100}>
-            <div className="flex flex-wrap gap-4">
-              <AnimatedStatCard end={83} prefix="+" suffix="%" label="Branded search uplift" delay={0} />
-              <AnimatedStatCard end={23} prefix="+" suffix="%" label="Search demand in month one" delay={150} />
-              <AnimatedStatCard end={45} prefix="+" suffix="%" label="Google Ads scaled" delay={300} />
-              <AnimatedStatCard end={60} prefix="+" suffix="%" label="Footfall conversions" delay={450} />
-            </div>
-          </ScrollReveal>
+            <ScrollReveal delay={100}>
+              <div className="flex flex-wrap gap-4">
+                <AnimatedStatCard end={83} prefix="+" suffix="%" label="Branded search uplift" delay={0} />
+                <AnimatedStatCard end={23} prefix="+" suffix="%" label="Search demand in month one" delay={150} />
+                <AnimatedStatCard end={45} prefix="+" suffix="%" label="Google Ads scaled" delay={300} />
+                <AnimatedStatCard end={60} prefix="+" suffix="%" label="Footfall conversions" delay={450} />
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 
