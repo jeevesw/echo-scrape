@@ -52,7 +52,7 @@ const TikTokProductionPage = () => {
       <Helmet>
         <title>{service.metaTitle}</title>
         <meta name="description" content={service.metaDescription} />
-        <link rel="canonical" href={`${baseUrl}/services/tiktok-production`} />
+        <link rel="canonical" href={`${baseUrl}/services/video-production`} />
       </Helmet>
       <ServiceSchema
         name={service.title}
@@ -60,7 +60,7 @@ const TikTokProductionPage = () => {
         provider="Trapeze Media"
         serviceType="TikTok Marketing"
         areaServed={["United Kingdom", "Europe"]}
-        url={`${baseUrl}/services/tiktok-production`}
+        url={`${baseUrl}/services/video-production`}
       />
       <FAQSchema faqs={service.faqs} />
 
@@ -74,7 +74,7 @@ const TikTokProductionPage = () => {
         secondaryCta={{ label: "Contact Us", href: "/contact" }}
         breadcrumbItems={[
           { label: "Services", href: "/services" },
-          { label: "Video Production", href: "/services/tiktok-production" },
+          { label: "Video Production", href: "/services/video-production" },
         ]}
       />
 

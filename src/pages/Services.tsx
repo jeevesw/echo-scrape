@@ -34,7 +34,7 @@ const services = [
     image: paidSearchImg,
   },
   {
-    slug: "tiktok-production",
+    slug: "video-production",
     title: "Video Production",
     description: "For social and big screens",
     image: tiktokImg,
