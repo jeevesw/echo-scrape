@@ -3,7 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HelmetProvider } from "react-helmet-async";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import { ProtectedRoute } from "@/components/admin/ProtectedRoute";
 import { ScrollToTop } from "@/components/ScrollToTop";
@@ -67,7 +67,8 @@ const App = () => (
               <Route path="/services" element={<Services />} />
               <Route path="/services/paid-advertising" element={<PaidAdvertisingPage />} />
               <Route path="/services/paid-search" element={<PaidSearchPage />} />
-              <Route path="/services/tiktok-production" element={<TikTokProductionPage />} />
+              <Route path="/services/video-production" element={<TikTokProductionPage />} />
+              <Route path="/services/tiktok-production" element={<Navigate to="/services/video-production" replace />} />
               <Route path="/services/social-media-management" element={<SocialMediaManagementPage />} />
               <Route path="/services/creative-services" element={<CreativeServicesPage />} />
               <Route path="/services/website-design" element={<WebsiteDesignPage />} />
