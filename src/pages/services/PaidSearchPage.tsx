@@ -117,14 +117,6 @@ const PaidSearchPage = () => {
                 </p>
               </ScrollReveal>
 
-              <ScrollReveal delay={100}>
-                <div className="flex flex-wrap gap-4 mb-8">
-                  <AnimatedStatCard end={1000} suffix="+" label="Views in week one" delay={0} formatValue={(v) => (v >= 1000 ? '1M' : `${v}K`)} />
-                  <AnimatedStatCard end={60} suffix="%" label="Increase · Restaurant bookings" delay={150} />
-                  <AnimatedStatCard end={28} suffix="%" label="Uplift · Click & collect orders" delay={300} />
-                </div>
-              </ScrollReveal>
-
               <ScrollReveal delay={200}>
                 <Button variant="hero" asChild>
                   <Link to="/case-studies/yo-sushi">
@@ -145,6 +137,14 @@ const PaidSearchPage = () => {
               </ScrollReveal>
             </div>
           </div>
+
+          <ScrollReveal delay={100}>
+            <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <AnimatedStatCard end={1000} suffix="+" label="Views in week one" delay={0} formatValue={(v) => (v >= 1000 ? '1M' : `${v}K`)} />
+              <AnimatedStatCard end={60} suffix="%" label="Increase · Restaurant bookings" delay={150} />
+              <AnimatedStatCard end={28} suffix="%" label="Uplift · Click & collect orders" delay={300} />
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
