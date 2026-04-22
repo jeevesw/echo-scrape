@@ -97,7 +97,7 @@ const TikTokProductionPage = () => {
       </section>
 
       {/* Paris Baguette — Phase 1 */}
-      <section className="py-24 bg-background">
+      <section className="py-24 bg-muted">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
             <ScrollReveal animation="left">
