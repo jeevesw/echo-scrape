@@ -24,7 +24,7 @@ const STATIC_ROUTES: RouteEntry[] = [
   { route: "/contact", group: "Static", label: "Contact" },
   { route: "/services/paid-advertising", group: "Service", label: "Paid Advertising" },
   { route: "/services/paid-search", group: "Service", label: "Paid Search" },
-  { route: "/services/tiktok-production", group: "Service", label: "TikTok Production" },
+  { route: "/services/video-production", group: "Service", label: "Video Production" },
   { route: "/services/social-media-management", group: "Service", label: "Social Media Management" },
   { route: "/services/creative-services", group: "Service", label: "Creative Services" },
   { route: "/services/website-design", group: "Service", label: "Website Design" },

@@ -28,7 +28,7 @@ const services = [
   {
     title: "Video Production",
     subtitle: "For social and big screens",
-    href: "/services/tiktok-production",
+    href: "/services/video-production",
     image: tiktokImg,
   },
 ];
