@@ -98,26 +98,6 @@ const PaidSearchPage = () => {
       {/* TRACKING CALLOUT */}
       <TrackingCallout />
 
-      {/* 3 — OUR PPC SERVICES (card grid matching paid ads page) */}
-      <section className="bg-muted pt-12 pb-16 lg:pt-16 lg:pb-24">
-        <div className="container mx-auto px-4">
-          <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-12">
-            Our Paid Search Services
-          </h2>
-          <div className="grid sm:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            {serviceCards.map((item) => (
-              <Card key={item.title} className="border-0 shadow-none bg-background">
-                <CardContent className="p-6 md:p-8">
-                  <item.icon className="h-8 w-8 text-primary mb-4" />
-                  <h3 className="heading-display text-lg text-primary mb-3">{item.title}</h3>
-                  <p className="text-base text-muted-foreground leading-relaxed">{item.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* 4a — CASE STUDY — YO! Sushi (white background) */}
       <section className="bg-background py-20">
         <div className="container-content mx-auto px-4">
