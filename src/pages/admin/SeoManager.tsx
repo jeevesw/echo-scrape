@@ -192,8 +192,10 @@ export default function SeoManager() {
               <h2 className="text-xl font-semibold">{group} <span className="text-muted-foreground text-sm font-normal">({items.length})</span></h2>
               <div className="space-y-3">
                 {items.map((r) => {
-                  const v = values[r.route] ?? { route: r.route, title: "", description: "" };
+                  const v = values[r.route] ?? { route: r.route, title: "", description: "", og_image: "" };
                   const isDirty = dirty[r.route];
+                  const suggestion = r.suggestedImage;
+                  const canSuggest = !!suggestion && suggestion !== v.og_image;
                   return (
                     <Card key={r.route} className="p-4 space-y-3">
                       <div className="flex items-center justify-between gap-3 flex-wrap">
@@ -226,6 +228,52 @@ export default function SeoManager() {
                             placeholder="Leave blank to use page default"
                             rows={2}
                           />
+                        </div>
+                      </div>
+                      <div className="space-y-2 pt-1 border-t border-border">
+                        <div className="flex items-center justify-between gap-2 flex-wrap">
+                          <label className="text-xs font-medium text-muted-foreground">
+                            Open Graph image <span className="text-muted-foreground/70">(used for social shares)</span>
+                          </label>
+                          {canSuggest && (
+                            <Button
+                              type="button"
+                              size="sm"
+                              variant="ghost"
+                              className="h-7 text-xs"
+                              onClick={() => updateField(r.route, "og_image", suggestion!)}
+                            >
+                              <Sparkles className="h-3 w-3 mr-1" />
+                              Use {r.group === "Blog post" ? "featured image" : "hero image"}
+                            </Button>
+                          )}
+                        </div>
+                        <div className="grid gap-3 md:grid-cols-[1fr_auto]">
+                          <div className="space-y-2">
+                            <Input
+                              value={v.og_image}
+                              onChange={(e) => updateField(r.route, "og_image", e.target.value)}
+                              placeholder="Paste an image URL, or upload below"
+                            />
+                            <ImageUploader
+                              value={null}
+                              onChange={(url) => url && updateField(r.route, "og_image", url)}
+                              folder="og-images"
+                            />
+                          </div>
+                          {v.og_image && (
+                            <div className="relative w-40 h-24 rounded-md border border-border overflow-hidden bg-muted shrink-0">
+                              <img src={v.og_image} alt="" className="w-full h-full object-cover" />
+                              <button
+                                type="button"
+                                onClick={() => updateField(r.route, "og_image", "")}
+                                className="absolute top-1 right-1 bg-destructive text-destructive-foreground rounded-full p-0.5 hover:opacity-90"
+                                aria-label="Remove image"
+                              >
+                                <X className="h-3 w-3" />
+                              </button>
+                            </div>
+                          )}
                         </div>
                       </div>
                     </Card>
