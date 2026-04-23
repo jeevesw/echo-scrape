@@ -99,7 +99,7 @@ export default function SeoManager() {
     return routes.filter((r) => r.route.toLowerCase().includes(q) || r.label.toLowerCase().includes(q));
   }, [routes, filter]);
 
-  const updateField = (route: string, field: "title" | "description", val: string) => {
+  const updateField = (route: string, field: "title" | "description" | "og_image", val: string) => {
     setValues((prev) => ({ ...prev, [route]: { ...prev[route], [field]: val } }));
     setDirty((prev) => ({ ...prev, [route]: true }));
   };
@@ -107,7 +107,12 @@ export default function SeoManager() {
   const save = async (route: string) => {
     setSaving((p) => ({ ...p, [route]: true }));
     const row = values[route];
-    const payload = { route, title: row.title || null, description: row.description || null };
+    const payload = {
+      route,
+      title: row.title || null,
+      description: row.description || null,
+      og_image: row.og_image || null,
+    };
     const { error } = await supabase
       .from("seo_overrides")
       .upsert(payload, { onConflict: "route" });
@@ -122,10 +127,10 @@ export default function SeoManager() {
 
   const exportCsv = () => {
     const escape = (s: string) => `"${(s ?? "").replace(/"/g, '""')}"`;
-    const header = ["Route", "Group", "Label", "Title", "Description"].join(",");
+    const header = ["Route", "Group", "Label", "Title", "Description", "OG Image"].join(",");
     const rows = routes.map((r) => {
       const v = values[r.route];
-      return [r.route, r.group, r.label, v?.title ?? "", v?.description ?? ""].map(escape).join(",");
+      return [r.route, r.group, r.label, v?.title ?? "", v?.description ?? "", v?.og_image ?? ""].map(escape).join(",");
     });
     const csv = [header, ...rows].join("\n");
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
