@@ -87,7 +87,7 @@ const sectors = [
 const results = [
   {
     tag: "TikTok Campaign",
-    client: "YO! Sushi",
+    client: "YO!",
     stat: "+6%",
     description: "Increase in restaurant bookings in campaign period",
   },
@@ -114,7 +114,7 @@ const results = [
 ];
 
 const clientLogos = [
-  { src: "/images/clients/yo-sushi.svg", alt: "YO! Sushi" },
+  { src: "/images/clients/yo-sushi.svg", alt: "YO!" },
   { src: "/images/clients/radisson-hotels.svg", alt: "Radisson Hotels" },
   { src: "/images/clients/various-eateries.svg", alt: "Various Eateries" },
 ];
@@ -268,7 +268,7 @@ const PaidAdvertisingPage = () => {
           </p>
           <div className="flex items-center justify-center gap-14 flex-wrap">
             {clientLogos.map((logo) => {
-              const keepOriginal = logo.alt === "YO! Sushi";
+              const keepOriginal = logo.alt === "YO!";
               return (
                 <img
                   key={logo.alt}

@@ -51,7 +51,7 @@ const caseStudies = [
   {
     slug: "yo-sushi",
     category: "Google & Meta Ads",
-    title: "Driving footfall and orders for YO! Sushi",
+    title: "Driving footfall and orders for YO!",
     image: "/images/case-studies/yo-sushi-hero.jpg",
     href: "/case-studies/yo-sushi",
     fallbackLogo: "/images/clients/yo-sushi.svg",
