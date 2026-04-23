@@ -6,14 +6,16 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Download, Save, Search } from "lucide-react";
+import { Download, Save, Search, Sparkles, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { ImageUploader } from "@/components/admin/ImageUploader";
 
 type RouteEntry = {
   route: string;
   group: "Static" | "Service" | "Case study" | "Blog post" | "Utility";
   label: string;
+  suggestedImage?: string | null;
 };
 
 const STATIC_ROUTES: RouteEntry[] = [
@@ -37,6 +39,7 @@ interface OverrideRow {
   route: string;
   title: string;
   description: string;
+  og_image: string;
 }
 
 export default function SeoManager() {
@@ -52,17 +55,27 @@ export default function SeoManager() {
     (async () => {
       setLoading(true);
       const [overridesRes, postsRes, csRes] = await Promise.all([
-        supabase.from("seo_overrides").select("id, route, title, description"),
-        supabase.from("blog_posts").select("slug, title").eq("is_published", true).order("published_at", { ascending: false }),
-        supabase.from("case_studies").select("page_route, client_name").eq("is_published", true).order("sort_order"),
+        supabase.from("seo_overrides").select("id, route, title, description, og_image"),
+        supabase.from("blog_posts").select("slug, title, featured_image").eq("is_published", true).order("published_at", { ascending: false }),
+        supabase.from("case_studies").select("page_route, client_name, hero_image_url, card_image_url").eq("is_published", true).order("sort_order"),
       ]);
 
       const dynamic: RouteEntry[] = [];
       (csRes.data ?? []).forEach((cs: any) => {
-        if (cs.page_route) dynamic.push({ route: cs.page_route, group: "Case study", label: cs.client_name || cs.page_route });
+        if (cs.page_route) dynamic.push({
+          route: cs.page_route,
+          group: "Case study",
+          label: cs.client_name || cs.page_route,
+          suggestedImage: cs.hero_image_url || cs.card_image_url || null,
+        });
       });
       (postsRes.data ?? []).forEach((p: any) => {
-        dynamic.push({ route: `/blog/${p.slug}`, group: "Blog post", label: p.title || p.slug });
+        dynamic.push({
+          route: `/blog/${p.slug}`,
+          group: "Blog post",
+          label: p.title || p.slug,
+          suggestedImage: p.featured_image || null,
+        });
       });
 
       const allRoutes = [...STATIC_ROUTES, ...dynamic];
@@ -70,10 +83,10 @@ export default function SeoManager() {
 
       const map: Record<string, OverrideRow> = {};
       allRoutes.forEach((r) => {
-        map[r.route] = { route: r.route, title: "", description: "" };
+        map[r.route] = { route: r.route, title: "", description: "", og_image: "" };
       });
       (overridesRes.data ?? []).forEach((o: any) => {
-        map[o.route] = { id: o.id, route: o.route, title: o.title ?? "", description: o.description ?? "" };
+        map[o.route] = { id: o.id, route: o.route, title: o.title ?? "", description: o.description ?? "", og_image: o.og_image ?? "" };
       });
       setValues(map);
       setLoading(false);
