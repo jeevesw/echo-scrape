@@ -119,7 +119,7 @@ const PaidSearchPage = () => {
 
               <ScrollReveal delay={200}>
                 <Button variant="hero" asChild>
-                  <Link to="/case-studies/yo-sushi">
+                  <Link to="/case-studies/yo">
                     Read the Full Case Study →
                   </Link>
                 </Button>

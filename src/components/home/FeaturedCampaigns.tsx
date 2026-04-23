@@ -8,11 +8,11 @@ import { supabase } from "@/integrations/supabase/client";
 
 const campaigns = [
   {
-    slug: "yo-sushi",
+    slug: "yo",
     category: "Google & Meta Ads",
     title: "Driving footfall and orders for YO!",
     image: "/images/case-studies/yo-sushi-hero.jpg",
-    href: "/case-studies/yo-sushi",
+    href: "/case-studies/yo",
     fallbackLogo: "/images/clients/yo-sushi.svg",
   },
   {

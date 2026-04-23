@@ -54,7 +54,8 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/case-studies" element={<CaseStudies />} />
-              <Route path="/case-studies/yo-sushi" element={<YoSushiCaseStudy />} />
+              <Route path="/case-studies/yo" element={<YoSushiCaseStudy />} />
+              <Route path="/case-studies/yo-sushi" element={<Navigate to="/case-studies/yo" replace />} />
               <Route path="/case-studies/molo" element={<MoloCaseStudy />} />
               <Route path="/case-studies/various-eateries" element={<VariousEateriesCaseStudy />} />
               <Route path="/case-studies/brightonseo" element={<BrightonSeoCaseStudy />} />
