@@ -1,0 +1,1 @@
+UPDATE public.case_studies SET client_name = 'YO!' WHERE slug = 'yo-sushi';
