@@ -13,7 +13,7 @@ import { supabase } from "@/integrations/supabase/client";
  */
 export function SeoOverrideMount() {
   const { pathname } = useLocation();
-  const [override, setOverride] = useState<{ title: string | null; description: string | null } | null>(null);
+  const [override, setOverride] = useState<{ title: string | null; description: string | null; og_image: string | null } | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -21,7 +21,7 @@ export function SeoOverrideMount() {
     (async () => {
       const { data } = await supabase
         .from("seo_overrides")
-        .select("title, description")
+        .select("title, description, og_image")
         .eq("route", pathname)
         .maybeSingle();
       if (!cancelled) setOverride(data ?? null);
@@ -34,12 +34,16 @@ export function SeoOverrideMount() {
   if (!override) return null;
   const title = override.title?.trim();
   const description = override.description?.trim();
-  if (!title && !description) return null;
+  const ogImage = override.og_image?.trim();
+  if (!title && !description && !ogImage) return null;
 
   return (
     <Helmet>
       {title ? <title>{title}</title> : null}
       {description ? <meta name="description" content={description} /> : null}
+      {ogImage ? <meta property="og:image" content={ogImage} /> : null}
+      {ogImage ? <meta name="twitter:image" content={ogImage} /> : null}
+      {ogImage ? <meta name="twitter:card" content="summary_large_image" /> : null}
     </Helmet>
   );
 }

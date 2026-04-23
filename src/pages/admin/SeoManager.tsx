@@ -6,14 +6,16 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Download, Save, Search } from "lucide-react";
+import { Download, Save, Search, Sparkles, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { ImageUploader } from "@/components/admin/ImageUploader";
 
 type RouteEntry = {
   route: string;
   group: "Static" | "Service" | "Case study" | "Blog post" | "Utility";
   label: string;
+  suggestedImage?: string | null;
 };
 
 const STATIC_ROUTES: RouteEntry[] = [
@@ -37,6 +39,7 @@ interface OverrideRow {
   route: string;
   title: string;
   description: string;
+  og_image: string;
 }
 
 export default function SeoManager() {
@@ -52,17 +55,27 @@ export default function SeoManager() {
     (async () => {
       setLoading(true);
       const [overridesRes, postsRes, csRes] = await Promise.all([
-        supabase.from("seo_overrides").select("id, route, title, description"),
-        supabase.from("blog_posts").select("slug, title").eq("is_published", true).order("published_at", { ascending: false }),
-        supabase.from("case_studies").select("page_route, client_name").eq("is_published", true).order("sort_order"),
+        supabase.from("seo_overrides").select("id, route, title, description, og_image"),
+        supabase.from("blog_posts").select("slug, title, featured_image").eq("is_published", true).order("published_at", { ascending: false }),
+        supabase.from("case_studies").select("page_route, client_name, hero_image_url, card_image_url").eq("is_published", true).order("sort_order"),
       ]);
 
       const dynamic: RouteEntry[] = [];
       (csRes.data ?? []).forEach((cs: any) => {
-        if (cs.page_route) dynamic.push({ route: cs.page_route, group: "Case study", label: cs.client_name || cs.page_route });
+        if (cs.page_route) dynamic.push({
+          route: cs.page_route,
+          group: "Case study",
+          label: cs.client_name || cs.page_route,
+          suggestedImage: cs.hero_image_url || cs.card_image_url || null,
+        });
       });
       (postsRes.data ?? []).forEach((p: any) => {
-        dynamic.push({ route: `/blog/${p.slug}`, group: "Blog post", label: p.title || p.slug });
+        dynamic.push({
+          route: `/blog/${p.slug}`,
+          group: "Blog post",
+          label: p.title || p.slug,
+          suggestedImage: p.featured_image || null,
+        });
       });
 
       const allRoutes = [...STATIC_ROUTES, ...dynamic];
@@ -70,10 +83,10 @@ export default function SeoManager() {
 
       const map: Record<string, OverrideRow> = {};
       allRoutes.forEach((r) => {
-        map[r.route] = { route: r.route, title: "", description: "" };
+        map[r.route] = { route: r.route, title: "", description: "", og_image: "" };
       });
       (overridesRes.data ?? []).forEach((o: any) => {
-        map[o.route] = { id: o.id, route: o.route, title: o.title ?? "", description: o.description ?? "" };
+        map[o.route] = { id: o.id, route: o.route, title: o.title ?? "", description: o.description ?? "", og_image: o.og_image ?? "" };
       });
       setValues(map);
       setLoading(false);
@@ -86,7 +99,7 @@ export default function SeoManager() {
     return routes.filter((r) => r.route.toLowerCase().includes(q) || r.label.toLowerCase().includes(q));
   }, [routes, filter]);
 
-  const updateField = (route: string, field: "title" | "description", val: string) => {
+  const updateField = (route: string, field: "title" | "description" | "og_image", val: string) => {
     setValues((prev) => ({ ...prev, [route]: { ...prev[route], [field]: val } }));
     setDirty((prev) => ({ ...prev, [route]: true }));
   };
@@ -94,7 +107,12 @@ export default function SeoManager() {
   const save = async (route: string) => {
     setSaving((p) => ({ ...p, [route]: true }));
     const row = values[route];
-    const payload = { route, title: row.title || null, description: row.description || null };
+    const payload = {
+      route,
+      title: row.title || null,
+      description: row.description || null,
+      og_image: row.og_image || null,
+    };
     const { error } = await supabase
       .from("seo_overrides")
       .upsert(payload, { onConflict: "route" });
@@ -109,10 +127,10 @@ export default function SeoManager() {
 
   const exportCsv = () => {
     const escape = (s: string) => `"${(s ?? "").replace(/"/g, '""')}"`;
-    const header = ["Route", "Group", "Label", "Title", "Description"].join(",");
+    const header = ["Route", "Group", "Label", "Title", "Description", "OG Image"].join(",");
     const rows = routes.map((r) => {
       const v = values[r.route];
-      return [r.route, r.group, r.label, v?.title ?? "", v?.description ?? ""].map(escape).join(",");
+      return [r.route, r.group, r.label, v?.title ?? "", v?.description ?? "", v?.og_image ?? ""].map(escape).join(",");
     });
     const csv = [header, ...rows].join("\n");
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
@@ -174,8 +192,10 @@ export default function SeoManager() {
               <h2 className="text-xl font-semibold">{group} <span className="text-muted-foreground text-sm font-normal">({items.length})</span></h2>
               <div className="space-y-3">
                 {items.map((r) => {
-                  const v = values[r.route] ?? { route: r.route, title: "", description: "" };
+                  const v = values[r.route] ?? { route: r.route, title: "", description: "", og_image: "" };
                   const isDirty = dirty[r.route];
+                  const suggestion = r.suggestedImage;
+                  const canSuggest = !!suggestion && suggestion !== v.og_image;
                   return (
                     <Card key={r.route} className="p-4 space-y-3">
                       <div className="flex items-center justify-between gap-3 flex-wrap">
@@ -208,6 +228,52 @@ export default function SeoManager() {
                             placeholder="Leave blank to use page default"
                             rows={2}
                           />
+                        </div>
+                      </div>
+                      <div className="space-y-2 pt-1 border-t border-border">
+                        <div className="flex items-center justify-between gap-2 flex-wrap">
+                          <label className="text-xs font-medium text-muted-foreground">
+                            Open Graph image <span className="text-muted-foreground/70">(used for social shares)</span>
+                          </label>
+                          {canSuggest && (
+                            <Button
+                              type="button"
+                              size="sm"
+                              variant="ghost"
+                              className="h-7 text-xs"
+                              onClick={() => updateField(r.route, "og_image", suggestion!)}
+                            >
+                              <Sparkles className="h-3 w-3 mr-1" />
+                              Use {r.group === "Blog post" ? "featured image" : "hero image"}
+                            </Button>
+                          )}
+                        </div>
+                        <div className="grid gap-3 md:grid-cols-[1fr_auto]">
+                          <div className="space-y-2">
+                            <Input
+                              value={v.og_image}
+                              onChange={(e) => updateField(r.route, "og_image", e.target.value)}
+                              placeholder="Paste an image URL, or upload below"
+                            />
+                            <ImageUploader
+                              value={null}
+                              onChange={(url) => url && updateField(r.route, "og_image", url)}
+                              folder="og-images"
+                            />
+                          </div>
+                          {v.og_image && (
+                            <div className="relative w-40 h-24 rounded-md border border-border overflow-hidden bg-muted shrink-0">
+                              <img src={v.og_image} alt="" className="w-full h-full object-cover" />
+                              <button
+                                type="button"
+                                onClick={() => updateField(r.route, "og_image", "")}
+                                className="absolute top-1 right-1 bg-destructive text-destructive-foreground rounded-full p-0.5 hover:opacity-90"
+                                aria-label="Remove image"
+                              >
+                                <X className="h-3 w-3" />
+                              </button>
+                            </div>
+                          )}
                         </div>
                       </div>
                     </Card>
