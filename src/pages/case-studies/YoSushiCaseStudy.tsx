@@ -17,7 +17,7 @@ const YoSushiCaseStudy = () => {
           name="description" 
           content="A TikTok-led campaign that drove 1M+ views in week one, a 60% increase in restaurant bookings, and a 28% uplift in click-and-collect orders." 
         />
-        <link rel="canonical" href="https://trapezemedia.co.uk/case-studies/yo-sushi" />
+        <link rel="canonical" href="https://trapezemedia.co.uk/case-studies/yo" />
         <meta property="og:image" content="/images/case-studies/yo-sushi-hero.jpg" />
         <meta property="og:title" content="Paid Social & Hyperlocal Ads for YO! | Trapeze Media" />
         <meta property="og:description" content="A TikTok-led campaign that drove 1M+ views in week one, a 60% increase in restaurant bookings, and a 28% uplift in click-and-collect orders." />
@@ -43,7 +43,7 @@ const YoSushiCaseStudy = () => {
           <BreadcrumbNav
             items={[
               { label: "Case Studies", href: "/case-studies" },
-              { label: "YO!", href: "/case-studies/yo-sushi" },
+              { label: "YO!", href: "/case-studies/yo" },
             ]}
             variant="light"
           />
