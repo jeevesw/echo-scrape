@@ -23,8 +23,8 @@ const IntroLogos = () => (
         </div>
 
         {/* Text */}
-        <div className="flex-1 px-8 md:px-16 lg:pl-12 lg:pr-16">
-          <div className="max-w-3xl">
+        <div className="flex-1 px-8 md:px-16 lg:px-12">
+          <div className="max-w-2xl mx-auto">
             <p className="text-xl md:text-2xl text-primary font-semibold leading-snug mb-4">
               Billions of active monthly social media users means billions of opportunities to get your brand seen, and booked.
             </p>
@@ -32,6 +32,15 @@ const IntroLogos = () => (
               We design and deliver ambitious, creative paid ads campaigns using real data to reach key goals: clicks, leads, bookings, and sales conversions. Our hyperlocal approach means your ads reach the right people, near the right locations, at the right time (and even under the right weather conditions, if you want to get that specific).
             </p>
           </div>
+        </div>
+
+        {/* Image flush right */}
+        <div className="hidden lg:block flex-shrink-0 w-[28%]">
+          <img
+            src="/images/various-eateries-hero.png"
+            alt="Various Eateries campaign"
+            className="w-full h-auto object-cover object-left"
+          />
         </div>
       </div>
     </section>
