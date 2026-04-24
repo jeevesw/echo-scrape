@@ -231,6 +231,24 @@ const TikTokProductionPage = () => {
         </div>
       </section>
 
+      {/* 6-service icon grid */}
+      <section className="bg-white py-16 lg:py-24">
+        <div className="container mx-auto px-4">
+          <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-12">OUR VIDEO PRODUCTION SERVICES</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {tiktokServices.map((svc) => (
+              <Card key={svc.title} className="border-0 bg-muted">
+                <CardContent className="p-6">
+                  <svc.icon className="h-10 w-10 text-primary mb-4" />
+                  <h3 className="heading-display text-xl text-foreground mb-3">{svc.title}</h3>
+                  <p className="text-muted-foreground text-base">{svc.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Workflow Grid */}
       <WorkflowGrid heading="Our TikTok Workflow" steps={workflowSteps} columns={4} />
 
