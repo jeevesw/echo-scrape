@@ -64,7 +64,7 @@ export function ParallaxVideo({
         loop
         muted={isMuted}
         playsInline
-        className="w-full h-auto max-h-[90vh] object-contain mx-auto"
+        className="w-full h-auto"
       >
         <source src={src} type="video/mp4" />
       </video>
