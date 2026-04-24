@@ -15,7 +15,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Badge } from '@/components/ui/badge';
 import { Checkbox } from '@/components/ui/checkbox';
 import { cn } from '@/lib/utils';
-import { ArrowLeft, Save, Eye, Loader2, CalendarIcon, Upload, X, Image as ImageIcon, Tag, Settings2 } from 'lucide-react';
+import { ArrowLeft, Save, Eye, Loader2, CalendarIcon, Upload, X, Image as ImageIcon, Tag, Settings2, Download } from 'lucide-react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { Separator } from '@/components/ui/separator';
 import { format } from 'date-fns';
@@ -349,6 +349,35 @@ export default function BlogEditor() {
     saveMutation.mutate();
   };
 
+  const handleExportJson = () => {
+    const exportData = {
+      id: id ?? null,
+      title,
+      slug,
+      excerpt,
+      content,
+      blocks,
+      featured_image: featuredImage,
+      author,
+      author_id: authorId,
+      published_at: publishedAt.toISOString(),
+      is_published: isPublished,
+      categories: selectedCategories,
+      exported_at: new Date().toISOString(),
+    };
+    const filename = `${slug || 'blog-post'}-${format(new Date(), 'yyyy-MM-dd')}.json`;
+    const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    toast.success('Post exported as JSON');
+  };
+
   if (!isNew && isLoading) {
     return (
       <AdminLayout>
@@ -381,6 +410,10 @@ export default function BlogEditor() {
           <Button variant="outline" size="sm" onClick={() => setSettingsOpen(true)}>
             <Settings2 className="h-4 w-4 mr-2" />
             Settings
+          </Button>
+          <Button variant="outline" size="sm" onClick={handleExportJson}>
+            <Download className="h-4 w-4 mr-2" />
+            Export JSON
           </Button>
           {!isNew && (
             <Button variant="outline" size="sm" asChild>
