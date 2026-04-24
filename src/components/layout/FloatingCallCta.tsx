@@ -13,7 +13,7 @@ export function FloatingCallCta() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Schedule a call"
-        className={`group inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-0.5 transition-all duration-200 ${
+        className={`group inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground ring-2 ring-white shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-0.5 transition-all duration-200 ${
           collapsed
             ? "h-12 w-12 md:h-14 md:w-14 justify-center p-0"
             : "h-12 md:h-14 pl-4 pr-5 md:pl-5 md:pr-6"
