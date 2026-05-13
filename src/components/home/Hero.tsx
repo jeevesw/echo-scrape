@@ -44,6 +44,12 @@ export function Hero() {
                   Schedule a Call
                 </a>
               </Button>
+              <Button
+                asChild
+                className="rounded-full px-8 py-6 text-base font-bold uppercase tracking-wide border-2 border-primary bg-transparent text-primary hover:bg-primary hover:text-primary-foreground transition-colors duration-300"
+              >
+                <Link to="/newsletter">Get our newsletter</Link>
+              </Button>
             </div>
           </div>
 

@@ -26,6 +26,7 @@ const services = [
 
 const navItems = [
   { label: "Blog", href: "/blog" },
+  { label: "Newsletter", href: "/newsletter" },
   { label: "Contact", href: "/contact" },
 ];
 
