@@ -527,6 +527,7 @@ const Blog = () => {
           )}
         </div>
       </section>
+      {!slug && <NewsletterSignup />}
     </Layout>
   );
 };
