@@ -11,6 +11,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 import { useState, useMemo, useEffect } from "react";
 import { BlockRenderer, type Block } from "@/components/blog/BlockRenderer";
+import NewsletterSignup from "@/components/NewsletterSignup";
 
 interface Author {
   id: string;
@@ -526,6 +527,7 @@ const Blog = () => {
           )}
         </div>
       </section>
+      {!slug && <NewsletterSignup />}
     </Layout>
   );
 };

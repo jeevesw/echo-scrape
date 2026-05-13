@@ -61,7 +61,7 @@ export function Footer() {
                 <Instagram className="h-5 w-5" />
               </a>
               <a 
-                href="https://www.linkedin.com/company/trapeze-media" 
+                href="https://www.linkedin.com/company/trapezemedia/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="p-2 bg-primary-foreground/10 rounded-full hover:bg-primary-foreground/20 transition-colors"
