@@ -19,9 +19,6 @@ const Newsletter = () => {
             <h1 className="heading-display text-5xl md:text-6xl text-primary mb-4">
               The Trapeze Media Newsletter
             </h1>
-            <p className="text-lg text-muted-foreground">
-              Hyperlocal marketing thinking, ad industry shifts, and digital strategy insights — straight from our team to your inbox.
-            </p>
           </div>
           <NewsletterSignup />
         </div>
