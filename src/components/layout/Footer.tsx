@@ -17,6 +17,12 @@ export function Footer() {
             <p className="mt-4 text-primary-foreground/80 text-base">
               Hyperlocal marketing: Local campaigns for global brands.
             </p>
+            <Link
+              to="/newsletter"
+              className="mt-5 inline-block rounded-full border-2 border-primary-foreground bg-transparent px-6 py-2.5 text-sm font-bold uppercase tracking-wide text-primary-foreground transition-colors duration-300 hover:bg-primary-foreground hover:text-primary"
+            >
+              Get our newsletter
+            </Link>
           </div>
 
           {/* Quick Links */}
