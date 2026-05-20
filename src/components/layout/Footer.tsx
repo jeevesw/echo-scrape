@@ -27,12 +27,12 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="heading-display text-xl mb-5">Quick Links</h4>
             <ul className="space-y-3">
               <li><Link to="/services" className="text-primary-foreground/80 hover:text-primary-foreground text-base">Services</Link></li>
               <li><Link to="/case-studies" className="text-primary-foreground/80 hover:text-primary-foreground text-base">Case Studies</Link></li>
               <li><Link to="/blog" className="text-primary-foreground/80 hover:text-primary-foreground text-base">Blog</Link></li>
               <li><Link to="/contact" className="text-primary-foreground/80 hover:text-primary-foreground text-base">Contact</Link></li>
+              <li><Link to="/privacy-policy" className="text-primary-foreground/80 hover:text-primary-foreground text-base">Privacy Policy</Link></li>
             </ul>
           </div>
 
