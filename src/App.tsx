@@ -20,6 +20,7 @@ import PattyAndBunCaseStudy from "./pages/case-studies/PattyAndBunCaseStudy";
 import ParisBaguetteCaseStudy from "./pages/case-studies/ParisBaguetteCaseStudy";
 import Blog from "./pages/Blog";
 import Newsletter from "./pages/Newsletter";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Services from "./pages/Services";
 import ServicePage from "./pages/ServicePage";
 import PaidAdvertisingPage from "./pages/services/PaidAdvertisingPage";
@@ -67,6 +68,7 @@ const App = () => (
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:slug" element={<Blog />} />
               <Route path="/newsletter" element={<Newsletter />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/services" element={<Services />} />
               <Route path="/services/paid-advertising" element={<PaidAdvertisingPage />} />
               <Route path="/services/paid-search" element={<PaidSearchPage />} />
