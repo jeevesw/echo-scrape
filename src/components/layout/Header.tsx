@@ -57,7 +57,11 @@ function useCaseStudiesNav() {
   });
 }
 
-export function Header() {
+interface HeaderProps {
+  floating?: boolean;
+}
+
+export function Header({ floating = false }: HeaderProps = {}) {
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [caseStudiesOpen, setCaseStudiesOpen] = useState(false);
@@ -65,10 +69,28 @@ export function Header() {
   const { data: caseStudies = [] } = useCaseStudiesNav();
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-background">
+    <header
+      className={
+        floating
+          ? "fixed top-4 left-4 right-4 z-50"
+          : "sticky top-0 z-50 w-full bg-background"
+      }
+    >
       {/* Main Navigation */}
-      <div className="border-b border-border">
-        <div className="container-content mx-auto flex h-20 items-center justify-between px-4">
+      <div
+        className={
+          floating
+            ? "mx-auto max-w-6xl rounded-full bg-background/80 backdrop-blur-md border border-border/60 shadow-lg"
+            : "border-b border-border"
+        }
+      >
+        <div
+          className={
+            floating
+              ? "flex h-16 items-center justify-between px-6"
+              : "container-content mx-auto flex h-20 items-center justify-between px-4"
+          }
+        >
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <img src={logoTwoTone} alt="Trapeze Media" className="h-8 w-auto" />
