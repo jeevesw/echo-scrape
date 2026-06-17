@@ -11,7 +11,7 @@ const ReelPreview = () => {
   return (
     <Layout floatingHeader>
       <ReelHero />
-      <div className="bg-muted relative z-10">
+      <div className="bg-muted relative z-10 shadow-[0_-20px_40px_-10px_rgba(0,0,0,0.35)]">
         <div className="pt-8 md:pt-10 px-4">
           <div className="container-content mx-auto max-w-7xl">
             <h1 className="heading-display text-2xl md:text-3xl lg:text-4xl text-primary leading-none whitespace-nowrap text-center">
