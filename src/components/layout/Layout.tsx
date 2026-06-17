@@ -6,12 +6,13 @@ import { FloatingCallCta } from "./FloatingCallCta";
 
 interface LayoutProps {
   children: ReactNode;
+  floatingHeader?: boolean;
 }
 
-export function Layout({ children }: LayoutProps) {
+export function Layout({ children, floatingHeader = false }: LayoutProps) {
   return (
     <div className="flex min-h-screen flex-col">
-      <Header />
+      <Header floating={floatingHeader} />
       <main className="flex-1">{children}</main>
       <Footer />
       <FloatingCallCta />
