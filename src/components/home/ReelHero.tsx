@@ -2,7 +2,7 @@ import reelAsset from "@/assets/we-are-trapeze-media.mp4.asset.json";
 
 export function ReelHero() {
   return (
-    <section className="relative w-full h-screen overflow-hidden bg-black">
+    <section className="relative w-full aspect-video overflow-hidden bg-black">
       <video
         src={reelAsset.url}
         autoPlay
