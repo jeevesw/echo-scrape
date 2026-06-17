@@ -29,7 +29,7 @@ export function ReelHero() {
         loop
         muted
         playsInline
-        className={`fixed top-0 left-0 w-full aspect-video object-cover z-0 bg-black transition-opacity duration-200 ${showVideo ? "opacity-100" : "opacity-0"}`}
+        className={`fixed top-20 lg:top-0 left-0 w-full aspect-video object-cover z-0 bg-black transition-opacity duration-200 ${showVideo ? "opacity-100" : "opacity-0"}`}
       />
     </section>
   );

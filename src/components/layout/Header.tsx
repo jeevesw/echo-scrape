@@ -72,7 +72,7 @@ export function Header({ floating = false }: HeaderProps = {}) {
     <header
       className={
         floating
-          ? "fixed top-4 left-4 right-4 z-50"
+          ? "sticky top-0 z-50 w-full bg-background lg:fixed lg:top-4 lg:left-4 lg:right-4 lg:bg-transparent"
           : "sticky top-0 z-50 w-full bg-background"
       }
     >
@@ -80,14 +80,14 @@ export function Header({ floating = false }: HeaderProps = {}) {
       <div
         className={
           floating
-            ? "mx-auto max-w-6xl rounded-full bg-background/80 backdrop-blur-md border border-border/60 shadow-lg"
+            ? "border-b border-border lg:border-0 lg:mx-auto lg:max-w-6xl lg:rounded-full lg:bg-background/80 lg:backdrop-blur-md lg:border lg:border-border/60 lg:shadow-lg"
             : "border-b border-border"
         }
       >
         <div
           className={
             floating
-              ? "flex h-16 items-center justify-between px-6"
+              ? "container-content mx-auto flex h-20 items-center justify-between px-4 lg:container-none lg:max-w-none lg:h-16 lg:px-6"
               : "container-content mx-auto flex h-20 items-center justify-between px-4"
           }
         >
