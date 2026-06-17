@@ -9,7 +9,7 @@ export function ReelHero() {
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover"
+        className="fixed inset-0 w-screen h-screen object-contain"
       />
       <div className="absolute inset-x-0 bottom-0 pb-10 md:pb-14 px-4">
         <div className="container-content mx-auto max-w-5xl">
