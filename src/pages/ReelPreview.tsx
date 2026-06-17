@@ -12,9 +12,9 @@ const ReelPreview = () => {
     <Layout floatingHeader>
       <ReelHero />
       <div className="bg-muted">
-        <div className="pt-12 md:pt-16 px-4">
-          <div className="container-content mx-auto max-w-5xl">
-            <h1 className="heading-display text-4xl md:text-5xl lg:text-6xl text-primary leading-none">
+        <div className="pt-8 md:pt-10 px-4">
+          <div className="container-content mx-auto max-w-7xl">
+            <h1 className="heading-display text-2xl md:text-3xl lg:text-4xl text-primary leading-none whitespace-nowrap">
               HYPERLOCAL MARKETING: LOCAL CAMPAIGNS FOR GLOBAL BRANDS.
             </h1>
           </div>
