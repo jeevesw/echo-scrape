@@ -531,7 +531,7 @@
   --logo-loop-width: var(--logo-loop-width-mobile);
   display: flex;
   width: max-content;
-  animation: scroll-logos 44s linear infinite;
+  animation: scroll-logos 30s linear infinite;
   will-change: transform;
 }
 
@@ -557,7 +557,7 @@
     --logo-item-width: 8rem;
     --logo-gap: 4rem;
     --logo-loop-width: var(--logo-loop-width-desktop);
-    animation-duration: 20s;
+    animation-duration: 14s;
   }
 
   .logo-carousel-item {
