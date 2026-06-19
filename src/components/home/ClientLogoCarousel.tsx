@@ -1,6 +1,5 @@
-import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { ScrollReveal } from "@/hooks/use-scroll-reveal";
+import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import {
   Tooltip,
@@ -73,13 +72,12 @@ export function ClientLogoCarousel() {
 
   return (
     <section className="py-12 bg-muted overflow-visible relative z-20">
-      <ScrollReveal>
-        <TooltipProvider delayDuration={300}>
-          <div className="relative overflow-x-clip overflow-y-visible">
-            <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-muted to-transparent z-10 pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-muted to-transparent z-10 pointer-events-none" />
+      <TooltipProvider delayDuration={300}>
+        <div className="relative overflow-x-clip overflow-y-visible">
+          <div className="hidden md:block absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-muted to-transparent z-10 pointer-events-none" />
+          <div className="hidden md:block absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-muted to-transparent z-10 pointer-events-none" />
 
-            <div className={`flex animate-scroll-logos items-center gap-16 ${paused ? "[animation-play-state:paused]" : ""}`}>
+          <div className={`flex animate-scroll-logos items-center gap-16 ${paused ? "[animation-play-state:paused]" : ""}`}>
               {allLogos.map((logo, i) => (
                 <div key={`${logo.alt}-${i}`} className="flex-shrink-0 flex items-center justify-center">
                   {logo.testimonial ? (
@@ -105,10 +103,9 @@ export function ClientLogoCarousel() {
                   )}
                 </div>
               ))}
-            </div>
           </div>
-        </TooltipProvider>
-      </ScrollReveal>
+        </div>
+      </TooltipProvider>
     </section>
   );
 }
