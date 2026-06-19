@@ -71,7 +71,7 @@ export function ClientLogoCarousel() {
   const allLogos = [...mergedLogos, ...mergedLogos];
 
   return (
-    <section className="py-4 md:py-12 bg-muted overflow-visible relative z-20">
+    <section className="py-4 md:py-12 bg-muted overflow-x-clip md:overflow-visible relative z-20">
       <TooltipProvider delayDuration={300}>
         <div className="relative overflow-x-clip overflow-y-visible">
           <div className="hidden md:block absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-muted to-transparent z-10 pointer-events-none" />
