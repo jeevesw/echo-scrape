@@ -69,7 +69,10 @@ export function ClientLogoCarousel() {
   // Deduplicate: CMS logos take priority over static ones with same src
   const cmsSrcs = new Set(cmsClientLogos.map((l) => l.src));
   const mergedLogos = [...cmsClientLogos, ...staticLogos.filter((l) => !cmsSrcs.has(l.src))];
-  const trackStyle = { "--logo-count": mergedLogos.length } as CSSProperties;
+  const trackStyle = {
+    "--logo-loop-width-mobile": `${mergedLogos.length * 8.25}rem`,
+    "--logo-loop-width-desktop": `${mergedLogos.length * 12}rem`,
+  } as CSSProperties;
 
   const renderLogo = (logo: ClientLogo, index: number, group: number) => {
     const image = (
@@ -118,7 +121,7 @@ export function ClientLogoCarousel() {
 
           <div className={`logo-carousel-track ${paused ? "[animation-play-state:paused]" : ""}`} style={trackStyle}>
             {[0, 1, 2].map((group) => (
-              <div key={group} className="logo-carousel-group" aria-hidden={group === 1}>
+              <div key={group} className="logo-carousel-group" aria-hidden={group > 0}>
                 {mergedLogos.map((logo, i) => renderLogo(logo, i, group))}
               </div>
             ))}
