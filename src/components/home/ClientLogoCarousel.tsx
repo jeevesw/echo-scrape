@@ -35,7 +35,12 @@ const logoHeights: Record<string, string> = {
   "/images/clients/yo-sushi.svg": "h-12",
   "/images/clients/brighton-fringe.svg": "h-14",
   "/images/clients/various-eateries.svg": "h-10 md:h-12",
+  "/images/clients/various-eateries-carousel.svg": "h-10 md:h-12",
   "/images/clients/patty-and-bun.svg": "h-6",
+};
+
+const carouselLogoSrcs: Record<string, string> = {
+  "/images/clients/various-eateries.svg": "/images/clients/various-eateries-carousel.svg",
 };
 
 export function ClientLogoCarousel() {
@@ -58,9 +63,9 @@ export function ClientLogoCarousel() {
 
   // Merge CMS logos with static ones
   const cmsClientLogos: ClientLogo[] = cmsLogos.map((cs) => ({
-    src: cs.client_logo_url!,
+    src: carouselLogoSrcs[cs.client_logo_url!] || cs.client_logo_url!,
     alt: cs.client_name,
-    height: logoHeights[cs.client_logo_url!] || "h-10",
+    height: logoHeights[carouselLogoSrcs[cs.client_logo_url!] || cs.client_logo_url!] || "h-10",
     testimonial: cs.testimonial_quote
       ? { quote: cs.testimonial_quote, credit: cs.testimonial_credit || "" }
       : undefined,
