@@ -68,41 +68,58 @@ export function ClientLogoCarousel() {
   // Deduplicate: CMS logos take priority over static ones with same src
   const cmsSrcs = new Set(cmsClientLogos.map((l) => l.src));
   const mergedLogos = [...cmsClientLogos, ...staticLogos.filter((l) => !cmsSrcs.has(l.src))];
-  const allLogos = [...mergedLogos, ...mergedLogos];
+
+  const renderLogo = (logo: ClientLogo, index: number, group: number) => {
+    const image = (
+      <img
+        src={logo.src}
+        alt={logo.alt}
+        className={`${logo.height} max-h-12 md:max-h-14 max-w-full w-auto object-contain block`}
+        loading="eager"
+        decoding="async"
+      />
+    );
+
+    return (
+      <div key={`${logo.alt}-${group}-${index}`} className="logo-carousel-item">
+        {logo.testimonial ? (
+          <Tooltip>
+            <TooltipTrigger
+              asChild
+              onMouseEnter={() => setPaused(true)}
+              onMouseLeave={() => setPaused(false)}
+            >
+              {image}
+            </TooltipTrigger>
+            <TooltipContent side="top" className="max-w-xs p-4 text-left" onPointerDownOutside={(e) => e.preventDefault()}>
+              <p className="text-sm italic text-popover-foreground leading-relaxed mb-1.5">
+                "{logo.testimonial.quote}"
+              </p>
+              <p className="text-xs font-medium text-muted-foreground">
+                {logo.testimonial.credit}
+              </p>
+            </TooltipContent>
+          </Tooltip>
+        ) : (
+          image
+        )}
+      </div>
+    );
+  };
 
   return (
-    <section className="py-4 md:py-12 bg-muted overflow-x-clip md:overflow-visible relative z-20">
+    <section className="py-3 md:py-12 bg-muted overflow-hidden md:overflow-visible relative z-20">
       <TooltipProvider delayDuration={300}>
-        <div className="relative overflow-x-clip overflow-y-visible">
+        <div className="relative overflow-hidden md:overflow-x-clip md:overflow-y-visible">
           <div className="hidden md:block absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-muted to-transparent z-10 pointer-events-none" />
           <div className="hidden md:block absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-muted to-transparent z-10 pointer-events-none" />
 
-          <div className={`flex animate-scroll-logos-mobile md:animate-scroll-logos items-center gap-16 ${paused ? "[animation-play-state:paused]" : ""}`}>
-              {allLogos.map((logo, i) => (
-                <div key={`${logo.alt}-${i}`} className="flex-shrink-0 flex items-center justify-center">
-                  {logo.testimonial ? (
-                    <Tooltip>
-                      <TooltipTrigger
-                        asChild
-                        onMouseEnter={() => setPaused(true)}
-                        onMouseLeave={() => setPaused(false)}
-                      >
-                        <img src={logo.src} alt={logo.alt} className={`${logo.height} w-auto object-contain cursor-pointer`} loading="eager" decoding="async" />
-                      </TooltipTrigger>
-                      <TooltipContent side="top" className="max-w-xs p-4 text-left" onPointerDownOutside={(e) => e.preventDefault()}>
-                        <p className="text-sm italic text-popover-foreground leading-relaxed mb-1.5">
-                          "{logo.testimonial.quote}"
-                        </p>
-                        <p className="text-xs font-medium text-muted-foreground">
-                          {logo.testimonial.credit}
-                        </p>
-                      </TooltipContent>
-                    </Tooltip>
-                  ) : (
-                    <img src={logo.src} alt={logo.alt} className={`${logo.height} w-auto object-contain`} loading="eager" decoding="async" />
-                  )}
-                </div>
-              ))}
+          <div className={`logo-carousel-track ${paused ? "[animation-play-state:paused]" : ""}`}>
+            {[0, 1].map((group) => (
+              <div key={group} className="logo-carousel-group" aria-hidden={group === 1}>
+                {mergedLogos.map((logo, i) => renderLogo(logo, i, group))}
+              </div>
+            ))}
           </div>
         </div>
       </TooltipProvider>
