@@ -13,9 +13,9 @@ const ReelPreview = () => {
       <ReelHero />
       <div className="relative z-10 bg-background shadow-[0_-20px_40px_-10px_rgba(0,0,0,0.35)]">
         <div className="bg-muted">
-          <div className="pt-8 md:pt-10 px-4">
+          <div className="pt-8 md:pt-10 pb-2 md:pb-0 px-4">
             <div className="container-content mx-auto max-w-7xl">
-              <h1 className="heading-display text-xl sm:text-2xl md:text-3xl lg:text-4xl text-primary leading-tight md:leading-none md:whitespace-nowrap text-center">
+              <h1 className="heading-display text-3xl sm:text-4xl md:text-3xl lg:text-4xl text-primary leading-tight md:leading-none md:whitespace-nowrap text-center">
                 HYPERLOCAL MARKETING: LOCAL CAMPAIGNS FOR GLOBAL BRANDS.
               </h1>
             </div>

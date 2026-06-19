@@ -71,13 +71,13 @@ export function ClientLogoCarousel() {
   const allLogos = [...mergedLogos, ...mergedLogos];
 
   return (
-    <section className="py-12 bg-muted overflow-visible relative z-20">
+    <section className="py-4 md:py-12 bg-muted overflow-visible relative z-20">
       <TooltipProvider delayDuration={300}>
         <div className="relative overflow-x-clip overflow-y-visible">
           <div className="hidden md:block absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-muted to-transparent z-10 pointer-events-none" />
           <div className="hidden md:block absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-muted to-transparent z-10 pointer-events-none" />
 
-          <div className={`flex animate-scroll-logos items-center gap-16 ${paused ? "[animation-play-state:paused]" : ""}`}>
+          <div className={`flex animate-scroll-logos-mobile md:animate-scroll-logos items-center gap-16 ${paused ? "[animation-play-state:paused]" : ""}`}>
               {allLogos.map((logo, i) => (
                 <div key={`${logo.alt}-${i}`} className="flex-shrink-0 flex items-center justify-center">
                   {logo.testimonial ? (
@@ -87,7 +87,7 @@ export function ClientLogoCarousel() {
                         onMouseEnter={() => setPaused(true)}
                         onMouseLeave={() => setPaused(false)}
                       >
-                        <img src={logo.src} alt={logo.alt} className={`${logo.height} w-auto object-contain cursor-pointer`} loading="lazy" />
+                        <img src={logo.src} alt={logo.alt} className={`${logo.height} w-auto object-contain cursor-pointer`} loading="eager" decoding="async" />
                       </TooltipTrigger>
                       <TooltipContent side="top" className="max-w-xs p-4 text-left" onPointerDownOutside={(e) => e.preventDefault()}>
                         <p className="text-sm italic text-popover-foreground leading-relaxed mb-1.5">
@@ -99,7 +99,7 @@ export function ClientLogoCarousel() {
                       </TooltipContent>
                     </Tooltip>
                   ) : (
-                    <img src={logo.src} alt={logo.alt} className={`${logo.height} w-auto object-contain`} loading="lazy" />
+                    <img src={logo.src} alt={logo.alt} className={`${logo.height} w-auto object-contain`} loading="eager" decoding="async" />
                   )}
                 </div>
               ))}
