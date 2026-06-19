@@ -530,6 +530,11 @@
   width: max-content;
 }
 
+.animate-scroll-logos-mobile {
+  animation: scroll-logos 40s linear infinite;
+  width: max-content;
+}
+
 @keyframes sheen {
   0% {
     transform: translateX(-200%);
