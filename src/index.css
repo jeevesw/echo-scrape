@@ -518,10 +518,50 @@
 
 @keyframes scroll-logos {
   0% {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.logo-carousel-track {
+  display: flex;
+  width: max-content;
+  animation: scroll-logos 44s linear infinite;
+  will-change: transform;
+}
+
+.logo-carousel-group {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 2rem;
+  padding-right: 2rem;
+}
+
+.logo-carousel-item {
+  width: 6.25rem;
+  height: 3.5rem;
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .logo-carousel-track {
+    animation-duration: 20s;
+  }
+
+  .logo-carousel-group {
+    gap: 4rem;
+    padding-right: 4rem;
+  }
+
+  .logo-carousel-item {
+    width: 8rem;
+    height: 4rem;
   }
 }
 
