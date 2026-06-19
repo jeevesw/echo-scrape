@@ -1,5 +1,5 @@
 import { Layout } from "@/components/layout/Layout";
-import { Hero } from "@/components/home/Hero";
+import { ReelHero } from "@/components/home/ReelHero";
 import { ClientLogoCarousel } from "@/components/home/ClientLogoCarousel";
 import { Services } from "@/components/home/Services";
 import { FeaturedCampaigns } from "@/components/home/FeaturedCampaigns";
@@ -54,15 +54,25 @@ const Index = () => {
         ]}
       />
       <FAQSchema faqs={faqs} />
-      <Hero />
-      <ClientLogoCarousel />
-      <Services />
-      <FeaturedCampaigns />
-      <Testimonial />
-      <BlogPreview />
+      <ReelHero />
+      <div className="relative z-10 bg-background shadow-[0_-20px_40px_-10px_rgba(0,0,0,0.35)]">
+        <div className="bg-muted">
+          <div className="pt-8 md:pt-10 pb-2 md:pb-0 px-4">
+            <div className="container-content mx-auto max-w-7xl">
+              <h1 className="heading-display text-3xl sm:text-4xl md:text-3xl lg:text-4xl text-primary leading-tight md:leading-none md:whitespace-nowrap text-center">
+                HYPERLOCAL MARKETING: LOCAL CAMPAIGNS FOR GLOBAL BRANDS.
+              </h1>
+            </div>
+          </div>
+          <ClientLogoCarousel />
+        </div>
+        <Services />
+        <FeaturedCampaigns />
+        <Testimonial />
+        <BlogPreview />
 
-      {/* FAQ Accordion */}
-      <section className="py-16 lg:py-24 bg-background">
+        {/* FAQ Accordion */}
+        <section className="py-16 lg:py-24 bg-background">
         <div className="container mx-auto px-4 max-w-3xl">
           <ScrollReveal>
             <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-10">
@@ -84,9 +94,10 @@ const Index = () => {
             </Accordion>
           </ScrollReveal>
         </div>
-      </section>
+        </section>
 
-      <NewsletterSignup />
+        <NewsletterSignup />
+      </div>
     </Layout>
   );
 };
