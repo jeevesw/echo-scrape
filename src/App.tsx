@@ -8,7 +8,6 @@ import { AuthProvider } from "@/hooks/useAuth";
 import { ProtectedRoute } from "@/components/admin/ProtectedRoute";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import Index from "./pages/Index";
-import ReelPreview from "./pages/ReelPreview";
 import Contact from "./pages/Contact";
 import CaseStudies from "./pages/CaseStudies";
 import YoSushiCaseStudy from "./pages/case-studies/YoSushiCaseStudy";
@@ -55,7 +54,6 @@ const App = () => (
             <ScrollToTop />
             <Routes>
               <Route path="/" element={<Index />} />
-              <Route path="/reel-preview" element={<ReelPreview />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/case-studies" element={<CaseStudies />} />
               <Route path="/case-studies/yo" element={<YoSushiCaseStudy />} />
