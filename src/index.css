@@ -521,11 +521,14 @@
     transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translate3d(-50%, 0, 0);
+    transform: translate3d(calc(-1 * var(--logo-loop-width)), 0, 0);
   }
 }
 
 .logo-carousel-track {
+  --logo-item-width: 6.25rem;
+  --logo-gap: 2rem;
+  --logo-loop-width: var(--logo-loop-width-mobile);
   display: flex;
   width: max-content;
   animation: scroll-logos 44s linear infinite;
@@ -536,12 +539,12 @@
   display: flex;
   flex: 0 0 auto;
   align-items: center;
-  gap: 2rem;
-  padding-right: 2rem;
+  gap: var(--logo-gap);
+  padding-right: var(--logo-gap);
 }
 
 .logo-carousel-item {
-  width: 6.25rem;
+  width: var(--logo-item-width);
   height: 3.5rem;
   display: flex;
   flex: 0 0 auto;
@@ -551,16 +554,13 @@
 
 @media (min-width: 768px) {
   .logo-carousel-track {
+    --logo-item-width: 8rem;
+    --logo-gap: 4rem;
+    --logo-loop-width: var(--logo-loop-width-desktop);
     animation-duration: 20s;
   }
 
-  .logo-carousel-group {
-    gap: 4rem;
-    padding-right: 4rem;
-  }
-
   .logo-carousel-item {
-    width: 8rem;
     height: 4rem;
   }
 }

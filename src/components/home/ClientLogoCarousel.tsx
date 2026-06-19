@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import type { CSSProperties } from "react";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import {
@@ -33,8 +34,13 @@ const staticLogos: ClientLogo[] = [
 const logoHeights: Record<string, string> = {
   "/images/clients/yo-sushi.svg": "h-12",
   "/images/clients/brighton-fringe.svg": "h-14",
-  "/images/clients/various-eateries.svg": "h-14",
+  "/images/clients/various-eateries.svg": "h-10 md:h-12",
+  "/images/clients/various-eateries-carousel.svg": "h-10 md:h-12",
   "/images/clients/patty-and-bun.svg": "h-6",
+};
+
+const carouselLogoSrcs: Record<string, string> = {
+  "/images/clients/various-eateries.svg": "/images/clients/various-eateries-carousel.svg",
 };
 
 export function ClientLogoCarousel() {
@@ -57,9 +63,9 @@ export function ClientLogoCarousel() {
 
   // Merge CMS logos with static ones
   const cmsClientLogos: ClientLogo[] = cmsLogos.map((cs) => ({
-    src: cs.client_logo_url!,
+    src: carouselLogoSrcs[cs.client_logo_url!] || cs.client_logo_url!,
     alt: cs.client_name,
-    height: logoHeights[cs.client_logo_url!] || "h-10",
+    height: logoHeights[carouselLogoSrcs[cs.client_logo_url!] || cs.client_logo_url!] || "h-10",
     testimonial: cs.testimonial_quote
       ? { quote: cs.testimonial_quote, credit: cs.testimonial_credit || "" }
       : undefined,
@@ -68,6 +74,10 @@ export function ClientLogoCarousel() {
   // Deduplicate: CMS logos take priority over static ones with same src
   const cmsSrcs = new Set(cmsClientLogos.map((l) => l.src));
   const mergedLogos = [...cmsClientLogos, ...staticLogos.filter((l) => !cmsSrcs.has(l.src))];
+  const trackStyle = {
+    "--logo-loop-width-mobile": `${mergedLogos.length * 8.25}rem`,
+    "--logo-loop-width-desktop": `${mergedLogos.length * 12}rem`,
+  } as CSSProperties;
 
   const renderLogo = (logo: ClientLogo, index: number, group: number) => {
     const image = (
@@ -114,9 +124,9 @@ export function ClientLogoCarousel() {
           <div className="hidden md:block absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-muted to-transparent z-10 pointer-events-none" />
           <div className="hidden md:block absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-muted to-transparent z-10 pointer-events-none" />
 
-          <div className={`logo-carousel-track ${paused ? "[animation-play-state:paused]" : ""}`}>
-            {[0, 1].map((group) => (
-              <div key={group} className="logo-carousel-group" aria-hidden={group === 1}>
+          <div className={`logo-carousel-track ${paused ? "[animation-play-state:paused]" : ""}`} style={trackStyle}>
+            {[0, 1, 2].map((group) => (
+              <div key={group} className="logo-carousel-group" aria-hidden={group > 0}>
                 {mergedLogos.map((logo, i) => renderLogo(logo, i, group))}
               </div>
             ))}
