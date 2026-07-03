@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { ScrollReveal } from "@/hooks/use-scroll-reveal";
 import { supabase } from "@/integrations/supabase/client";
+import myceliaImage from "@/assets/case-studies/mycelia-board-game.webp";
 
 const campaigns = [
   {
@@ -16,12 +17,12 @@ const campaigns = [
     fallbackLogo: "/images/clients/yo-sushi.svg",
   },
   {
-    slug: "patty-and-bun",
-    category: "Lead Gen, Paid Social",
-    title: "Driving pre-launch buzz and leads for Patty & Bun",
-    image: "/images/case-studies/patty-and-bun-hero.jpg",
-    href: "/case-studies/patty-and-bun",
-    fallbackLogo: "/images/clients/patty-and-bun.svg",
+    slug: "mycelia",
+    category: "Meta Lead Generation",
+    title: "Half a million raised on Kickstarter for Mycelia",
+    image: myceliaImage,
+    href: "/case-studies/mycelia",
+    fallbackLogo: null,
   },
   {
     slug: "paris-baguette",
