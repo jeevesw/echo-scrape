@@ -22,7 +22,7 @@ const campaigns = [
     title: "Half a million raised on Kickstarter for Mycelia",
     image: myceliaImage,
     href: "/case-studies/mycelia",
-    fallbackLogo: null,
+    fallbackLogo: "/__l5e/assets-v1/af80b425-6c0a-43eb-bbdc-136aff49a53d/mycelia-logo.webp",
   },
   {
     slug: "paris-baguette",
