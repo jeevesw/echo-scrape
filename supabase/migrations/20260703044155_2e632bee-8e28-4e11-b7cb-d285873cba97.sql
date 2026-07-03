@@ -1,0 +1,1 @@
+UPDATE public.case_studies SET client_logo_url = '/__l5e/assets-v1/af80b425-6c0a-43eb-bbdc-136aff49a53d/mycelia-logo.webp' WHERE slug = 'mycelia';
