@@ -44,18 +44,22 @@ function RenderBlock({ block, allBlocks }: { block: Block; allBlocks: Block[] })
       );
 
     case 'heading':
+      {
+      const pinkAnchors = new Set(['ai-the-junior-who-never-gets-promoted']);
+      const isPink = pinkAnchors.has(block.anchor);
       if (block.level === 2) {
         return (
-          <h2 id={block.anchor} className="heading-display text-2xl md:text-3xl text-foreground mt-10 mb-2">
+          <h2 id={block.anchor} className={`heading-display text-2xl md:text-3xl mt-10 mb-2 ${isPink ? 'text-primary' : 'text-foreground'}`}>
             {block.content}
           </h2>
         );
       }
       return (
-        <h3 id={block.anchor} className="heading-display text-xl md:text-2xl text-foreground mt-10 mb-2">
+        <h3 id={block.anchor} className={`heading-display text-xl md:text-2xl mt-10 mb-2 ${isPink ? 'text-primary' : 'text-foreground'}`}>
           {block.content}
         </h3>
       );
+      }
 
     case 'image':
       return (
