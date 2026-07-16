@@ -1,6 +1,6 @@
 import { useState, type CSSProperties } from "react";
 import { Helmet } from "react-helmet-async";
-import { PROSCENIUM_TOKENS } from "@/data/prosceniumQuizContent";
+import { PROSCENIUM_TOKENS, PROSCENIUM_GRADIENT } from "@/data/prosceniumQuizContent";
 import { PasswordGate } from "@/components/proscenium/PasswordGate";
 import { HeroScreen } from "@/components/proscenium/HeroScreen";
 import { QuizScreen } from "@/components/proscenium/QuizScreen";
@@ -14,12 +14,26 @@ export default function ProsceniumTest() {
 
   return (
     <div
-      style={PROSCENIUM_TOKENS as CSSProperties}
-      className="min-h-screen bg-background text-foreground font-body antialiased"
+      style={{
+        ...(PROSCENIUM_TOKENS as CSSProperties),
+        backgroundImage: PROSCENIUM_GRADIENT,
+        backgroundAttachment: "fixed",
+        fontFamily: "'Montserrat', system-ui, sans-serif",
+        color: "hsl(var(--body-text))",
+      }}
+      className="proscenium-scope min-h-screen antialiased"
     >
       <Helmet>
         <title>Proscenium — Accessibility in Events</title>
         <meta name="robots" content="noindex, nofollow" />
+        <style>{`
+          .proscenium-scope :focus-visible {
+            outline: 2px solid #FFFFFF !important;
+            outline-offset: 2px !important;
+            box-shadow: none !important;
+          }
+          .proscenium-scope ::selection { background: #FFFFFF; color: #46003A; }
+        `}</style>
       </Helmet>
 
       <PasswordGate>
