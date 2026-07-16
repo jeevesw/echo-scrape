@@ -40,7 +40,7 @@ export function PasswordGate({ children }: { children: ReactNode }) {
       <Card className="w-full max-w-sm p-6 space-y-4">
         <div className="space-y-2">
           <h1 className="font-display text-2xl">Protected preview</h1>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-base text-muted-foreground">
             Enter the password to view this page.
           </p>
         </div>
@@ -65,7 +65,7 @@ export function PasswordGate({ children }: { children: ReactNode }) {
             <p
               id="proscenium-password-error"
               role="alert"
-              className="text-sm text-destructive"
+              className="text-base text-destructive"
             >
               {error}
             </p>
