@@ -10,7 +10,7 @@ export function HeroScreen({ onStart }: { onStart: () => void }) {
         className="uppercase mb-6"
         style={{
           color: "hsl(var(--muted-foreground))",
-          fontSize: "11px",
+          fontSize: "13px",
           letterSpacing: "0.12em",
           fontWeight: 700,
         }}
@@ -24,7 +24,7 @@ export function HeroScreen({ onStart }: { onStart: () => void }) {
         {HERO.headline}
       </h1>
       <div
-        className="space-y-4 text-lg mb-10"
+        className="space-y-4 text-lg md:text-xl mb-10"
         style={{ color: "hsl(var(--body-text))" }}
       >
         {HERO.body.map((p, i) => (
@@ -39,9 +39,9 @@ export function HeroScreen({ onStart }: { onStart: () => void }) {
           background: "#FFFFFF",
           color: "#46003A",
           fontWeight: 700,
-          padding: "15px 34px",
+          padding: "16px 36px",
           borderRadius: "8px",
-          fontSize: "15px",
+          fontSize: "16px",
           height: "auto",
         }}
       >
@@ -54,7 +54,7 @@ export function HeroScreen({ onStart }: { onStart: () => void }) {
             key={s}
             className="uppercase px-3 py-1.5 rounded-full"
             style={{
-              fontSize: "11px",
+              fontSize: "13px",
               letterSpacing: "0.12em",
               fontWeight: 700,
               color: "hsl(var(--muted-foreground))",
