@@ -19,7 +19,7 @@ export function ResultsScreen({ answers, onRestart }: ResultsScreenProps) {
   const headings = PANEL_HEADINGS[mode];
 
   return (
-    <div className="max-w-3xl mx-auto px-6 py-16 md:py-20">
+    <div className="max-w-5xl mx-auto px-6 py-16 md:py-20">
       <header className="mb-12">
         <h1
           className="text-4xl md:text-5xl leading-tight mb-6 tracking-tight"
@@ -45,11 +45,11 @@ export function ResultsScreen({ answers, onRestart }: ResultsScreenProps) {
             >
               {heading}
             </h2>
-            <div className="space-y-6">
+            <div className="grid gap-6 md:grid-cols-2">
               {group.items.map((rec) => (
                 <Card
                   key={rec.id}
-                  className="p-6 md:p-8 border-0"
+                  className="p-6 md:p-8 border-0 h-full"
                   style={{
                     background: "rgba(255,255,255,0.06)",
                     border: "1px solid rgba(255,255,255,0.28)",
@@ -87,7 +87,7 @@ export function ResultsScreen({ answers, onRestart }: ResultsScreenProps) {
             {headings.celebration}
           </h2>
           <div
-            className="rounded-2xl p-6 md:p-8 space-y-5"
+            className="rounded-2xl p-6 md:p-8 grid gap-6 md:grid-cols-2"
             style={{ background: "#FFFFFF", color: "#46003A" }}
           >
             {celebration.map((item) => (
