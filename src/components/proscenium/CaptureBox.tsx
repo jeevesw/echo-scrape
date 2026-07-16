@@ -39,20 +39,23 @@ export function CaptureBox() {
     <div className="relative my-12 overflow-visible">
       <div className="grid md:grid-cols-2 gap-0 rounded-2xl overflow-visible">
         {/* Left panel */}
-        <div className="rounded-2xl md:rounded-r-none bg-background shadow-[0_20px_60px_-20px_rgba(0,0,0,0.25)] p-8 md:p-10">
+        <div
+          className="rounded-2xl md:rounded-r-none shadow-[0_20px_60px_-20px_rgba(0,0,0,0.45)] p-8 md:p-10"
+          style={{ background: "#FFFFFF", color: "#46003A" }}
+        >
           {submitted ? (
             <div className="space-y-3">
-              <h3 className="font-display text-2xl text-foreground">On its way</h3>
-              <p className="text-foreground/80">
+              <h3 className="text-2xl tracking-tight" style={{ color: "#46003A", fontWeight: 700 }}>On its way</h3>
+              <p style={{ color: "#46003A" }}>
                 Your whitepaper download has started. We'll email your recommendations shortly.
               </p>
             </div>
           ) : (
             <div className="space-y-4">
-              <h3 className="font-display text-2xl text-foreground">{CAPTURE.headline}</h3>
-              <p className="text-foreground/80">{CAPTURE.body}</p>
+              <h3 className="text-2xl tracking-tight" style={{ color: "#46003A", fontWeight: 700 }}>{CAPTURE.headline}</h3>
+              <p style={{ color: "#46003A" }}>{CAPTURE.body}</p>
               <div className="space-y-2 pt-2">
-                <Label htmlFor="proscenium-email">{CAPTURE.fieldLabel}</Label>
+                <Label htmlFor="proscenium-email" style={{ color: "#46003A" }}>{CAPTURE.fieldLabel}</Label>
                 <Input
                   id="proscenium-email"
                   type="email"
@@ -66,6 +69,7 @@ export function CaptureBox() {
                   }}
                   aria-invalid={error ? true : undefined}
                   aria-describedby={error ? "proscenium-email-error" : undefined}
+                  style={{ borderColor: "#46003A", color: "#46003A", background: "#FFFFFF" }}
                 />
                 {error && (
                   <p
@@ -77,7 +81,19 @@ export function CaptureBox() {
                   </p>
                 )}
               </div>
-              <Button onClick={submit} className="mt-2">
+              <Button
+                onClick={submit}
+                className="mt-2 border-0 hover:opacity-90"
+                style={{
+                  background: "#46003A",
+                  color: "#FFFFFF",
+                  fontWeight: 700,
+                  padding: "15px 34px",
+                  borderRadius: "8px",
+                  fontSize: "15px",
+                  height: "auto",
+                }}
+              >
                 {CAPTURE.submit}
               </Button>
             </div>
@@ -85,7 +101,10 @@ export function CaptureBox() {
         </div>
 
         {/* Right panel */}
-        <div className="relative rounded-2xl md:rounded-l-none bg-accent p-8 md:p-10 overflow-visible flex flex-col justify-center">
+        <div
+          className="relative rounded-2xl md:rounded-l-none p-8 md:p-10 overflow-visible flex flex-col justify-center"
+          style={{ background: "#F4EEF2", color: "#46003A" }}
+        >
           <div className="relative flex justify-center mb-6 overflow-visible">
             <img
               src={CAPTURE.whitepaperCover}
@@ -93,10 +112,10 @@ export function CaptureBox() {
               className="w-48 md:w-56 rounded-md shadow-[0_25px_50px_-12px_rgba(70,0,58,0.45)] -rotate-[6deg] scale-110"
             />
           </div>
-          <h4 className="font-display text-xl text-accent-foreground">
+          <h4 className="text-xl tracking-tight" style={{ color: "#46003A", fontWeight: 700 }}>
             {CAPTURE.whitepaperHeadline}
           </h4>
-          <p className="mt-2 text-accent-foreground/85">
+          <p className="mt-2" style={{ color: "#46003A" }}>
             {CAPTURE.whitepaperBody}
           </p>
         </div>
