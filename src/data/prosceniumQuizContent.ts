@@ -479,10 +479,9 @@ export const CELEBRATION_FRAMING = [
 
 export const HERO = {
   eyebrow: "Accessibility in Events",
-  headline: "How accessible are your events, really?",
+  headline: "How accessible are your events?",
   body: [
     "Ten questions, about two minutes. At the end you'll get a short set of recommendations based on what you're already doing, drawn from our Accessibility in Events whitepaper.",
-    "No score, no league table. Just the next few things worth doing, in the order we'd do them.",
   ],
   cta: "Start the quiz",
 };
