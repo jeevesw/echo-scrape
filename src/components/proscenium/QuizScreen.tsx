@@ -49,7 +49,7 @@ export function QuizScreen({ onComplete }: QuizScreenProps) {
           className="flex items-center justify-between uppercase"
           style={{
             color: "hsl(var(--muted-foreground))",
-            fontSize: "11px",
+            fontSize: "13px",
             letterSpacing: "0.12em",
             fontWeight: 700,
           }}
@@ -71,7 +71,7 @@ export function QuizScreen({ onComplete }: QuizScreenProps) {
         style={{
           color: "#FFFFFF",
           fontWeight: 700,
-          fontSize: "clamp(22px, 3.2vw, 28px)",
+          fontSize: "clamp(24px, 3.4vw, 30px)",
         }}
       >
         {question.question}
@@ -121,7 +121,7 @@ export function QuizScreen({ onComplete }: QuizScreenProps) {
                     : { borderColor: "#FFFFFF", color: "#FFFFFF" }
                 }
               />
-              <span className="text-base font-normal leading-snug">{opt.label}</span>
+              <span className="text-base md:text-lg font-normal leading-snug">{opt.label}</span>
             </Label>
           );
         })}
@@ -135,7 +135,7 @@ export function QuizScreen({ onComplete }: QuizScreenProps) {
           className="uppercase hover:bg-transparent hover:text-white"
           style={{
             color: "hsl(var(--muted-foreground))",
-            fontSize: "11px",
+            fontSize: "13px",
             letterSpacing: "0.12em",
             fontWeight: 700,
           }}
@@ -150,9 +150,9 @@ export function QuizScreen({ onComplete }: QuizScreenProps) {
             background: "#FFFFFF",
             color: "#46003A",
             fontWeight: 700,
-            padding: "15px 34px",
+            padding: "16px 36px",
             borderRadius: "8px",
-            fontSize: "15px",
+            fontSize: "16px",
             height: "auto",
           }}
         >
