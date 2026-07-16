@@ -105,17 +105,17 @@ export function CaptureBox() {
           className="relative rounded-2xl md:rounded-l-none p-8 md:p-10 overflow-visible flex flex-col justify-center"
           style={{ background: "#F4EEF2", color: "#46003A" }}
         >
-          <div className="relative flex justify-center mb-6 overflow-visible">
+          <div className="relative flex justify-center mb-12 mt-2 overflow-visible">
             <img
               src={CAPTURE.whitepaperCover}
               alt="Accessibility in Events whitepaper cover"
-              className="w-48 md:w-56 rounded-md shadow-[0_25px_50px_-12px_rgba(70,0,58,0.45)] -rotate-[6deg] scale-110"
+              className="w-48 md:w-60 rounded-md shadow-[0_25px_50px_-12px_rgba(70,0,58,0.45)] -rotate-[6deg] scale-110 -mt-16 md:-mt-20 md:-mr-10 md:ml-6"
             />
           </div>
-          <h4 className="text-xl tracking-tight" style={{ color: "#46003A", fontWeight: 700 }}>
+          <h4 className="text-xl md:text-2xl tracking-tight" style={{ color: "#46003A", fontWeight: 700 }}>
             {CAPTURE.whitepaperHeadline}
           </h4>
-          <p className="mt-2" style={{ color: "#46003A" }}>
+          <p className="mt-3 text-base md:text-lg" style={{ color: "#46003A" }}>
             {CAPTURE.whitepaperBody}
           </p>
         </div>
