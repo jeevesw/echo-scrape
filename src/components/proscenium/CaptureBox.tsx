@@ -45,17 +45,17 @@ export function CaptureBox() {
         >
           {submitted ? (
             <div className="space-y-3">
-              <h3 className="text-2xl tracking-tight" style={{ color: "#46003A", fontWeight: 700 }}>On its way</h3>
-              <p style={{ color: "#46003A" }}>
+              <h3 className="text-2xl md:text-3xl tracking-tight" style={{ color: "#46003A", fontWeight: 700 }}>On its way</h3>
+              <p className="text-base md:text-lg" style={{ color: "#46003A" }}>
                 Your whitepaper download has started. We'll email your recommendations shortly.
               </p>
             </div>
           ) : (
             <div className="space-y-4">
-              <h3 className="text-2xl tracking-tight" style={{ color: "#46003A", fontWeight: 700 }}>{CAPTURE.headline}</h3>
-              <p style={{ color: "#46003A" }}>{CAPTURE.body}</p>
+              <h3 className="text-2xl md:text-3xl tracking-tight" style={{ color: "#46003A", fontWeight: 700 }}>{CAPTURE.headline}</h3>
+              <p className="text-base md:text-lg" style={{ color: "#46003A" }}>{CAPTURE.body}</p>
               <div className="space-y-2 pt-2">
-                <Label htmlFor="proscenium-email" style={{ color: "#46003A" }}>{CAPTURE.fieldLabel}</Label>
+                <Label htmlFor="proscenium-email" className="text-base" style={{ color: "#46003A" }}>{CAPTURE.fieldLabel}</Label>
                 <Input
                   id="proscenium-email"
                   type="email"
@@ -69,13 +69,14 @@ export function CaptureBox() {
                   }}
                   aria-invalid={error ? true : undefined}
                   aria-describedby={error ? "proscenium-email-error" : undefined}
-                  style={{ borderColor: "#46003A", color: "#46003A", background: "#FFFFFF" }}
+                  className="text-base"
+                  style={{ borderColor: "#46003A", color: "#46003A", background: "#FFFFFF", fontSize: "16px" }}
                 />
                 {error && (
                   <p
                     id="proscenium-email-error"
                     role="alert"
-                    className="text-sm text-destructive"
+                    className="text-base text-destructive"
                   >
                     {error}
                   </p>
@@ -88,9 +89,9 @@ export function CaptureBox() {
                   background: "#46003A",
                   color: "#FFFFFF",
                   fontWeight: 700,
-                  padding: "15px 34px",
+                  padding: "16px 36px",
                   borderRadius: "8px",
-                  fontSize: "15px",
+                  fontSize: "16px",
                   height: "auto",
                 }}
               >
