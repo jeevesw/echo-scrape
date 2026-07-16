@@ -37,6 +37,13 @@ export default function ProsceniumTest() {
       </Helmet>
 
       <PasswordGate>
+        <header className="pt-10 md:pt-12 px-6 flex justify-center">
+          <img
+            src="/proscenium/logo.png"
+            alt="Proscenium"
+            className="h-10 md:h-12 w-auto opacity-90"
+          />
+        </header>
         {screen === "hero" && <HeroScreen onStart={() => setScreen("quiz")} />}
         {screen === "quiz" && (
           <QuizScreen
