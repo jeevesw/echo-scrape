@@ -108,7 +108,7 @@ export function ResultsScreen({ answers, onRestart }: ResultsScreenProps) {
       )}
 
       <div
-        className="space-y-4 text-lg mb-4"
+        className="space-y-4 text-lg mb-12 md:mb-16"
         style={{ color: "hsl(var(--body-text))" }}
       >
         {CELEBRATION_FRAMING.map((p, i) => (
