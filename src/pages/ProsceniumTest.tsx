@@ -55,6 +55,13 @@ export default function ProsceniumTest() {
             }}
           />
         )}
+        <footer className="mt-8 pb-12 pt-6 px-6 flex justify-center">
+          <img
+            src="/proscenium/logo.png"
+            alt="Proscenium"
+            className="h-10 md:h-12 w-auto opacity-90"
+          />
+        </footer>
       </PasswordGate>
     </div>
   );

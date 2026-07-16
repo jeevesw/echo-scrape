@@ -45,17 +45,17 @@ export function CaptureBox() {
         >
           {submitted ? (
             <div className="space-y-3">
-              <h3 className="text-2xl tracking-tight" style={{ color: "#46003A", fontWeight: 700 }}>On its way</h3>
-              <p style={{ color: "#46003A" }}>
+              <h3 className="text-2xl md:text-3xl tracking-tight" style={{ color: "#46003A", fontWeight: 700 }}>On its way</h3>
+              <p className="text-base md:text-lg" style={{ color: "#46003A" }}>
                 Your whitepaper download has started. We'll email your recommendations shortly.
               </p>
             </div>
           ) : (
             <div className="space-y-4">
-              <h3 className="text-2xl tracking-tight" style={{ color: "#46003A", fontWeight: 700 }}>{CAPTURE.headline}</h3>
-              <p style={{ color: "#46003A" }}>{CAPTURE.body}</p>
+              <h3 className="text-2xl md:text-3xl tracking-tight" style={{ color: "#46003A", fontWeight: 700 }}>{CAPTURE.headline}</h3>
+              <p className="text-base md:text-lg" style={{ color: "#46003A" }}>{CAPTURE.body}</p>
               <div className="space-y-2 pt-2">
-                <Label htmlFor="proscenium-email" style={{ color: "#46003A" }}>{CAPTURE.fieldLabel}</Label>
+                <Label htmlFor="proscenium-email" className="text-base" style={{ color: "#46003A" }}>{CAPTURE.fieldLabel}</Label>
                 <Input
                   id="proscenium-email"
                   type="email"
@@ -69,13 +69,14 @@ export function CaptureBox() {
                   }}
                   aria-invalid={error ? true : undefined}
                   aria-describedby={error ? "proscenium-email-error" : undefined}
-                  style={{ borderColor: "#46003A", color: "#46003A", background: "#FFFFFF" }}
+                  className="text-base"
+                  style={{ borderColor: "#46003A", color: "#46003A", background: "#FFFFFF", fontSize: "16px" }}
                 />
                 {error && (
                   <p
                     id="proscenium-email-error"
                     role="alert"
-                    className="text-sm text-destructive"
+                    className="text-base text-destructive"
                   >
                     {error}
                   </p>
@@ -88,9 +89,9 @@ export function CaptureBox() {
                   background: "#46003A",
                   color: "#FFFFFF",
                   fontWeight: 700,
-                  padding: "15px 34px",
+                  padding: "16px 36px",
                   borderRadius: "8px",
-                  fontSize: "15px",
+                  fontSize: "16px",
                   height: "auto",
                 }}
               >
@@ -105,17 +106,17 @@ export function CaptureBox() {
           className="relative rounded-2xl md:rounded-l-none p-8 md:p-10 overflow-visible flex flex-col justify-center"
           style={{ background: "#F4EEF2", color: "#46003A" }}
         >
-          <div className="relative flex justify-center mb-6 overflow-visible">
+          <div className="relative flex justify-center mb-12 mt-2 overflow-visible">
             <img
               src={CAPTURE.whitepaperCover}
               alt="Accessibility in Events whitepaper cover"
-              className="w-48 md:w-56 rounded-md shadow-[0_25px_50px_-12px_rgba(70,0,58,0.45)] -rotate-[6deg] scale-110"
+              className="w-48 md:w-60 rounded-md shadow-[0_25px_50px_-12px_rgba(70,0,58,0.45)] -rotate-[6deg] scale-110 -mt-16 md:-mt-20 md:-mr-10 md:ml-6"
             />
           </div>
-          <h4 className="text-xl tracking-tight" style={{ color: "#46003A", fontWeight: 700 }}>
+          <h4 className="text-xl md:text-2xl tracking-tight" style={{ color: "#46003A", fontWeight: 700 }}>
             {CAPTURE.whitepaperHeadline}
           </h4>
-          <p className="mt-2" style={{ color: "#46003A" }}>
+          <p className="mt-3 text-base md:text-lg" style={{ color: "#46003A" }}>
             {CAPTURE.whitepaperBody}
           </p>
         </div>
