@@ -71,7 +71,15 @@ export function PasswordGate({ children }: { children: ReactNode }) {
             </p>
           )}
         </div>
-        <Button className="w-full" onClick={submit}>
+        <Button
+          className="w-full border-0 hover:opacity-90"
+          onClick={submit}
+          style={{
+            background: "#46003A",
+            color: "#FFFFFF",
+            fontWeight: 700,
+          }}
+        >
           Enter
         </Button>
       </Card>

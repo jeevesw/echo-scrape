@@ -45,16 +45,35 @@ export function QuizScreen({ onComplete }: QuizScreenProps) {
   return (
     <div className="max-w-2xl mx-auto px-6 py-16 md:py-20">
       <div className="mb-8 space-y-3">
-        <div className="flex items-center justify-between text-xs uppercase tracking-wider text-muted-foreground">
+        <div
+          className="flex items-center justify-between uppercase"
+          style={{
+            color: "hsl(var(--muted-foreground))",
+            fontSize: "11px",
+            letterSpacing: "0.12em",
+            fontWeight: 700,
+          }}
+        >
           <span>{STAGE_LABELS[question.stage]}</span>
           <span>
             Question {index + 1} of {total}
           </span>
         </div>
-        <Progress value={((index + 1) / total) * 100} />
+        <Progress
+          value={((index + 1) / total) * 100}
+          className="h-2 [&>div]:bg-white"
+          style={{ background: "rgba(255,255,255,0.18)" }}
+        />
       </div>
 
-      <h2 className="font-display text-2xl md:text-3xl leading-tight mb-8">
+      <h2
+        className="leading-tight mb-8 tracking-tight"
+        style={{
+          color: "#FFFFFF",
+          fontWeight: 700,
+          fontSize: "clamp(22px, 3.2vw, 28px)",
+        }}
+      >
         {question.question}
       </h2>
 
@@ -67,13 +86,41 @@ export function QuizScreen({ onComplete }: QuizScreenProps) {
       >
         {question.options.map((opt) => {
           const inputId = `${question.id}-${opt.id}`;
+          const isSelected = selected === opt.id;
           return (
             <Label
               key={opt.id}
               htmlFor={inputId}
-              className="flex items-start gap-3 p-4 rounded-md border border-border cursor-pointer hover:bg-accent/60 has-[:checked]:border-primary has-[:checked]:bg-accent transition-colors"
+              className="flex items-start gap-3 cursor-pointer transition-colors"
+              style={{
+                padding: "15px 18px",
+                borderRadius: "8px",
+                border: "1px solid rgba(255,255,255,0.28)",
+                background: isSelected ? "#FFFFFF" : "rgba(255,255,255,0.06)",
+                color: isSelected ? "#46003A" : "hsl(var(--body-text))",
+                fontWeight: isSelected ? 500 : 400,
+              }}
+              onMouseEnter={(e) => {
+                if (!isSelected)
+                  (e.currentTarget as HTMLElement).style.background =
+                    "rgba(255,255,255,0.12)";
+              }}
+              onMouseLeave={(e) => {
+                if (!isSelected)
+                  (e.currentTarget as HTMLElement).style.background =
+                    "rgba(255,255,255,0.06)";
+              }}
             >
-              <RadioGroupItem id={inputId} value={opt.id} className="mt-0.5" />
+              <RadioGroupItem
+                id={inputId}
+                value={opt.id}
+                className="mt-0.5"
+                style={
+                  isSelected
+                    ? { borderColor: "#46003A", color: "#46003A" }
+                    : { borderColor: "#FFFFFF", color: "#FFFFFF" }
+                }
+              />
               <span className="text-base font-normal leading-snug">{opt.label}</span>
             </Label>
           );
@@ -81,10 +128,34 @@ export function QuizScreen({ onComplete }: QuizScreenProps) {
       </RadioGroup>
 
       <div className="mt-10 flex items-center justify-between">
-        <Button variant="ghost" onClick={handleBack} disabled={index === 0}>
+        <Button
+          variant="ghost"
+          onClick={handleBack}
+          disabled={index === 0}
+          className="uppercase hover:bg-transparent hover:text-white"
+          style={{
+            color: "hsl(var(--muted-foreground))",
+            fontSize: "11px",
+            letterSpacing: "0.12em",
+            fontWeight: 700,
+          }}
+        >
           Back
         </Button>
-        <Button onClick={handleNext} disabled={!selected}>
+        <Button
+          onClick={handleNext}
+          disabled={!selected}
+          className="border-0 hover:bg-white/90 disabled:opacity-50"
+          style={{
+            background: "#FFFFFF",
+            color: "#46003A",
+            fontWeight: 700,
+            padding: "15px 34px",
+            borderRadius: "8px",
+            fontSize: "15px",
+            height: "auto",
+          }}
+        >
           {isLast ? "See my recommendations" : "Next"}
         </Button>
       </div>
