@@ -21,10 +21,13 @@ export function ResultsScreen({ answers, onRestart }: ResultsScreenProps) {
   return (
     <div className="max-w-3xl mx-auto px-6 py-16 md:py-20">
       <header className="mb-12">
-        <h1 className="font-display text-4xl md:text-5xl leading-tight text-foreground mb-6">
+        <h1
+          className="text-4xl md:text-5xl leading-tight mb-6 tracking-tight"
+          style={{ color: "#FFFFFF", fontWeight: 700 }}
+        >
           {modeCopy.headline}
         </h1>
-        <div className="space-y-4 text-lg text-foreground/85">
+        <div className="space-y-4 text-lg" style={{ color: "hsl(var(--body-text))" }}>
           {modeCopy.body.map((p, i) => (
             <p key={i}>{p}</p>
           ))}
@@ -36,16 +39,34 @@ export function ResultsScreen({ answers, onRestart }: ResultsScreenProps) {
           group.key === "primary" ? headings.primary : headings.secondary ?? "";
         return (
           <section key={group.key} className="mb-12">
-            <h2 className="font-display text-2xl md:text-3xl text-foreground mb-6">
+            <h2
+              className="text-2xl md:text-3xl mb-6 tracking-tight"
+              style={{ color: "#FFFFFF", fontWeight: 700 }}
+            >
               {heading}
             </h2>
             <div className="space-y-6">
               {group.items.map((rec) => (
-                <Card key={rec.id} className="p-6 md:p-8">
-                  <h3 className="font-display text-xl md:text-2xl text-foreground mb-4">
+                <Card
+                  key={rec.id}
+                  className="p-6 md:p-8 border-0"
+                  style={{
+                    background: "rgba(255,255,255,0.06)",
+                    border: "1px solid rgba(255,255,255,0.28)",
+                    borderRadius: "12px",
+                    color: "hsl(var(--body-text))",
+                  }}
+                >
+                  <h3
+                    className="text-xl md:text-2xl mb-4 tracking-tight"
+                    style={{ color: "#FFFFFF", fontWeight: 700 }}
+                  >
                     {rec.copy.headline}
                   </h3>
-                  <div className="space-y-3 text-foreground/85 leading-relaxed">
+                  <div
+                    className="space-y-3 leading-relaxed"
+                    style={{ color: "hsl(var(--body-text))" }}
+                  >
                     {rec.copy.body.map((p, i) => (
                       <p key={i}>{p}</p>
                     ))}
@@ -59,16 +80,25 @@ export function ResultsScreen({ answers, onRestart }: ResultsScreenProps) {
 
       {celebration.length > 0 && (
         <section className="mb-10">
-          <h2 className="font-display text-2xl md:text-3xl text-foreground mb-6">
+          <h2
+            className="text-2xl md:text-3xl mb-6 tracking-tight"
+            style={{ color: "#FFFFFF", fontWeight: 700 }}
+          >
             {headings.celebration}
           </h2>
-          <div className="bg-accent rounded-2xl p-6 md:p-8 space-y-5">
+          <div
+            className="rounded-2xl p-6 md:p-8 space-y-5"
+            style={{ background: "#FFFFFF", color: "#46003A" }}
+          >
             {celebration.map((item) => (
               <div key={item.id}>
-                <h3 className="font-display text-lg text-accent-foreground mb-1">
+                <h3
+                  className="text-lg mb-1 tracking-tight"
+                  style={{ color: "#46003A", fontWeight: 700 }}
+                >
                   {item.headline}
                 </h3>
-                <p className="text-accent-foreground/85 leading-relaxed">
+                <p className="leading-relaxed" style={{ color: "#46003A" }}>
                   {item.body}
                 </p>
               </div>
@@ -77,7 +107,10 @@ export function ResultsScreen({ answers, onRestart }: ResultsScreenProps) {
         </section>
       )}
 
-      <div className="space-y-4 text-lg text-foreground/85 mb-4">
+      <div
+        className="space-y-4 text-lg mb-4"
+        style={{ color: "hsl(var(--body-text))" }}
+      >
         {CELEBRATION_FRAMING.map((p, i) => (
           <p key={i}>{p}</p>
         ))}
@@ -86,7 +119,15 @@ export function ResultsScreen({ answers, onRestart }: ResultsScreenProps) {
       <CaptureBox />
 
       <div className="mt-10">
-        <Button variant="outline" onClick={onRestart}>
+        <Button
+          variant="outline"
+          onClick={onRestart}
+          className="bg-transparent hover:bg-white/10"
+          style={{
+            border: "1px solid rgba(255,255,255,0.28)",
+            color: "hsl(var(--body-text))",
+          }}
+        >
           Start again
         </Button>
       </div>
