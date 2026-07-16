@@ -6,18 +6,45 @@ const STAGE_ORDER: Stage[] = ["registration", "pre-event", "arrival", "during", 
 export function HeroScreen({ onStart }: { onStart: () => void }) {
   return (
     <div className="max-w-2xl mx-auto px-6 py-20 md:py-28">
-      <p className="text-sm uppercase tracking-[0.2em] text-primary/80 mb-6">
+      <p
+        className="uppercase mb-6"
+        style={{
+          color: "hsl(var(--muted-foreground))",
+          fontSize: "11px",
+          letterSpacing: "0.12em",
+          fontWeight: 700,
+        }}
+      >
         {HERO.eyebrow}
       </p>
-      <h1 className="font-display text-4xl md:text-6xl leading-[1.05] text-foreground mb-8">
+      <h1
+        className="text-4xl md:text-6xl leading-[1.05] mb-8 tracking-tight"
+        style={{ color: "#FFFFFF", fontWeight: 700 }}
+      >
         {HERO.headline}
       </h1>
-      <div className="space-y-4 text-lg text-foreground/85 mb-10">
+      <div
+        className="space-y-4 text-lg mb-10"
+        style={{ color: "hsl(var(--body-text))" }}
+      >
         {HERO.body.map((p, i) => (
           <p key={i}>{p}</p>
         ))}
       </div>
-      <Button size="lg" onClick={onStart}>
+      <Button
+        size="lg"
+        onClick={onStart}
+        className="border-0 hover:bg-white/90"
+        style={{
+          background: "#FFFFFF",
+          color: "#46003A",
+          fontWeight: 700,
+          padding: "15px 34px",
+          borderRadius: "8px",
+          fontSize: "15px",
+          height: "auto",
+        }}
+      >
         {HERO.cta}
       </Button>
 
@@ -25,7 +52,14 @@ export function HeroScreen({ onStart }: { onStart: () => void }) {
         {STAGE_ORDER.map((s) => (
           <span
             key={s}
-            className="text-xs uppercase tracking-wider px-3 py-1.5 rounded-full border border-primary/40 text-primary"
+            className="uppercase px-3 py-1.5 rounded-full"
+            style={{
+              fontSize: "11px",
+              letterSpacing: "0.12em",
+              fontWeight: 700,
+              color: "hsl(var(--muted-foreground))",
+              border: "1px solid rgba(255,255,255,0.28)",
+            }}
           >
             {STAGE_LABELS[s]}
           </span>
