@@ -31,6 +31,7 @@ import CreativeServicesPage from "./pages/services/CreativeServicesPage";
 import WebsiteDesignPage from "./pages/services/WebsiteDesignPage";
 import PaidAdsQuiz from "./pages/PaidAdsQuiz";
 import HFSSAssessment from "./pages/HFSSAssessment";
+import ProsceniumTest from "./pages/ProsceniumTest";
 import NotFound from "./pages/NotFound";
 import Auth from "./pages/Auth";
 import BlogDashboard from "./pages/admin/BlogDashboard";
@@ -82,6 +83,7 @@ const App = () => (
               <Route path="/training" element={<Services />} />
               <Route path="/lhf-ad-ban" element={<Blog />} />
               <Route path="/hfss-assessment" element={<HFSSAssessment />} />
+              <Route path="/proscenium-test" element={<ProsceniumTest />} />
               
               {/* Auth */}
               <Route path="/auth" element={<Auth />} />
