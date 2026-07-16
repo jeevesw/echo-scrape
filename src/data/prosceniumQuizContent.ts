@@ -503,18 +503,23 @@ export const CAPTURE = {
 // Brand tokens — applied inline on the page wrapper, never to :root
 // ---------------------------------------------------------------------------
 
+// Sampled from the Accessibility in Events whitepaper, page 5.
+// NOT from the brand guidelines — off-guideline but on-brand for the companion quiz.
+export const PROSCENIUM_GRADIENT =
+  "linear-gradient(115deg, #721740 0%, #601050 52%, #4F1456 100%)";
+
 export const PROSCENIUM_TOKENS: Record<string, string> = {
-  "--primary": "310 100% 14%", // Plum #46003A, PMS 7652C
-  "--primary-foreground": "0 0% 100%",
-  "--background": "0 0% 100%",
-  "--foreground": "310 100% 14%",
-  "--muted": "233 8% 96%",
-  "--muted-foreground": "233 8% 45%", // darkened from Gray One #8A8C9C for AA body contrast
-  "--border": "233 8% 88%",
+  "--background": "310 63% 20%",          // fallback under the gradient
+  "--foreground": "0 0% 100%",            // headlines, pure white
+  "--body-text": "312 27% 94%",           // #F4EEF2, off-white — halation guard
+  "--muted-foreground": "310 15% 81%",    // #D6C9D2, AA on the lightest end
+  "--primary": "0 0% 100%",               // buttons are WHITE
+  "--primary-foreground": "310 100% 14%", // Plum #46003A label on them
   "--card": "0 0% 100%",
   "--card-foreground": "310 100% 14%",
-  "--accent": "310 100% 96%",
+  "--border": "0 0% 100%",
+  "--accent": "0 0% 100%",                // selected option fill
   "--accent-foreground": "310 100% 14%",
-  "--ring": "310 100% 14%",
+  "--ring": "0 0% 100%",                  // focus ring MUST be white on this ground
   "--radius": "0.5rem",
 };
