@@ -44,6 +44,43 @@ import SeoManager from "./pages/admin/SeoManager";
 
 const queryClient = new QueryClient();
 
+const REDIRECTS: Array<[string, string]> = [
+  ["/brightonseo", "/case-studies/brightonseo"],
+  ["/caravanserai-brighton", "/case-studies/brightonseo"],
+  ["/maximiles", "/case-studies/maximiles"],
+  ["/molo", "/case-studies/molo"],
+  ["/mycelia", "/case-studies/mycelia"],
+  ["/patty-and-bun", "/case-studies/patty-and-bun"],
+  ["/various-eateries", "/case-studies/various-eateries"],
+  ["/yo-sushi", "/case-studies/yo"],
+  ["/portfolio", "/case-studies"],
+  ["/creative-services", "/services/creative-services"],
+  ["/paid-ads", "/services/paid-advertising"],
+  ["/paid-search", "/services/paid-search"],
+  ["/paid-social", "/services/paid-advertising"],
+  ["/social-media-marketing", "/services/social-media-management"],
+  ["/tiktok", "/services/video-production"],
+  ["/website-design-management", "/services/website-design"],
+  ["/email-marketing", "/services"],
+  ["/seo", "/services/paid-search"],
+  ["/lhf", "/hfss-assessment"],
+  ["/lhf-1", "/hfss-assessment"],
+  ["/about", "/"],
+  ["/home", "/"],
+  ["/team", "/"],
+  ["/blog/category/guides", "/blog"],
+  ["/blog/category/tiktok+marketing", "/blog"],
+  ["/blog/category/trapeze+media", "/blog"],
+  ["/blog/tag/lhf", "/blog"],
+  ["/blog/tag/paid+search", "/blog"],
+  ["/blog/tag/paid+search+marketing+agency", "/blog"],
+  ["/blog/hfss-pure-brand-advertisin", "/blog/lhf-brand-ads-update"],
+  ["/blog/a-beginners-guide-to-marketing-terms", "/blog"],
+  ["/blog/google-ppc-advertising-2026-trends-strategies", "/blog"],
+  ["/blog/the-great-hospitality-disruption-of-2020", "/blog"],
+  ["/blog/your-audiences-are-making-emotional-decisions", "/blog"],
+];
+
 const App = () => (
   <HelmetProvider>
     <QueryClientProvider client={queryClient}>
@@ -84,6 +121,11 @@ const App = () => (
               <Route path="/lhf-ad-ban" element={<Blog />} />
               <Route path="/hfss-assessment" element={<HFSSAssessment />} />
               <Route path="/proscenium-test" element={<ProsceniumTest />} />
+
+              {/* Legacy URL redirects */}
+              {REDIRECTS.map(([from, to]) => (
+                <Route key={from} path={from} element={<Navigate to={to} replace />} />
+              ))}
               
               {/* Auth */}
               <Route path="/auth" element={<Auth />} />
