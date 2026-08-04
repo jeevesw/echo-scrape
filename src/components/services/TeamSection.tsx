@@ -51,10 +51,10 @@ export function TeamSection({ serviceName, memberNames }: TeamSectionProps) {
         <div className="max-w-4xl mx-auto">
           <div className="flex justify-center gap-8 lg:gap-12 mb-8 flex-wrap">
             {firstRow.map((author) => (
-              <div key={author.id} className="flex flex-col items-center text-center w-40">
-                <div className="w-24 h-24 rounded-full overflow-hidden bg-background mb-4">
+              <div key={author.id} className="group flex flex-col items-center text-center w-40 cursor-default">
+                <div className="w-24 h-24 rounded-full overflow-hidden bg-background mb-4 ring-0 ring-primary/0 transition-all duration-300 ease-out group-hover:ring-2 group-hover:ring-primary/40">
                   {author.avatar_url ? (
-                    <img src={author.avatar_url} alt={author.name} className="w-full h-full object-cover" />
+                    <img src={author.avatar_url} alt={author.name} className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-110" />
                   ) : (
                     <div className="w-full h-full bg-primary/10 flex items-center justify-center">
                       <Users className="h-8 w-8 text-primary" />
@@ -62,17 +62,17 @@ export function TeamSection({ serviceName, memberNames }: TeamSectionProps) {
                   )}
                 </div>
                 <h3 className="heading-display text-base text-foreground mb-1">{author.name}</h3>
-                {author.role && <p className="text-muted-foreground text-sm">{author.role}</p>}
+                {author.role && <p className="text-muted-foreground text-sm transition-all duration-300 ease-out group-hover:-translate-y-0.5 group-hover:text-primary">{author.role}</p>}
               </div>
             ))}
           </div>
           {secondRow.length > 0 && (
             <div className="flex justify-center gap-8 lg:gap-12 flex-wrap">
               {secondRow.map((author) => (
-                <div key={author.id} className="flex flex-col items-center text-center w-40">
-                  <div className="w-24 h-24 rounded-full overflow-hidden bg-background mb-4">
+                <div key={author.id} className="group flex flex-col items-center text-center w-40 cursor-default">
+                  <div className="w-24 h-24 rounded-full overflow-hidden bg-background mb-4 ring-0 ring-primary/0 transition-all duration-300 ease-out group-hover:ring-2 group-hover:ring-primary/40">
                     {author.avatar_url ? (
-                      <img src={author.avatar_url} alt={author.name} className="w-full h-full object-cover" />
+                      <img src={author.avatar_url} alt={author.name} className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-110" />
                     ) : (
                       <div className="w-full h-full bg-primary/10 flex items-center justify-center">
                         <Users className="h-8 w-8 text-primary" />
@@ -80,7 +80,7 @@ export function TeamSection({ serviceName, memberNames }: TeamSectionProps) {
                     )}
                   </div>
                   <h3 className="heading-display text-base text-foreground mb-1">{author.name}</h3>
-                  {author.role && <p className="text-muted-foreground text-sm">{author.role}</p>}
+                  {author.role && <p className="text-muted-foreground text-sm transition-all duration-300 ease-out group-hover:-translate-y-0.5 group-hover:text-primary">{author.role}</p>}
                 </div>
               ))}
             </div>
