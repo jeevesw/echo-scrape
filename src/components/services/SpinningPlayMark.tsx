@@ -181,7 +181,7 @@ export function SpinningPlayMark({
           position: absolute;
           inset: 0;
           border-radius: 44px;
-          backface-visibility: hidden;
+          backface-visibility: visible;
           display: grid;
           place-items: center;
         }
