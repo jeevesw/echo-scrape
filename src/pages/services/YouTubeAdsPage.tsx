@@ -11,7 +11,6 @@ import { TeamSection } from "@/components/services/TeamSection";
 import { SubServiceHero } from "@/components/services/SubServiceHero";
 import { GalleryRow } from "@/components/services/GalleryRow";
 import { ImagePlaceholder } from "@/components/services/ImagePlaceholder";
-import { ParallaxVideo } from "@/components/case-study/ParallaxVideo";
 import { AnimatedStatCard } from "@/components/case-study/AnimatedStatCard";
 import { ClientLogoCarousel } from "@/components/home/ClientLogoCarousel";
 import { Button } from "@/components/ui/button";
