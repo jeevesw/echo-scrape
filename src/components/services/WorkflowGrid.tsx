@@ -1,3 +1,7 @@
+import { useCountUp } from "@/hooks/use-count-up";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { usePrefersReducedMotion } from "@/hooks/use-reduced-motion";
+
 interface Step {
   number: number;
   title: string;
@@ -8,23 +12,68 @@ interface WorkflowGridProps {
   steps: Step[];
   columns?: 2 | 4;
   heading?: string;
+  /** Adds a drawing progress line, staggered reveals and counting numerals. */
+  animated?: boolean;
 }
 
-export function WorkflowGrid({ steps, columns = 4, heading }: WorkflowGridProps) {
+function StepNumeral({ value, animated }: { value: number; animated: boolean }) {
+  const { ref, displayValue } = useCountUp({ end: value, duration: 900 });
+  if (!animated) {
+    return <span className="heading-display text-6xl text-primary/30 block mb-2">{value}</span>;
+  }
+  return (
+    <span ref={ref} className="heading-display text-6xl text-primary/30 block mb-2">
+      {displayValue}
+    </span>
+  );
+}
+
+export function WorkflowGrid({ steps, columns = 4, heading, animated = false }: WorkflowGridProps) {
+  const reduced = usePrefersReducedMotion();
+  const useMotion = animated && !reduced;
+  const { ref, isRevealed } = useScrollReveal<HTMLDivElement>({ threshold: 0.2 });
+
   return (
     <section className="bg-muted py-16 lg:py-24">
       <div className="container mx-auto px-4">
         {heading && (
           <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-12">{heading}</h2>
         )}
-        <div className={`grid gap-8 max-w-6xl mx-auto ${columns === 4 ? "md:grid-cols-2 lg:grid-cols-4" : "md:grid-cols-2"}`}>
-          {steps.map((step) => (
-            <div key={step.number}>
-              <span className="heading-display text-6xl text-primary/30 block mb-2">{step.number}</span>
-              <h3 className="heading-display text-xl text-foreground mb-2">{step.title}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">{step.description}</p>
+        <div ref={ref} className="relative max-w-6xl mx-auto">
+          {animated && (
+            <div
+              className="hidden lg:block absolute left-0 right-0 top-[30px] h-[2px] bg-primary/10 overflow-hidden"
+              aria-hidden="true"
+            >
+              <div
+                className="h-full bg-primary/40 origin-left transition-transform duration-[1200ms] ease-out"
+                style={{ transform: `scaleX(${isRevealed || !useMotion ? 1 : 0})` }}
+              />
             </div>
-          ))}
+          )}
+          <div
+            className={`relative grid gap-8 ${
+              columns === 4 ? "md:grid-cols-2 lg:grid-cols-4" : "md:grid-cols-2"
+            }`}
+          >
+            {steps.map((step, i) => (
+              <div
+                key={step.number}
+                className={
+                  animated
+                    ? `transition-all duration-500 ease-out ${
+                        isRevealed || !useMotion ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                      }`
+                    : undefined
+                }
+                style={animated ? { transitionDelay: `${i * 100}ms` } : undefined}
+              >
+                <StepNumeral value={step.number} animated={useMotion} />
+                <h3 className="heading-display text-xl text-foreground mb-2">{step.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{step.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
