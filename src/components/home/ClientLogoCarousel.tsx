@@ -43,7 +43,9 @@ const carouselLogoSrcs: Record<string, string> = {
   "/images/clients/various-eateries.svg": "/images/clients/various-eateries-carousel.svg",
 };
 
-export function ClientLogoCarousel() {
+export function ClientLogoCarousel({ background = "muted" }: { background?: "muted" | "background" } = {}) {
+  const bgClass = background === "background" ? "bg-background" : "bg-muted";
+  const fadeFrom = background === "background" ? "from-background" : "from-muted";
   const [paused, setPaused] = useState(false);
 
   const { data: cmsLogos = [] } = useQuery({
@@ -118,11 +120,11 @@ export function ClientLogoCarousel() {
   };
 
   return (
-    <section className="py-3 md:py-12 bg-muted overflow-hidden md:overflow-visible relative z-20">
+    <section className={`py-3 md:py-12 ${bgClass} overflow-hidden md:overflow-visible relative z-20`}>
       <TooltipProvider delayDuration={300}>
         <div className="relative overflow-hidden md:overflow-x-clip md:overflow-y-visible">
-          <div className="hidden md:block absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-muted to-transparent z-10 pointer-events-none" />
-          <div className="hidden md:block absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-muted to-transparent z-10 pointer-events-none" />
+          <div className={`hidden md:block absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r ${fadeFrom} to-transparent z-10 pointer-events-none`} />
+          <div className={`hidden md:block absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l ${fadeFrom} to-transparent z-10 pointer-events-none`} />
 
           <div className={`logo-carousel-track ${paused ? "[animation-play-state:paused]" : ""}`} style={trackStyle}>
             {[0, 1, 2].map((group) => (
