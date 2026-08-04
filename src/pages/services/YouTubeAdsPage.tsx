@@ -509,18 +509,6 @@ const YouTubeAdsPage = () => {
         </div>
       </section>
 
-      {/* 6 — FORMATS */}
-      <section className="bg-muted py-16 lg:py-24">
-        <div className="container mx-auto px-4">
-          <ScrollReveal>
-            <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-12">
-              The formats, and when each earns its place
-            </h2>
-          </ScrollReveal>
-          <FormatShowcase />
-        </div>
-      </section>
-
       {/* 7 — SECTION BREAKER */}
       <SubServiceHero
         variant="dark-overlay"
@@ -591,6 +579,18 @@ const YouTubeAdsPage = () => {
             <AnimatedStatCard end={50} suffix=" mins" label="to hit target" delay={120} />
             <AnimatedStatCard end={10492} label="backers" delay={240} />
           </div>
+        </div>
+      </section>
+
+      {/* 6 — FORMATS */}
+      <section className="bg-muted py-16 lg:py-24">
+        <div className="container mx-auto px-4">
+          <ScrollReveal>
+            <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-12">
+              The formats, and when each earns its place
+            </h2>
+          </ScrollReveal>
+          <FormatShowcase />
         </div>
       </section>
 
