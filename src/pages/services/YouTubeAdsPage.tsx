@@ -445,19 +445,17 @@ const YouTubeAdsPage = () => {
       <ClientLogoCarousel />
 
       {/* 3 — INTRO */}
-      <section className="bg-background py-16 lg:py-24">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto grid lg:grid-cols-[420px_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
+      <section className="relative overflow-hidden bg-background py-20 lg:py-28">
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <Suspense fallback={null}>
+            <SpinningPlayMark className="h-full w-full scale-125 lg:scale-150 opacity-90" speed={22} />
+          </Suspense>
+        </div>
+        <div className="relative z-10 container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
             <ScrollReveal>
-              <ImagePlaceholder
-                aspectRatio="4/5"
-                label="PORTRAIT — CREW ON SET"
-                note="Behind-the-scenes shot of a shoot day, ideally in a restaurant kitchen or dining room"
-              />
-            </ScrollReveal>
-            <ScrollReveal delay={120}>
-              <div className="space-y-6 max-w-[62ch]">
-                <p className="text-xl md:text-2xl text-foreground/80 leading-relaxed">
+              <div className="rounded-2xl bg-background/85 backdrop-blur-md shadow-2xl ring-1 ring-border px-8 py-10 lg:px-12 lg:py-14">
+                <p className="text-xl md:text-2xl text-foreground/90 leading-relaxed">
                   We plan,{" "}
                   <Link to="/services/video-production" className="text-primary underline underline-offset-4">
                     produce
