@@ -14,6 +14,7 @@ import { ImagePlaceholder } from "@/components/services/ImagePlaceholder";
 import { AnimatedStatCard } from "@/components/case-study/AnimatedStatCard";
 import { ClientLogoCarousel } from "@/components/home/ClientLogoCarousel";
 import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 import { ScrollReveal, useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { usePrefersReducedMotion } from "@/hooks/use-reduced-motion";
 import { useCountUp } from "@/hooks/use-count-up";
