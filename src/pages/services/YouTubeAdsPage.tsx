@@ -247,7 +247,7 @@ const FormatShowcase = () => {
               key={f.title}
               type="button"
               onClick={() => setActive(i)}
-              className={`relative pb-4 text-sm lg:text-base heading-display transition-colors duration-300 ease-out ${
+              className={`relative pb-4 text-base lg:text-lg heading-display transition-colors duration-300 ease-out ${
                 i === active ? "text-primary" : "text-muted-foreground hover:text-foreground"
               }`}
               aria-pressed={i === active}
@@ -544,7 +544,7 @@ const YouTubeAdsPage = () => {
             <p className="text-xl md:text-2xl text-foreground/80 leading-relaxed max-w-3xl mx-auto text-center mb-12">
               YouTube works long before it can be measured. Someone watches on a Tuesday, doesn't click, and books a
               table a fortnight later after searching your brand name. Analytics records that as brand or direct
-              traffic, and YouTube gets no credit.
+              traffic, and <Highlight>YouTube gets no credit.</Highlight>
             </p>
           </ScrollReveal>
           <div className="grid gap-6 max-w-5xl mx-auto sm:grid-cols-2 lg:grid-cols-3">
