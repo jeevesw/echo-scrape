@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState, type ReactNode } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
@@ -32,7 +32,7 @@ import {
 const baseUrl = "https://trapezemedia.co.uk";
 
 /* ---------- Rough marker-style highlight for key phrases ---------- */
-const Highlight = ({ children }: { children: React.ReactNode }) => (
+const Highlight = ({ children }: { children: ReactNode }) => (
   <span
     className="inline-block -skew-x-2 bg-primary px-2 font-bold text-primary-foreground"
     style={{ clipPath: "polygon(0.5% 6%, 99.5% 0%, 100% 94%, 0% 100%)" }}
