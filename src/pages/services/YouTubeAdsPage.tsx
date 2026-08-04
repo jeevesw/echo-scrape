@@ -192,6 +192,48 @@ const faqs = [
   },
 ];
 
+const workGallery = [
+  {
+    client: "YO!",
+    title: "Perri Kiely x Furi Furi Chicken",
+    description:
+      "Diversity member and street dancer Perri Kiely partnered with YO! to mark the Furi Furi launch at Bluewater, supported by search and YouTube activity.",
+    video:
+      "https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Earnies x Yo! Sushi - Perri Kiely - Client Edit - V3.mp4",
+    stats: [
+      { value: "1M+", label: "views in week one" },
+      { value: "+60%", label: "increase in restaurant bookings" },
+    ],
+    href: "/case-studies/yo",
+  },
+  {
+    client: "The Cube",
+    title: "Tron-inspired concept films",
+    description:
+      "We project managed and produced three concept videos for The Cube, welcoming influencers onto the shoot to amplify the reach of the finished films.",
+    video:
+      "https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//The-Cube-Trapeze-Media-Video-Production-1.mp4",
+    stats: [
+      { value: "3", label: "concept videos produced" },
+      { value: "1", label: "shoot, cut for every platform" },
+    ],
+    href: "/services/tiktok-production",
+  },
+  {
+    client: "Paris Baguette",
+    title: "LHF-compliant creative",
+    description:
+      "With Less Healthy Food rules restricting product-led advertising, we built occasion-led creative that implied indulgence while staying fully compliant.",
+    video:
+      "https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Paris-Baguette-LHF-Video.mp4",
+    stats: [
+      { value: "+83%", label: "branded search uplift" },
+      { value: "+60%", label: "footfall conversions" },
+    ],
+    href: "/case-studies/paris-baguette",
+  },
+];
+
 /* ---------- Hero mockup with subtle parallax drift ---------- */
 const ParallaxMockup = () => {
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -542,6 +584,9 @@ const YouTubeAdsPage = () => {
         </div>
       </section>
 
+      {/* 2 — CLIENT LOGOS */}
+      <ClientLogoCarousel background="background" />
+
       {/* 4 — SHORTS: numbered list + sticky vertical still */}
       <section className="bg-muted py-16 lg:py-24">
         <div className="container mx-auto px-4">
@@ -581,9 +626,6 @@ const YouTubeAdsPage = () => {
           </div>
         </div>
       </section>
-
-      {/* 2 — CLIENT LOGOS */}
-      <ClientLogoCarousel />
 
       {/* 6 — FORMATS */}
       <section className="bg-background py-16 lg:py-24">
@@ -636,22 +678,52 @@ const YouTubeAdsPage = () => {
         </div>
       </section>
 
-      {/* 11 — GALLERY */}
+      {/* 11 — WORK GALLERY */}
       <section className="bg-background py-16 lg:py-24">
         <div className="container mx-auto px-4 max-w-6xl">
           <ScrollReveal>
-            <div className="grid gap-6 sm:grid-cols-3">
-              {["CLIENT WORK 1", "CLIENT WORK 2", "CLIENT WORK 3"].map((label) => (
-                <ImagePlaceholder
-                  key={label}
-                  aspectRatio="4/3"
-                  label={label}
-                  note="Frames from YouTube or Shorts creative — one food, one venue, one people"
-                />
-              ))}
-            </div>
-            <p className="text-base text-muted-foreground mt-3">Recent work</p>
+            <h2 className="heading-display text-4xl md:text-5xl text-foreground text-center mb-12">
+              Recent work
+            </h2>
           </ScrollReveal>
+          <div className="grid gap-8 md:grid-cols-3">
+            {workGallery.map((w, i) => (
+              <ScrollReveal key={w.title} delay={i * 100}>
+                <div className="h-full flex flex-col rounded-2xl overflow-hidden bg-muted transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl">
+                  <div className={`relative w-full bg-foreground/5 ${w.portrait ? "aspect-[9/16]" : "aspect-video"}`}>
+                    <video
+                      src={w.video}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-6 flex flex-col flex-1">
+                    <p className="text-sm text-muted-foreground mb-1">{w.client}</p>
+                    <h3 className="heading-display text-2xl text-foreground mb-3">{w.title}</h3>
+                    <p className="text-lg text-muted-foreground leading-relaxed mb-6">{w.description}</p>
+                    <div className="mt-auto space-y-2">
+                      {w.stats.map((s) => (
+                        <div key={s.label} className="flex items-baseline gap-3">
+                          <span className="heading-display text-3xl text-primary">{s.value}</span>
+                          <span className="text-sm text-muted-foreground">{s.label}</span>
+                        </div>
+                      ))}
+                      {w.href && (
+                        <Button variant="outline" className="mt-4" asChild>
+                          <Link to={w.href}>
+                            See the case study <ArrowRight className="ml-2 h-4 w-4" />
+                          </Link>
+                        </Button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 
