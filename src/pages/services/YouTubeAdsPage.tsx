@@ -445,19 +445,16 @@ const YouTubeAdsPage = () => {
       <ClientLogoCarousel />
 
       {/* 3 — INTRO */}
-      <section className="relative overflow-hidden bg-primary py-20 lg:py-28">
+      <section className="relative z-20 bg-primary py-6 lg:py-8">
         <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,460px)_minmax(0,1fr)] items-center gap-10 lg:gap-0">
-            {/* 3D mark, off to the left */}
-            <div className="relative h-[280px] lg:h-[460px] pointer-events-none" aria-hidden="true">
-              <Suspense fallback={null}>
-                <SpinningPlayMark
-                  className="h-full w-full bg-transparent [&_.spm-blobs]:hidden"
-                  glass={false}
-                  color="#363636"
-                  speed={22}
-                />
-              </Suspense>
+          <div className="max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,520px)_minmax(0,1fr)] items-center gap-6 lg:gap-0">
+            {/* YouTube mark, off to the left, overlapping neighbouring sections */}
+            <div className="relative pointer-events-none -my-16 lg:-my-24" aria-hidden="true">
+              <img
+                src={youtubeMark.url}
+                alt=""
+                className="w-full max-w-[420px] lg:max-w-none mx-auto drop-shadow-2xl"
+              />
             </div>
             <ScrollReveal>
               <div className="relative z-10 rounded-2xl bg-background shadow-2xl px-8 py-10 lg:px-12 lg:py-14 lg:-ml-12">
