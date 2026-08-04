@@ -445,16 +445,22 @@ const YouTubeAdsPage = () => {
       <ClientLogoCarousel />
 
       {/* 3 — INTRO */}
-      <section className="relative overflow-hidden bg-background py-20 lg:py-28">
-        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <Suspense fallback={null}>
-            <SpinningPlayMark className="h-full w-full scale-125 lg:scale-150 opacity-90" speed={22} />
-          </Suspense>
-        </div>
-        <div className="relative z-10 container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
+      <section className="relative overflow-hidden bg-primary py-20 lg:py-28">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,460px)_minmax(0,1fr)] items-center gap-10 lg:gap-0">
+            {/* 3D mark, off to the left */}
+            <div className="relative h-[280px] lg:h-[460px] pointer-events-none" aria-hidden="true">
+              <Suspense fallback={null}>
+                <SpinningPlayMark
+                  className="h-full w-full bg-transparent [&_.spm-blobs]:hidden"
+                  glass={false}
+                  color="#363636"
+                  speed={22}
+                />
+              </Suspense>
+            </div>
             <ScrollReveal>
-              <div className="rounded-2xl bg-background/85 backdrop-blur-md shadow-2xl ring-1 ring-border px-8 py-10 lg:px-12 lg:py-14">
+              <div className="relative z-10 rounded-2xl bg-background shadow-2xl px-8 py-10 lg:px-12 lg:py-14 lg:-ml-12">
                 <p className="text-xl md:text-2xl text-foreground/90 leading-relaxed">
                   We plan,{" "}
                   <Link to="/services/video-production" className="text-primary underline underline-offset-4">
