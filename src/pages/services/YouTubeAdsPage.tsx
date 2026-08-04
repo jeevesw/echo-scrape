@@ -447,10 +447,17 @@ const YouTubeAdsPage = () => {
       {/* 3 — INTRO */}
       <section className="bg-background py-16 lg:py-24">
         <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,1fr)_360px] gap-12 lg:gap-16 items-center">
+          <div className="max-w-6xl mx-auto grid lg:grid-cols-[420px_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
             <ScrollReveal>
-              <div className="space-y-6 max-w-[65ch]">
-                <p className="text-lg text-muted-foreground leading-relaxed">
+              <ImagePlaceholder
+                aspectRatio="4/5"
+                label="PORTRAIT — CREW ON SET"
+                note="Behind-the-scenes shot of a shoot day, ideally in a restaurant kitchen or dining room"
+              />
+            </ScrollReveal>
+            <ScrollReveal delay={120}>
+              <div className="space-y-6 max-w-[62ch]">
+                <p className="text-xl md:text-2xl text-foreground/80 leading-relaxed">
                   We plan,{" "}
                   <Link to="/services/video-production" className="text-primary underline underline-offset-4">
                     produce
@@ -464,16 +471,10 @@ const YouTubeAdsPage = () => {
                   <Link to="/services/paid-advertising" className="text-primary underline underline-offset-4">
                     paid social
                   </Link>{" "}
-                  work. We care less about impressions than about whether someone within a few miles of your venue walked in.
+                  work. We care less about impressions than about{" "}
+                  <Highlight>whether someone within a few miles of your venue walked in.</Highlight>
                 </p>
               </div>
-            </ScrollReveal>
-            <ScrollReveal delay={120}>
-              <ImagePlaceholder
-                aspectRatio="4/5"
-                label="PORTRAIT — CREW ON SET"
-                note="Behind-the-scenes shot of a shoot day, ideally in a restaurant kitchen or dining room"
-              />
             </ScrollReveal>
           </div>
         </div>
