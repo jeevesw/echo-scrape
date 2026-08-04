@@ -773,7 +773,7 @@ const YouTubeAdsPage = () => {
         />
         <div className="relative z-10 max-w-2xl mx-auto px-4 text-center">
           <h2 className="heading-display text-3xl md:text-4xl text-foreground mb-6">
-            Ready to put your video where the attention is?
+            Ready to get your video where the attention is?
           </h2>
           <p className="text-lg text-muted-foreground mb-8">
             Tell us what the campaign needs to achieve commercially and we'll tell you whether YouTube is the right
