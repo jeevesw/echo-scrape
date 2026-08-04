@@ -14,6 +14,7 @@ import { ImagePlaceholder } from "@/components/services/ImagePlaceholder";
 import { AnimatedStatCard } from "@/components/case-study/AnimatedStatCard";
 import { ClientLogoCarousel } from "@/components/home/ClientLogoCarousel";
 import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 import { ScrollReveal, useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { usePrefersReducedMotion } from "@/hooks/use-reduced-motion";
 import { useCountUp } from "@/hooks/use-count-up";
@@ -403,6 +404,7 @@ const YouTubeAdsPage = () => {
         subheadline="Most agencies treat YouTube as somewhere to park a cut-down of a TV ad. We treat it as the second home for creative you're already making, and increasingly as the first place a customer meets your brand."
         primaryCta={{ label: "Free discovery call", href: "https://calendly.com/trapezemedia/discovery-call", external: true }}
         secondaryCta={{ label: "See our video work", href: "/services/video-production" }}
+        hideCtas
         breadcrumbItems={[
           { label: "Services", href: "/services" },
           { label: "YouTube Ads", href: "/services/youtube-ads" },
@@ -412,6 +414,16 @@ const YouTubeAdsPage = () => {
       <section className="bg-[hsl(60,1%,8%)] pb-16 lg:pb-24">
         <div className="container mx-auto px-4 max-w-[1400px]">
           <ParallaxMockup />
+          <div className="flex flex-wrap gap-4 justify-center mt-10 lg:mt-12">
+            <Button variant="hero" className="bg-primary text-primary-foreground hover:bg-primary/90" asChild>
+              <a href="https://calendly.com/trapezemedia/discovery-call" target="_blank" rel="noopener noreferrer">
+                Free discovery call <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
+            </Button>
+            <Button variant="hero-outline" className="border-white text-white hover:bg-white hover:text-foreground" asChild>
+              <Link to="/services/video-production">See our video work</Link>
+            </Button>
+          </div>
         </div>
       </section>
 
