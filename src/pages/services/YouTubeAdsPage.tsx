@@ -694,10 +694,10 @@ const YouTubeAdsPage = () => {
           <SpinningPlayMark className="absolute inset-0" speed={16} />
         </Suspense>
         <div className="relative z-10 max-w-2xl mx-auto px-4 py-20 lg:py-28 text-center">
-          <h2 className="heading-display text-3xl md:text-4xl text-foreground mb-6">
+          <h2 className="heading-display text-3xl md:text-4xl text-background mb-6">
             Ready to put your video where the attention is?
           </h2>
-          <p className="text-lg text-muted-foreground mb-8">
+          <p className="text-lg text-background/85 mb-8">
             Tell us what the campaign needs to achieve commercially and we'll tell you whether YouTube is the right
             place to spend.
           </p>
