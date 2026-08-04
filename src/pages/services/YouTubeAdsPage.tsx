@@ -8,7 +8,6 @@ import { YouTubeMockup } from "@/components/services/YouTubeMockup";
 import { WorkflowGrid } from "@/components/services/WorkflowGrid";
 import { InlineCaseStudy } from "@/components/services/InlineCaseStudy";
 import { TeamSection } from "@/components/services/TeamSection";
-import { SubServiceHero } from "@/components/services/SubServiceHero";
 import { GalleryRow } from "@/components/services/GalleryRow";
 import { ImagePlaceholder } from "@/components/services/ImagePlaceholder";
 import { AnimatedStatCard } from "@/components/case-study/AnimatedStatCard";
@@ -260,16 +259,9 @@ const FormatShowcase = () => {
             </button>
           ))}
         </div>
-        <div key={active} className="grid lg:grid-cols-2 gap-10 items-center animate-fade-in">
-          <div>
-            <h3 className="heading-display text-2xl lg:text-3xl text-foreground mb-4">{item.title}</h3>
-            <p className="text-xl text-muted-foreground leading-relaxed">{item.description}</p>
-          </div>
-          <ImagePlaceholder
-            aspectRatio="16/9"
-            label={`FORMAT DIAGRAM — ${item.title.toUpperCase()}`}
-            note="Simple diagram or screen mock showing where this ad appears"
-          />
+        <div key={active} className="max-w-3xl mx-auto text-center animate-fade-in">
+          <h3 className="heading-display text-2xl lg:text-3xl text-foreground mb-4">{item.title}</h3>
+          <p className="text-xl text-muted-foreground leading-relaxed">{item.description}</p>
         </div>
       </div>
 
@@ -280,18 +272,13 @@ const FormatShowcase = () => {
             <AccordionItem
               key={f.title}
               value={`format-${i}`}
-              className="bg-background rounded-xl px-5 border-0 border-l-4 border-l-transparent data-[state=open]:border-l-primary transition-colors duration-300"
+              className="bg-muted rounded-xl px-5 border-0 border-l-4 border-l-transparent data-[state=open]:border-l-primary transition-colors duration-300"
             >
               <AccordionTrigger className="hover:no-underline text-left py-4">
                 <span className="heading-display text-lg text-foreground">{f.title}</span>
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground text-lg leading-relaxed">
-                <p className="mb-4">{f.description}</p>
-                <ImagePlaceholder
-                  aspectRatio="16/9"
-                  label={`FORMAT DIAGRAM — ${f.title.toUpperCase()}`}
-                  note="Simple diagram or screen mock showing where this ad appears"
-                />
+                <p>{f.description}</p>
               </AccordionContent>
             </AccordionItem>
           ))}
@@ -567,8 +554,8 @@ const YouTubeAdsPage = () => {
             <ol className="space-y-10">
               {shortsCards.map((item, i) => (
                 <ScrollReveal key={item.title} delay={i * 100}>
-                  <li className="group flex gap-6">
-                    <span className="heading-display text-6xl text-primary/30 leading-none shrink-0 transition-colors duration-300 group-hover:text-primary/60">
+                  <li className="flex gap-6">
+                    <span className="heading-display text-6xl text-primary/30 leading-none shrink-0">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <div>
@@ -595,25 +582,11 @@ const YouTubeAdsPage = () => {
         </div>
       </section>
 
-      {/* 7 — SECTION BREAKER */}
-      <SubServiceHero
-        variant="dark-overlay"
-        heading="One shoot. Every platform."
-        body="If you're already making vertical creative for TikTok or Reels, most of a Shorts campaign already exists. We film once and cut for all three."
-      />
-      <div className="container mx-auto px-4 -mt-8 mb-8 max-w-5xl">
-        <ImagePlaceholder
-          aspectRatio="21/9"
-          label="FULL-BLEED — SHOOT DAY WIDE"
-          note="Wide landscape shot, camera and crew visible, dark enough for white text overlay — replaces the section background above"
-        />
-      </div>
-
       {/* 2 — CLIENT LOGOS */}
       <ClientLogoCarousel />
 
       {/* 6 — FORMATS */}
-      <section className="bg-muted py-16 lg:py-24">
+      <section className="bg-background py-16 lg:py-24">
         <div className="container mx-auto px-4">
           <ScrollReveal>
             <h2 className="heading-display text-4xl md:text-5xl text-foreground text-center mb-12">
@@ -629,7 +602,7 @@ const YouTubeAdsPage = () => {
         <div className="container mx-auto px-4 max-w-6xl">
           <ScrollReveal>
             <h2 className="heading-display text-4xl md:text-5xl text-white text-center mb-12">
-              What this looks like elsewhere
+              YouTube advertising successes
             </h2>
           </ScrollReveal>
           <div className="grid gap-6 lg:grid-cols-3">
