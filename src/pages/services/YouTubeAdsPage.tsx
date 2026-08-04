@@ -17,6 +17,7 @@ import { ClientLogoCarousel } from "@/components/home/ClientLogoCarousel";
 import { Button } from "@/components/ui/button";
 import { ScrollReveal, useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { usePrefersReducedMotion } from "@/hooks/use-reduced-motion";
+import { useCountUp } from "@/hooks/use-count-up";
 import {
   Accordion,
   AccordionContent,
