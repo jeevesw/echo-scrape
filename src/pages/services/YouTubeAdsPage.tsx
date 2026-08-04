@@ -439,15 +439,12 @@ const YouTubeAdsPage = () => {
         </div>
       </section>
 
-      {/* 2 — CLIENT LOGOS */}
-      <ClientLogoCarousel />
-
       {/* 3 — INTRO */}
-      <section className="relative z-20 bg-primary py-10 lg:py-0">
+      <section className="relative z-20 bg-primary py-10 lg:py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,520px)_minmax(0,1fr)] items-center lg:items-stretch gap-6 lg:gap-0">
             {/* YouTube mark, off to the left, overlapping neighbouring sections */}
-            <div className="relative pointer-events-none lg:-my-[25px]" aria-hidden="true">
+            <div className="relative pointer-events-none lg:-my-[105px]" aria-hidden="true">
               <img
                 src={youtubeMark.url}
                 alt=""
@@ -478,20 +475,6 @@ const YouTubeAdsPage = () => {
           </div>
         </div>
       </section>
-
-      {/* 7 — SECTION BREAKER */}
-      <SubServiceHero
-        variant="dark-overlay"
-        heading="One shoot. Every platform."
-        body="If you're already making vertical creative for TikTok or Reels, most of a Shorts campaign already exists. We film once and cut for all three."
-      />
-      <div className="container mx-auto px-4 -mt-8 mb-8 max-w-5xl">
-        <ImagePlaceholder
-          aspectRatio="21/9"
-          label="FULL-BLEED — SHOOT DAY WIDE"
-          note="Wide landscape shot, camera and crew visible, dark enough for white text overlay — replaces the section background above"
-        />
-      </div>
 
       {/* 8 — ATTRIBUTION */}
       <section className="bg-background py-16 lg:py-24">
