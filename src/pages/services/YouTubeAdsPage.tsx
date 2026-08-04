@@ -445,13 +445,13 @@ const YouTubeAdsPage = () => {
       {/* 3 — INTRO */}
       <section className="relative z-20 bg-primary py-4 lg:py-6">
         <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,520px)_minmax(0,1fr)] items-center gap-6 lg:gap-0">
+          <div className="max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,520px)_minmax(0,1fr)] items-center lg:items-stretch gap-6 lg:gap-0">
             {/* YouTube mark, off to the left, overlapping neighbouring sections */}
-            <div className="relative pointer-events-none -my-8 lg:-my-14" aria-hidden="true">
+            <div className="relative pointer-events-none lg:-my-[25px]" aria-hidden="true">
               <img
                 src={youtubeMark.url}
                 alt=""
-                className="mx-auto w-auto h-[220px] lg:h-[340px] max-w-none object-contain drop-shadow-2xl"
+                className="mx-auto w-auto max-w-full h-[200px] object-contain drop-shadow-2xl lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:max-w-none"
               />
             </div>
             <ScrollReveal>
