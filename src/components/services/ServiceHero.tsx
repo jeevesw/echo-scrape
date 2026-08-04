@@ -16,6 +16,7 @@ interface ServiceHeroProps {
   subheadline: string;
   primaryCta: CTA;
   secondaryCta?: CTA;
+  hideCtas?: boolean;
   variant: "brand-pink" | "dark" | "split";
   visualSlot?: ReactNode;
   backgroundImage?: string;
@@ -28,6 +29,7 @@ export function ServiceHero({
   subheadline,
   primaryCta,
   secondaryCta,
+  hideCtas = false,
   variant,
   visualSlot,
   backgroundImage,
@@ -131,7 +133,7 @@ export function ServiceHero({
             {headline}
           </h1>
           <p className="text-xl text-white/70 mb-8 max-w-2xl mx-auto">{subheadline}</p>
-          <div className="flex flex-wrap gap-4 justify-center">
+          <div className={`flex flex-wrap gap-4 justify-center ${hideCtas ? "hidden" : ""}`}>
             <CtaButton cta={primaryCta} isPrimary />
             {secondaryCta && <CtaButton cta={secondaryCta} isPrimary={false} />}
           </div>
