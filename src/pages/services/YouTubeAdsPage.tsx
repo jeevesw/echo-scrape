@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState, type ReactNode, type CSSProperties } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
@@ -30,6 +30,16 @@ import {
 } from "@/components/ui/accordion";
 
 const baseUrl = "https://trapezemedia.co.uk";
+
+/* ---------- Rough marker-style highlight for key phrases ---------- */
+const Highlight = ({ children }: { children: ReactNode }) => (
+  <span
+    className="bg-primary px-2 py-0.5 font-bold text-primary-foreground decoration-clone"
+    style={{ boxDecorationBreak: "clone", WebkitBoxDecorationBreak: "clone" } as CSSProperties}
+  >
+    {children}
+  </span>
+);
 
 const shortsCards = [
   {
@@ -237,7 +247,7 @@ const FormatShowcase = () => {
               key={f.title}
               type="button"
               onClick={() => setActive(i)}
-              className={`relative pb-4 text-sm lg:text-base heading-display transition-colors duration-300 ease-out ${
+              className={`relative pb-4 text-base lg:text-lg heading-display transition-colors duration-300 ease-out ${
                 i === active ? "text-primary" : "text-muted-foreground hover:text-foreground"
               }`}
               aria-pressed={i === active}
@@ -255,7 +265,7 @@ const FormatShowcase = () => {
         <div key={active} className="grid lg:grid-cols-2 gap-10 items-center animate-fade-in">
           <div>
             <h3 className="heading-display text-2xl lg:text-3xl text-foreground mb-4">{item.title}</h3>
-            <p className="text-lg text-muted-foreground leading-relaxed">{item.description}</p>
+            <p className="text-xl text-muted-foreground leading-relaxed">{item.description}</p>
           </div>
           <ImagePlaceholder
             aspectRatio="16/9"
@@ -275,9 +285,9 @@ const FormatShowcase = () => {
               className="bg-background rounded-xl px-5 border-0 border-l-4 border-l-transparent data-[state=open]:border-l-primary transition-colors duration-300"
             >
               <AccordionTrigger className="hover:no-underline text-left py-4">
-                <span className="heading-display text-base text-foreground">{f.title}</span>
+                <span className="heading-display text-lg text-foreground">{f.title}</span>
               </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground text-base leading-relaxed">
+              <AccordionContent className="text-muted-foreground text-lg leading-relaxed">
                 <p className="mb-4">{f.description}</p>
                 <ImagePlaceholder
                   aspectRatio="16/9"
@@ -308,7 +318,7 @@ const AnimatedTestimonial = () => {
         >
           "
         </span>
-        <blockquote className="text-2xl font-light italic leading-relaxed mb-10 -mt-8">
+        <blockquote className="text-2xl md:text-3xl font-light italic leading-relaxed mb-10 -mt-8">
           {sentences.map((s, i) => (
             <span
               key={i}
@@ -374,7 +384,7 @@ const AnimatedStatCardLarge = ({
       >
         {displayValue}
       </span>
-      <span className="text-sm text-white/60 mt-2 block leading-snug">{label}</span>
+      <span className="text-base text-white/70 mt-2 block leading-snug">{label}</span>
     </div>
   );
 };
@@ -437,10 +447,17 @@ const YouTubeAdsPage = () => {
       {/* 3 — INTRO */}
       <section className="bg-background py-16 lg:py-24">
         <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,1fr)_360px] gap-12 lg:gap-16 items-center">
+          <div className="max-w-6xl mx-auto grid lg:grid-cols-[420px_minmax(0,1fr)] gap-12 lg:gap-16 items-center">
             <ScrollReveal>
-              <div className="space-y-6 max-w-[65ch]">
-                <p className="text-lg text-muted-foreground leading-relaxed">
+              <ImagePlaceholder
+                aspectRatio="4/5"
+                label="PORTRAIT — CREW ON SET"
+                note="Behind-the-scenes shot of a shoot day, ideally in a restaurant kitchen or dining room"
+              />
+            </ScrollReveal>
+            <ScrollReveal delay={120}>
+              <div className="space-y-6 max-w-[62ch]">
+                <p className="text-xl md:text-2xl text-foreground/80 leading-relaxed">
                   We plan,{" "}
                   <Link to="/services/video-production" className="text-primary underline underline-offset-4">
                     produce
@@ -454,16 +471,10 @@ const YouTubeAdsPage = () => {
                   <Link to="/services/paid-advertising" className="text-primary underline underline-offset-4">
                     paid social
                   </Link>{" "}
-                  work. We care less about impressions than about whether someone within a few miles of your venue walked in.
+                  work. We care less about impressions than about{" "}
+                  <Highlight>whether someone within a few miles of your venue walked in.</Highlight>
                 </p>
               </div>
-            </ScrollReveal>
-            <ScrollReveal delay={120}>
-              <ImagePlaceholder
-                aspectRatio="4/5"
-                label="PORTRAIT — CREW ON SET"
-                note="Behind-the-scenes shot of a shoot day, ideally in a restaurant kitchen or dining room"
-              />
             </ScrollReveal>
           </div>
         </div>
@@ -473,7 +484,7 @@ const YouTubeAdsPage = () => {
       <section className="bg-muted py-16 lg:py-24">
         <div className="container mx-auto px-4">
           <ScrollReveal>
-            <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-12">
+            <h2 className="heading-display text-4xl md:text-5xl text-foreground text-center mb-12">
               Shorts, and why it matters
             </h2>
           </ScrollReveal>
@@ -482,12 +493,12 @@ const YouTubeAdsPage = () => {
               {shortsCards.map((item, i) => (
                 <ScrollReveal key={item.title} delay={i * 100}>
                   <li className="group flex gap-6">
-                    <span className="heading-display text-5xl text-primary/30 leading-none shrink-0 transition-colors duration-300 group-hover:text-primary/60">
+                    <span className="heading-display text-6xl text-primary/30 leading-none shrink-0 transition-colors duration-300 group-hover:text-primary/60">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <div>
-                      <h3 className="heading-display text-xl text-foreground mb-2">{item.title}</h3>
-                      <p className="text-base text-muted-foreground leading-relaxed">{item.description}</p>
+                      <h3 className="heading-display text-2xl md:text-3xl text-foreground mb-3">{item.title}</h3>
+                      <p className="text-xl text-muted-foreground leading-relaxed">{item.description}</p>
                     </div>
                   </li>
                 </ScrollReveal>
@@ -527,13 +538,13 @@ const YouTubeAdsPage = () => {
       <section className="bg-background py-16 lg:py-24">
         <div className="container mx-auto px-4">
           <ScrollReveal>
-            <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-6">
+            <h2 className="heading-display text-4xl md:text-5xl text-foreground text-center mb-6">
               The attribution gap, and how we close it
             </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto text-center mb-12">
+            <p className="text-xl md:text-2xl text-foreground/80 leading-relaxed max-w-3xl mx-auto text-center mb-12">
               YouTube works long before it can be measured. Someone watches on a Tuesday, doesn't click, and books a
               table a fortnight later after searching your brand name. Analytics records that as brand or direct
-              traffic, and YouTube gets no credit.
+              traffic, and <Highlight>YouTube gets no credit.</Highlight>
             </p>
           </ScrollReveal>
           <div className="grid gap-6 max-w-5xl mx-auto sm:grid-cols-2 lg:grid-cols-3">
@@ -546,8 +557,8 @@ const YouTubeAdsPage = () => {
                   >
                     {i + 1}
                   </span>
-                  <h3 className="relative heading-display text-lg text-primary mb-3">{item.title}</h3>
-                  <p className="relative text-base text-muted-foreground leading-relaxed">{item.description}</p>
+                  <h3 className="relative heading-display text-xl md:text-2xl text-primary mb-3">{item.title}</h3>
+                  <p className="relative text-lg text-muted-foreground leading-relaxed">{item.description}</p>
                 </div>
               </ScrollReveal>
             ))}
@@ -586,7 +597,7 @@ const YouTubeAdsPage = () => {
       <section className="bg-muted py-16 lg:py-24">
         <div className="container mx-auto px-4">
           <ScrollReveal>
-            <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-12">
+            <h2 className="heading-display text-4xl md:text-5xl text-foreground text-center mb-12">
               The formats, and when each earns its place
             </h2>
           </ScrollReveal>
@@ -598,7 +609,7 @@ const YouTubeAdsPage = () => {
       <section className="bg-[hsl(60,1%,8%)] py-16 lg:py-24">
         <div className="container mx-auto px-4 max-w-6xl">
           <ScrollReveal>
-            <h2 className="heading-display text-3xl md:text-4xl text-white text-center mb-12">
+            <h2 className="heading-display text-4xl md:text-5xl text-white text-center mb-12">
               What this looks like elsewhere
             </h2>
           </ScrollReveal>
@@ -647,7 +658,7 @@ const YouTubeAdsPage = () => {
                 />
               ))}
             </div>
-            <p className="text-sm text-muted-foreground mt-3">Recent work</p>
+            <p className="text-base text-muted-foreground mt-3">Recent work</p>
           </ScrollReveal>
         </div>
       </section>
@@ -664,7 +675,7 @@ const YouTubeAdsPage = () => {
       {/* 15 — FAQ */}
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-12">
+          <h2 className="heading-display text-4xl md:text-5xl text-foreground text-center mb-12">
             Frequently Asked Questions
           </h2>
           <div className="max-w-3xl mx-auto">
@@ -676,9 +687,9 @@ const YouTubeAdsPage = () => {
                   className="bg-muted rounded-xl px-6 border-0 border-l-4 border-l-transparent data-[state=open]:border-l-primary transition-colors duration-300"
                 >
                   <AccordionTrigger className="hover:no-underline text-left py-5">
-                    <span className="heading-display text-foreground text-lg">{faq.question}</span>
+                    <span className="heading-display text-foreground text-xl">{faq.question}</span>
                   </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground text-base leading-relaxed">
+                  <AccordionContent className="text-muted-foreground text-lg leading-relaxed">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
@@ -697,10 +708,10 @@ const YouTubeAdsPage = () => {
         </div>
         <div className="absolute inset-0 bg-black/25" />
         <div className="relative z-10 max-w-2xl mx-auto px-4 py-20 lg:py-28 text-center">
-          <h2 className="heading-display text-3xl md:text-4xl text-background mb-6">
+          <h2 className="heading-display text-4xl md:text-5xl text-background mb-6">
             Ready to put your video where the attention is?
           </h2>
-          <p className="text-lg text-background/85 mb-8">
+          <p className="text-xl md:text-2xl text-background/90 mb-8">
             Tell us what the campaign needs to achieve commercially and we'll tell you whether YouTube is the right
             place to spend.
           </p>
