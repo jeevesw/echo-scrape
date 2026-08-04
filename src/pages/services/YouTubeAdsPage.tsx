@@ -31,6 +31,16 @@ import {
 
 const baseUrl = "https://trapezemedia.co.uk";
 
+/* ---------- Rough marker-style highlight for key phrases ---------- */
+const Highlight = ({ children }: { children: React.ReactNode }) => (
+  <span
+    className="inline-block -skew-x-2 bg-primary px-2 font-bold text-primary-foreground"
+    style={{ clipPath: "polygon(0.5% 6%, 99.5% 0%, 100% 94%, 0% 100%)" }}
+  >
+    <span className="inline-block skew-x-2">{children}</span>
+  </span>
+);
+
 const shortsCards = [
   {
     title: "Vertical Video, Older Audience",
