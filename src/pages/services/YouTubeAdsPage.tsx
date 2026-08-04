@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useRef, useState, type ReactNode } from "react";
+import { lazy, Suspense, useEffect, useRef, useState, type ReactNode, type CSSProperties } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
@@ -35,7 +35,7 @@ const baseUrl = "https://trapezemedia.co.uk";
 const Highlight = ({ children }: { children: ReactNode }) => (
   <span
     className="bg-primary px-2 py-0.5 font-bold text-primary-foreground decoration-clone"
-    style={{ boxDecorationBreak: "clone", WebkitBoxDecorationBreak: "clone" } as React.CSSProperties}
+    style={{ boxDecorationBreak: "clone", WebkitBoxDecorationBreak: "clone" } as CSSProperties}
   >
     {children}
   </span>
