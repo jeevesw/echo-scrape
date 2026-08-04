@@ -9,7 +9,6 @@ import { WorkflowGrid } from "@/components/services/WorkflowGrid";
 import { InlineCaseStudy } from "@/components/services/InlineCaseStudy";
 import { TeamSection } from "@/components/services/TeamSection";
 import { GalleryRow } from "@/components/services/GalleryRow";
-import { ImagePlaceholder } from "@/components/services/ImagePlaceholder";
 import { AnimatedStatCard } from "@/components/case-study/AnimatedStatCard";
 import { ClientLogoCarousel } from "@/components/home/ClientLogoCarousel";
 import { Button } from "@/components/ui/button";
