@@ -731,18 +731,19 @@ const YouTubeAdsPage = () => {
       </section>
 
       {/* 16 — CLOSING CTA */}
-      <section className="relative overflow-hidden min-h-[560px] flex items-center bg-foreground">
-        <div className="absolute inset-0">
-          <Suspense fallback={<div className="absolute inset-0 bg-foreground" />}>
-            <SpinningPlayMark className="h-full w-full" speed={16} />
-          </Suspense>
-        </div>
-        <div className="absolute inset-0 bg-black/25" />
-        <div className="relative z-10 max-w-2xl mx-auto px-4 py-20 lg:py-28 text-center">
-          <h2 className="heading-display text-4xl md:text-5xl text-background mb-6">
+      <section className="bg-muted relative overflow-hidden py-20 lg:py-28">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: "radial-gradient(ellipse at center, hsl(var(--primary) / 0.08) 0%, transparent 70%)",
+          }}
+          aria-hidden="true"
+        />
+        <div className="relative z-10 max-w-2xl mx-auto px-4 text-center">
+          <h2 className="heading-display text-3xl md:text-4xl text-foreground mb-6">
             Ready to put your video where the attention is?
           </h2>
-          <p className="text-xl md:text-2xl text-background/90 mb-8">
+          <p className="text-lg text-muted-foreground mb-8">
             Tell us what the campaign needs to achieve commercially and we'll tell you whether YouTube is the right
             place to spend.
           </p>
