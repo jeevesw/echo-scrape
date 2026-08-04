@@ -41,7 +41,7 @@ const shortsCards = [
   {
     title: "Vertical Video, Older Audience",
     description:
-      "Shorts behaves more like TikTok than like traditional YouTube: same aspect ratio, same three-second window. The audience skews significantly older and broader, which matters if your covers don't come from under-25s.",
+      "Shorts behaves more like TikTok than like traditional YouTube: same aspect ratio, same three-second window.",
   },
   {
     title: "One Shoot, Every Platform",
