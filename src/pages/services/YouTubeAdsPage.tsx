@@ -34,10 +34,10 @@ const baseUrl = "https://trapezemedia.co.uk";
 /* ---------- Rough marker-style highlight for key phrases ---------- */
 const Highlight = ({ children }: { children: ReactNode }) => (
   <span
-    className="inline-block -skew-x-2 bg-primary px-2 font-bold text-primary-foreground"
-    style={{ clipPath: "polygon(0.5% 6%, 99.5% 0%, 100% 94%, 0% 100%)" }}
+    className="bg-primary px-2 py-0.5 font-bold text-primary-foreground decoration-clone"
+    style={{ boxDecorationBreak: "clone", WebkitBoxDecorationBreak: "clone" } as React.CSSProperties}
   >
-    <span className="inline-block skew-x-2">{children}</span>
+    {children}
   </span>
 );
 
