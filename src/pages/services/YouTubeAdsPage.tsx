@@ -548,8 +548,21 @@ const YouTubeAdsPage = () => {
         </div>
       </section>
 
-      {/* 9 — CASE STUDY: MYCELIA */}
       {/* 7 — SECTION BREAKER */}
+      <SubServiceHero
+        variant="dark-overlay"
+        heading="One shoot. Every platform."
+        body="If you're already making vertical creative for TikTok or Reels, most of a Shorts campaign already exists. We film once and cut for all three."
+      />
+      <div className="container mx-auto px-4 -mt-8 mb-8 max-w-5xl">
+        <ImagePlaceholder
+          aspectRatio="21/9"
+          label="FULL-BLEED — SHOOT DAY WIDE"
+          note="Wide landscape shot, camera and crew visible, dark enough for white text overlay — replaces the section background above"
+        />
+      </div>
+
+      {/* 9 — CASE STUDY: MYCELIA */}
       <section className="bg-[hsl(60,1%,8%)] py-16 lg:py-24">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -608,6 +621,9 @@ const YouTubeAdsPage = () => {
           </div>
         </div>
       </section>
+
+      {/* 2 — CLIENT LOGOS */}
+      <ClientLogoCarousel />
 
       {/* 6 — FORMATS */}
       <section className="bg-muted py-16 lg:py-24">
