@@ -479,24 +479,18 @@ const YouTubeAdsPage = () => {
               ))}
             </ol>
             <div className="lg:sticky lg:top-28">
-              <ImagePlaceholder
-                aspectRatio="9/16"
-                label="VERTICAL VIDEO STILL — SHORTS"
-                note="Frame from a vertical edit, ideally food or venue, showing the first-second hook"
-              />
+              <div className="relative overflow-hidden rounded-2xl shadow-2xl aspect-[9/16] bg-foreground/5">
+                <video
+                  src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Paris-Baguette-Trapeze-Media-Video-Production.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* 5 — FULL-BLEED PARALLAX VIDEO */}
-      <section className="bg-background py-16 lg:py-24">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <ParallaxVideo
-            src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Paris-Baguette-Trapeze-Media-Video-Production.mp4"
-            direction="right"
-            showMuteControl
-          />
         </div>
       </section>
 
