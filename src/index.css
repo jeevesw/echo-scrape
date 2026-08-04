@@ -557,7 +557,7 @@
     --logo-item-width: 8rem;
     --logo-gap: 4rem;
     --logo-loop-width: var(--logo-loop-width-desktop);
-    animation-duration: 14s;
+    animation-duration: 34s;
   }
 
   .logo-carousel-item {
