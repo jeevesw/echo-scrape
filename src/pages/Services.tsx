@@ -34,6 +34,12 @@ const services = [
     image: paidSearchImg,
   },
   {
+    slug: "youtube-ads",
+    title: "YouTube Ads",
+    description: "Shorts, in-stream, & Demand Gen campaigns",
+    image: paidSearchImg,
+  },
+  {
     slug: "video-production",
     title: "Video Production",
     description: "For social and big screens",

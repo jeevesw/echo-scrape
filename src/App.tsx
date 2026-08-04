@@ -25,6 +25,7 @@ import Services from "./pages/Services";
 import ServicePage from "./pages/ServicePage";
 import PaidAdvertisingPage from "./pages/services/PaidAdvertisingPage";
 import PaidSearchPage from "./pages/services/PaidSearchPage";
+import YouTubeAdsPage from "./pages/services/YouTubeAdsPage";
 import TikTokProductionPage from "./pages/services/TikTokProductionPage";
 import SocialMediaManagementPage from "./pages/services/SocialMediaManagementPage";
 import CreativeServicesPage from "./pages/services/CreativeServicesPage";
@@ -110,6 +111,7 @@ const App = () => (
               <Route path="/services" element={<Services />} />
               <Route path="/services/paid-advertising" element={<PaidAdvertisingPage />} />
               <Route path="/services/paid-search" element={<PaidSearchPage />} />
+              <Route path="/services/youtube-ads" element={<YouTubeAdsPage />} />
               <Route path="/services/video-production" element={<TikTokProductionPage />} />
               <Route path="/services/tiktok-production" element={<Navigate to="/services/video-production" replace />} />
               <Route path="/services/social-media-management" element={<SocialMediaManagementPage />} />

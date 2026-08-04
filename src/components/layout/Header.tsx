@@ -19,6 +19,7 @@ const services = [
   { slug: "social-media-management", title: "Social Media Management", description: "Content, engagement, paid media", image: socialMediaImg },
   { slug: "paid-advertising", title: "Paid Social Ads", description: "Conversion-focused Meta, TikTok, & Google ads", image: paidAdsImg },
   { slug: "paid-search", title: "PPC / Google Ads", description: "Search, Display, YouTube, & Shopping ads", image: paidSearchImg },
+  { slug: "youtube-ads", title: "YouTube Ads", description: "Shorts, in-stream, & Demand Gen campaigns", image: paidSearchImg },
   { slug: "video-production", title: "Video Production", description: "For social and big screens", image: tiktokImg },
   { slug: "website-design", title: "Website Design", description: "Build, launch, & management", image: websiteImg },
   // { slug: "creative-services", title: "Creative Services", description: "Design, branding, & social assets", image: creativeImg }, // Hidden temporarily
