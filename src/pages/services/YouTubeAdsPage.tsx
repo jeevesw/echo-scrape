@@ -524,29 +524,102 @@ const YouTubeAdsPage = () => {
         </div>
       </section>
 
-      {/* 9 — CASE STUDY */}
-      <InlineCaseStudy
-        label="Case Study"
-        clientName="Mycelia"
-        headline="Video view ads into retargeting"
-        body="Awareness built through video view campaigns, then a conversion campaign against a warmed audience."
-        stats={[]}
-        ctaLabel="Read the case study"
-        ctaHref="/case-studies/mycelia"
-        visualSlot={
-          <ImagePlaceholder
-            aspectRatio="1/1"
-            label="CAMPAIGN STILL — MYCELIA"
-            note="Board game hero shot or campaign creative"
-          />
-        }
-      />
-      <section className="bg-muted pb-16 lg:pb-24 -mt-8">
+      {/* 4 — SHORTS: numbered list + sticky vertical still */}
+      <section className="bg-muted py-16 lg:py-24">
         <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto flex flex-wrap gap-4">
-            <AnimatedStatCard end={545804} prefix="£" label="raised against a £9,000 target" />
-            <AnimatedStatCard end={50} suffix=" mins" label="to hit target" delay={120} />
-            <AnimatedStatCard end={10492} label="backers" delay={240} />
+          <ScrollReveal>
+            <h2 className="heading-display text-4xl md:text-5xl text-foreground text-center mb-12">
+              Shorts, and why it matters
+            </h2>
+          </ScrollReveal>
+          <div className="max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,1fr)_320px] gap-12 lg:gap-16 items-start">
+            <ol className="space-y-10">
+              {shortsCards.map((item, i) => (
+                <ScrollReveal key={item.title} delay={i * 100}>
+                  <li className="group flex gap-6">
+                    <span className="heading-display text-6xl text-primary/30 leading-none shrink-0 transition-colors duration-300 group-hover:text-primary/60">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <div>
+                      <h3 className="heading-display text-2xl md:text-3xl text-foreground mb-3">{item.title}</h3>
+                      <p className="text-xl text-muted-foreground leading-relaxed">{item.description}</p>
+                    </div>
+                  </li>
+                </ScrollReveal>
+              ))}
+            </ol>
+            <div className="lg:sticky lg:top-28">
+              <div className="relative overflow-hidden rounded-2xl shadow-2xl aspect-[9/16] bg-foreground/5">
+                <video
+                  src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Paris-Baguette-Trapeze-Media-Video-Production.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 9 — CASE STUDY: MYCELIA */}
+      <section className="bg-[hsl(60,1%,8%)] py-16 lg:py-24">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <ScrollReveal>
+              <div>
+                <span className="text-primary text-xs font-semibold uppercase tracking-widest mb-3 block">
+                  Case Study
+                </span>
+                <p className="text-sm text-white/50 mb-1">Mycelia</p>
+                <h2 className="heading-display text-4xl md:text-5xl text-white mb-6">
+                  Video view ads into retargeting
+                </h2>
+                <div className="space-y-5 text-xl text-white/70 leading-relaxed">
+                  <p>
+                    Jack's gameplay overview videos lent themselves perfectly to our video view awareness campaigns. We
+                    tested different voiceovers — US accents vs. UK accents — to connect with different audiences
+                    around the world.
+                  </p>
+                  <p>
+                    Ultimately, <Highlight>67% of the Kickstarter crowdfunder's backers were based in the US.</Highlight>{" "}
+                    The videos were created by{" "}
+                    <a
+                      href="https://www.chipcreative.co.uk/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+                    >
+                      Chip Creative
+                    </a>
+                    .
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-4 mt-8">
+                  <AnimatedStatCard end={545804} prefix="£" label="raised against a £9,000 target" />
+                  <AnimatedStatCard end={50} suffix=" mins" label="to hit target" delay={120} />
+                  <AnimatedStatCard end={10492} label="backers" delay={240} />
+                </div>
+                <Button variant="hero" className="mt-8" asChild>
+                  <Link to="/case-studies/mycelia">
+                    Read the case study <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal delay={120}>
+              <div className="overflow-hidden rounded-2xl aspect-video shadow-2xl">
+                <iframe
+                  src="https://www.youtube.com/embed/6tKw5jaYF9w"
+                  title="How To Play: Mycelia"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full"
+                />
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
