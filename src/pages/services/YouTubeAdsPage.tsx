@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useRef, useState, type ReactNode, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type ReactNode, type CSSProperties } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
@@ -19,9 +19,7 @@ import { ScrollReveal, useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { usePrefersReducedMotion } from "@/hooks/use-reduced-motion";
 import { useCountUp } from "@/hooks/use-count-up";
 
-const SpinningPlayMark = lazy(() =>
-  import("@/components/services/SpinningPlayMark").then((m) => ({ default: m.SpinningPlayMark }))
-);
+import youtubeMark from "@/assets/youtube-ad-agency.webp.asset.json";
 import {
   Accordion,
   AccordionContent,
