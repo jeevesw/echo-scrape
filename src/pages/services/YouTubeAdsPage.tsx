@@ -549,6 +549,7 @@ const YouTubeAdsPage = () => {
       </section>
 
       {/* 9 — CASE STUDY: MYCELIA */}
+      {/* 7 — SECTION BREAKER */}
       <section className="bg-[hsl(60,1%,8%)] py-16 lg:py-24">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
