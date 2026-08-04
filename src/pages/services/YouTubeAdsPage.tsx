@@ -212,7 +212,7 @@ const ParallaxMockup = () => {
     >
       <YouTubeMockup
         src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//YO-Sushi-Trapeze-Media-PPC-Video.mp4"
-        maxWidth={780}
+        maxWidth={1240}
       />
     </div>
   );
@@ -401,8 +401,8 @@ const YouTubeAdsPage = () => {
         variant="dark"
         eyebrow="Paid Media"
         headline="YouTube Ads Agency"
-        subheadline="Television-quality video, bought like performance media, measured against bookings and footfall."
-        primaryCta={{ label: "Book a discovery call", href: "https://calendly.com/trapezemedia/discovery-call", external: true }}
+        subheadline="Most agencies treat YouTube as somewhere to park a cut-down of a TV ad. We treat it as the second home for creative you're already making, and increasingly as the first place a customer meets your brand."
+        primaryCta={{ label: "Free discovery call", href: "https://calendly.com/trapezemedia/discovery-call", external: true }}
         secondaryCta={{ label: "See our video work", href: "/services/video-production" }}
         breadcrumbItems={[
           { label: "Services", href: "/services" },
@@ -411,7 +411,7 @@ const YouTubeAdsPage = () => {
       />
 
       <section className="bg-[hsl(60,1%,8%)] pb-16 lg:pb-24">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 max-w-[1400px]">
           <ParallaxMockup />
         </div>
       </section>
@@ -425,10 +425,6 @@ const YouTubeAdsPage = () => {
           <div className="max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,1fr)_360px] gap-12 lg:gap-16 items-center">
             <ScrollReveal>
               <div className="space-y-6 max-w-[65ch]">
-                <p className="text-2xl md:text-3xl text-foreground leading-snug">
-                  Most agencies treat YouTube as somewhere to park a cut-down of a TV ad. We treat it as the second home for
-                  creative you're already making, and increasingly as the first place a customer meets your brand.
-                </p>
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   We plan,{" "}
                   <Link to="/services/video-production" className="text-primary underline underline-offset-4">
