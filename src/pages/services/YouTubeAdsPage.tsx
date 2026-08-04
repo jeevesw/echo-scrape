@@ -8,7 +8,6 @@ import { YouTubeMockup } from "@/components/services/YouTubeMockup";
 import { WorkflowGrid } from "@/components/services/WorkflowGrid";
 import { InlineCaseStudy } from "@/components/services/InlineCaseStudy";
 import { TeamSection } from "@/components/services/TeamSection";
-import { SubServiceHero } from "@/components/services/SubServiceHero";
 import { GalleryRow } from "@/components/services/GalleryRow";
 import { ImagePlaceholder } from "@/components/services/ImagePlaceholder";
 import { AnimatedStatCard } from "@/components/case-study/AnimatedStatCard";
@@ -273,7 +272,7 @@ const FormatShowcase = () => {
             <AccordionItem
               key={f.title}
               value={`format-${i}`}
-              className="bg-background rounded-xl px-5 border-0 border-l-4 border-l-transparent data-[state=open]:border-l-primary transition-colors duration-300"
+              className="bg-muted rounded-xl px-5 border-0 border-l-4 border-l-transparent data-[state=open]:border-l-primary transition-colors duration-300"
             >
               <AccordionTrigger className="hover:no-underline text-left py-4">
                 <span className="heading-display text-lg text-foreground">{f.title}</span>
