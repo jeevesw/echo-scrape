@@ -654,7 +654,7 @@ const YouTubeAdsPage = () => {
       <WorkflowGrid heading="How we work" columns={4} steps={workflowSteps} animated />
 
       {/* 14 — TEAM */}
-      <TeamSection serviceName="YouTube Ads" memberNames={["Lily", "Kitty", "Ashley", "Dani"]} />
+      <TeamSection serviceName="YouTube Ads" memberNames={["Kitty", "Ashley", "Dani"]} />
 
       {/* 15 — FAQ */}
       <section className="py-16 bg-background">
