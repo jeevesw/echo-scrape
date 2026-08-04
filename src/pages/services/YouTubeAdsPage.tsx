@@ -443,7 +443,7 @@ const YouTubeAdsPage = () => {
       <ClientLogoCarousel />
 
       {/* 3 — INTRO */}
-      <section className="relative z-20 bg-primary py-4 lg:py-6">
+      <section className="relative z-20 bg-primary py-10 lg:py-0">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,520px)_minmax(0,1fr)] items-center lg:items-stretch gap-6 lg:gap-0">
             {/* YouTube mark, off to the left, overlapping neighbouring sections */}
