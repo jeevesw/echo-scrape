@@ -690,7 +690,7 @@ const YouTubeAdsPage = () => {
             {workGallery.map((w, i) => (
               <ScrollReveal key={w.title} delay={i * 100}>
                 <div className="h-full flex flex-col rounded-2xl overflow-hidden bg-muted transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl">
-                  <div className={`relative w-full bg-foreground/5 ${w.portrait ? "aspect-[9/16]" : "aspect-video"}`}>
+                  <div className="relative w-full aspect-video bg-foreground/5">
                     <video
                       src={w.video}
                       autoPlay
