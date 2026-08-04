@@ -42,17 +42,17 @@ export function WorkflowGrid({ steps, columns = 4, heading, animated = false }: 
         <div ref={ref} className="relative max-w-6xl mx-auto">
           {animated && (
             <div
-              className="hidden lg:block absolute left-0 right-0 top-[30px] h-[2px] bg-primary/10 overflow-hidden"
+              className="hidden lg:block absolute left-0 right-0 top-0 h-px bg-primary/15 overflow-hidden"
               aria-hidden="true"
             >
               <div
-                className="h-full bg-primary/40 origin-left transition-transform duration-[1200ms] ease-out"
+                className="h-full bg-primary/50 origin-left transition-transform duration-[1200ms] ease-out"
                 style={{ transform: `scaleX(${isRevealed || !useMotion ? 1 : 0})` }}
               />
             </div>
           )}
           <div
-            className={`relative grid gap-8 ${
+            className={`relative grid gap-8 ${animated ? "lg:pt-10" : ""} ${
               columns === 4 ? "md:grid-cols-2 lg:grid-cols-4" : "md:grid-cols-2"
             }`}
           >
