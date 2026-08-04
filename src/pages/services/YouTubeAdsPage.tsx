@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
@@ -6,13 +7,16 @@ import { ServiceHero } from "@/components/services/ServiceHero";
 import { YouTubeMockup } from "@/components/services/YouTubeMockup";
 import { WorkflowGrid } from "@/components/services/WorkflowGrid";
 import { InlineCaseStudy } from "@/components/services/InlineCaseStudy";
-import { StatCardGrid } from "@/components/services/StatCardGrid";
-import { TestimonialBlock } from "@/components/services/TestimonialBlock";
 import { TeamSection } from "@/components/services/TeamSection";
+import { SubServiceHero } from "@/components/services/SubServiceHero";
+import { GalleryRow } from "@/components/services/GalleryRow";
+import { ImagePlaceholder } from "@/components/services/ImagePlaceholder";
+import { ParallaxVideo } from "@/components/case-study/ParallaxVideo";
+import { AnimatedStatCard } from "@/components/case-study/AnimatedStatCard";
 import { ClientLogoCarousel } from "@/components/home/ClientLogoCarousel";
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ScrollReveal } from "@/hooks/use-scroll-reveal";
+import { ScrollReveal, useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { usePrefersReducedMotion } from "@/hooks/use-reduced-motion";
 import {
   Accordion,
   AccordionContent,
@@ -123,14 +127,20 @@ const workflowSteps = [
   },
 ];
 
-const stats = [
-  { value: "13:1", label: "ROAS for Coppa Club" },
-  { value: "85%", label: "increase in table bookings, Coppa Club" },
-  { value: "118%", label: "increase in clicks to book, Various Eateries" },
-  { value: "67%", label: "lower cost per acquisition, Various Eateries" },
-  { value: "60%", label: "increase in restaurant bookings, YO!" },
-  { value: "28%", label: "uplift in Click & Collect, YO!" },
+const featuredStats = [
+  { end: 13, suffix: ":1", label: "ROAS for Coppa Club" },
+  { end: 60, suffix: "%", label: "increase in restaurant bookings, YO!" },
 ];
+
+const secondaryStats = [
+  { end: 85, suffix: "%", label: "increase in table bookings, Coppa Club" },
+  { end: 118, suffix: "%", label: "increase in clicks to book, Various Eateries" },
+  { end: 67, suffix: "%", label: "lower cost per acquisition, Various Eateries" },
+  { end: 28, suffix: "%", label: "uplift in Click & Collect, YO!" },
+];
+
+const testimonialQuote =
+  "We provided a challenging brief: reduce overall ad spend, lower our CPA, and increase tracked visits and confirmed bookings. The team at Trapeze not only managed this but were able to find new and innovative ways for us to track our results end to end and present findings in a way that the wider VEL team could understand and buy into.";
 
 const faqs = [
   {
@@ -170,18 +180,168 @@ const faqs = [
   },
 ];
 
-const CardGrid = ({ items, columns = 2 }: { items: { title: string; description: string }[]; columns?: 2 | 3 }) => (
-  <div className={`grid gap-6 max-w-5xl mx-auto ${columns === 3 ? "sm:grid-cols-2 lg:grid-cols-3" : "sm:grid-cols-2"}`}>
-    {items.map((item) => (
-      <Card key={item.title} className="border-0 shadow-none bg-muted">
-        <CardContent className="p-6 md:p-8">
-          <h3 className="heading-display text-lg text-primary mb-3">{item.title}</h3>
-          <p className="text-base text-muted-foreground leading-relaxed">{item.description}</p>
-        </CardContent>
-      </Card>
-    ))}
-  </div>
-);
+/* ---------- Hero mockup with subtle parallax drift ---------- */
+const ParallaxMockup = () => {
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const [offset, setOffset] = useState(0);
+  const reduced = usePrefersReducedMotion();
+
+  useEffect(() => {
+    if (reduced) {
+      setOffset(0);
+      return;
+    }
+    const onScroll = () => {
+      const el = wrapRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const progress = (rect.top + rect.height / 2 - window.innerHeight / 2) / window.innerHeight;
+      setOffset(Math.max(-30, Math.min(30, progress * 40)));
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [reduced]);
+
+  return (
+    <div
+      ref={wrapRef}
+      className="w-full flex justify-center will-change-transform"
+      style={{ transform: `translate3d(0, ${offset}px, 0)`, transition: "transform 0.15s ease-out" }}
+    >
+      <YouTubeMockup
+        src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//YO-Sushi-Trapeze-Media-PPC-Video.mp4"
+        maxWidth={780}
+      />
+    </div>
+  );
+};
+
+/* ---------- Formats: tabs on desktop, accordion on mobile ---------- */
+const FormatShowcase = () => {
+  const [active, setActive] = useState(0);
+  const item = formatCards[active];
+
+  return (
+    <>
+      {/* Desktop tabs */}
+      <div className="hidden md:block max-w-6xl mx-auto">
+        <div className="relative flex flex-wrap gap-x-8 gap-y-3 justify-center border-b border-border pb-0 mb-10">
+          {formatCards.map((f, i) => (
+            <button
+              key={f.title}
+              type="button"
+              onClick={() => setActive(i)}
+              className={`relative pb-4 text-sm lg:text-base heading-display transition-colors duration-300 ease-out ${
+                i === active ? "text-primary" : "text-muted-foreground hover:text-foreground"
+              }`}
+              aria-pressed={i === active}
+            >
+              {f.title}
+              <span
+                className={`absolute left-0 right-0 -bottom-px h-[3px] bg-primary rounded-full origin-center transition-transform duration-300 ease-out ${
+                  i === active ? "scale-x-100" : "scale-x-0"
+                }`}
+                aria-hidden="true"
+              />
+            </button>
+          ))}
+        </div>
+        <div key={active} className="grid lg:grid-cols-2 gap-10 items-center animate-fade-in">
+          <div>
+            <h3 className="heading-display text-2xl lg:text-3xl text-foreground mb-4">{item.title}</h3>
+            <p className="text-lg text-muted-foreground leading-relaxed">{item.description}</p>
+          </div>
+          <ImagePlaceholder
+            aspectRatio="16/9"
+            label={`FORMAT DIAGRAM — ${item.title.toUpperCase()}`}
+            note="Simple diagram or screen mock showing where this ad appears"
+          />
+        </div>
+      </div>
+
+      {/* Mobile accordion */}
+      <div className="md:hidden max-w-xl mx-auto">
+        <Accordion type="single" collapsible defaultValue="format-0" className="space-y-3">
+          {formatCards.map((f, i) => (
+            <AccordionItem
+              key={f.title}
+              value={`format-${i}`}
+              className="bg-background rounded-xl px-5 border-0 border-l-4 border-l-transparent data-[state=open]:border-l-primary transition-colors duration-300"
+            >
+              <AccordionTrigger className="hover:no-underline text-left py-4">
+                <span className="heading-display text-base text-foreground">{f.title}</span>
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground text-base leading-relaxed">
+                <p className="mb-4">{f.description}</p>
+                <ImagePlaceholder
+                  aspectRatio="16/9"
+                  label={`FORMAT DIAGRAM — ${f.title.toUpperCase()}`}
+                  note="Simple diagram or screen mock showing where this ad appears"
+                />
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </div>
+    </>
+  );
+};
+
+/* ---------- Testimonial with line-by-line reveal ---------- */
+const AnimatedTestimonial = () => {
+  const { ref, isRevealed } = useScrollReveal<HTMLDivElement>({ threshold: 0.25 });
+  const reduced = usePrefersReducedMotion();
+  const sentences = testimonialQuote.match(/[^.]+\.?/g) ?? [testimonialQuote];
+
+  return (
+    <section className="bg-primary py-24 lg:py-32">
+      <div ref={ref} className="max-w-2xl mx-auto px-4 text-center text-primary-foreground">
+        <span
+          className="text-[120px] leading-none text-primary-foreground/20 block mb-0 select-none"
+          aria-hidden="true"
+        >
+          "
+        </span>
+        <blockquote className="text-2xl font-light italic leading-relaxed mb-10 -mt-8">
+          {sentences.map((s, i) => (
+            <span
+              key={i}
+              className="inline transition-all duration-500 ease-out"
+              style={{
+                opacity: isRevealed || reduced ? 1 : 0,
+                transitionDelay: reduced ? "0ms" : `${i * 120}ms`,
+              }}
+            >
+              {s}
+            </span>
+          ))}
+        </blockquote>
+        <div className="border-t border-primary-foreground/20 pt-8 flex flex-col items-center gap-3">
+          <div className="w-20">
+            <ImagePlaceholder
+              aspectRatio="1/1"
+              rounded="rounded-full"
+              label="HEADSHOT"
+              note="Steve Roberts, optional"
+              className="bg-primary-foreground/10 border-primary-foreground/30"
+            />
+          </div>
+          <cite className="not-italic text-base opacity-80">
+            — Steve Roberts, Digital Marketing Director, Various Eateries
+          </cite>
+          <Button
+            variant="hero-outline"
+            className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary mt-4"
+            asChild
+          >
+            <Link to="/case-studies/various-eateries">See the case study</Link>
+          </Button>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 const YouTubeAdsPage = () => {
   return (
@@ -219,59 +379,100 @@ const YouTubeAdsPage = () => {
       />
 
       <section className="bg-[hsl(60,1%,8%)] pb-16 lg:pb-24">
-        <div className="container mx-auto px-4 flex justify-center">
-          <YouTubeMockup
-            src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//YO-Sushi-Trapeze-Media-PPC-Video.mp4"
-            maxWidth={780}
-          />
+        <div className="container mx-auto px-4">
+          <ParallaxMockup />
         </div>
       </section>
 
+      {/* 2 — CLIENT LOGOS */}
       <ClientLogoCarousel />
 
-      {/* 2 — INTRO */}
-      <section className="bg-background py-16 lg:py-20">
-        <div className="container mx-auto px-4 flex justify-center">
-          <div className="max-w-4xl space-y-6">
-            <p className="text-xl md:text-2xl text-foreground leading-relaxed">
-              Most agencies treat YouTube as somewhere to park a cut-down of a TV ad. We treat it as the second home for
-              creative you're already making, and increasingly as the first place a customer meets your brand.
-            </p>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              We plan,{" "}
-              <Link to="/services/video-production" className="text-primary underline underline-offset-4">
-                produce
-              </Link>{" "}
-              and run YouTube advertising for restaurant groups, multi-site operators and hospitality brands across the
-              UK, alongside our{" "}
-              <Link to="/services/paid-search" className="text-primary underline underline-offset-4">
-                Google Ads
-              </Link>{" "}
-              and{" "}
-              <Link to="/services/paid-advertising" className="text-primary underline underline-offset-4">
-                paid social
-              </Link>{" "}
-              work. We care less about impressions than about whether someone within a few miles of your venue walked in.
-            </p>
+      {/* 3 — INTRO */}
+      <section className="bg-background py-16 lg:py-24">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,1fr)_360px] gap-12 lg:gap-16 items-center">
+            <ScrollReveal>
+              <div className="space-y-6 max-w-[65ch]">
+                <p className="text-2xl md:text-3xl text-foreground leading-snug">
+                  Most agencies treat YouTube as somewhere to park a cut-down of a TV ad. We treat it as the second home for
+                  creative you're already making, and increasingly as the first place a customer meets your brand.
+                </p>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  We plan,{" "}
+                  <Link to="/services/video-production" className="text-primary underline underline-offset-4">
+                    produce
+                  </Link>{" "}
+                  and run YouTube advertising for restaurant groups, multi-site operators and hospitality brands across the
+                  UK, alongside our{" "}
+                  <Link to="/services/paid-search" className="text-primary underline underline-offset-4">
+                    Google Ads
+                  </Link>{" "}
+                  and{" "}
+                  <Link to="/services/paid-advertising" className="text-primary underline underline-offset-4">
+                    paid social
+                  </Link>{" "}
+                  work. We care less about impressions than about whether someone within a few miles of your venue walked in.
+                </p>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal delay={120}>
+              <ImagePlaceholder
+                aspectRatio="4/5"
+                label="PORTRAIT — CREW ON SET"
+                note="Behind-the-scenes shot of a shoot day, ideally in a restaurant kitchen or dining room"
+              />
+            </ScrollReveal>
           </div>
         </div>
       </section>
 
-      {/* 3 — SHORTS */}
-      <section className="bg-background pb-16 lg:pb-24">
+      {/* 4 — SHORTS: numbered list + sticky vertical still */}
+      <section className="bg-muted py-16 lg:py-24">
         <div className="container mx-auto px-4">
           <ScrollReveal>
             <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-12">
               Shorts, and why it matters
             </h2>
           </ScrollReveal>
-          <ScrollReveal delay={100}>
-            <CardGrid items={shortsCards} />
-          </ScrollReveal>
+          <div className="max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,1fr)_320px] gap-12 lg:gap-16 items-start">
+            <ol className="space-y-10">
+              {shortsCards.map((item, i) => (
+                <ScrollReveal key={item.title} delay={i * 100}>
+                  <li className="group flex gap-6">
+                    <span className="heading-display text-5xl text-primary/30 leading-none shrink-0 transition-colors duration-300 group-hover:text-primary/60">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <div>
+                      <h3 className="heading-display text-xl text-foreground mb-2">{item.title}</h3>
+                      <p className="text-base text-muted-foreground leading-relaxed">{item.description}</p>
+                    </div>
+                  </li>
+                </ScrollReveal>
+              ))}
+            </ol>
+            <div className="lg:sticky lg:top-28">
+              <ImagePlaceholder
+                aspectRatio="9/16"
+                label="VERTICAL VIDEO STILL — SHORTS"
+                note="Frame from a vertical edit, ideally food or venue, showing the first-second hook"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* 4 — FORMATS */}
+      {/* 5 — FULL-BLEED PARALLAX VIDEO */}
+      <section className="bg-background py-16 lg:py-24">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <ParallaxVideo
+            src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Paris-Baguette-Trapeze-Media-Video-Production.mp4"
+            direction="right"
+            showMuteControl
+          />
+        </div>
+      </section>
+
+      {/* 6 — FORMATS */}
       <section className="bg-muted py-16 lg:py-24">
         <div className="container mx-auto px-4">
           <ScrollReveal>
@@ -279,22 +480,25 @@ const YouTubeAdsPage = () => {
               The formats, and when each earns its place
             </h2>
           </ScrollReveal>
-          <ScrollReveal delay={100}>
-            <div className="grid gap-6 max-w-6xl mx-auto sm:grid-cols-2 lg:grid-cols-3">
-              {formatCards.map((item) => (
-                <Card key={item.title} className="border-0 bg-background">
-                  <CardContent className="p-6">
-                    <h3 className="heading-display text-xl text-foreground mb-3">{item.title}</h3>
-                    <p className="text-muted-foreground text-base leading-relaxed">{item.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </ScrollReveal>
+          <FormatShowcase />
         </div>
       </section>
 
-      {/* 5 — ATTRIBUTION */}
+      {/* 7 — SECTION BREAKER */}
+      <SubServiceHero
+        variant="dark-overlay"
+        heading="One shoot. Every platform."
+        body="If you're already making vertical creative for TikTok or Reels, most of a Shorts campaign already exists. We film once and cut for all three."
+      />
+      <div className="container mx-auto px-4 -mt-8 mb-8 max-w-5xl">
+        <ImagePlaceholder
+          aspectRatio="21/9"
+          label="FULL-BLEED — SHOOT DAY WIDE"
+          note="Wide landscape shot, camera and crew visible, dark enough for white text overlay — replaces the section background above"
+        />
+      </div>
+
+      {/* 8 — ATTRIBUTION */}
       <section className="bg-background py-16 lg:py-24">
         <div className="container mx-auto px-4">
           <ScrollReveal>
@@ -307,39 +511,81 @@ const YouTubeAdsPage = () => {
               traffic, and YouTube gets no credit.
             </p>
           </ScrollReveal>
-          <ScrollReveal delay={100}>
-            <CardGrid items={attributionCards} columns={3} />
-          </ScrollReveal>
+          <div className="grid gap-6 max-w-5xl mx-auto sm:grid-cols-2 lg:grid-cols-3">
+            {attributionCards.map((item, i) => (
+              <ScrollReveal key={item.title} delay={i * 100}>
+                <div className="relative h-full overflow-hidden rounded-2xl bg-muted border border-transparent p-8 pt-12 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:border-primary">
+                  <span
+                    className="heading-display absolute -top-2 right-4 text-8xl text-primary/10 select-none pointer-events-none"
+                    aria-hidden="true"
+                  >
+                    {i + 1}
+                  </span>
+                  <h3 className="relative heading-display text-lg text-primary mb-3">{item.title}</h3>
+                  <p className="relative text-base text-muted-foreground leading-relaxed">{item.description}</p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* 6 — CASE STUDY */}
+      {/* 9 — CASE STUDY */}
       <InlineCaseStudy
         label="Case Study"
         clientName="Mycelia"
         headline="Video view ads into retargeting"
         body="Awareness built through video view campaigns, then a conversion campaign against a warmed audience."
-        stats={[
-          { value: "£545,804", label: "raised against a £9,000 target" },
-          { value: "50 mins", label: "to hit target" },
-          { value: "10,492", label: "backers" },
-        ]}
+        stats={[]}
         ctaLabel="Read the case study"
         ctaHref="/case-studies/mycelia"
+        visualSlot={
+          <ImagePlaceholder
+            aspectRatio="1/1"
+            label="CAMPAIGN STILL — MYCELIA"
+            note="Board game hero shot or campaign creative"
+          />
+        }
       />
+      <section className="bg-muted pb-16 lg:pb-24 -mt-8">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto flex flex-wrap gap-4">
+            <AnimatedStatCard end={545804} prefix="£" label="raised against a £9,000 target" />
+            <AnimatedStatCard end={50} suffix=" mins" label="to hit target" delay={120} />
+            <AnimatedStatCard end={10492} label="backers" delay={240} />
+          </div>
+        </div>
+      </section>
 
-      {/* 7 — STATS */}
-      <section className="bg-background py-16 lg:py-24">
+      {/* 10 — STATS */}
+      <section className="bg-[hsl(60,1%,8%)] py-16 lg:py-24">
         <div className="container mx-auto px-4 max-w-6xl">
           <ScrollReveal>
-            <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-12">
+            <h2 className="heading-display text-3xl md:text-4xl text-white text-center mb-12">
               What this looks like elsewhere
             </h2>
           </ScrollReveal>
-          <ScrollReveal delay={100}>
-            <StatCardGrid stats={stats} columns={3} />
-          </ScrollReveal>
-          <div className="flex flex-wrap gap-4 justify-center mt-10">
+          <div className="grid gap-6 lg:grid-cols-3">
+            <div className="lg:col-span-1 flex flex-col gap-6">
+              {featuredStats.map((s, i) => (
+                <ScrollReveal key={s.label} delay={i * 100}>
+                  <div className="rounded-2xl border-2 border-primary bg-white/5 p-8 text-center transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl">
+                    <AnimatedStatCardLarge {...s} />
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
+            <div className="lg:col-span-2 grid sm:grid-cols-2 gap-6 content-center">
+              {secondaryStats.map((s, i) => (
+                <ScrollReveal key={s.label} delay={i * 80}>
+                  <div className="h-full rounded-2xl border border-white/15 bg-white/5 p-6 transition-all duration-300 ease-out hover:-translate-y-1 hover:border-primary hover:shadow-xl">
+                    <AnimatedStatCardLarge {...s} small />
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-4 justify-center mt-12">
             <Button variant="hero-outline" asChild>
               <Link to="/case-studies/various-eateries">Various Eateries case study</Link>
             </Button>
@@ -350,23 +596,36 @@ const YouTubeAdsPage = () => {
         </div>
       </section>
 
-      {/* 8 — TESTIMONIAL */}
-      <TestimonialBlock
-        quote="We provided a challenging brief: reduce overall ad spend, lower our CPA, and increase tracked visits and confirmed bookings. The team at Trapeze not only managed this but were able to find new and innovative ways for us to track our results end to end and present findings in a way that the wider VEL team could understand and buy into."
-        attribution="Steve Roberts"
-        role="Digital Marketing Director, Various Eateries"
-        ctaLabel="See the case study"
-        ctaHref="/case-studies/various-eateries"
-      />
+      {/* 11 — GALLERY */}
+      <section className="bg-background py-16 lg:py-24">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <ScrollReveal>
+            <div className="grid gap-6 sm:grid-cols-3">
+              {["CLIENT WORK 1", "CLIENT WORK 2", "CLIENT WORK 3"].map((label) => (
+                <ImagePlaceholder
+                  key={label}
+                  aspectRatio="4/3"
+                  label={label}
+                  note="Frames from YouTube or Shorts creative — one food, one venue, one people"
+                />
+              ))}
+            </div>
+            <p className="text-sm text-muted-foreground mt-3">Recent work</p>
+          </ScrollReveal>
+        </div>
+      </section>
 
-      {/* 9 — WORKFLOW */}
-      <WorkflowGrid heading="How we work" columns={4} steps={workflowSteps} />
+      {/* 12 — TESTIMONIAL */}
+      <AnimatedTestimonial />
 
-      {/* 10 — TEAM */}
+      {/* 13 — WORKFLOW */}
+      <WorkflowGrid heading="How we work" columns={4} steps={workflowSteps} animated />
+
+      {/* 14 — TEAM */}
       <TeamSection serviceName="YouTube Ads" memberNames={["Lily", "Kitty", "Ashley", "Dani"]} />
 
-      {/* 12 — FAQ */}
-      <section className="py-16 bg-muted">
+      {/* 15 — FAQ */}
+      <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <h2 className="heading-display text-3xl md:text-4xl text-foreground text-center mb-12">
             Frequently Asked Questions
@@ -374,7 +633,11 @@ const YouTubeAdsPage = () => {
           <div className="max-w-3xl mx-auto">
             <Accordion type="single" collapsible className="space-y-4">
               {faqs.map((faq, i) => (
-                <AccordionItem key={i} value={`faq-${i}`} className="bg-background rounded-xl px-6 border-0">
+                <AccordionItem
+                  key={i}
+                  value={`faq-${i}`}
+                  className="bg-muted rounded-xl px-6 border-0 border-l-4 border-l-transparent data-[state=open]:border-l-primary transition-colors duration-300"
+                >
                   <AccordionTrigger className="hover:no-underline text-left py-5">
                     <span className="heading-display text-foreground text-lg">{faq.question}</span>
                   </AccordionTrigger>
@@ -388,14 +651,16 @@ const YouTubeAdsPage = () => {
         </div>
       </section>
 
-      {/* 13 — CLOSING CTA */}
-      <section className="bg-muted relative overflow-hidden py-20 lg:py-28">
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(ellipse at center, hsl(var(--primary) / 0.08) 0%, transparent 70%)" }}
-          aria-hidden="true"
+      {/* 16 — CLOSING CTA */}
+      <section className="relative overflow-hidden bg-muted">
+        <ImagePlaceholder
+          aspectRatio="21/9"
+          rounded="rounded-none"
+          label="FULL-BLEED — VENUE INTERIOR"
+          note="Warm, busy restaurant interior, dark enough for overlay text"
+          className="absolute inset-0 h-full opacity-60"
         />
-        <div className="relative z-10 max-w-2xl mx-auto px-4 text-center">
+        <div className="relative z-10 max-w-2xl mx-auto px-4 py-20 lg:py-28 text-center">
           <h2 className="heading-display text-3xl md:text-4xl text-foreground mb-6">
             Ready to put your video where the attention is?
           </h2>
