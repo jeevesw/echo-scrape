@@ -447,11 +447,11 @@ const YouTubeAdsPage = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,520px)_minmax(0,1fr)] items-center gap-6 lg:gap-0">
             {/* YouTube mark, off to the left, overlapping neighbouring sections */}
-            <div className="relative pointer-events-none -my-20 lg:-my-32" aria-hidden="true">
+            <div className="relative pointer-events-none -my-8 lg:-my-14" aria-hidden="true">
               <img
                 src={youtubeMark.url}
                 alt=""
-                className="mx-auto w-auto h-[380px] lg:h-[620px] max-w-none object-contain drop-shadow-2xl"
+                className="mx-auto w-auto h-[220px] lg:h-[340px] max-w-none object-contain drop-shadow-2xl"
               />
             </div>
             <ScrollReveal>
