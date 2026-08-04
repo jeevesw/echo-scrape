@@ -415,7 +415,7 @@ const YouTubeAdsPage = () => {
         ]}
       />
 
-      <section className="bg-[hsl(60,1%,8%)] pb-16 lg:pb-24">
+      <section className="bg-[hsl(60,1%,8%)] pb-16 lg:pb-24 -mt-12 lg:-mt-24">
         <div className="container mx-auto px-4 max-w-[1400px]">
           <ParallaxMockup />
           <div className="flex flex-wrap gap-4 justify-center mt-10 lg:mt-12">
