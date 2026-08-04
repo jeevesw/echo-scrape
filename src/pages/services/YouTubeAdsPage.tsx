@@ -686,7 +686,7 @@ const YouTubeAdsPage = () => {
           rounded="rounded-none"
           label="FULL-BLEED — VENUE INTERIOR"
           note="Warm, busy restaurant interior, dark enough for overlay text"
-          className="absolute inset-0 h-full opacity-60"
+          className="absolute inset-0 h-full opacity-60 items-start pt-4"
         />
         <div className="relative z-10 max-w-2xl mx-auto px-4 py-20 lg:py-28 text-center">
           <h2 className="heading-display text-3xl md:text-4xl text-foreground mb-6">
