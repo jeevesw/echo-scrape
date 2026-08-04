@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
@@ -18,6 +18,10 @@ import { ArrowRight } from "lucide-react";
 import { ScrollReveal, useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { usePrefersReducedMotion } from "@/hooks/use-reduced-motion";
 import { useCountUp } from "@/hooks/use-count-up";
+
+const SpinningPlayMark = lazy(() =>
+  import("@/components/services/SpinningPlayMark").then((m) => ({ default: m.SpinningPlayMark }))
+);
 import {
   Accordion,
   AccordionContent,
@@ -685,19 +689,18 @@ const YouTubeAdsPage = () => {
       </section>
 
       {/* 16 — CLOSING CTA */}
-      <section className="relative overflow-hidden bg-muted">
-        <ImagePlaceholder
-          aspectRatio="21/9"
-          rounded="rounded-none"
-          label="FULL-BLEED — VENUE INTERIOR"
-          note="Warm, busy restaurant interior, dark enough for overlay text"
-          className="absolute inset-0 h-full opacity-60 items-start pt-4"
-        />
+      <section className="relative overflow-hidden min-h-[560px] flex items-center bg-foreground">
+        <div className="absolute inset-0">
+          <Suspense fallback={<div className="absolute inset-0 bg-foreground" />}>
+            <SpinningPlayMark className="h-full w-full" speed={16} />
+          </Suspense>
+        </div>
+        <div className="absolute inset-0 bg-black/25" />
         <div className="relative z-10 max-w-2xl mx-auto px-4 py-20 lg:py-28 text-center">
-          <h2 className="heading-display text-3xl md:text-4xl text-foreground mb-6">
+          <h2 className="heading-display text-3xl md:text-4xl text-background mb-6">
             Ready to put your video where the attention is?
           </h2>
-          <p className="text-lg text-muted-foreground mb-8">
+          <p className="text-lg text-background/85 mb-8">
             Tell us what the campaign needs to achieve commercially and we'll tell you whether YouTube is the right
             place to spend.
           </p>
