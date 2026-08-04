@@ -343,6 +343,33 @@ const AnimatedTestimonial = () => {
   );
 };
 
+/* ---------- Count-up stat for the dark stats band ---------- */
+const AnimatedStatCardLarge = ({
+  end,
+  suffix,
+  prefix,
+  label,
+  small,
+}: {
+  end: number;
+  suffix?: string;
+  prefix?: string;
+  label: string;
+  small?: boolean;
+}) => {
+  const { ref, displayValue } = useCountUp({ end, suffix, prefix, duration: 2000 });
+  return (
+    <div ref={ref}>
+      <span
+        className={`heading-display text-primary block ${small ? "text-4xl" : "text-6xl"}`}
+      >
+        {displayValue}
+      </span>
+      <span className="text-sm text-white/60 mt-2 block leading-snug">{label}</span>
+    </div>
+  );
+};
+
 const YouTubeAdsPage = () => {
   return (
     <Layout>
