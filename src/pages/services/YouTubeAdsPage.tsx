@@ -331,19 +331,6 @@ const AnimatedTestimonial = () => {
           ))}
         </blockquote>
         <div className="border-t border-primary-foreground/20 pt-8 flex flex-col items-center gap-3">
-          <div className="flex flex-col items-center gap-2">
-            <div className="w-28">
-              <ImagePlaceholder
-                aspectRatio="1/1"
-                rounded="rounded-full"
-                label="HEADSHOT"
-                className="bg-primary-foreground/10 border-primary-foreground/40 [&_span]:text-primary-foreground/80"
-              />
-            </div>
-            <span className="text-xs text-primary-foreground/60">
-              Client headshot — Steve Roberts, optional
-            </span>
-          </div>
           <cite className="not-italic text-base opacity-80">
             — Steve Roberts, Digital Marketing Director, Various Eateries
           </cite>
@@ -458,8 +445,8 @@ const YouTubeAdsPage = () => {
                   <Link to="/services/video-production" className="text-primary underline underline-offset-4">
                     produce
                   </Link>{" "}
-                  and run YouTube advertising for restaurant groups, multi-site operators and hospitality brands across the
-                  UK, alongside our{" "}
+                  and run YouTube advertising for restaurant groups, multi-site operators and private medical brands
+                  across the UK, alongside our{" "}
                   <Link to="/services/paid-search" className="text-primary underline underline-offset-4">
                     Google Ads
                   </Link>{" "}
@@ -467,8 +454,8 @@ const YouTubeAdsPage = () => {
                   <Link to="/services/paid-advertising" className="text-primary underline underline-offset-4">
                     paid social
                   </Link>{" "}
-                  work. We care less about impressions than about{" "}
-                  <Highlight>whether someone within a few miles of your venue walked in.</Highlight>
+                  work. Beyond just plays, we focus on{" "}
+                  <Highlight>whether someone within a few miles of your business walked in after seeing a video ad.</Highlight>
                 </p>
               </div>
             </ScrollReveal>
@@ -484,9 +471,9 @@ const YouTubeAdsPage = () => {
               The attribution gap, and how we close it
             </h2>
             <p className="text-xl md:text-2xl text-foreground/80 leading-relaxed max-w-3xl mx-auto text-center mb-12">
-              YouTube works long before it can be measured. Someone watches on a Tuesday, doesn't click, and books a
-              table a fortnight later after searching your brand name. Analytics records that as brand or direct
-              traffic, and <Highlight>YouTube gets no credit.</Highlight>
+              Someone sees a video ad on a Tuesday, doesn't click, and books a table a fortnight later after searching
+              your brand name. Analytics records that as brand or direct traffic, and YouTube gets no credit.{" "}
+              <Highlight>Here's how we bridge that gap:</Highlight>
             </p>
           </ScrollReveal>
           <div className="grid gap-6 max-w-5xl mx-auto sm:grid-cols-2 lg:grid-cols-3">
@@ -494,7 +481,7 @@ const YouTubeAdsPage = () => {
               <ScrollReveal key={item.title} delay={i * 100}>
                 <div className="relative h-full overflow-hidden rounded-2xl bg-muted border border-transparent p-8 pt-12 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:border-primary">
                   <span
-                    className="heading-display absolute -top-2 right-4 text-8xl text-primary/10 select-none pointer-events-none"
+                    className="heading-display absolute top-1 right-4 text-8xl leading-none text-primary/10 select-none pointer-events-none"
                     aria-hidden="true"
                   >
                     {i + 1}
@@ -507,60 +494,6 @@ const YouTubeAdsPage = () => {
           </div>
         </div>
       </section>
-
-      {/* 4 — SHORTS: numbered list + sticky vertical still */}
-      <section className="bg-muted py-16 lg:py-24">
-        <div className="container mx-auto px-4">
-          <ScrollReveal>
-            <h2 className="heading-display text-4xl md:text-5xl text-foreground text-center mb-12">
-              Shorts, and why it matters
-            </h2>
-          </ScrollReveal>
-          <div className="max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,1fr)_320px] gap-12 lg:gap-16 items-start">
-            <ol className="space-y-10">
-              {shortsCards.map((item, i) => (
-                <ScrollReveal key={item.title} delay={i * 100}>
-                  <li className="group flex gap-6">
-                    <span className="heading-display text-6xl text-primary/30 leading-none shrink-0 transition-colors duration-300 group-hover:text-primary/60">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <div>
-                      <h3 className="heading-display text-2xl md:text-3xl text-foreground mb-3">{item.title}</h3>
-                      <p className="text-xl text-muted-foreground leading-relaxed">{item.description}</p>
-                    </div>
-                  </li>
-                </ScrollReveal>
-              ))}
-            </ol>
-            <div className="lg:sticky lg:top-28">
-              <div className="relative overflow-hidden rounded-2xl shadow-2xl aspect-[9/16] bg-foreground/5">
-                <video
-                  src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Paris-Baguette-Trapeze-Media-Video-Production.mp4"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 7 — SECTION BREAKER */}
-      <SubServiceHero
-        variant="dark-overlay"
-        heading="One shoot. Every platform."
-        body="If you're already making vertical creative for TikTok or Reels, most of a Shorts campaign already exists. We film once and cut for all three."
-      />
-      <div className="container mx-auto px-4 -mt-8 mb-8 max-w-5xl">
-        <ImagePlaceholder
-          aspectRatio="21/9"
-          label="FULL-BLEED — SHOOT DAY WIDE"
-          note="Wide landscape shot, camera and crew visible, dark enough for white text overlay — replaces the section background above"
-        />
-      </div>
 
       {/* 9 — CASE STUDY: MYCELIA */}
       <section className="bg-[hsl(60,1%,8%)] py-16 lg:py-24">
@@ -621,6 +554,60 @@ const YouTubeAdsPage = () => {
           </div>
         </div>
       </section>
+
+      {/* 4 — SHORTS: numbered list + sticky vertical still */}
+      <section className="bg-muted py-16 lg:py-24">
+        <div className="container mx-auto px-4">
+          <ScrollReveal>
+            <h2 className="heading-display text-4xl md:text-5xl text-foreground text-center mb-12">
+              The untapped power of Shorts
+            </h2>
+          </ScrollReveal>
+          <div className="max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,1fr)_320px] gap-12 lg:gap-16 items-start">
+            <ol className="space-y-10">
+              {shortsCards.map((item, i) => (
+                <ScrollReveal key={item.title} delay={i * 100}>
+                  <li className="group flex gap-6">
+                    <span className="heading-display text-6xl text-primary/30 leading-none shrink-0 transition-colors duration-300 group-hover:text-primary/60">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <div>
+                      <h3 className="heading-display text-2xl md:text-3xl text-foreground mb-3">{item.title}</h3>
+                      <p className="text-xl text-muted-foreground leading-relaxed">{item.description}</p>
+                    </div>
+                  </li>
+                </ScrollReveal>
+              ))}
+            </ol>
+            <div className="lg:sticky lg:top-28">
+              <div className="relative overflow-hidden rounded-2xl shadow-2xl aspect-[9/16] bg-foreground/5">
+                <video
+                  src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Paris-Baguette-Trapeze-Media-Video-Production.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 7 — SECTION BREAKER */}
+      <SubServiceHero
+        variant="dark-overlay"
+        heading="One shoot. Every platform."
+        body="If you're already making vertical creative for TikTok or Reels, most of a Shorts campaign already exists. We film once and cut for all three."
+      />
+      <div className="container mx-auto px-4 -mt-8 mb-8 max-w-5xl">
+        <ImagePlaceholder
+          aspectRatio="21/9"
+          label="FULL-BLEED — SHOOT DAY WIDE"
+          note="Wide landscape shot, camera and crew visible, dark enough for white text overlay — replaces the section background above"
+        />
+      </div>
 
       {/* 2 — CLIENT LOGOS */}
       <ClientLogoCarousel />
