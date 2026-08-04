@@ -319,14 +319,18 @@ const AnimatedTestimonial = () => {
           ))}
         </blockquote>
         <div className="border-t border-primary-foreground/20 pt-8 flex flex-col items-center gap-3">
-          <div className="w-20">
-            <ImagePlaceholder
-              aspectRatio="1/1"
-              rounded="rounded-full"
-              label="HEADSHOT"
-              note="Steve Roberts, optional"
-              className="bg-primary-foreground/10 border-primary-foreground/30"
-            />
+          <div className="flex flex-col items-center gap-2">
+            <div className="w-28">
+              <ImagePlaceholder
+                aspectRatio="1/1"
+                rounded="rounded-full"
+                label="HEADSHOT"
+                className="bg-primary-foreground/10 border-primary-foreground/40 [&_span]:text-primary-foreground/80"
+              />
+            </div>
+            <span className="text-xs text-primary-foreground/60">
+              Client headshot — Steve Roberts, optional
+            </span>
           </div>
           <cite className="not-italic text-base opacity-80">
             — Steve Roberts, Digital Marketing Director, Various Eateries
