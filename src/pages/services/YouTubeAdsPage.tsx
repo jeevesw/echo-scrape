@@ -478,46 +478,6 @@ const YouTubeAdsPage = () => {
         </div>
       </section>
 
-      {/* 4 — SHORTS: numbered list + sticky vertical still */}
-      <section className="bg-muted py-16 lg:py-24">
-        <div className="container mx-auto px-4">
-          <ScrollReveal>
-            <h2 className="heading-display text-4xl md:text-5xl text-foreground text-center mb-12">
-              Shorts, and why it matters
-            </h2>
-          </ScrollReveal>
-          <div className="max-w-6xl mx-auto grid lg:grid-cols-[minmax(0,1fr)_320px] gap-12 lg:gap-16 items-start">
-            <ol className="space-y-10">
-              {shortsCards.map((item, i) => (
-                <ScrollReveal key={item.title} delay={i * 100}>
-                  <li className="group flex gap-6">
-                    <span className="heading-display text-6xl text-primary/30 leading-none shrink-0 transition-colors duration-300 group-hover:text-primary/60">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <div>
-                      <h3 className="heading-display text-2xl md:text-3xl text-foreground mb-3">{item.title}</h3>
-                      <p className="text-xl text-muted-foreground leading-relaxed">{item.description}</p>
-                    </div>
-                  </li>
-                </ScrollReveal>
-              ))}
-            </ol>
-            <div className="lg:sticky lg:top-28">
-              <div className="relative overflow-hidden rounded-2xl shadow-2xl aspect-[9/16] bg-foreground/5">
-                <video
-                  src="https://rsidutxwzfnisriafnqf.supabase.co/storage/v1/object/public/videos//Paris-Baguette-Trapeze-Media-Video-Production.mp4"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* 7 — SECTION BREAKER */}
       <SubServiceHero
         variant="dark-overlay"
