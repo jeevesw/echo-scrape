@@ -695,6 +695,7 @@ const YouTubeAdsPage = () => {
             <SpinningPlayMark className="h-full w-full" speed={16} />
           </Suspense>
         </div>
+        <div className="absolute inset-0 bg-black/25" />
         <div className="relative z-10 max-w-2xl mx-auto px-4 py-20 lg:py-28 text-center">
           <h2 className="heading-display text-3xl md:text-4xl text-background mb-6">
             Ready to put your video where the attention is?
